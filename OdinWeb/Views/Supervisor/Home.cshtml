@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Supervisor";
+}
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i>Administración de Supervisores</h1>
+        <p>Información de supervisores registrados</p><br>
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearsupervisores"><i class="fa fa-plus"></i>Agregar</button>
+    </div>
+
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Supervisores</li>
+        <li class="breadcrumb-item active"><a href="/docs/supervisores.html">Data Table</a></li>
+    </ul>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="tsupervisores">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Correo</th>
+                                <th>Sucursal</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#editsupervisores"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#eliminarsupervisor"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Heiner</td>
+                                <td>Arroyo Vargas</td>
+                                <td>karroyo@datasoftla.com</td>
+                                <td>San José</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
