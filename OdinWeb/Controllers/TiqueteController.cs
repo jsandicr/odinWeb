@@ -8,6 +8,8 @@ namespace OdinWeb.Controllers
 
         public async Task<IActionResult> Home()
         {
+            //prueba
+
             return View();
         }
     }
