@@ -6,7 +6,8 @@
         <h1><i class="fa fa-th-list"></i>Administración de Servicios</h1>
         <p>Servicios Ofrecidos</p>
         </br>
-        <button class="btn btn-primary" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Agregar</button>
+        @Html.ActionLink("Crear", "Crear", "Servicio", null, new { @class = "btn btn-primary", @type = "button"})
+
     </div>
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -19,7 +20,7 @@
         <div class="tile">
             <div class="tile-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered" id="sampleTable">
+                    <table class="table table-hover table-bordered" id="tservicios">
                         <thead>
                             <tr>
                                 <th>No Servicio</th>
@@ -39,9 +40,9 @@
                                 <td>2 semanas</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                        <a class="btn btn-primary" href="@Url.Action("Ver","Servicio")"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="@Url.Action("Editar","Servicio")"><i class="fa fa-lg fa-edit"></i></a>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -53,9 +54,9 @@
                                 <td>2 dias</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                        <a class="btn btn-primary" href="@Url.Action("Ver","Servicio")"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="@Url.Action("Editar","Servicio")"><i class="fa fa-lg fa-edit"></i></a>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -67,9 +68,9 @@
                                 <td>1 Semana</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                        <a class="btn btn-primary" href="@Url.Action("Ver","Servicio")"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="@Url.Action("Editar","Servicio")"><i class="fa fa-lg fa-edit"></i></a>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -81,9 +82,9 @@
                                 <td>3 dias</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#"><i class="fa fa-lg fa-trash"></i></a>
+                                        <a class="btn btn-primary" href="@Url.Action("Ver","Servicio")"><i class="fa fa-lg fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="@Url.Action("Editar","Servicio")"><i class="fa fa-lg fa-edit"></i></a>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -97,3 +98,26 @@
         </div>
     </div>
 </div>
+<!-- Modal de confirmación de eliminación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar este servicio?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/plugins/jquery.datatables.min.js"></script>
+<script src="~/js/plugins/datatables.bootstrap.min.js"></script>
+<script type="text/javascript">$('#tservicios').DataTable();</script>

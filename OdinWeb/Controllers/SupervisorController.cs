@@ -10,5 +10,9 @@ namespace OdinWeb.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> Crear()
+        {
+            return View();
+        }
     }
 }

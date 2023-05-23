@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Ver Servicio";
+}
+<div class="col-md-12">
+    <div class="tile">
+        <h3 class="tile-title">Ver Servicio</h3>
+        <div class="tile-body">
+            <div class="form-group">
+                <label class="control-label">Nombre de Servicio</label>
+                <input class="form-control" type="text" value="Nombre del servicio" readonly>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Descripción</label>
+                <textarea class="form-control" rows="4" readonly>Descripción del servicio</textarea>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Estado</label>
+                <input class="form-control" type="text" value="Activo" readonly>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Imagen de servicio</label>
+                <img src="ruta_de_la_imagen.jpg" alt="Imagen del servicio" width="200">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tickets creados</label>
+                <input class="form-control" type="text" value="10" readonly>
+            </div>
+        </div>
+        <div class="tile-footer">
+            <a class="btn btn-secondary" href="javascript:void(0);" onclick="history.back();"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Volver</a>
+        </div>
+    </div>
+</div>
+

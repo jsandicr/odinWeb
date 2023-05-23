@@ -1,47 +1,48 @@
 ﻿@{
-    ViewData["Title"] = "Crear Servicio";
+    ViewData["Title"] = "Editar Servicio";
 }
 <div class="col-md-12">
     <div class="tile">
-        <h3 class="tile-title">Crear Servicio</h3>
+        <h3 class="tile-title">Editar Servicio</h3>
         <div class="tile-body">
             <form>
                 <div class="form-group">
-                    <label class="control-label">Nombre de Sevicio</label>
-                    <input class="form-control" type="text" placeholder="Ingrese su Nombre">
+                    <label class="control-label">Nombre de Servicio</label>
+                    <input class="form-control" type="text" placeholder="Ingrese su Nombre" value="Nombre del servicio existente">
                 </div>
                 <div class="form-group">
                     <label class="control-label">Descripción</label>
-                    <textarea class="form-control" rows="4" placeholder="Ingrese su dirreción"></textarea>
+                    <textarea class="form-control" rows="4" placeholder="Ingrese su dirección">Descripción del servicio existente</textarea>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Estado</label>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="sexo">Activo
+                            <input class="form-check-input" type="radio" name="estado" value="activo" checked>Activo
                         </label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="sexo">Inactivo
+                            <input class="form-check-input" type="radio" name="estado" value="inactivo">Inactivo
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Imagen de servico</label>
+                    <label class="control-label">Imagen de servicio</label>
                     <input class="form-control" type="file">
                 </div>
                 <div class="form-group">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox">Acepto los termninos y condiciones.
+                            <input class="form-check-input" type="checkbox" checked>Acepto los términos y condiciones.
                         </label>
                     </div>
                 </div>
             </form>
         </div>
         <div class="tile-footer">
-            <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+            <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
         </div>
     </div>
 </div>
+
