@@ -14,5 +14,15 @@ namespace OdinWeb.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> Editar()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Ver()
+        {
+            return View();
+        }
     }
 }

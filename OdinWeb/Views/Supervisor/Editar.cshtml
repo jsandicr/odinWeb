@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Editar Supervisor";
+}
+<div class="col-md-12">
+    <div class="tile">
+        <h3 class="tile-title">Editar Supervisor</h3>
+        <div class="tile-body">
+            <form>
+                <div class="form-group">
+                    <label class="control-label">Nombre</label>
+                    <input class="form-control" type="text" value="Nombre del Supervisor">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Apellidos</label>
+                    <input class="form-control" type="text" value="Apellidos del Supervisor">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Correo</label>
+                    <input class="form-control" type="email" value="correo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Dirección</label>
+                    <textarea class="form-control" rows="4">Dirección del Supervisor</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Sucursal</label>
+                    <select class="form-control" name="sucursal">
+                        <option value="San José">San José</option>
+                        <option value="Cartago">Cartago</option>
+                        <option value="Heredia">Heredia</option>
+                        <option value="Guanacaste">Guanacaste</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Sexo</label>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="sexo" checked>Masculino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="sexo">Femenino
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Imagen de perfil</label>
+                    <input class="form-control" type="file">
+                </div>
+            </form>
+        </div>
+        <div class="tile-footer">
+            <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-arrow-circle-left"></i>Cancelar</a>
+        </div>
+    </div>
+</div>

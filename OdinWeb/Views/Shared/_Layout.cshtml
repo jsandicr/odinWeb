@@ -13,16 +13,17 @@
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/main.js"></script>
     <script src="~/js/plugins/chart.js"></script>
+    <script src="~/js/plugins/pace.min.js"></script>
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body class="app sidebar-mini">
     <header class="app-header">
         <a class="app-header__logo" href="dashboard.html">Radiadores Odín</a>
         <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
         
         <ul class="app-nav">
-            <!--Notification Menu-->
+            <!--Notification Menu
             <li class="dropdown">
                 <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
                 <ul class="app-notification dropdown-menu dropdown-menu-right">
@@ -60,6 +61,7 @@
                     <li class="app-notification__footer"><a href="#">Ver todas las notificaciones.</a></li>
                 </ul>
             </li>
+            -->
             <!-- User Menu-->
             <li class="dropdown">
                 <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
@@ -83,17 +85,17 @@
         </div>
         <ul class="app-menu">
             <li><a class="app-menu__item active" href="@Url.Action("Index","Home")"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-            <li><a class="app-menu__item" href="@Url.Action("Home","Tiquete")"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tiquetes</span></a></li>
             <li><a class="app-menu__item" href="@Url.Action("Home","Servicio")"><i class="app-menu__icon fa fa-solid fa-car"></i><span class="app-menu__label">Servicios</span></a></li>
             <li><a class="app-menu__item" href="@Url.Action("Home","Cliente")"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Clientes</span></a></li>
             <li><a class="app-menu__item" href="@Url.Action("Home","Supervisor")"><i class="app-menu__icon fa fa-solid fa-wrench"></i><span class="app-menu__label">Supervisores</span></a></li>
+            <li><a class="app-menu__item active" href="@Url.Action("Home","Tiquete")"><i class="app-menu__icon fa fa-solid fa-ticket-alt"></i><span class="app-menu__label">Tiquetes</span></a></li>
         </ul>
     </aside>
     <main role="main" class="app-content">
         @RenderBody()
     </main>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="~/js/plugins/pace.min.js"></script>
+    
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="~/js/plugins/chart.js"></script>
     <!-- Google analytics script-->
