@@ -12,5 +12,12 @@ namespace OdinWeb.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> IndexCliente()
+        {
+            //prueba
+
+            return View();
+        }
     }
 }
