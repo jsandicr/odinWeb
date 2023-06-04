@@ -1,4 +1,5 @@
-﻿@{
+﻿@model OdinWeb.Models.Obj.UserDTO
+@{
     ViewData["Title"] = "Login";
     Layout = "_AuthLayout";
 }
@@ -11,15 +12,16 @@
         <h1>Radiadores Odín C.R</h1>
     </div>
     <div class="login-box">
-        <form class="login-form" action="/Home/Index">
+        <form class="login-form" asp-action="Validate" asp-controller="Auth" method="post">
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesion</h3>
             <div class="form-group">
-                <label class="control-label">Correo</label>
-                <input class="form-control" type="text" placeholder="ejemplo@gmail.com" autofocus>
+                <label asp-for="mail" class="control-label"></label>
+                <input asp-for="mail" class="form-control" type="text" placeholder="ejemplo@gmail.com" autofocus>
+                <span asp-validation-for="mail"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Contraseña</label>
-                <input class="form-control" type="password" placeholder="*****">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" type="password" placeholder="*****">
             </div>
             <div class="form-group">
                 <div class="utility">
@@ -32,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group btn-container">
-                <button class="btn btn-primary btn-block" href=""><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesion</button>
+                <button type="submit" class="btn btn-primary btn-block" href=""><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesion</button>
             </div>
         </form>
         <form class="forget-form" action="index.html">
