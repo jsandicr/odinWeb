@@ -1,4 +1,6 @@
-﻿namespace OdinWeb.Models.Obj
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace OdinWeb.Models.Obj
 {
     public class User
     {
@@ -20,5 +22,21 @@
         public List<Comment>? comments { get; set; }
         public List<ErrorLog>? errorsLog { get; set; }
         public List<TransactionalLog>? transactionsLog { get; set; }
+    }
+    public class RestorePassword
+    {
+        [Required(ErrorMessage = "El campo 'mail' es requerido")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "El campo 'mail' debe ser una dirección de correo electrónico válida")]
+        public string mail { get; set; }
+
+        [Required(ErrorMessage = "El campo 'phone' es requerido")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
+        public string phone { get; set; }
+    }
+
+    public class LoginViewModel
+    {
+        public UserDTO User { get; set; }
+        public RestorePassword RestorePassword { get; set; }
     }
 }

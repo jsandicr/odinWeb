@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using OdinWeb.Models.Data.Classes;
+using OdinWeb.Models.Data.Interfaces;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     });
 
+builder.Services.AddScoped<IUserModel, UserModel>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

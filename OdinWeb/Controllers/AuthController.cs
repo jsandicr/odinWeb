@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using NuGet.Common;
 using OdinWeb.Models;
+using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -13,7 +14,12 @@ namespace OdinWeb.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly IUserModel _userModel;
 
+        public AuthController(IUserModel userModel)
+        {
+            _userModel = userModel;
+        }
         public async Task<IActionResult> Login()
         {
             return View();
@@ -21,13 +27,12 @@ namespace OdinWeb.Controllers
 
         [HttpPost]
         //[SessionState(SessionStateBehavior.Required)]
-        public async Task<IActionResult> Validate(UserDTO userDTO)
+        public async Task<IActionResult> Validate(LoginViewModel userDTO)
         {
+            
             try
-            {
-                if (ModelState.IsValid)
-                {
-                    var json = JsonConvert.SerializeObject(userDTO);
+            {             
+                    var json = JsonConvert.SerializeObject(userDTO.User);
                     var data = new StringContent(json, Encoding.UTF8, "application/json");
                     User user = new User();
                     using (var httpClient = new HttpClient())
@@ -69,7 +74,7 @@ namespace OdinWeb.Controllers
                             }
                         }
                     }
-                }
+                
                 return RedirectToAction(nameof(Login));
 
             }
@@ -77,6 +82,34 @@ namespace OdinWeb.Controllers
             {
                 return RedirectToAction(nameof(Login));
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RestorePassword(LoginViewModel login) {
+
+           
+                if (!string.IsNullOrEmpty(login.RestorePassword?.mail) || !string.IsNullOrEmpty(login.RestorePassword?.phone))
+                {
+                    // Ambos campos (mail y phone) tienen valor, puedes continuar con el proceso de restablecimiento de contraseña
+                    var resultado = _userModel.RestorePassword(login.RestorePassword);
+                    if (resultado == null)
+                    {
+                        return RedirectToAction(nameof(Login));
+                    }
+                    else
+                    {
+                        return RedirectToAction(nameof(Login));
+                    }
+                }
+                else
+                {
+                    // Al menos uno de los campos (mail o phone) es requerido, muestra un mensaje de error
+                    ModelState.AddModelError(string.Empty, "Debe proporcionar al menos el correo electrónico o el teléfono para restablecer la contraseña.");
+                }
+            
+
+            return RedirectToAction(nameof(Login)); ;
+            
         }
     }
 }

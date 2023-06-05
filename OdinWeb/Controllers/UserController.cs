@@ -8,5 +8,6 @@ namespace OdinWeb.Controllers
         {
             return View();
         }
+
     }
 }
