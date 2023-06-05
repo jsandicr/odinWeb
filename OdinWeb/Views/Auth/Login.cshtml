@@ -1,4 +1,6 @@
-﻿@{
+﻿@model OdinWeb.Entities.UserEntiti
+
+@{
     ViewData["Title"] = "Login";
     Layout = "_AuthLayout";
 }
@@ -11,15 +13,16 @@
         <h1>Radiadores Odín C.R</h1>
     </div>
     <div class="login-box">
-        <form class="login-form" action="/Home/Index">
+        @using (Html.BeginForm("IniciarSesion", "Home", FormMethod.Post, new { @class = "text-start" }))
+        {
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesion</h3>
             <div class="form-group">
                 <label class="control-label">Correo</label>
-                <input class="form-control" type="text" placeholder="ejemplo@gmail.com" autofocus>
+                @Html.TextBoxFor(x => x.Correo, new { @class="form-control", @placeholder="Correo Electrónico" })
             </div>
             <div class="form-group">
                 <label class="control-label">Contraseña</label>
-                <input class="form-control" type="password" placeholder="*****">
+                @Html.TextBoxFor(x => x.Contrasena, new { @class="form-control", @type="password", @placeholder="Contraseña" })
             </div>
             <div class="form-group">
                 <div class="utility">
@@ -32,10 +35,8 @@
                 </div>
             </div>
             <div class="form-group btn-container">
-                <button class="btn btn-primary btn-block" href=""><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesion</button>
+                <button class="btn btn-primary btn-block" href="@Url.Action("Index","Home")"><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesion</button>
             </div>
-        </form>
-        <form class="forget-form" action="index.html">
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>¿Olvidó su contraseña?</h3>
             <div class="form-group">
                 <label class="control-label">Correo</label>
@@ -47,6 +48,6 @@
             <div class="form-group mt-3">
                 <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i>Regresar a inicio de sesion</a></p>
             </div>
-        </form>
+        }
     </div>
 </section>

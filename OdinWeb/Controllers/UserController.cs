@@ -8,5 +8,17 @@ namespace OdinWeb.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult UsuariosConsulta()
+        {
+            var resultado = modelUsuario.Consultar_Usuarios_Estado(-1);
+
+            if (resultado != null && resultado.Codigo == 1)
+                return View(resultado);
+            else
+                return View("Error");
+        }
+
     }
 }
