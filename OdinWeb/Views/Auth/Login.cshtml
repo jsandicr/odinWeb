@@ -1,4 +1,4 @@
-﻿@model OdinWeb.Entities.UserEntiti
+﻿@model OdinWeb.Models.Obj.LoginViewModel
 
 @{
     ViewData["Title"] = "Login";
@@ -13,16 +13,17 @@
         <h1>Radiadores Odín C.R</h1>
     </div>
     <div class="login-box">
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "login-form" }))
-        {
+        <form class="login-form" asp-action="Validate" asp-controller="Auth" method="post">
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesion</h3>
             <div class="form-group">
-                <label class="control-label">Correo</label>
-                @Html.TextBoxFor(x => x.Correo, new { @class="form-control", @placeholder="Correo Electrónico" })
+                <label class="control-label">Correo Electronico</label>
+                <input asp-for="User.mail" class="form-control" type="text" placeholder="ejemplo@gmail.com" autofocus>
+                <span asp-validation-for="User.mail"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Contraseña</label>
-                @Html.TextBoxFor(x => x.Contrasena, new { @class="form-control", @type="password", @placeholder="Contraseña" })
+                <input asp-for="User.password" class="form-control" type="password" placeholder="*****">
+                <span asp-validation-for="User.password"></span>
             </div>
             <div class="form-group">
                 <div class="utility">
@@ -35,23 +36,32 @@
                 </div>
             </div>
             <div class="form-group btn-container">
-                <button class="btn btn-primary btn-block" href="@Url.Action("Index","Home")"><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesion</button>
+                <button type="submit" class="btn btn-primary btn-block" href=""><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesion</button>
             </div>
-        }
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "forget-form" }))
-        {
+        </form>
+        <form class="forget-form" asp-action="RestorePassword" asp-controller="Auth" method="post">
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>¿Olvidó su contraseña?</h3>
             <div class="form-group">
-                <label class="control-label">Correo</label>
-                @Html.TextBoxFor(x => x.Correo, new { @class="form-control", @placeholder="Correo Electrónico" })
+                <label class="control-label">Correo Electronico</label>
+                <input asp-for="RestorePassword.mail" class="form-control" type="email" placeholder="ejemplo@gmail.com" autofocus>
+                <span asp-validation-for="RestorePassword.mail"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Numero de Teléfono</label>
+                <input asp-for="RestorePassword.phone" class="form-control" type="tel" placeholder="88888888" autofocus>
+                <span asp-validation-for="RestorePassword.phone"></span>
             </div>
             <div class="form-group btn-container">
-                <button class="btn btn-primary btn-block" href="@Url.Action("Index","Home")"><i class="fa fa-unlock fa-lg fa-fw"></i>Reestablecer</button>
+                <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>Reestablecer</button>
             </div>
             <div class="form-group mt-3">
                 <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i>Regresar a inicio de sesion</a></p>
             </div>
-        }
-
+        </form>
     </div>
 </section>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
