@@ -1,7 +1,22 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using OdinWeb.Models.Data.Classes;
+using OdinWeb.Models.Data.Interfaces;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.LoginPath = "/Auth/Validate";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    });
+
+builder.Services.AddScoped<IUserModel, UserModel>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -15,6 +30,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+//app.UseSession();
+
+//Configuracion para sesion
+app.UseAuthentication();
 
 app.UseAuthorization();
 
