@@ -161,7 +161,7 @@ namespace OdinWeb.Controllers
                     }
                 }
                 TempData["AlertMessage"] = "Error al crear la cuenta";
-                TempData["AlertType"] = "success";
+                TempData["AlertType"] = "error";
 
                 return RedirectToAction(nameof(Registration));
             }
