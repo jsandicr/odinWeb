@@ -151,6 +151,8 @@ namespace OdinWeb.Controllers
                             {
                                 if (response.IsSuccessStatusCode)
                                 {
+                                    TempData["AlertMessage"] = "Se creo la cuenta con éxito";
+                                    TempData["AlertType"] = "success";
                                     return RedirectToAction("Login", "Auth");
                                 }
                             }
@@ -158,6 +160,9 @@ namespace OdinWeb.Controllers
 
                     }
                 }
+                TempData["AlertMessage"] = "Error al crear la cuenta";
+                TempData["AlertType"] = "success";
+
                 return RedirectToAction(nameof(Registration));
             }
             catch

@@ -14,7 +14,7 @@
     </div>
     <div class="create-box">
         <form class="login-form" asp-action="Register" asp-controller="Auth" method="post">
-            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Crear Cuneta</h3>
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Crear Cuenta</h3>
             <div class="form-group">
                 <label asp-for="name" class="control-label"></label>
                 <input asp-for="name" class="form-control" type="text" placeholder="Nombre" autofocus>
@@ -49,6 +49,17 @@
         </form>
     </div>
 </section>
+@if (!string.IsNullOrEmpty(TempData["AlertMessage"] as string))
+{
+    <script>
+        Swal.fire({
+            icon: '@TempData["AlertType"]',
+            title: '@TempData["AlertMessage"]',
+            showConfirmButton: false,
+            timer: 4000 // Duración de la alerta en milisegundos (2 segundos en este ejemplo)
+        });
+    </script>
+}
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
