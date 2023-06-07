@@ -85,6 +85,8 @@ namespace OdinWeb.Controllers
                         }
                     }
                 }
+                TempData["AlertMessage"] = "Error, verifique las credenciales.";
+                TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Login));
             }
             catch
