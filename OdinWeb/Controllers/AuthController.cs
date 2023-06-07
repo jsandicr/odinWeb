@@ -171,7 +171,7 @@ namespace OdinWeb.Controllers
                 {
                     // Ambos campos (mail y phone) tienen valor, puedes continuar con el proceso de restablecimiento de contraseña
                     var resultado = _userModel.RestorePassword(login.RestorePassword);
-                    if (resultado != null)
+                    if (resultado.IsCompleted)
                     {
 
                         TempData["AlertMessage"] = "Contraseña restablecida con éxito.";
