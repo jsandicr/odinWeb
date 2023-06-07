@@ -25,6 +25,8 @@ namespace OdinWeb.Controllers
         }
         public async Task<IActionResult> Login()
         {
+            ViewBag.AlertMessage = "Contraseña restablecida con éxito.";
+            ViewBag.AlertType = "success";
             return View();
         }
 
@@ -159,12 +161,17 @@ namespace OdinWeb.Controllers
                 {
                     // Ambos campos (mail y phone) tienen valor, puedes continuar con el proceso de restablecimiento de contraseña
                     var resultado = _userModel.RestorePassword(login.RestorePassword);
-                    if (resultado == null)
+                    if (resultado != null)
                     {
+
+                        TempData["AlertMessage"] = "Contraseña restablecida con éxito.";
+                        TempData["AlertType"] = "success";
                         return RedirectToAction(nameof(Login));
                     }
                     else
                     {
+                        TempData["AlertMessage"] = "Error a restablecer la contraseña.";
+                        TempData["AlertType"] = "error";
                         return RedirectToAction(nameof(Login));
                     }
                 }
