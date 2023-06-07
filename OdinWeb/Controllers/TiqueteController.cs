@@ -43,6 +43,7 @@ namespace OdinWeb.Controllers
 
         public async Task<IActionResult> IndexCliente()
         {
+
             return View();
         }
     }
