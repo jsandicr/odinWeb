@@ -80,13 +80,21 @@ namespace OdinWeb.Controllers
                             };
                             Response.Cookies.Append("Token", user.token, cookieOptions);
                             //HttpContext.Session.SetString("OdinToken", user.token);
-                                
-                            return RedirectToAction("Home", "Tiquete");
-                        }
+                            if (user.rol.name == "Admin")
+                            {
+                                return RedirectToAction("Home", "Tiquete");
+                            }
+                            else {
+                                return RedirectToAction("Principal", "Cliente");
+                            }
+
+                        }   
+                            
                     }
                 }
                 TempData["AlertMessage"] = "Error, verifique las credenciales.";
                 TempData["AlertType"] = "error";
+
                 return RedirectToAction(nameof(Login));
             }
             catch
