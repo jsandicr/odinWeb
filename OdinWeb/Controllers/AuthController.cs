@@ -82,7 +82,10 @@ namespace OdinWeb.Controllers
                             //HttpContext.Session.SetString("OdinToken", user.token);
                             if (user.rol.name == "Admin")
                             {
-                                return RedirectToAction("Home", "Tiquete");
+                                return RedirectToAction("Index", "Home");
+                            }
+                            if (user.rol.name== "Supervisor") {
+                                return RedirectToAction("Principal", "Supervisor");
                             }
                             else {
                                 return RedirectToAction("Principal", "Cliente");

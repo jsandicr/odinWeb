@@ -29,5 +29,10 @@ namespace OdinWeb.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> Principal()
+        {
+            return View();
+        }
     }
 }
