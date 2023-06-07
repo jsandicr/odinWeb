@@ -53,3 +53,16 @@
         </form>
     </div>
 </section>
+@if (TempData["mostrarSweetAlert"] != null && (bool)TempData["mostrarSweetAlert"])
+{
+    <script>
+        // Mostrar SweetAlert después de realizar la consulta
+        $(document).ready(function () {
+            Swal.fire({
+                title: 'Consulta completada',
+                text: 'La consulta se ha completado exitosamente',
+                icon: 'success'
+            });
+        });
+    </script>
+}

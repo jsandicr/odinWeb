@@ -106,7 +106,7 @@ namespace OdinWeb.Controllers
                     // Al menos uno de los campos (mail o phone) es requerido, muestra un mensaje de error
                     ModelState.AddModelError(string.Empty, "Debe proporcionar al menos el correo electrónico o el teléfono para restablecer la contraseña.");
                 }
-            
+            TempData["mostrarSweetAlert"] = true;
 
             return RedirectToAction(nameof(Login)); ;
             
