@@ -12,9 +12,9 @@
     <div class="logo">
         <h1>Radiadores Odín C.R</h1>
     </div>
-    <div class="login-box">
+    <div class="create-box">
         <form class="login-form" asp-action="Register" asp-controller="Auth" method="post">
-            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesion</h3>
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Crear Cuneta</h3>
             <div class="form-group">
                 <label asp-for="name" class="control-label"></label>
                 <input asp-for="name" class="form-control" type="text" placeholder="Nombre" autofocus>
@@ -42,6 +42,9 @@
             </div>
             <div class="form-group btn-container">
                 <button type="submit" class="btn btn-primary btn-block" href=""><i class="fa fa-sign-in fa-lg fa-fw"></i>Registrarse</button>
+            </div>
+            <div class="form-group mt-3">
+                <p class="semibold-text mb-0"><a href="@Url.Action("Login","Auth")"><i class="fa fa-angle-left fa-fw"></i>Regresar a inicio de sesion</a></p>
             </div>
         </form>
     </div>
