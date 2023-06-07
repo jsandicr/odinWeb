@@ -5,23 +5,61 @@ namespace OdinWeb.Models.Obj
     public class User
     {
         public int id { get; set; }
+        [Display(Name = "Nombre")]
         public string name { get; set; }
+        [Display(Name = "Apellido")]
         public string lastName { get; set; }
+        [Required(ErrorMessage = "El campo 'Email' es requerido")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "El campo 'Email' debe ser una dirección de correo electrónico válida")]
+        [Display(Name = "Email")]
         public string mail { get; set; }
+        [Required(ErrorMessage = "El campo 'phone' es requerido")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
+        [Display(Name = "Telefono")]
         public string phone { get; set; }
         public string photo { get; set; }
+        [Required(ErrorMessage = "El campo Contraseña es requerido")]
+        [StringLength(int.MaxValue, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
+        [Display(Name = "Contraseña")]
         public string password { get; set; }
-        public bool active { get; set; }
+        [Display(Name = "Activo")]
+        public bool active { get; set; } = true;
+        [Display(Name = "Id Rol")]
         public int idRol { get; set; }
-        public int idBranch { get; set; }
+        [Display(Name = "Id Sucursal")]
+        public int? idBranch { get; set; }
         public string? token { get; set; }
+        [Display(Name = "Rol")]
         public Rol? rol { get; set; }
+        [Display(Name = "Branch")]
         public Branch? branch { get; set; }
         public List<Ticket>? ticketsS { get; set; }
         public List<Ticket>? ticketsC { get; set; }
         public List<Comment>? comments { get; set; }
         public List<ErrorLog>? errorsLog { get; set; }
         public List<TransactionalLog>? transactionsLog { get; set; }
+    }
+
+    public class UserRegister
+    {
+        [Display(Name = "Nombre")]
+        public string name { get; set; }
+        [Display(Name = "Apellido")]
+        public string lastName { get; set; }
+        [Required(ErrorMessage = "El campo 'Email' es requerido")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "El campo 'Email' debe ser una dirección de correo electrónico válida")]
+        [Display(Name = "Correo")]
+        public string mail { get; set; }
+        [Required(ErrorMessage = "El campo 'phone' es requerido")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
+        [Display(Name = "Telefono")]
+        public string phone { get; set; }
+        [Required(ErrorMessage = "El campo Contraseña es requerido")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
+        [Display(Name = "Contraseña")]
+        public string password { get; set; }
+        [Display(Name = "Activo")]
+        public bool active { get; set; }
     }
     public class RestorePassword
     {

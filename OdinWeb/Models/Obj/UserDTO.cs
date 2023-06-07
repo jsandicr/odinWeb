@@ -6,10 +6,12 @@ namespace OdinWeb.Models.Obj
     {
         [Required(ErrorMessage = "El campo de Correo Electronico es requerido")]
         [EmailAddress(ErrorMessage = "El campo Correo Electronico debe ser una dirección de correo electrónico válida")]
+        [Display(Name = "Email")]
         public string mail { get; set; }
 
         [Required(ErrorMessage = "El campo Contraseña es requerido")]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
+        [StringLength(int.MaxValue, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
+        [Display(Name = "Contraseña")]
         public string password { get; set; }
     }
 }

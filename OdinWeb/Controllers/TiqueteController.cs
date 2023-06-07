@@ -41,6 +41,7 @@ namespace OdinWeb.Controllers
             
         }
 
+        [Authorize]
         public async Task<IActionResult> IndexCliente()
         {
             return View();
