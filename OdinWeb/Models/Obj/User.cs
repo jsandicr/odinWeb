@@ -24,6 +24,7 @@ namespace OdinWeb.Models.Obj
         public string password { get; set; }
         [Display(Name = "Activo")]
         public bool active { get; set; } = true;
+        public bool restorePass { get; set; } = false;
         [Display(Name = "Id Rol")]
         public int idRol { get; set; }
         [Display(Name = "Id Sucursal")]
