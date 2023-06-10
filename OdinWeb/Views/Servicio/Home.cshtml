@@ -1,13 +1,13 @@
-﻿@{
+﻿@model IEnumerable<OdinWeb.Models.Obj.Service>
+@{
     ViewData["Title"] = "Servicio";
 }
 <div class="app-title">
     <div>
         <h1><i class="fa fa-th-list"></i>Administración de Servicios</h1>
         <p>Servicios Ofrecidos</p>
-        </br>
-        @Html.ActionLink("Crear", "Crear", "Servicio", null, new { @class = "btn btn-primary", @type = "button"})
-
+        <br>
+        <a asp-action="Crear" asp-controller="Servicio" class="btn btn-primary">Crear</a>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -22,75 +22,29 @@
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered" id="tservicios">
                         <thead>
-                            <tr>
-                                <th>No Servicio</th>
-                                <th>Descipcion</th>
-                                <th>Costo</th>
-                                <th>Sede</th>
-                                <th>Tiempo estimado</th>
-                                <th>Acciones</th>
+                            <tr>                            
+                                <th>@Html.DisplayNameFor(model => model.name)</th>
+                                <th>@Html.DisplayNameFor(model => model.description)</th>
+                                <th>@Html.DisplayNameFor(model => model.active)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Diseño de nuevo radiador</td>
-                                <td>150.000</td>
-                                <td>SanJose</td>
-                                <td>2 semanas</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Servicio")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Servicio")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Instalacion de radiador</td>
-                                <td>50.000</td>
-                                <td>San Jose</td>
-                                <td>2 dias</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Servicio")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Servicio")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Reparación de radiador</td>
-                                <td>30.000</td>
-                                <td>San Jose</td>
-                                <td>1 Semana</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Servicio")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Servicio")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Radiador intercooler</td>
-                                <td>75.000</td>
-                                <td>San Jose</td>
-                                <td>3 dias</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Servicio")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Servicio")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-
+                            @if(Model != null){
+                                foreach(var service in Model){
+                                    <tr>
+                                        <td>@Html.DisplayFor(model => service.name)</td>
+                                        <td>@Html.DisplayFor(model => service.description)</td>
+                                        <td>@Html.DisplayFor(model => service.active)</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@service.id"><i class="fa fa-lg fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -113,7 +67,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Eliminar</button>
+                <button type="button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
             </div>
         </div>
     </div>
@@ -121,3 +75,16 @@
 <script src="~/js/plugins/jquery.datatables.min.js"></script>
 <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
 <script type="text/javascript">$('#tservicios').DataTable();</script>
+<script>
+    var idToDelete; // Variable para almacenar el ID del elemento a eliminar
+
+    $('#confirmDeleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botón que activó el modal
+        idToDelete = button.data('id'); // Obtener el ID del atributo "data-id" del botón
+    });
+
+    function eliminar() {
+        var url = '@Url.Action("Eliminar", "Servicio")' + '/' + idToDelete;
+        window.location.href = url;
+    }
+</script>
