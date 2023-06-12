@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace OdinWeb.Models.Obj
 {
@@ -28,6 +29,7 @@ namespace OdinWeb.Models.Obj
         public int idRol { get; set; }
         [Display(Name = "Id Sucursal")]
         public int? idBranch { get; set; }
+        public bool restorePass { get; set; }
         public string? token { get; set; }
         [Display(Name = "Rol")]
         public Rol? rol { get; set; }
@@ -76,5 +78,25 @@ namespace OdinWeb.Models.Obj
     {
         public UserDTO User { get; set; }
         public RestorePassword RestorePassword { get; set; }
+    }
+    public class ChangePassword
+    {
+        [HiddenInput(DisplayValue = false)]
+        public int id { get; set; }
+
+        [Required(ErrorMessage = "El campo es requerido.")]
+        [Display(Name = "Contraseña Actual")]
+        public string oldPassword { get; set; }
+
+
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
+        [Display(Name = "Nueva Contraseña")]
+        [Required(ErrorMessage = "El campo es requerido.")]
+        public string password { get; set; }
+
+        [Display(Name = "Confirnar Contraseña")]
+        [Compare("password", ErrorMessage = "Las contraseñas no coinciden.")]
+        [Required(ErrorMessage = "El campo es requerido.")]
+        public string confirmpassword { get; set; }
     }
 }

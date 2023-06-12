@@ -45,33 +45,11 @@ namespace OdinWeb.Controllers
                 userDTO.User.password = _userModel.HashPassword(userDTO.User.password);
                 var json = JsonConvert.SerializeObject(userDTO.User);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
-                User user = new User();
-                using (var httpClient = new HttpClient())
-                {
-                    using (var response = await httpClient.PostAsync("https://localhost:7271/api/User/Login", data))
-                    {
-                        if (response.IsSuccessStatusCode)
+
+                var user = _userModel.Login(userDTO.User);
+
+                        if (user!=null)
                         {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            user = JsonConvert.DeserializeObject<User>(apiResponse);
-                            var rolName = user.rol.name;
-                            List<Claim> claims = new List<Claim>()
-                            {
-                                new Claim(ClaimTypes.NameIdentifier, user.mail),
-                                new Claim("id", user.id.ToString()),
-                                new Claim(ClaimTypes.Role, rolName)
-                            };
-
-                            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                            AuthenticationProperties properties = new AuthenticationProperties()
-                            {
-                                AllowRefresh = true
-                            };
-
-                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
-                                new ClaimsPrincipal(claimsIdentity), properties);
-
-                            // Almacena el token en una cookie
                             var cookieOptions = new CookieOptions
                             {
                                 Expires = DateTime.UtcNow.AddHours(1), // Establece la expiración de la cookie
@@ -79,22 +57,49 @@ namespace OdinWeb.Controllers
                                 HttpOnly = true // Evita que el token sea accesible desde JavaScript
                             };
                             Response.Cookies.Append("Token", user.token, cookieOptions);
-                            //HttpContext.Session.SetString("OdinToken", user.token);
-                            if (user.rol.name == "Admin")
-                            {
-                                return RedirectToAction("Index", "Home");
-                            }
-                            if (user.rol.name== "Supervisor") {
-                                return RedirectToAction("Principal", "Supervisor");
-                            }
-                            else {
-                                return RedirectToAction("Principal", "Cliente");
-                            }
+                   
 
-                        }   
+                            // Almacena el token en una cookie
                             
+                    //HttpContext.Session.SetString("OdinToken", user.token);
+                    if (user.restorePass == false)
+                    {
+                        var rolName = user.rol.name;
+                        List<Claim> claims = new List<Claim>()
+                            {
+                                new Claim(ClaimTypes.NameIdentifier, user.mail),
+                                new Claim("id", user.id.ToString()),
+                                new Claim(ClaimTypes.Role, rolName)
+                            };
+
+                        ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        AuthenticationProperties properties = new AuthenticationProperties()
+                        {
+                            AllowRefresh = true
+                        };
+
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity), properties);
+                        switch (user.rol.name)
+                        {
+                            case "Admin":
+                                return RedirectToAction("Index", "Home");
+                            case "Supervisor":
+                                return RedirectToAction("Principal", "Supervisor");
+                            default:
+                                return RedirectToAction("Principal", "Cliente");
+                        }
                     }
-                }
+                    else
+                    {
+                        ChangePassword changePassword = new ChangePassword();
+                        changePassword.id = user.id;
+                        return RedirectToAction("ChangePassword", changePassword);
+                    }
+
+                }   
+                            
+                    
                 TempData["AlertMessage"] = "Error, verifique las credenciales.";
                 TempData["AlertType"] = "error";
 
@@ -203,6 +208,8 @@ namespace OdinWeb.Controllers
             return RedirectToAction(nameof(Login)); ;
             
         }
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+
         public async Task<IActionResult> CerrarSesion()
         {
             try
@@ -214,6 +221,28 @@ namespace OdinWeb.Controllers
             {
             }
             return RedirectToAction("Login", "Auth");
+        }
+
+        public async Task<IActionResult> ChangePassword(ChangePassword user) { 
+        
+            return View(user);
+        
+        }
+        [HttpPost]
+        public IActionResult ChangePasswordP(ChangePassword user)
+        {
+
+            try {
+
+                _userModel.ChangePassword(user);
+
+                return RedirectToAction(nameof(CerrarSesion));
+
+            } catch {
+                return RedirectToAction(nameof(CerrarSesion));
+
+            }
+
         }
     }
 }
