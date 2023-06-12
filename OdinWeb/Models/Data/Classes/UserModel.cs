@@ -33,8 +33,7 @@ namespace OdinWeb.Models.Data.Classes
             var respuesta = false;
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync($"api/User/restorePassword", content);
-            
-
+ 
             if (response.IsSuccessStatusCode)
             {
                 respuesta = true;
