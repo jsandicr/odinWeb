@@ -34,7 +34,7 @@ namespace OdinWeb.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         //[SessionState(SessionStateBehavior.Required)]
         public async Task<IActionResult> Validate(LoginViewModel userDTO)
