@@ -77,7 +77,7 @@ namespace OdinWeb.Models.Data.Classes
         }
 
 
-        public Service PostServicos(Service service)
+        public bool PostServicos(Service service)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
@@ -89,15 +89,14 @@ namespace OdinWeb.Models.Data.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var services = response.Content.ReadAsStringAsync().Result;
-                var servicesR = JsonConvert.DeserializeObject<Service>(services);
-                return servicesR;
+                
+                return true;
             }
 
-            return null;
+            return false;
         }
 
-        public Service PutServicioById(Service service)
+        public bool PutServicioById(Service service)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
@@ -109,12 +108,11 @@ namespace OdinWeb.Models.Data.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var services = response.Content.ReadAsStringAsync().Result;
-                var servicesR = JsonConvert.DeserializeObject<Service>(services);
-                return servicesR;
+                
+                return true;
             }
 
-            return null;
+            return false;
 
         }
     }

@@ -68,7 +68,7 @@ namespace OdinWeb.Controllers
                 {
                     var servicio = _serviceModel.PostServicos(service);
 
-                    if (servicio != null)
+                    if (servicio)
                     {
                         TempData["AlertMessage"] = "¡Se creó el servicio!";
                         TempData["AlertType"] = "success";
@@ -180,7 +180,7 @@ namespace OdinWeb.Controllers
                 {
                     var servicio = _serviceModel.PutServicioById(service);
 
-                    if (servicio !=null)
+                    if (servicio)
                     {
                         TempData["AlertMessage"] = "¡Se actualizó el servicio!";
                         TempData["AlertType"] = "success";
