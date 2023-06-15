@@ -12,6 +12,7 @@ namespace OdinWeb.Models.Obj
         public string description { get; set; }
         [Display(Name = "Activo")]
         public bool active { get; set; }
+        public string photo { get; set; }
         public List<Ticket>? tickets { get; set; }
     }
 }
