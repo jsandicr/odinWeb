@@ -205,20 +205,13 @@ namespace OdinWeb.Controllers
         {
             try
             {
-                using (var httpClient = new HttpClient())
+               var respuesta = _serviceModel.DeleteServicioById(id);
+
+                if (respuesta)
                 {
-                    var token = Request.Cookies["Token"];
-                    // Agrega el encabezado de autorización con el token
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    using (var response = await httpClient.DeleteAsync("https://localhost:7271/api/Service/" + id))
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            TempData["AlertMessage"] = "¡Se eliminó el servicio!";
-                            TempData["AlertType"] = "success";
-                            return RedirectToAction(nameof(Home));
-                        }
-                    }
+                    TempData["AlertMessage"] = "¡Se eliminó el servicio!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(Home));
                 }
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el servicio!";
                 TempData["AlertType"] = "error";
