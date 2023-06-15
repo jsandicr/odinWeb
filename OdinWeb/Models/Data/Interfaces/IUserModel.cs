@@ -5,7 +5,11 @@ namespace OdinWeb.Models.Data.Interfaces
     public interface IUserModel
     {
         Task<bool> RestorePassword(RestorePassword user);
+
+        public User ChangePassword(ChangePassword user);
         string HashPassword(string password);
+
+        public User Login(UserDTO userDTO);
     }
 }
 
