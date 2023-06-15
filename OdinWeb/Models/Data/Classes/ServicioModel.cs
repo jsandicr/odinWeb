@@ -21,6 +21,24 @@ namespace OdinWeb.Models.Data.Classes
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        public bool DeleteServicioById(int id)
+        {
+            
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.DeleteAsync("api/Service/"+ id).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    
+
         public Service GetServicioById(int id)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
