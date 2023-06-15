@@ -13,7 +13,6 @@
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/plugins/chart.js"></script>
     <script src="~/js/plugins/pace.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18"></script>
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -21,6 +20,7 @@
     <header class="app-header">
         <a class="app-header__logo" href="dashboard.html">Radiadores Odín</a>
         <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+        
         <ul class="app-nav">
             <!--Notification Menu
             <li class="dropdown">
@@ -65,9 +65,9 @@
             <li class="dropdown">
                 <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
                 <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="@Url.Action("Login","Auth")"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li>
+                    <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li>
                     <li><a class="dropdown-item" href="ConfiguracionPerfilSupervisor.html"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
-                    <li><a class="dropdown-item" href="@Url.Action("Login","Auth")"><i class="fa fa-sign-out fa-lg"></i> Desconectarse</a></li>
+                    <li><a class="dropdown-item" asp-controller="Auth" asp-action="CerrarSesion"><i class="fa fa-sign-out fa-lg"></i> Desconectarse</a></li>
                 </ul>
             </li>
         </ul>

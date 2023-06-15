@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>
     {
-        option.LoginPath = "/Auth/Validate";
+        option.LoginPath = "/Auth/Login";
         option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     });
 

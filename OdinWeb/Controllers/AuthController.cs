@@ -6,7 +6,10 @@ using NuGet.Common;
 using OdinWeb.Models;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
+using System.ComponentModel.DataAnnotations;
+using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 
@@ -22,6 +25,13 @@ namespace OdinWeb.Controllers
         }
         public async Task<IActionResult> Login()
         {
+            ViewBag.AlertMessage = "Contraseña restablecida con éxito.";
+            ViewBag.AlertType = "success";
+            return View();
+        }
+
+        public async Task<IActionResult> Registration()
+        {
             return View();
         }
 
@@ -32,55 +42,132 @@ namespace OdinWeb.Controllers
             
             try
             {             
-                    var json = JsonConvert.SerializeObject(userDTO.User);
-                    var data = new StringContent(json, Encoding.UTF8, "application/json");
-                    User user = new User();
-                    using (var httpClient = new HttpClient())
+                userDTO.User.password = _userModel.HashPassword(userDTO.User.password);
+                var json = JsonConvert.SerializeObject(userDTO.User);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                User user = new User();
+                using (var httpClient = new HttpClient())
+                {
+                    using (var response = await httpClient.PostAsync("https://localhost:7271/api/User/Login", data))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:7271/api/User/Login", data))
+                        if (response.IsSuccessStatusCode)
                         {
-                            if (response.IsSuccessStatusCode)
+                            string apiResponse = await response.Content.ReadAsStringAsync();
+                            user = JsonConvert.DeserializeObject<User>(apiResponse);
+                            var rolName = user.rol.name;
+                            List<Claim> claims = new List<Claim>()
                             {
-                                string apiResponse = await response.Content.ReadAsStringAsync();
-                                user = JsonConvert.DeserializeObject<User>(apiResponse);
-                                var rolName = user.rol.name;
-                                List<Claim> claims = new List<Claim>()
-                                {
-                                    new Claim(ClaimTypes.NameIdentifier, user.mail),
-                                    new Claim("id", user.id.ToString()),
-                                    new Claim(ClaimTypes.Role, rolName)
-                                };
+                                new Claim(ClaimTypes.NameIdentifier, user.mail),
+                                new Claim("id", user.id.ToString()),
+                                new Claim(ClaimTypes.Role, rolName)
+                            };
 
-                                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                                AuthenticationProperties properties = new AuthenticationProperties()
-                                {
-                                    AllowRefresh = true
-                                };
+                            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            AuthenticationProperties properties = new AuthenticationProperties()
+                            {
+                                AllowRefresh = true
+                            };
 
-                                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
-                                    new ClaimsPrincipal(claimsIdentity), properties);
+                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
+                                new ClaimsPrincipal(claimsIdentity), properties);
 
-                                // Almacena el token en una cookie
-                                var cookieOptions = new CookieOptions
-                                {
-                                    Expires = DateTime.UtcNow.AddHours(1), // Establece la expiración de la cookie
-                                    Secure = true, // Establece la cookie como segura si utilizas HTTPS
-                                    HttpOnly = true // Evita que el token sea accesible desde JavaScript
-                                };
-                                Response.Cookies.Append("Token", user.token, cookieOptions);
-                                //HttpContext.Session.SetString("OdinToken", user.token);
-                                
-                                return RedirectToAction("Home", "Tiquete");
+                            // Almacena el token en una cookie
+                            var cookieOptions = new CookieOptions
+                            {
+                                Expires = DateTime.UtcNow.AddHours(1), // Establece la expiración de la cookie
+                                Secure = true, // Establece la cookie como segura si utilizas HTTPS
+                                HttpOnly = true // Evita que el token sea accesible desde JavaScript
+                            };
+                            Response.Cookies.Append("Token", user.token, cookieOptions);
+                            //HttpContext.Session.SetString("OdinToken", user.token);
+                            if (user.rol.name == "Admin")
+                            {
+                                return RedirectToAction("Index", "Home");
                             }
-                        }
-                    }
-                
-                return RedirectToAction(nameof(Login));
+                            if (user.rol.name== "Supervisor") {
+                                return RedirectToAction("Principal", "Supervisor");
+                            }
+                            else {
+                                return RedirectToAction("Principal", "Cliente");
+                            }
 
+                        }   
+                            
+                    }
+                }
+                TempData["AlertMessage"] = "Error, verifique las credenciales.";
+                TempData["AlertType"] = "error";
+
+                return RedirectToAction(nameof(Login));
             }
             catch
             {
                 return RedirectToAction(nameof(Login));
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(UserRegister user)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    User newUser = new User();
+                    newUser.name = user.name;
+                    newUser.lastName = user.lastName;
+                    newUser.mail = user.mail;
+                    newUser.phone = user.phone;
+                    //Temporal
+                    newUser.photo = "./";
+                    newUser.password = user.password;
+                    newUser.password = _userModel.HashPassword(newUser.password);
+                    Rol rol = new Rol();
+                    using (var httpClient = new HttpClient())
+                    {
+                        using (var response = await httpClient.GetAsync("https://localhost:7271/api/Rol/First"))
+                        {
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string apiResponse = await response.Content.ReadAsStringAsync();
+                                rol = JsonConvert.DeserializeObject<Rol>(apiResponse);
+                            }
+                        }
+                    }
+
+                    newUser.idRol = rol.id;
+                    var contexto = new ValidationContext(newUser, serviceProvider: null, items: null);
+                    var resultados = new List<ValidationResult>();
+
+                    var isValid = Validator.TryValidateObject(newUser, contexto, resultados, true);
+
+                    if ( isValid )
+                    {
+                        var json = JsonConvert.SerializeObject(newUser);
+                        var data = new StringContent(json, Encoding.UTF8, "application/json");
+                        using (var httpClient = new HttpClient())
+                        {
+                            using (var response = await httpClient.PostAsync("https://localhost:7271/api/User", data))
+                            {
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    TempData["AlertMessage"] = "Se creo la cuenta con éxito";
+                                    TempData["AlertType"] = "success";
+                                    return RedirectToAction("Login", "Auth");
+                                }
+                            }
+                        }
+
+                    }
+                }
+                TempData["AlertMessage"] = "Error al crear la cuenta";
+                TempData["AlertType"] = "error";
+
+                return RedirectToAction(nameof(Registration));
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Registration));
             }
         }
 
@@ -91,13 +178,18 @@ namespace OdinWeb.Controllers
                 if (!string.IsNullOrEmpty(login.RestorePassword?.mail) || !string.IsNullOrEmpty(login.RestorePassword?.phone))
                 {
                     // Ambos campos (mail y phone) tienen valor, puedes continuar con el proceso de restablecimiento de contraseña
-                    var resultado = _userModel.RestorePassword(login.RestorePassword);
-                    if (resultado == null)
+                    bool resultado = await _userModel.RestorePassword(login.RestorePassword);
+                    if (resultado)
                     {
+
+                        TempData["AlertMessage"] = "Contraseña restablecida con éxito.";
+                        TempData["AlertType"] = "success";
                         return RedirectToAction(nameof(Login));
                     }
                     else
                     {
+                        TempData["AlertMessage"] = "Error a restablecer la contraseña.";
+                        TempData["AlertType"] = "error";
                         return RedirectToAction(nameof(Login));
                     }
                 }
@@ -110,6 +202,18 @@ namespace OdinWeb.Controllers
 
             return RedirectToAction(nameof(Login)); ;
             
+        }
+        public async Task<IActionResult> CerrarSesion()
+        {
+            try
+            {
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                Response.Cookies.Delete("Token");
+            }
+            catch (Exception)
+            {
+            }
+            return RedirectToAction("Login", "Auth");
         }
     }
 }

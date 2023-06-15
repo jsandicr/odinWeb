@@ -66,6 +66,7 @@
                 <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
                 <ul class="dropdown-menu settings-menu dropdown-menu-right">
                     <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li>
+                    <li><a class="dropdown-item" href="ConfiguracionPerfilSupervisor.html"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
                     <li><a class="dropdown-item" asp-controller="Auth" asp-action="CerrarSesion"><i class="fa fa-sign-out fa-lg"></i> Desconectarse</a></li>
                 </ul>
             </li>
@@ -82,33 +83,36 @@
             </div>
         </div>
         <ul class="app-menu">
-            <li>
-                <a class="app-menu__item" href="@Url.Action("CrearTiquete", "Tiquete")">
-                    <i class="app-menu__icon fa fa-plus-circle"></i>
-                    <span class="app-menu__label">Crear un nuevo tiquete</span>
+            <li><a class="app-menu__item" href="@Url.Action("Index","Home")"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+            <li class="treeview">
+                <a class="app-menu__item" href="#" data-toggle="treeview">
+                    <i class="app-menu__icon fa fa-ticket"></i>
+                    <span class="app-menu__label">Tiquetes</span>
+                    <i class="treeview-indicator fa fa-angle-right"></i>
                 </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a class="treeview-item" href="tiquetes-asignados.html">
+                            <i class="icon fa fa-user"></i>
+                            Tiquetes Asignados a mí
+                        </a>
+                    </li>
+                    <li>
+                        <a class="treeview-item" href="tiquetes-sucursal.html">
+                            <i class="icon fa fa-building"></i>
+                            Tiquetes por Sucursal
+                        </a>
+                    </li>
+                    <li>
+                        <a class="treeview-item" href="tiquetes-abiertos.html">
+                            <i class="icon fa fa-exclamation-circle"></i>
+                            Tiquetes Abiertos
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <li>
-                <a class="app-menu__item" href="@Url.Action("TiquetesEnProceso", "Tiquete")">
-                    <i class="app-menu__icon fa fa-tasks"></i>
-                    <span class="app-menu__label">Tiquetes en proceso</span>
-                </a>
-            </li>
-            <li>
-                <a class="app-menu__item" href="@Url.Action("TiquetesCerrados", "Tiquete")">
-                    <i class="app-menu__icon fa fa-check-circle"></i>
-                    <span class="app-menu__label">Tiquetes cerrados</span>
-                </a>
-            </li>
-            <li>
-                <a class="app-menu__item" href="@Url.Action("CrearTiquete", "Tiquete")">
-                    <i class="app-menu__icon fa fa-book"></i>
-                    <span class="app-menu__label">Guía de Usuario</span>
-                </a>
-            </li>
-
+            <li><a class="app-menu__item" href=""><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Reportes</span></a></li>
         </ul>
-
     </aside>
     <main role="main" class="app-content">
         @RenderBody()

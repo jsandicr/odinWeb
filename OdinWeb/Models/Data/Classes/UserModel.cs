@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Newtonsoft.Json;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace OdinWeb.Models.Data.Classes
@@ -34,6 +36,25 @@ namespace OdinWeb.Models.Data.Classes
             }
 
             return respuesta;
+        }
+
+        public string HashPassword(string password)
+        {
+
+            byte[] fixedSalt = new byte[128 / 8];
+            //Se utiliza un valor fijo temporalmente
+            var salt = Encoding.UTF8.GetBytes("1234567890abcdef");
+
+            // Generar el hash de la contraseña utilizando PBKDF2
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA512,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8
+            ));
+
+            return hashed;
         }
     }
 }
