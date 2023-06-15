@@ -30,7 +30,6 @@ namespace OdinWeb.Models.Obj
         public int idRol { get; set; }
         [Display(Name = "Id Sucursal")]
         public int? idBranch { get; set; }
-        public bool restorePass { get; set; }
         public string? token { get; set; }
         [Display(Name = "Rol")]
         public Rol? rol { get; set; }

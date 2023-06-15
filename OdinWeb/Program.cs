@@ -17,6 +17,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 builder.Services.AddScoped<IUserModel, UserModel>();
+builder.Services.AddScoped<IServicioModel, ServicioModel>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

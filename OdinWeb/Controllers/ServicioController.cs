@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using OdinWeb.Models;
+using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http.Headers;
 using System.Text;
@@ -11,28 +12,25 @@ namespace OdinWeb.Controllers
 {
     public class ServicioController : Controller
     {
+        private readonly IServicioModel _serviceModel;
+
+        public ServicioController(IServicioModel serviceModel)
+        {
+            _serviceModel = serviceModel;
+        }
 
         [Authorize]
         public async Task<IActionResult> Home()
         {
             try
             {
-                List<Service> serviceList = new List<Service>();
-                using (var httpClient = new HttpClient())
+                var lista = _serviceModel.GetServicios();
+                if (lista != null)
                 {
-                    var token = Request.Cookies["Token"];
-                    // Agrega el encabezado de autorización con el token
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    using (var response = await httpClient.GetAsync("https://localhost:7271/api/Service"))
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            serviceList = JsonConvert.DeserializeObject<List<Service>>(apiResponse);
-                        }
-                    }
+                    return View(lista);
+
                 }
-                return View(serviceList);
+                return View();
             }
             catch (Exception e)
             {
@@ -68,22 +66,14 @@ namespace OdinWeb.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var json = JsonConvert.SerializeObject(service);
-                    var data = new StringContent(json, Encoding.UTF8, "application/json");
-                    using (var httpClient = new HttpClient())
+                    var servicio = _serviceModel.PostServicos(service);
+
+                    if (servicio != null)
                     {
-                        var token = Request.Cookies["Token"];
-                        // Agrega el encabezado de autorización con el token
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                        using (var response = await httpClient.PostAsync("https://localhost:7271/api/Service", data))
-                        {
-                            if (response.IsSuccessStatusCode)
-                            {
-                                TempData["AlertMessage"] = "¡Se creó el servicio!";
-                                TempData["AlertType"] = "success";
-                                return RedirectToAction(nameof(Home));
-                            }
-                        }
+                        TempData["AlertMessage"] = "¡Se creó el servicio!";
+                        TempData["AlertType"] = "success";
+                        return RedirectToAction(nameof(Home));
+
                     }
                 }
                 TempData["AlertMessage"] = "¡Ocurrio un error al crear el servicio!";
@@ -101,72 +91,83 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> Ver(int id)
         {
-            Service service = new Service();
-            using (var httpClient = new HttpClient())
+            try
             {
-                var token = Request.Cookies["Token"];
-                // Agrega el encabezado de autorización con el token
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                using (var response = await httpClient.GetAsync("https://localhost:7271/api/Service/" + id))
+
+                var servico = _serviceModel.GetServicioById(id);
+
+                if (servico != null)
                 {
-                    if (response.IsSuccessStatusCode)
+
+                    List<SelectListItem> estados = new List<SelectListItem>();
+                    estados.Add(new SelectListItem
                     {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        service = JsonConvert.DeserializeObject<Service>(apiResponse);
-                    }
+                        Text = "Activo",
+                        Value = "true"
+                    });
+
+                    estados.Add(new SelectListItem
+                    {
+                        Text = "Inactivo",
+                        Value = "false"
+                    });
+
+                    ViewData["Estados"] = estados;
+                    return View(servico);
+
                 }
+                return RedirectToAction(nameof(Home));
+
+
+
             }
 
-            List<SelectListItem> estados = new List<SelectListItem>();
-            estados.Add(new SelectListItem
+            catch
             {
-                Text = "Activo",
-                Value = "true"
-            });
+                return RedirectToAction(nameof(Home));
+            }
 
-            estados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "false"
-            });
 
-            ViewData["Estados"] = estados;
-            return View(service);
         }
 
         [Authorize]
         public async Task<IActionResult> Editar(int id)
         {
-            Service service = new Service();
-            using (var httpClient = new HttpClient())
+            try
             {
-                var token = Request.Cookies["Token"];
-                // Agrega el encabezado de autorización con el token
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                using (var response = await httpClient.GetAsync("https://localhost:7271/api/Service/"+id))
+
+                var servico = _serviceModel.GetServicioById(id);
+
+                if (servico != null)
                 {
-                    if (response.IsSuccessStatusCode)
+
+                    List<SelectListItem> estados = new List<SelectListItem>();
+                    estados.Add(new SelectListItem
                     {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        service = JsonConvert.DeserializeObject<Service>(apiResponse);
-                    }
+                        Text = "Activo",
+                        Value = "true"
+                    });
+
+                    estados.Add(new SelectListItem
+                    {
+                        Text = "Inactivo",
+                        Value = "false"
+                    });
+
+                    ViewData["Estados"] = estados;
+                    return View(servico);
+
                 }
+                return RedirectToAction(nameof(Home));
+
+
+
             }
-            List<SelectListItem> estados = new List<SelectListItem>();
-            estados.Add(new SelectListItem
-            {
-                Text = "Activo",
-                Value = "true"
-            });
 
-            estados.Add(new SelectListItem
+            catch
             {
-                Text = "Inactivo",
-                Value = "false"
-            });
-
-            ViewData["Estados"] = estados;
-            return View(service);
+                return RedirectToAction(nameof(Home));
+            }
         }
 
         [HttpPost]
@@ -177,23 +178,15 @@ namespace OdinWeb.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var json = JsonConvert.SerializeObject(service);
-                    var data = new StringContent(json, Encoding.UTF8, "application/json");
-                    using (var httpClient = new HttpClient())
+                    var servicio = _serviceModel.PutServicioById(service);
+
+                    if (servicio !=null)
                     {
-                        var token = Request.Cookies["Token"];
-                        // Agrega el encabezado de autorización con el token
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                        using (var response = await httpClient.PutAsync("https://localhost:7271/api/Service/"+service.id, data))
-                        {
-                            if (response.IsSuccessStatusCode)
-                            {
-                                TempData["AlertMessage"] = "¡Se actualizó el servicio!";
-                                TempData["AlertType"] = "success";
-                                return RedirectToAction(nameof(Home));
-                            }
-                        }
+                        TempData["AlertMessage"] = "¡Se actualizó el servicio!";
+                        TempData["AlertType"] = "success";
+                        return RedirectToAction(nameof(Home));
                     }
+
                 }
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el servicio!";
                 TempData["AlertType"] = "error";
@@ -212,20 +205,13 @@ namespace OdinWeb.Controllers
         {
             try
             {
-                using (var httpClient = new HttpClient())
+               var respuesta = _serviceModel.DeleteServicioById(id);
+
+                if (respuesta)
                 {
-                    var token = Request.Cookies["Token"];
-                    // Agrega el encabezado de autorización con el token
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    using (var response = await httpClient.DeleteAsync("https://localhost:7271/api/Service/" + id))
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            TempData["AlertMessage"] = "¡Se eliminó el servicio!";
-                            TempData["AlertType"] = "success";
-                            return RedirectToAction(nameof(Home));
-                        }
-                    }
+                    TempData["AlertMessage"] = "¡Se eliminó el servicio!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(Home));
                 }
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el servicio!";
                 TempData["AlertType"] = "error";
