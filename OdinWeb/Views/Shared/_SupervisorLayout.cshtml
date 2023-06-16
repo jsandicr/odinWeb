@@ -41,8 +41,18 @@
         <div class="app-sidebar__user">
             <img class="app-sidebar__user-avatar" src="images/Icono.jpg" alt="User Image" height="50" width="50">
             <div>
-                <p class="app-sidebar__user-name">John Doe</p>
-                <p class="app-sidebar__user-designation">Administrador</p>
+                <p class="app-sidebar__user-name">
+                    @if (Context.Request.Cookies.ContainsKey("NombreCompleto"))
+                    {
+                        var nombreCompleto = Context.Request.Cookies["NombreCompleto"];
+                        @nombreCompleto
+                    }
+                    else
+                    {
+                        <span>User</span>
+                    }
+                </p>
+                <p class="app-sidebar__user-designation">Supervisor</p>
             </div>
         </div>
         <ul class="app-menu">

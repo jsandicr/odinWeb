@@ -18,6 +18,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddScoped<IUserModel, UserModel>();
 builder.Services.AddScoped<IServicioModel, ServicioModel>();
+builder.Services.AddScoped<IBranchModel, BranchModel>();
+builder.Services.AddScoped<IRolModel, RolModel>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

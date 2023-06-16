@@ -1,0 +1,49 @@
+﻿@model OdinWeb.Models.Obj.User
+
+@{
+    ViewData["Title"] = "Settings";
+    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+}
+
+<div class="tab-pane fade active show" id="user-settings">
+    <div class="tile user-settings">
+        <h4 class="line-head">Configuraciones</h4>
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label asp-for="name" class="control-label"></label>
+                    <span>@Model.name</span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="lastName" class="control-label"></label>
+                    <span>@Model.lastName</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <label asp-for="mail" class="control-label"></label>
+                    <span>@Model.mail</span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-8 mb-4">
+                    <label asp-for="phone" class="control-label"></label>
+                    <input asp-for="phone" class="form-control" readonly="readonly" value="@Model.phone" />
+                    <span asp-validation-for="phone" class="text-danger"></span>
+                </div>
+               
+                <div class="col-md-8 mb-4">
+                    <label asp-for="idBranch" class="control-label"></label>
+                    <select asp-for="idBranch" asp-items="@(new SelectList(ViewBag.ComboBranch, "Value", "Text"))" class="form-control"></select>
+                    <span asp-validation-for="idBranch" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-10">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i> Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
