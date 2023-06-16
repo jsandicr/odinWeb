@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,7 +29,7 @@
             <li class="dropdown">
                 <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
                 <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li>
+                    <li><a class="dropdown-item" asp-controller="User" asp-action="Settings"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li>
                     <li><a class="dropdown-item" asp-controller="Auth" asp-action="CerrarSesion"><i class="fa fa-sign-out fa-lg"></i> Cerrar Sesion</a></li>
                 </ul>
             </li>
@@ -40,8 +41,18 @@
         <div class="app-sidebar__user">
             <img class="app-sidebar__user-avatar" src="images/Icono.jpg" alt="User Image" height="50" width="50">
             <div>
-                <p class="app-sidebar__user-name">John Doe</p>
-                <p class="app-sidebar__user-designation">Administrador</p>
+                <p class="app-sidebar__user-name">
+                    @if (Context.Request.Cookies.ContainsKey("NombreCompleto"))
+                    {
+                        var nombreCompleto = Context.Request.Cookies["NombreCompleto"];
+                        @nombreCompleto
+                    }
+                    else
+                    {
+                        <span>User</span>
+                    }
+                </p>
+                <p class="app-sidebar__user-designation">Cliente</p>
             </div>
         </div>
         <ul class="app-menu">

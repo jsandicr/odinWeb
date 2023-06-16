@@ -56,10 +56,20 @@ namespace OdinWeb.Models.Obj
         [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
         [Display(Name = "Telefono")]
         public string phone { get; set; }
+
         [Required(ErrorMessage = "El campo Contraseña es requerido")]
         [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
         [Display(Name = "Contraseña")]
         public string password { get; set; }
+
+        [Display(Name = "Sucursal mas Cercana")]
+        [Required(ErrorMessage = "El campo es requerido")]
+        public int idBranch { get; set; }
+
+        [Display(Name = "Confirnar Contraseña")]
+        [Compare("password", ErrorMessage = "Las contraseñas no coinciden.")]
+        [Required(ErrorMessage = "El campo es requerido.")]
+        public string confirmpassword { get; set; }
         [Display(Name = "Activo")]
         public bool active { get; set; }
     }
