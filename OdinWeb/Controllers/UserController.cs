@@ -37,7 +37,50 @@ namespace OdinWeb.Controllers
             }).ToList();
             var idU = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
             int id = int.Parse(idU);
-            return View(_userModel.GetUserById(id));
+            var u = _userModel.GetUserById(id);
+            UpdateUser user = new UpdateUser();
+            user.id = u.id;
+            user.Nombre = u.name;
+            user.Apellidos = u.lastName;
+            user.CorreoElectronico = u.mail;
+            user.Telefono = u.phone;
+            user.rutaImagen = u.photo;
+
+            return View(user);
+        }
+
+        public IActionResult GuardarDatos(UpdateUser u, [FromServices] IWebHostEnvironment hostingEnvironment)
+        {
+            var user = _userModel.GetUserById(u.id);
+
+            user.idBranch = u.IdBranch;
+            user.phone = u.Telefono;
+
+            var archivoImagen = u.ArchivoImagen;
+
+            if (archivoImagen != null && archivoImagen.Length > 0)
+            {
+                var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
+                var extension = Path.GetExtension(nombreArchivo);
+                var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "users", nombreUnico);
+                using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                {
+                    archivoImagen.CopyTo(stream);
+                }
+
+                user.photo = nombreUnico;
+                
+            }
+            _userModel.PutUserById(user);
+            return RedirectToAction("Settings");
+
+            // Si no se subió ningún archivo, puedes mostrar un mensaje de error o realizar alguna otra acción
+
+
+            // Si el modelo no es válido, puedes realizar alguna acción, como volver a mostrar el formulario con los mensajes de error
+            
         }
 
     }

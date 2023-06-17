@@ -12,6 +12,9 @@ namespace OdinWeb.Models.Data.Interfaces
         public User Login(UserDTO userDTO);
 
         public User GetUserById(int id);
+
+        public bool PutUserById(User user);
+
     }
 }
 

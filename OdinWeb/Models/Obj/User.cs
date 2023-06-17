@@ -28,7 +28,7 @@ namespace OdinWeb.Models.Obj
         public bool restorePass { get; set; } = false;
         [Display(Name = "Id Rol")]
         public int idRol { get; set; }
-        [Display(Name = "Id Sucursal")]
+        [Display(Name = "Selecione la sucursal más cercana")]
         public int? idBranch { get; set; }
         public string? token { get; set; }
         [Display(Name = "Rol")]
@@ -108,5 +108,20 @@ namespace OdinWeb.Models.Obj
         [Compare("password", ErrorMessage = "Las contraseñas no coinciden.")]
         [Required(ErrorMessage = "El campo es requerido.")]
         public string confirmpassword { get; set; }
+    }
+    public class UpdateUser
+    {
+        public int id { get; set; }
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
+        public string CorreoElectronico { get; set; }
+        [RegularExpression(@"^\d{8}$", ErrorMessage = "El número de teléfono debe tener 8 dígitos.")]
+        public string Telefono { get; set; }
+        [Display(Name = "Sucursal mas Cercana")]
+
+        public int IdBranch { get; set; }
+        public IFormFile ArchivoImagen { get; set; }
+
+        public string rutaImagen { get; set; }
     }
 }
