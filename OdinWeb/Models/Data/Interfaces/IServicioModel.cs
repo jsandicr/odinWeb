@@ -14,5 +14,6 @@ namespace OdinWeb.Models.Data.Interfaces
 
         public bool DeleteServicioById(int id);
 
+
     }
 }

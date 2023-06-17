@@ -62,6 +62,16 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> Guardar(Service service)
         {
+            var Folder = Path.Combine(_serviceModel.WebRootPath, "images");
+            var FileName = Guid.NewGuid().ToString() + "_" + service.PRD_UPLOAD.FileName;
+            var filePath = Path.Combine(Folder, FileName);
+            service.photo = service.PRD_UPLOAD.FileName;
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                service.PRD_UPLOAD.CopyTo(fileStream);
+            }
+
             try
             {
                 if (ModelState.IsValid)

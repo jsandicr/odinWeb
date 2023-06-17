@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace OdinWeb.Models.Obj
@@ -13,6 +15,7 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Activo")]
         public bool active { get; set; }
         public string photo { get; set; }
+        public IFormFile PRD_UPLOAD { get; set; }
         public List<Ticket>? tickets { get; set; }
     }
 }
