@@ -12,26 +12,37 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OdinWeb.Models.Data.Classes;
 
 namespace OdinWeb.Controllers
 {
     public class AuthController : Controller
     {
         private readonly IUserModel _userModel;
+        private readonly IBranchModel _branchModel;
 
-        public AuthController(IUserModel userModel)
+
+        public AuthController(IUserModel userModel, IBranchModel branchModel)
         {
             _userModel = userModel;
+            _branchModel = branchModel;
         }
         public async Task<IActionResult> Login()
         {
-            ViewBag.AlertMessage = "Contraseña restablecida con éxito.";
-            ViewBag.AlertType = "success";
+            
             return View();
         }
 
         public async Task<IActionResult> Registration()
         {
+            List<Branch> comboBranch = _branchModel.GetBranch();
+            ViewBag.ComboBranch = comboBranch.Select(t => new SelectListItem
+            {
+                Value = t.id.ToString(),
+                Text = t.name
+            }).ToList();
+
             return View();
         }
         
@@ -57,10 +68,12 @@ namespace OdinWeb.Controllers
                                 HttpOnly = true // Evita que el token sea accesible desde JavaScript
                             };
                             Response.Cookies.Append("Token", user.token, cookieOptions);
-                   
+                            Response.Cookies.Append("Id", user.id.ToString(), cookieOptions);
+                            Response.Cookies.Append("NombreCompleto", user.name+" "+user.lastName, cookieOptions);
 
-                            // Almacena el token en una cookie
-                            
+
+                    // Almacena el token en una cookie
+
                     //HttpContext.Session.SetString("OdinToken", user.token);
                     if (user.restorePass == false)
                     {
@@ -123,6 +136,7 @@ namespace OdinWeb.Controllers
                     newUser.lastName = user.lastName;
                     newUser.mail = user.mail;
                     newUser.phone = user.phone;
+                    newUser.idBranch = user.idBranch; 
                     //Temporal
                     newUser.photo = "./";
                     newUser.password = user.password;
@@ -234,12 +248,23 @@ namespace OdinWeb.Controllers
 
             try {
 
-                _userModel.ChangePassword(user);
+                var respuesta = _userModel.ChangePassword(user);
+                if (respuesta != null)
+                {
+                    TempData["AlertMessage"] = "Cambio de contraseña con éxito";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(CerrarSesion));
 
-                return RedirectToAction(nameof(CerrarSesion));
+                }
+                TempData["AlertMessage"] = "Error, verifique los datos";
+                TempData["AlertType"] = "error";
+                return RedirectToAction("ChangePassword", user);
 
             } catch {
-                return RedirectToAction(nameof(CerrarSesion));
+               
+                TempData["AlertMessage"] = "Error, verifique los datos";
+                TempData["AlertType"] = "error";
+                return RedirectToAction("ChangePassword", new { user = user });
 
             }
 

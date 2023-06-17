@@ -99,5 +99,42 @@ namespace OdinWeb.Models.Data.Classes
             return null;
 
         }
+
+        public User GetUserById(int id)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.GetAsync("api/User/" + id).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var user = response.Content.ReadAsStringAsync().Result;
+                var userR = JsonConvert.DeserializeObject<User>(user);
+                return userR;
+            }
+
+            return null;
+        }
+
+        public bool PutUserById(User user)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+
+
+            var response = _httpClient.PutAsync("api/User/" + user.id, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                return true;
+            }
+
+            return false;
+        }
     }
 }

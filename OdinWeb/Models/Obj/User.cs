@@ -28,7 +28,7 @@ namespace OdinWeb.Models.Obj
         public bool restorePass { get; set; } = false;
         [Display(Name = "Id Rol")]
         public int idRol { get; set; }
-        [Display(Name = "Id Sucursal")]
+        [Display(Name = "Selecione la sucursal más cercana")]
         public int? idBranch { get; set; }
         public string? token { get; set; }
         [Display(Name = "Rol")]
@@ -56,10 +56,20 @@ namespace OdinWeb.Models.Obj
         [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
         [Display(Name = "Telefono")]
         public string phone { get; set; }
+
         [Required(ErrorMessage = "El campo Contraseña es requerido")]
         [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
         [Display(Name = "Contraseña")]
         public string password { get; set; }
+
+        [Display(Name = "Sucursal mas Cercana")]
+        [Required(ErrorMessage = "El campo es requerido")]
+        public int idBranch { get; set; }
+
+        [Display(Name = "Confirnar Contraseña")]
+        [Compare("password", ErrorMessage = "Las contraseñas no coinciden.")]
+        [Required(ErrorMessage = "El campo es requerido.")]
+        public string confirmpassword { get; set; }
         [Display(Name = "Activo")]
         public bool active { get; set; }
     }
@@ -98,5 +108,20 @@ namespace OdinWeb.Models.Obj
         [Compare("password", ErrorMessage = "Las contraseñas no coinciden.")]
         [Required(ErrorMessage = "El campo es requerido.")]
         public string confirmpassword { get; set; }
+    }
+    public class UpdateUser
+    {
+        public int id { get; set; }
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
+        public string CorreoElectronico { get; set; }
+        [RegularExpression(@"^\d{8}$", ErrorMessage = "El número de teléfono debe tener 8 dígitos.")]
+        public string Telefono { get; set; }
+        [Display(Name = "Sucursal mas Cercana")]
+
+        public int IdBranch { get; set; }
+        public IFormFile ArchivoImagen { get; set; }
+
+        public string rutaImagen { get; set; }
     }
 }

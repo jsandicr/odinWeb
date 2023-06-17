@@ -1,0 +1,67 @@
+﻿@model OdinWeb.Models.Obj.UpdateUser
+
+@{
+    ViewData["Title"] = "Settings";
+    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+}
+
+<div class="tab-pane fade active show" id="user-settings">
+    <div class="tile user-settings">
+        <h4 class="line-head">Configuraciones</h4>
+        <form asp-action="GuardarDatos" asp-controller="User" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Columna de la foto -->
+                    <div class="form-group">
+                        
+                        <img src="~/images/users/@Model.rutaImagen" alt="Foto" class="img-fluid" style="width: 300px;  />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Foto de Perfil</label>
+                        <input asp-for="ArchivoImagen" class="form-control" type="file">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input asp-for="id" class="form-control" type="hidden">
+                    </div>
+                    <!-- Columna del formulario -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5 class="control-label">Nombre</h5>
+                            <h6 class="control-label">@Model.Nombre</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="control-label">Apellidos</h5>
+                            <h6 class="control-label">@Model.Apellidos</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <h5 class="control-label">Correo electrónico</h5>
+                            <h6 class="control-label">@Model.CorreoElectronico</h6>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label asp-for="Telefono" class="control-label"></label>
+                            <input asp-for="Telefono" class="form-control" value="@Model.Telefono" />
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label asp-for="IdBranch" class="control-label"></label>
+                            <select asp-for="IdBranch" asp-items="@(new SelectList(ViewBag.ComboBranch, "Value", "Text"))" class="form-control"></select>
+                            <span asp-validation-for="IdBranch" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i> Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

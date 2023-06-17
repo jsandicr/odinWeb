@@ -10,6 +10,11 @@ namespace OdinWeb.Models.Data.Interfaces
         string HashPassword(string password);
 
         public User Login(UserDTO userDTO);
+
+        public User GetUserById(int id);
+
+        public bool PutUserById(User user);
+
     }
 }
 
