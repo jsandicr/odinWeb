@@ -1,41 +1,43 @@
-﻿@{
-    ViewData["Title"] = "Ver Cliente";
+﻿@model OdinWeb.Models.Obj.Service
+@{
+    ViewData["Title"] = "Ver Servicio";
 }
 <div class="col-md-12">
     <div class="tile">
-        <h3 class="tile-title">Ver Cliente</h3>
+        <h3 class="tile-title">Ver Servicio</h3>
         <div class="tile-body">
             <div class="form-group">
-                <label class="control-label">Nombre</label>
-                <input class="form-control" type="text" value="Nombre del cliente" readonly>
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" type="text" readonly>
             </div>
             <div class="form-group">
-                <label class="control-label">Apellidos</label>
-                <input class="form-control" type="text" value="Apellidos del cliente" readonly>
+                <label asp-for="description" class="control-label"></label>
+                <textarea asp-for="description" class="form-control" rows="4" readonly></textarea>
             </div>
             <div class="form-group">
-                <label class="control-label">Correo</label>
-                <input class="form-control" type="email" value="correo@ejemplo.com" readonly>
+                <label asp-for="active" class="control-label"></label>
+                @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
+                {
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input asp-for="active" class="form-check-input" type="radio" name="active" value="@opcion.Value" readonly> @opcion.Text
+                        </label>
+                    </div>
+                }
+                <span asp-validation-for="active"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Dirección</label>
-                <textarea class="form-control" rows="4" readonly>Dirección del cliente</textarea>
+                <label class="control-label">Imagen de servicio</label>
+                <img src="ruta_de_la_imagen.jpg" alt="Imagen del servicio" width="200">
             </div>
             <div class="form-group">
-                <label class="control-label">Sucursal</label>
-                <input class="form-control" type="text" value="San José" readonly>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Sexo</label>
-                <input class="form-control" type="text" value="Masculino" readonly>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Imagen de perfil</label>
-                <img src="ruta/de/la/imagen" alt="Imagen de perfil" class="img-fluid">
+                <label class="control-label">Tickets creados</label>
+                <input class="form-control" type="text" value="10" readonly>
             </div>
         </div>
         <div class="tile-footer">
-            <a class="btn btn-primary" href="#"><i class="fa fa-fw fa-lg fa-pencil"></i>Editar</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-arrow-circle-left"></i>Volver</a>
+            <a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio" onclick="history.back();"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Volver</a>
         </div>
     </div>
 </div>
+

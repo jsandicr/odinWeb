@@ -1,132 +1,58 @@
-﻿@{
+﻿@model IEnumerable<OdinWeb.Models.Obj.User>
+@{
     ViewData["Title"] = "Clientes";
 }
 <div class="app-title">
     <div>
         <h1><i class="fa fa-th-list"></i>Administración de Clientes</h1>
-        <p>Información de clientes registrados</p><br>
-        @Html.ActionLink("Crear", "Crear", "Cliente", null, new { @class = "btn btn-primary", @type = "button"})
+        <p>Usuarios</p>
+        <br>
+        <a asp-action="Crear" asp-controller="Cliente" class="btn btn-primary">Crear</a>
     </div>
-
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item">Clientes</li>
-        <li class="breadcrumb-item active"><a href="/docs/supervisores.html">Administracion</a></li>
+        <li class="breadcrumb-item">Tiquetes</li>
+        <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
     </ul>
-
 </div>
 <div class="row">
     <div class="col-md-12">
         <div class="tile">
             <div class="tile-body">
                 <div class="table-responsive">
-
-                    <table class="table table-hover table-bordered" id="tclientes">
+                    <table class="table table-hover table-bordered" id="tusers">
                         <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Correo</th>
-                                <th>Acciones</th>
+                            <tr>                            
+                                <th>@Html.DisplayNameFor(model => model.name)</th>
+                                <th>@Html.DisplayNameFor(model => model.lastName)</th>
+                                <th>@Html.DisplayNameFor(model => model.mail)</th>
+                                <th>@Html.DisplayNameFor(model => model.phone)</th>
+                                <th>@Html.DisplayNameFor(model => model.rol)</th>
+                                <th>@Html.DisplayNameFor(model => model.branch)</th>
+                                <th>@Html.DisplayNameFor(model => model.active)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Heiner</td>
-                                <td>Arroyo Vargas</td>
-                                <td>karroyo@datasoftla.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Cliente")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Cliente")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Heiner</td>
-                                <td>Arroyo Vargas</td>
-                                <td>karroyo@datasoftla.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Cliente")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Cliente")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Heiner</td>
-                                <td>Arroyo Vargas</td>
-                                <td>karroyo@datasoftla.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Cliente")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Cliente")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Heiner</td>
-                                <td>Arroyo Vargas</td>
-                                <td>karroyo@datasoftla.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Cliente")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Cliente")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Heiner</td>
-                                <td>Arroyo Vargas</td>
-                                <td>karroyo@datasoftla.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Cliente")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Cliente")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Heiner</td>
-                                <td>Arroyo Vargas</td>
-                                <td>karroyo@datasoftla.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Cliente")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Cliente")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Heiner</td>
-                                <td>Arroyo Vargas</td>
-                                <td>karroyo@datasoftla.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Cliente")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Cliente")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Heiner</td>
-                                <td>Arroyo Vargas</td>
-                                <td>karroyo@datasoftla.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="@Url.Action("Ver","Cliente")"><i class="fa fa-lg fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="@Url.Action("Editar","Cliente")"><i class="fa fa-lg fa-edit"></i></a>
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmDeleteModal"><i class="fa fa-lg fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @if(Model != null){
+                                foreach(var user in Model){
+                                    <tr>
+                                        <td>@Html.DisplayFor(model => user.name)</td>
+                                        <td>@Html.DisplayFor(model => user.lastName)</td>
+                                        <td>@Html.DisplayFor(model => user.mail)</td>
+                                        <td>@Html.DisplayFor(model => user.phone)</td>
+                                        <td>@Html.DisplayFor(model => user.rol.name)</td>
+                                        <td>@Html.DisplayFor(model => user.branch.name)</td>
+                                        <td>@Html.DisplayFor(model => user.active)</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="User" asp-route-id="@user.id"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="User" asp-route-id="@user.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@user.id"><i class="fa fa-lg fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -134,26 +60,39 @@
         </div>
     </div>
 </div>
-<!-- Modal de confirmación para eliminar un cliente -->
+<!-- Modal de confirmación de eliminación -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar este cliente?</p>
+                <p>¿Estás seguro de que deseas eliminar este servicio?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Eliminar</button>
+                <button type="button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
             </div>
         </div>
     </div>
 </div>
 <script src="~/js/plugins/jquery.datatables.min.js"></script>
 <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
-<script type="text/javascript">$('#tclientes').DataTable();</script>
+<script type="text/javascript">$('#tusers').DataTable();</script>
+<script>
+    var idToDelete; // Variable para almacenar el ID del elemento a eliminar
+
+    $('#confirmDeleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botón que activó el modal
+        idToDelete = button.data('id'); // Obtener el ID del atributo "data-id" del botón
+    });
+
+    function eliminar() {
+        var url = '@Url.Action("Eliminar", "User")' + '/' + idToDelete;
+        window.location.href = url;
+    }
+</script>

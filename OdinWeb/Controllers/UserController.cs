@@ -21,7 +21,7 @@ namespace OdinWeb.Controllers
 
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Dashboard()
         {
             return View();
         }
