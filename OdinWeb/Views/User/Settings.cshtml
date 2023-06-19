@@ -9,18 +9,17 @@
     <div class="tile user-settings">
         <h4 class="line-head">Configuraciones</h4>
         <form asp-action="GuardarDatos" asp-controller="User" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <div class="row">
                 <div class="col-md-4">
                     <!-- Columna de la foto -->
                     <div class="form-group">
-                        
-                        <img src="~/images/users/@Model.rutaImagen" alt="Foto" class="img-fluid" style="width: 300px;  />
+
+                        <img src="~/images/users/@Model.rutaImagen" alt="Foto" class="img-fluid" style="width: 300px;"/>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Foto de Perfil</label>
-                        <input asp-for="ArchivoImagen" class="form-control" type="file">
+                        <input asp-for="Imagen" class="form-control" type="file">
+                        <span asp-validation-for="Imagen" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -50,9 +49,14 @@
                         </div>
                         <div class="col-md-12 mb-4">
                             <label asp-for="IdBranch" class="control-label"></label>
-                            <select asp-for="IdBranch" asp-items="@(new SelectList(ViewBag.ComboBranch, "Value", "Text"))" class="form-control"></select>
+                            <select asp-for="IdBranch" class="form-control">
+                                <option value="">Seleccionar</option>
+                                @foreach (var item in ViewBag.ComboBranch)
+                                {
+                                    <option value="@item.Value" selected="@((item.Value == Model.IdBranch.ToString()).ToString().ToLower())">@item.Text</option>
+                                }
+                            </select>
                             <span asp-validation-for="IdBranch" class="text-danger"></span>
-                        </div>
                     </div>
                     <div class="row mb-10">
                         <div class="col-md-12">
@@ -62,6 +66,22 @@
                 </div>
             </div>
         </form>
-
+        @if (!string.IsNullOrEmpty(TempData["AlertMessage"] as string))
+        {
+            <script>
+                Swal.fire({
+                    icon: '@TempData["AlertType"]',
+                    title: '@TempData["AlertMessage"]',
+                    showConfirmButton: false,
+                    timer: 4000 // Duración de la alerta en milisegundos (2 segundos en este ejemplo)
+                });
+            </script>
+        }
     </div>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+}

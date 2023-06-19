@@ -30,14 +30,12 @@ namespace OdinWeb.Controllers
         public IActionResult Settings()
         {
             List<Branch> comboBranch = _branchModel.GetBranch();
-            ViewBag.ComboBranch = comboBranch.Select(t => new SelectListItem
-            {
-                Value = t.id.ToString(),
-                Text = t.name
-            }).ToList();
+            
+
             var idU = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
             int id = int.Parse(idU);
             var u = _userModel.GetUserById(id);
+            ViewBag.ComboBranch = new SelectList(comboBranch, "id", "name", u.idBranch);
             UpdateUser user = new UpdateUser();
             user.id = u.id;
             user.Nombre = u.name;
@@ -56,31 +54,44 @@ namespace OdinWeb.Controllers
             user.idBranch = u.IdBranch;
             user.phone = u.Telefono;
 
-            var archivoImagen = u.ArchivoImagen;
+            var archivoImagen = u.Imagen;
 
             if (archivoImagen != null && archivoImagen.Length > 0)
             {
                 var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
                 var extension = Path.GetExtension(nombreArchivo);
-                var nombreUnico = Guid.NewGuid().ToString() + extension;
-
-                var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "users", nombreUnico);
-                using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                if (extension == ".png" || extension == ".jpg")
                 {
-                    archivoImagen.CopyTo(stream);
-                }
+                    var nombreUnico = Guid.NewGuid().ToString() + extension;
 
-                user.photo = nombreUnico;
-                
+                    var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "users", nombreUnico);
+                    using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                    {
+                        archivoImagen.CopyTo(stream);
+                    }
+
+                    user.photo = nombreUnico;
+
+                }
+                else {
+                    TempData["AlertMessage"] = "Error, solo se permiten archivos .png o jpg";
+                    TempData["AlertType"] = "error";
+                    return RedirectToAction("Settings");
+
+                }
+           
             }
-            _userModel.PutUserById(user);
+            var respuesta = _userModel.PutUserById(user);
+            if (respuesta)
+            {
+                TempData["AlertMessage"] = "Datos actulizados correctamente";
+                TempData["AlertType"] = "success";
+                return RedirectToAction("Settings");
+            }
+            TempData["AlertMessage"] = "Error verfique los datos";
+            TempData["AlertType"] = "error";
             return RedirectToAction("Settings");
 
-            // Si no se subió ningún archivo, puedes mostrar un mensaje de error o realizar alguna otra acción
-
-
-            // Si el modelo no es válido, puedes realizar alguna acción, como volver a mostrar el formulario con los mensajes de error
-            
         }
 
     }
