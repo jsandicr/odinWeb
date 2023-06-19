@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
 namespace OdinWeb.Models.Obj
@@ -119,7 +120,7 @@ namespace OdinWeb.Models.Obj
         public string Telefono { get; set; }
         [Display(Name = "Sucursal mas Cercana")]
         public int IdBranch { get; set; }
-
+       
         public IFormFile Imagen { get; set; }
 
         public string rutaImagen { get; set; }

@@ -29,13 +29,33 @@ namespace OdinWeb.Controllers
         [Authorize]
         public IActionResult Settings()
         {
-            List<Branch> comboBranch = _branchModel.GetBranch();
             
-
             var idU = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
             int id = int.Parse(idU);
             var u = _userModel.GetUserById(id);
-            ViewBag.ComboBranch = new SelectList(comboBranch, "id", "name", u.idBranch);
+            List<Branch> comboBranch = _branchModel.GetBranch();
+            List<SelectListItem> branchOps = new List<SelectListItem>();
+            foreach (Branch branch in comboBranch)
+            {
+                if (branch.id == u.idBranch)
+                {
+                    branchOps.Add(new SelectListItem
+                    {
+                        Selected = true,
+                        Text = branch.name,
+                        Value = branch.id.ToString()
+                    });
+                }
+                else
+                {
+                    branchOps.Add(new SelectListItem
+                    {
+                        Text = branch.name,
+                        Value = branch.id.ToString()
+                    });
+                }
+            }
+            ViewData["ComboBranch"] = branchOps;
             UpdateUser user = new UpdateUser();
             user.id = u.id;
             user.Nombre = u.name;
@@ -74,7 +94,7 @@ namespace OdinWeb.Controllers
 
                 }
                 else {
-                    TempData["AlertMessage"] = "Error, solo se permiten archivos .png o jpg";
+                    TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
                     TempData["AlertType"] = "error";
                     return RedirectToAction("Settings");
 
