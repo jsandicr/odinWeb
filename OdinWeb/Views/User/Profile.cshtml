@@ -1,8 +1,15 @@
 ﻿@model OdinWeb.Models.Obj.UpdateUser
 
 @{
-    ViewData["Title"] = "Settings";
-    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+    ViewData["Title"] = "Perfil";
+    if (Context.Request.Cookies["Rol"] == "Cliente")
+    {
+        Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+    }
+    if (Context.Request.Cookies["Rol"] == "Supervisor")
+    {        
+        Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+    }
 }
 
 <div class="tab-pane fade active show" id="user-settings">
@@ -45,11 +52,16 @@
                             <input asp-for="Telefono" class="form-control" value="@Model.Telefono" />
                             <span asp-validation-for="Telefono" class="text-danger"></span>
                         </div>
-                        <div class="col-md-12 mb-4">
-                            <label asp-for="IdBranch" class="control-label"></label>
-                            @Html.DropDownList("IdBranch", (IEnumerable<SelectListItem>)ViewData["ComboBranch"], new { @class = "form-control form-select mb-3" })
-                            <span asp-validation-for="IdBranch" class="text-danger"></span>
-                        </div>
+
+                        @if (Context.Request.Cookies["Rol"] == "Cliente")
+                            {
+                            <div class="col-md-12 mb-4">
+                                <label asp-for="IdBranch" class="control-label"></label>
+                                @Html.DropDownList("IdBranch", (IEnumerable<SelectListItem>)ViewData["ComboBranch"], new { @class = "form-control form-select mb-3" })
+                                <span asp-validation-for="IdBranch" class="text-danger"></span>
+                            </div>
+                            }
+                      
                     <div class="row mb-10">
                         <div class="col-md-12">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i> Save</button>

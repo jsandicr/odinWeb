@@ -27,7 +27,7 @@ namespace OdinWeb.Controllers
         }
 
         [Authorize]
-        public IActionResult Settings()
+        public IActionResult Profile()
         {
             
             var idU = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
@@ -96,7 +96,7 @@ namespace OdinWeb.Controllers
                 else {
                     TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
                     TempData["AlertType"] = "error";
-                    return RedirectToAction("Settings");
+                    return RedirectToAction("Profile");
 
                 }
            
@@ -106,11 +106,11 @@ namespace OdinWeb.Controllers
             {
                 TempData["AlertMessage"] = "Datos actulizados correctamente";
                 TempData["AlertType"] = "success";
-                return RedirectToAction("Settings");
+                return RedirectToAction("Profile");
             }
             TempData["AlertMessage"] = "Error verfique los datos";
             TempData["AlertType"] = "error";
-            return RedirectToAction("Settings");
+            return RedirectToAction("Profile");
 
         }
 
