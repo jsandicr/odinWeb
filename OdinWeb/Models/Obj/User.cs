@@ -18,7 +18,7 @@ namespace OdinWeb.Models.Obj
         [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
         [Display(Name = "Telefono")]
         public string phone { get; set; }
-        public string photo { get; set; }
+        public string photo { get; set; } = "./";
         [Required(ErrorMessage = "El campo Contraseña es requerido")]
         [StringLength(int.MaxValue, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
         [Display(Name = "Contraseña")]
@@ -118,7 +118,6 @@ namespace OdinWeb.Models.Obj
         [RegularExpression(@"^\d{8}$", ErrorMessage = "El número de teléfono debe tener 8 dígitos.")]
         public string Telefono { get; set; }
         [Display(Name = "Sucursal mas Cercana")]
-
         public int IdBranch { get; set; }
         public IFormFile ArchivoImagen { get; set; }
 

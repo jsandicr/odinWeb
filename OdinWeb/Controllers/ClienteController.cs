@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using OdinWeb.Models;
+using OdinWeb.Models.Data.Classes;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http.Headers;
@@ -13,10 +14,12 @@ namespace OdinWeb.Controllers
     public class ClienteController : Controller
     {
 
+        private readonly IClienteModel _clientModel;
         private readonly IUserModel _userModel;
 
-        public ClienteController(IUserModel userModel)
+        public ClienteController(IClienteModel clientModel, IUserModel userModel)
         {
+            _clientModel = clientModel;
             _userModel = userModel;
         }
 
@@ -25,22 +28,13 @@ namespace OdinWeb.Controllers
         {
             try
             {
-                List<User> userList = new List<User>();
-                using (var httpClient = new HttpClient())
+                var lista = _clientModel.GetClients();
+                if (lista != null)
                 {
-                    var token = Request.Cookies["Token"];
-                    // Agrega el encabezado de autorización con el token
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    using (var response = await httpClient.GetAsync("https://localhost:7271/api/User/Client"))
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            userList = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-                        }
-                    }
+                    return View(lista);
+
                 }
-                return View(userList);
+                return View();
             }
             catch (Exception e)
             {
@@ -100,36 +94,27 @@ namespace OdinWeb.Controllers
             try
             {
                 user.idRol = 1;
+                user.restorePass = true;
                 user.password = _userModel.HashPassword(user.password);
-                //Temporal
-                user.photo = "./";
                 if (ModelState.IsValid)
                 {
-                    var json = JsonConvert.SerializeObject(user);
-                    var data = new StringContent(json, Encoding.UTF8, "application/json");
-                    using (var httpClient = new HttpClient())
+                    var servicio = _clientModel.PostClient(user);
+
+                    if (servicio)
                     {
-                        var token = Request.Cookies["Token"];
-                        // Agrega el encabezado de autorización con el token
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                        using (var response = await httpClient.PostAsync("https://localhost:7271/api/User", data))
-                        {
-                            if (response.IsSuccessStatusCode)
-                            {
-                                TempData["AlertMessage"] = "¡Se creó el usuario!";
-                                TempData["AlertType"] = "success";
-                                return RedirectToAction(nameof(Home));
-                            }
-                        }
+                        TempData["AlertMessage"] = "¡Se creó el cliente!";
+                        TempData["AlertType"] = "success";
+                        return RedirectToAction(nameof(Home));
+
                     }
                 }
-                TempData["AlertMessage"] = "¡Ocurrio un error al crear el usuario!";
+                TempData["AlertMessage"] = "¡Ocurrio un error al crear el cliente!";
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Crear));
             }
             catch
             {
-                TempData["AlertMessage"] = "¡Ocurrio un error al crear el usuario!";
+                TempData["AlertMessage"] = "¡Ocurrio un error al crear el cliente!";
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Crear));
             }
@@ -138,72 +123,68 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> Ver(int id)
         {
-            User user = new User();
-            using (var httpClient = new HttpClient())
+            try
             {
-                var token = Request.Cookies["Token"];
-                // Agrega el encabezado de autorización con el token
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                using (var response = await httpClient.GetAsync("https://localhost:7271/api/User/" + id))
+
+                var client = _clientModel.GetClientById(id);
+                if (client != null)
                 {
-                    if (response.IsSuccessStatusCode)
+                    List<SelectListItem> estados = new List<SelectListItem>();
+                    estados.Add(new SelectListItem
                     {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        user = JsonConvert.DeserializeObject<User>(apiResponse);
-                    }
+                        Text = "Activo",
+                        Value = "true"
+                    });
+
+                    estados.Add(new SelectListItem
+                    {
+                        Text = "Inactivo",
+                        Value = "false"
+                    });
+
+                    ViewData["Estados"] = estados;
+                    return View(client);
                 }
+                return RedirectToAction(nameof(Home));
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Home));
             }
 
-            List<SelectListItem> estados = new List<SelectListItem>();
-            estados.Add(new SelectListItem
-            {
-                Text = "Activo",
-                Value = "true"
-            });
-
-            estados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "false"
-            });
-
-            ViewData["Estados"] = estados;
-            return View(user);
         }
 
         [Authorize]
         public async Task<IActionResult> Editar(int id)
         {
-            User user = new User();
-            using (var httpClient = new HttpClient())
+            try
             {
-                var token = Request.Cookies["Token"];
-                // Agrega el encabezado de autorización con el token
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                using (var response = await httpClient.GetAsync("https://localhost:7271/api/User/" + id))
+
+                var client = _clientModel.GetClientById(id);
+                if (client != null)
                 {
-                    if (response.IsSuccessStatusCode)
+                    List<SelectListItem> estados = new List<SelectListItem>();
+                    estados.Add(new SelectListItem
                     {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        user = JsonConvert.DeserializeObject<User>(apiResponse);
-                    }
+                        Text = "Activo",
+                        Value = "true"
+                    });
+
+                    estados.Add(new SelectListItem
+                    {
+                        Text = "Inactivo",
+                        Value = "false"
+                    });
+
+                    ViewData["Estados"] = estados;
+                    return View(client);
                 }
+                return RedirectToAction(nameof(Home));
             }
-            List<SelectListItem> estados = new List<SelectListItem>();
-            estados.Add(new SelectListItem
+            catch
             {
-                Text = "Activo",
-                Value = "true"
-            });
-
-            estados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "false"
-            });
-
-            ViewData["Estados"] = estados;
-            return View(user);
+                return RedirectToAction(nameof(Home));
+            }
         }
 
         [HttpPost]
@@ -214,31 +195,23 @@ namespace OdinWeb.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var json = JsonConvert.SerializeObject(user);
-                    var data = new StringContent(json, Encoding.UTF8, "application/json");
-                    using (var httpClient = new HttpClient())
+                    var servicio = _clientModel.PutClientById(user);
+
+                    if (servicio)
                     {
-                        var token = Request.Cookies["Token"];
-                        // Agrega el encabezado de autorización con el token
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                        using (var response = await httpClient.PutAsync("https://localhost:7271/api/User/" + user.id, data))
-                        {
-                            if (response.IsSuccessStatusCode)
-                            {
-                                TempData["AlertMessage"] = "¡Se actualizó el usuario!";
-                                TempData["AlertType"] = "success";
-                                return RedirectToAction(nameof(Home));
-                            }
-                        }
+                        TempData["AlertMessage"] = "¡Se actualizó el cliente!";
+                        TempData["AlertType"] = "success";
+                        return RedirectToAction(nameof(Home));
                     }
+
                 }
-                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el usuario!";
+                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el cliente!";
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Editar));
             }
             catch
             {
-                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el usuario!";
+                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el cliente!";
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Editar));
             }
@@ -249,28 +222,21 @@ namespace OdinWeb.Controllers
         {
             try
             {
-                using (var httpClient = new HttpClient())
+                var respuesta = _clientModel.DeleteClientById(id);
+
+                if (respuesta)
                 {
-                    var token = Request.Cookies["Token"];
-                    // Agrega el encabezado de autorización con el token
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    using (var response = await httpClient.DeleteAsync("https://localhost:7271/api/User/" + id))
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            TempData["AlertMessage"] = "¡Se eliminó el usuario!";
-                            TempData["AlertType"] = "success";
-                            return RedirectToAction(nameof(Home));
-                        }
-                    }
+                    TempData["AlertMessage"] = "¡Se eliminó el cliente!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(Home));
                 }
-                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el usuario!";
+                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el cliente!";
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Home));
             }
             catch
             {
-                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el usuario!";
+                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el cliente!";
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Home));
             }

@@ -81,9 +81,9 @@ namespace OdinWeb.Models.Data.Classes
 
         public User ChangePassword(ChangePassword user)
         {
-            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            /*var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);*/
             var respuesta = false;
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 
