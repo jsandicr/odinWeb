@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
-using OdinWeb.Models;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
+using System.Net;
 using System.Net.Http.Headers;
-using System.Text;
 
 namespace OdinWeb.Controllers
 {
@@ -60,42 +58,47 @@ namespace OdinWeb.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Guardar(Service service)
+        public async Task<IActionResult> Guardar(ServiceUDP s, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
-            var Folder = Path.Combine("images");
-            var FileName = Guid.NewGuid().ToString() + "_" + service.PRD_UPLOAD.FileName;
-            var filePath = Path.Combine(Folder, FileName);
-            service.photo = service.PRD_UPLOAD.FileName;
+            var service = new Service();
+            service.name = s.name;
+            service.description = s.description;
+            service.active = s.active;
 
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                service.PRD_UPLOAD.CopyTo(fileStream);
-            }
+            var archivoImagen = s.image;
 
-            try
+            var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
+            var extension = Path.GetExtension(nombreArchivo);
+            if (extension == ".png" || extension == ".jpg")
             {
-                if (ModelState.IsValid)
+                var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", nombreUnico);
+                using (var stream = new FileStream(rutaGuardar, FileMode.Create))
                 {
-                    var servicio = _serviceModel.PostServicos(service);
-
-                    if (servicio)
-                    {
-                        TempData["AlertMessage"] = "¡Se creó el servicio!";
-                        TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Home));
-
-                    }
+                    archivoImagen.CopyTo(stream);
                 }
-                TempData["AlertMessage"] = "¡Ocurrio un error al crear el servicio!";
-                TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Crear));
+
+                service.photo = nombreUnico;
+
             }
-            catch
+            else
             {
-                TempData["AlertMessage"] = "¡Ocurrio un error al crear el servicio!";
+                TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
                 TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Crear));
+                return RedirectToAction("Editar");
+
             }
+            var respuesta = _serviceModel.PutServicioById(service);
+            if (respuesta)
+            {
+                TempData["AlertMessage"] = "Datos actulizados correctamente";
+                TempData["AlertType"] = "success";
+                return RedirectToAction("Home");
+            }
+            TempData["AlertMessage"] = "Error verfique los datos";
+            TempData["AlertType"] = "error";
+            return RedirectToAction("Editar");
         }
 
         [Authorize]
@@ -164,12 +167,16 @@ namespace OdinWeb.Controllers
                         Value = "false"
                     });
 
+
+                    ServiceUDP s = new ServiceUDP();
+                    s.name = servico.name;
+                    s.description = servico.description;
+                    s.active = servico.active;
                     ViewData["Estados"] = estados;
-                    return View(servico);
+                    return View(s);
 
                 }
                 return RedirectToAction(nameof(Home));
-
 
 
             }
@@ -182,32 +189,53 @@ namespace OdinWeb.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Actualizar(Service service)
+        public async Task<IActionResult> Actualizar(ServiceUDP s, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var servicio = _serviceModel.PutServicioById(service);
 
-                    if (servicio)
+            var service = _serviceModel.GetServicioById(s.id);
+            service.name = s.name;
+            service.description = s.description;
+            service.active = s.active;
+
+            var archivoImagen = s.image;
+
+
+            if (archivoImagen != null && archivoImagen.Length > 0)
+            {
+                var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
+                var extension = Path.GetExtension(nombreArchivo);
+                if (extension == ".png" || extension == ".jpg")
+                {
+                    var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                    var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", nombreUnico);
+                    using (var stream = new FileStream(rutaGuardar, FileMode.Create))
                     {
-                        TempData["AlertMessage"] = "¡Se actualizó el servicio!";
-                        TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Home));
+                        archivoImagen.CopyTo(stream);
                     }
 
+                    service.photo = nombreUnico;
+
                 }
-                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el servicio!";
-                TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Editar));
+                else
+                {
+                    TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
+                    TempData["AlertType"] = "error";
+                    return RedirectToAction("Editar");
+
+                }
             }
-            catch
+            var respuesta = _serviceModel.PutServicioById(service);
+            if (respuesta)
             {
-                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el servicio!";
-                TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Editar));
+                TempData["AlertMessage"] = "Datos actulizados correctamente";
+                TempData["AlertType"] = "success";
+                return RedirectToAction("Home");
             }
+            TempData["AlertMessage"] = "Error verfique los datos";
+            TempData["AlertType"] = "error";
+            return RedirectToAction("Editar");
+
         }
 
         [Authorize]

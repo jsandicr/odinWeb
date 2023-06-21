@@ -43,9 +43,9 @@ namespace OdinWeb.Models.Data.Classes
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = _httpClient.GetAsync("api/Service" + id).Result;
+            var response = _httpClient.GetAsync("api/Service/" + id).Result;
 
             if (response.IsSuccessStatusCode)
             {

@@ -1,4 +1,4 @@
-﻿@model OdinWeb.Models.Obj.Service
+﻿@model OdinWeb.Models.Obj.ServiceUDP
 @{
     ViewData["Title"] = "Crear Servicio";
 }
@@ -6,7 +6,7 @@
     <div class="tile">
         <h3 class="tile-title">Crear Servicio</h3>
         <div class="tile-body">
-            <form asp-action="Guardar" asp-controller="Servicio" method="post">
+            <form asp-action="Guardar" asp-controller="Servicio" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label asp-for="name" class="control-label"></label>
                     <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
@@ -31,8 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Imagen de servico</label>
-                    <input class="form-control" type="file">
-                    <span asp-validation-for="PRD_UPLOAD"></span>
+                    <input asp-for="image" class="form-control" type="file" data-val="false">
                 </div>
                 <div class="tile-footer">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
