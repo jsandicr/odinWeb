@@ -246,7 +246,12 @@ namespace OdinWeb.Controllers
         [HttpPost]
         public IActionResult ChangePasswordP(ChangePassword user)
         {
-
+            if (Request.Cookies["Id"] != null) {
+                int id = int.Parse(Request.Cookies["Id"]);
+                user.id = id;
+            }
+            
+            
             try {
 
                 var respuesta = _userModel.ChangePassword(user);
