@@ -57,7 +57,7 @@
                             {
                             <div class="col-md-12 mb-4">
                                 <label asp-for="IdBranch" class="control-label"></label>
-                                @Html.DropDownList("IdBranch", (IEnumerable<SelectListItem>)ViewData["ComboBranch"], new { @class = "form-control form-select mb-3" })
+                                @Html.DropDownList("IdBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3" })
                                 <span asp-validation-for="IdBranch" class="text-danger"></span>
                             </div>
                             }

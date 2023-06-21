@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using OdinWeb.Models.Data.Classes;
 using OdinWeb.Models.Data.Interfaces;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +17,10 @@ builder.Services.AddScoped<IUserModel, UserModel>();
 builder.Services.AddScoped<IServicioModel, ServicioModel>();
 builder.Services.AddScoped<IBranchModel, BranchModel>();
 builder.Services.AddScoped<IRolModel, RolModel>();
+builder.Services.AddScoped<IClienteModel, ClienteModel>();
+builder.Services.AddScoped<ISupervisorModel, SupervisorModel>();
+builder.Services.AddScoped<ITicketModel, TicketModel>();
+builder.Services.AddScoped<IStatusModel, StatusModel>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

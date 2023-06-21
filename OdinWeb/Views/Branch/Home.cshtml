@@ -1,17 +1,17 @@
-﻿@model IEnumerable<OdinWeb.Models.Obj.User>
+﻿@model IEnumerable<OdinWeb.Models.Obj.Branch>
 @{
-    ViewData["Title"] = "Clientes";
+    ViewData["Title"] = "Sucursales";
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i>Administración de Clientes</h1>
+        <h1><i class="fa fa-th-list"></i>Administración de Sucursales</h1>
         <p>Usuarios</p>
         <br>
-        <a asp-action="Crear" asp-controller="Cliente" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Crear</a>
+        <a asp-action="Crear" asp-controller="Branch" class="btn btn-primary">Crear</a>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item">Clientes</li>
+        <li class="breadcrumb-item">Sucursales</li>
         <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
     </ul>
 </div>
@@ -20,34 +20,26 @@
         <div class="tile">
             <div class="tile-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered" id="tusers">
+                    <table class="table table-hover table-bordered" id="tbranches">
                         <thead>
                             <tr>                            
                                 <th>@Html.DisplayNameFor(model => model.name)</th>
-                                <th>@Html.DisplayNameFor(model => model.lastName)</th>
-                                <th>@Html.DisplayNameFor(model => model.mail)</th>
-                                <th>@Html.DisplayNameFor(model => model.phone)</th>
-                                <th>@Html.DisplayNameFor(model => model.rol)</th>
-                                <th>@Html.DisplayNameFor(model => model.branch)</th>
+                                <th>@Html.DisplayNameFor(model => model.direction)</th>
                                 <th>@Html.DisplayNameFor(model => model.active)</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if(Model != null){
-                                foreach(var user in Model){
+                                foreach(var branch in Model){
                                     <tr>
-                                        <td>@Html.DisplayFor(model => user.name)</td>
-                                        <td>@Html.DisplayFor(model => user.lastName)</td>
-                                        <td>@Html.DisplayFor(model => user.mail)</td>
-                                        <td>@Html.DisplayFor(model => user.phone)</td>
-                                        <td>@Html.DisplayFor(model => user.rol.name)</td>
-                                        <td>@Html.DisplayFor(model => user.branch.name)</td>
-                                        <td>@Html.DisplayFor(model => user.active)</td>
+                                        <td>@Html.DisplayFor(model => branch.name)</td>
+                                        <td>@Html.DisplayFor(model => branch.direction)</td>
+                                        <td>@Html.DisplayFor(model => branch.active)</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="Cliente" asp-route-id="@user.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="Cliente" asp-route-id="@user.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@user.id"><i class="fa fa-lg fa-trash"></i></button>
+                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="Branch" asp-route-id="@branch.id"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="Branch" asp-route-id="@branch.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@branch.id"><i class="fa fa-lg fa-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -71,7 +63,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar este servicio?</p>
+                <p>¿Estás seguro de que deseas eliminar esta sucursal?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -82,7 +74,7 @@
 </div>
 <script src="~/js/plugins/jquery.datatables.min.js"></script>
 <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
-<script type="text/javascript">$('#tusers').DataTable();</script>
+<script type="text/javascript">$('#tbranches').DataTable();</script>
 <script>
     var idToDelete; // Variable para almacenar el ID del elemento a eliminar
 
@@ -92,7 +84,7 @@
     });
 
     function eliminar() {
-        var url = '@Url.Action("Eliminar", "Cliente")' + '/' + idToDelete;
+        var url = '@Url.Action("Eliminar", "Branch")' + '/' + idToDelete;
         window.location.href = url;
     }
 </script>

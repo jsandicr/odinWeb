@@ -19,7 +19,7 @@ namespace OdinWeb.Models.Obj
         [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
         [Display(Name = "Telefono")]
         public string phone { get; set; }
-        public string photo { get; set; }
+        public string photo { get; set; } = "./";
         [Required(ErrorMessage = "El campo Contraseña es requerido")]
         [StringLength(int.MaxValue, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
         [Display(Name = "Contraseña")]

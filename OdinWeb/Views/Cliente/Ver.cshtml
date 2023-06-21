@@ -1,4 +1,5 @@
-﻿@{
+﻿@model OdinWeb.Models.Obj.User
+@{
     ViewData["Title"] = "Ver Cliente";
 }
 <div class="col-md-12">
@@ -6,36 +7,49 @@
         <h3 class="tile-title">Ver Cliente</h3>
         <div class="tile-body">
             <div class="form-group">
-                <label class="control-label">Nombre</label>
-                <input class="form-control" type="text" value="Nombre del cliente" readonly>
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre" readonly>
             </div>
             <div class="form-group">
-                <label class="control-label">Apellidos</label>
-                <input class="form-control" type="text" value="Apellidos del cliente" readonly>
+                <label asp-for="lastName" class="control-label"></label>
+                <input asp-for="lastName" class="form-control" rows="4" placeholder="Ingrese el apellido" readonly>
+                <span asp-validation-for="lastName"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Correo</label>
-                <input class="form-control" type="email" value="correo@ejemplo.com" readonly>
+                <label asp-for="mail" class="control-label"></label>
+                <input asp-for="mail" class="form-control" rows="4" placeholder="Ingrese el correo" readonly>
             </div>
             <div class="form-group">
-                <label class="control-label">Dirección</label>
-                <textarea class="form-control" rows="4" readonly>Dirección del cliente</textarea>
+                <label asp-for="phone" class="control-label"></label>
+                <input asp-for="phone" class="form-control" rows="4" placeholder="Ingrese el telefono" readonly>
             </div>
             <div class="form-group">
-                <label class="control-label">Sucursal</label>
-                <input class="form-control" type="text" value="San José" readonly>
+                <label asp-for="photo" class="control-label"></label>
+                <input class="form-control" type="file" readonly>
             </div>
             <div class="form-group">
-                <label class="control-label">Sexo</label>
-                <input class="form-control" type="text" value="Masculino" readonly>
+                <label asp-for="password" class="control-label"></label>
+                <input type="password" asp-for="password" class="form-control" placeholder="Ingrese la contraseña temporal" readonly>
             </div>
             <div class="form-group">
-                <label class="control-label">Imagen de perfil</label>
-                <img src="ruta/de/la/imagen" alt="Imagen de perfil" class="img-fluid">
+                <label asp-for="active" class="control-label"></label>
+                @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
+                {
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input asp-for="active" class="form-check-input" type="radio" name="active" value="@opcion.Value" disabled> @opcion.Text
+                        </label>
+                    </div>
+                }
+            </div>
+            <div>
+                <label>Seleccione la sucursal</label>
+                @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3", @disabled = "disabled" })
             </div>
         </div>
         <div class="tile-footer">
-            <a class="btn btn-primary" href="#"><i class="fa fa-fw fa-lg fa-pencil"></i>Editar</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-arrow-circle-left"></i>Volver</a>
+            <a class="btn btn-secondary" asp-action="Home" asp-controller="Cliente"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Volver</a>
         </div>
     </div>
 </div>
+

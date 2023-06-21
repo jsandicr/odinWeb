@@ -2,19 +2,17 @@
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http.Headers;
-using System.Net.Http;
 using System.Text;
 
 namespace OdinWeb.Models.Data.Classes
 {
-    public class BranchModel : IBranchModel
+    public class TicketModel : ITicketModel
     {
         private readonly IConfiguration _config;
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public BranchModel(IConfiguration config, IHttpContextAccessor httpContextAccessor)
+        public TicketModel(IConfiguration config, IHttpContextAccessor httpContextAccessor)
         {
-
             _httpContextAccessor = httpContextAccessor;
             _config = config;
             _httpClient = new HttpClient();
@@ -22,29 +20,15 @@ namespace OdinWeb.Models.Data.Classes
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-        public List<Branch> GetBranch()
-        {  
 
-            var response = _httpClient.GetAsync("api/Branch").Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                var branch = response.Content.ReadAsStringAsync().Result;
-                var branchR = JsonConvert.DeserializeObject<List<Branch>>(branch);
-                return branchR;
-            }
-
-            return null;
-        }
-
-        public bool DeleteBranchById(int id)
+        public bool DeleteTicketById(int id)
         {
-
+            
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = _httpClient.DeleteAsync("api/Branch/" + id).Result;
+            var response = _httpClient.DeleteAsync("api/Ticket/"+ id).Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -54,49 +38,84 @@ namespace OdinWeb.Models.Data.Classes
             return false;
         }
 
-        public Branch GetBranchById(int id)
+        public Ticket GetTicketById(int id)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = _httpClient.GetAsync("api/Branch/" + id).Result;
+            var response = _httpClient.GetAsync("api/Ticket/" + id).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                var branch = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<Branch>(branch);
+                var client = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Ticket>(client);
+            }
+
+            return null;
+        }
+    
+        public List<Ticket> GetTickets()
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.GetAsync("api/Ticket").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var tickets = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Ticket>>(tickets);
             }
 
             return null;
         }
 
-        public bool PostBranch(Branch branch)
+        public List<Ticket> GetAssignedTickets(string id)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var content = new StringContent(JsonConvert.SerializeObject(branch), Encoding.UTF8, "application/json");
 
-
-            var response = _httpClient.PostAsync("api/Branch", content).Result;
+            var response = _httpClient.GetAsync("api/Ticket/Assigned/"+id).Result;
 
             if (response.IsSuccessStatusCode)
             {
+                var tickets = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Ticket>>(tickets);
+            }
+
+            return null;
+        }
+
+
+        public bool PostTicket(Ticket ticket)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var content = new StringContent(JsonConvert.SerializeObject(ticket), Encoding.UTF8, "application/json");
+
+            var response = _httpClient.PostAsync("api/Ticket", content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {  
                 return true;
             }
 
             return false;
         }
 
-        public bool PutBranchById(Branch branch)
+        public bool PutTicketById(Ticket ticket)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var content = new StringContent(JsonConvert.SerializeObject(branch), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(ticket), Encoding.UTF8, "application/json");
 
-            var response = _httpClient.PutAsync("api/Branch/" + branch.id, content).Result;
+
+            var response = _httpClient.PutAsync("api/Ticket/" + ticket.id, content).Result;
 
             if (response.IsSuccessStatusCode)
             {

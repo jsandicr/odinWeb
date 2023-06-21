@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net;
+using System.Net.Http.Headers;
 
 namespace OdinWeb.Controllers
 {
@@ -21,7 +23,7 @@ namespace OdinWeb.Controllers
 
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Dashboard()
         {
             return View();
         }
@@ -33,29 +35,18 @@ namespace OdinWeb.Controllers
             var idU = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
             int id = int.Parse(idU);
             var u = _userModel.GetUserById(id);
-            List<Branch> comboBranch = _branchModel.GetBranch();
-            List<SelectListItem> branchOps = new List<SelectListItem>();
-            foreach (Branch branch in comboBranch)
+            List<Branch> branches = _branchModel.GetBranch();
+
+            List<SelectListItem> branchesOps = new List<SelectListItem>();
+            foreach (Branch branch in branches)
             {
-                if (branch.id == u.idBranch)
+                branchesOps.Add(new SelectListItem
                 {
-                    branchOps.Add(new SelectListItem
-                    {
-                        Selected = true,
-                        Text = branch.name,
-                        Value = branch.id.ToString()
-                    });
-                }
-                else
-                {
-                    branchOps.Add(new SelectListItem
-                    {
-                        Text = branch.name,
-                        Value = branch.id.ToString()
-                    });
-                }
-            }
-            ViewData["ComboBranch"] = branchOps;
+                    Text = branch.name,
+                    Value = branch.id.ToString()
+                });
+            };
+            ViewData["Branches"] = branchesOps;
             UpdateUser user = new UpdateUser();
             user.id = u.id;
             user.Nombre = u.name;
@@ -63,6 +54,7 @@ namespace OdinWeb.Controllers
             user.CorreoElectronico = u.mail;
             user.Telefono = u.phone;
             user.rutaImagen = u.photo;
+            user.IdBranch = (int)u.idBranch;
 
             return View(user);
         }
