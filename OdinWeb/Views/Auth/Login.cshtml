@@ -14,18 +14,18 @@
     </div>
     <div class="login-box">
         <form class="login-form" asp-action="Validate" asp-controller="Auth" method="post">
-            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesion</h3>
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesión</h3>
             <div class="form-group">
-                <label class="control-label">Correo Electronico</label>
+                <label class="control-label">Correo Electrónico</label>
                 <input asp-for="User.mail" class="form-control" type="text" placeholder="ejemplo@gmail.com" autofocus>
-                <span asp-validation-for="User.mail"></span>
+                <span asp-validation-for="User.mail" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label  class="control-label">Contraseña</label>
+                <label class="control-label">Contraseña</label>
                 <input asp-for="User.password" class="form-control" type="password" placeholder="*****">
-                <span asp-validation-for="User.password"></span>
+                <span asp-validation-for="User.password" class="text-danger"></span>
             </div>
-            <p class="semibold-text mb-2"><a asp-controller="Auth" asp-action="Registration">¿Aun no tiene un cuenta?</a></p>
+            <p class="semibold-text mb-2"><a asp-controller="Auth" asp-action="Registration">¿Aún no tiene una cuenta?</a></p>
             <div class="form-group">
                 <div class="utility">
                     <div class="animated-checkbox">
@@ -37,30 +37,28 @@
                 </div>
             </div>
             <div class="form-group btn-container">
-                <button type="submit" class="btn btn-primary btn-block" href=""><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesion</button>
+                <button type="submit" class="btn btn-primary btn-block" href=""><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesión</button>
             </div>
         </form>
 
         <form class="forget-form" asp-action="RestorePassword" asp-controller="Auth" method="post">
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>¿Olvidó su contraseña?</h3>
             <div class="form-group">  
-                <label class="control-label">Correo Electronico</label>
+                <label class="control-label">Correo Electrónico</label>
                 <input asp-for="RestorePassword.mail" class="form-control" type="email" placeholder="ejemplo@gmail.com" autofocus>
-                <span asp-validation-for="RestorePassword.mail"></span>
+                <span asp-validation-for="RestorePassword.mail" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Numero de Teléfono</label>
+                <label class="control-label">Número de Teléfono</label>
                 <input asp-for="RestorePassword.phone" class="form-control" type="tel" placeholder="88888888" autofocus>
-                <span asp-validation-for="RestorePassword.phone"></span>
+                <span asp-validation-for="RestorePassword.phone" class="text-danger"></span>
             </div>
             <div class="form-group btn-container">
-                <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>Reestablecer</button>
+                <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>Restablecer</button>
             </div>
             <div class="form-group mt-3">
-                <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i>Regresar a inicio de sesion</a></p>
+                <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa fa-angle-left fa-fw"></i>Regresar a inicio de sesión</a></p>
             </div>
-            
-            
         </form>
         @if (!string.IsNullOrEmpty(TempData["AlertMessage"] as string))
         {
@@ -73,13 +71,11 @@
                 });
             </script>
         }
-
     </div>
 </section>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        
     }
 }
