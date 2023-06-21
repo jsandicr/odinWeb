@@ -71,6 +71,14 @@ namespace OdinWeb.Controllers
             var extension = Path.GetExtension(nombreArchivo);
             if (extension == ".png" || extension == ".jpg")
             {
+                if (!string.IsNullOrEmpty(s.photo))
+                {
+                    var rutaImagenAnterior = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", s.photo);
+                    if (System.IO.File.Exists(rutaImagenAnterior))
+                    {
+                        System.IO.File.Delete(rutaImagenAnterior);
+                    }
+                }
                 var nombreUnico = Guid.NewGuid().ToString() + extension;
 
                 var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", nombreUnico);
