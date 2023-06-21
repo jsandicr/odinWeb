@@ -1,23 +1,43 @@
-﻿@model OdinWeb.Models.Obj.Service
+﻿@model OdinWeb.Models.Obj.User
 @{
-    ViewData["Title"] = "Editar Servicio";
+    ViewData["Title"] = "Editar Usuario";
 }
 <div class="col-md-12">
     <div class="tile">
-        <h3 class="tile-title">Editar Servicio</h3>
+        <h3 class="tile-title">Editar Usuario</h3>
         <div class="tile-body">
-            <form asp-action="Actualizar" asp-controller="Servicio" method="post">
+            <form asp-action="Actualizar" asp-controller="Cliente" method="post">
                 <input type="hidden" asp-for="id">
+                <input type="hidden" asp-for="password">
                 <div class="form-group">
                     <label asp-for="name" class="control-label"></label>
                     <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
                     <span asp-validation-for="name"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="description" class="control-label"></label>
-                    <textarea asp-for="description" class="form-control" rows="4" placeholder="Ingrese su dirección"></textarea>
-                    <span asp-validation-for="name"></span>
+                    <label asp-for="lastName" class="control-label"></label>
+                    <input asp-for="lastName" class="form-control" rows="4" placeholder="Ingrese el apellido"></input>
+                    <span asp-validation-for="lastName"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="mail" class="control-label"></label>
+                    <input asp-for="mail" class="form-control" rows="4" placeholder="Ingrese el correo"></input>
+                    <span asp-validation-for="mail"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="phone" class="control-label"></label>
+                    <input asp-for="phone" class="form-control" rows="4" placeholder="Ingrese el telefono"></input>
+                    <span asp-validation-for="phone"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="photo" class="control-label"></label>
+                    <input class="form-control" type="file">
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="password" class="control-label"></label>
+                    <input type="password" asp-for="password" class="form-control" rows="4" placeholder="Ingrese la contraseña temporal"></input>
+                    <span asp-validation-for="password"></span>
+                </div>*@
                 <div class="form-group">
                     <label asp-for="active" class="control-label"></label>
                     @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
@@ -30,12 +50,12 @@
                     }
                     <span asp-validation-for="active"></span>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">Imagen de servicio</label>
-                    <input class="form-control" type="file">
+                <div>
+                    <label>Seleccione la sucursal</label>
+                    @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3" })
                 </div>
                 <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Cliente"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                 </div>
             </form>
         </div>

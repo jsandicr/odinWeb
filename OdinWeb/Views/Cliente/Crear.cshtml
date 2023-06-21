@@ -53,7 +53,7 @@
                     @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3" })
                 </div>
                 <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Cliente"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                 </div>
             </form>
         </div>

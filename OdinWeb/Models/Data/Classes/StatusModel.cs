@@ -2,18 +2,16 @@
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http.Headers;
-using System.Net.Http;
 using System.Text;
 
 namespace OdinWeb.Models.Data.Classes
 {
-    public class BranchModel : IBranchModel
+    public class StatusModel : IStatusModel
     {
         private readonly IConfiguration _config;
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public BranchModel(IConfiguration config, IHttpContextAccessor httpContextAccessor)
-        {
+        public StatusModel(IConfiguration config, IHttpContextAccessor httpContextAccessor) {
 
             _httpContextAccessor = httpContextAccessor;
             _config = config;
@@ -22,88 +20,98 @@ namespace OdinWeb.Models.Data.Classes
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-        public List<Branch> GetBranch()
-        {  
 
-            var response = _httpClient.GetAsync("api/Branch").Result;
+        public bool DeleteStatusById(int id)
+        {
+            
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.DeleteAsync("api/Status/"+ id).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                var branch = response.Content.ReadAsStringAsync().Result;
-                var branchR = JsonConvert.DeserializeObject<List<Branch>>(branch);
-                return branchR;
+                return true;
+            }
+
+            return false;
+        }
+    
+
+        public Status GetStatusById(int id)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.GetAsync("api/Status/" + id).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var services = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Status>(services);
+            }
+
+            return null;
+        }
+    
+
+        public List<Status> GetStatus()
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.GetAsync("api/Status").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var status = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Status>>(status);
             }
 
             return null;
         }
 
-        public bool DeleteBranchById(int id)
-        {
 
+        public bool PostStatus(Status status)
+        {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var content = new StringContent(JsonConvert.SerializeObject(status), Encoding.UTF8, "application/json");
 
-            var response = _httpClient.DeleteAsync("api/Branch/" + id).Result;
+
+            var response = _httpClient.PostAsync("api/Status", content).Result;
 
             if (response.IsSuccessStatusCode)
             {
+                
                 return true;
             }
 
             return false;
         }
 
-        public Branch GetBranchById(int id)
+        public bool PutStatusById(Status status)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            var response = _httpClient.GetAsync("api/Branch/" + id).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                var branch = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<Branch>(branch);
-            }
-
-            return null;
-        }
-
-        public bool PostBranch(Branch branch)
-        {
-            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
-            // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var content = new StringContent(JsonConvert.SerializeObject(branch), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(status), Encoding.UTF8, "application/json");
 
 
-            var response = _httpClient.PostAsync("api/Branch", content).Result;
+            var response = _httpClient.PutAsync("api/Status/" + status.id, content).Result;
 
             if (response.IsSuccessStatusCode)
             {
+                
                 return true;
             }
 
             return false;
-        }
 
-        public bool PutBranchById(Branch branch)
-        {
-            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
-            // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var content = new StringContent(JsonConvert.SerializeObject(branch), Encoding.UTF8, "application/json");
-
-            var response = _httpClient.PutAsync("api/Branch/" + branch.id, content).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

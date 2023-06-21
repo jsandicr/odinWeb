@@ -1,66 +1,61 @@
-﻿@{
+﻿@model OdinWeb.Models.Obj.User
+@{
     ViewData["Title"] = "Crear Supervisor";
 }
 <div class="col-md-12">
-<div class="tile">
-    <h3 class="tile-title">Crear Supervisor</h3>
-    <div class="tile-body">
-        <form>
-            <div class="form-group">
-                <label class="control-label">Nombre</label>
-                <input class="form-control" type="text" placeholder="Ingrese su Nombre">
-            </div>
-            <div class="form-group">
-                <label class="control-label">Apellidos</label>
-                <input class="form-control" type="text" placeholder="Ingrese sus Apellidos">
-            </div>
-            <div class="form-group">
-                <label class="control-label">Correo</label>
-                <input class="form-control" type="email" placeholder="Ingrese su Correo">
-            </div>
-            <div class="form-group">
-                <label class="control-label">Dirreción</label>
-                <textarea class="form-control" rows="4" placeholder="Ingrese su dirreción"></textarea>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Sucursal</label>
-                <select class="form-control" name="sucursal">
-                    <option value="San José">San José</option>
-                    <option value="Cartago">Cartago</option>
-                    <option value="Heredia">Heredia</option>
-                    <option value="Guanacaste">Guanacaste</option>
-                </select>
-            </div>
-
-
-            <div class="form-group">
-                <label class="control-label">Sexo</label>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="sexo">Masculino
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="sexo">Femenino
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Imagen de perfil</label>
-                <input class="form-control" type="file">
-            </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox">Acepto los termninos y condiciones.
-                    </label>
-                </div>
-            </div>
-        </form>
+    <div class="tile">
+        <h3 class="tile-title">Crear Supervisor</h3>
+        <div class="tile-body">
+                <form asp-action="Guardar" asp-controller="Supervisor" method="post">
+                    <div class="form-group">
+                        <label asp-for="name" class="control-label"></label>
+                        <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
+                        <span asp-validation-for="name"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="lastName" class="control-label"></label>
+                        <input asp-for="lastName" class="form-control" rows="4" placeholder="Ingrese el apellido"></input>
+                        <span asp-validation-for="lastName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="mail" class="control-label"></label>
+                        <input asp-for="mail" class="form-control" rows="4" placeholder="Ingrese el correo"></input>
+                        <span asp-validation-for="mail"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="phone" class="control-label"></label>
+                        <input asp-for="phone" class="form-control" rows="4" placeholder="Ingrese el telefono"></input>
+                        <span asp-validation-for="phone"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="photo" class="control-label"></label>
+                        <input class="form-control" type="file">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="password" class="control-label"></label>
+                        <input type="password" asp-for="password" class="form-control" rows="4" placeholder="Ingrese la contraseña temporal"></input>
+                        <span asp-validation-for="password"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="active" class="control-label"></label>
+                        @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
+                        {
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input asp-for="active" class="form-check-input" type="radio" name="active" value="@opcion.Value"> @opcion.Text
+                                </label>
+                            </div>
+                        }
+                        <span asp-validation-for="active"></span>
+                    </div>
+                    <div>
+                        <label>Seleccione la sucursal</label>
+                        @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3" })
+                    </div>
+                    <div class="tile-footer">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    </div>
+                </form>
+        </div>
     </div>
-    <div class="tile-footer">
-        <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
-    </div>
-</div>
 </div>

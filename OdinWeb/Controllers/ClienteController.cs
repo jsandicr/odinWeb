@@ -129,6 +129,31 @@ namespace OdinWeb.Controllers
                 var client = _clientModel.GetClientById(id);
                 if (client != null)
                 {
+                    List<Branch> branches = new List<Branch>();
+                    using (var httpClient = new HttpClient())
+                    {
+                        var token = Request.Cookies["Token"];
+                        // Agrega el encabezado de autorización con el token
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                        using (var response = await httpClient.GetAsync("https://localhost:7271/api/Branch"))
+                        {
+                            string apiResponse = await response.Content.ReadAsStringAsync();
+                            branches = JsonConvert.DeserializeObject<List<Branch>>(apiResponse);
+                        }
+                    }
+
+                    List<SelectListItem> branchesOps = new List<SelectListItem>();
+                    foreach (Branch branch in branches)
+                    {
+                        branchesOps.Add(new SelectListItem
+                        {
+                            Text = branch.name,
+                            Value = branch.id.ToString()
+                        });
+                    };
+
+                    ViewData["Branches"] = branchesOps;
+
                     List<SelectListItem> estados = new List<SelectListItem>();
                     estados.Add(new SelectListItem
                     {
@@ -163,6 +188,31 @@ namespace OdinWeb.Controllers
                 var client = _clientModel.GetClientById(id);
                 if (client != null)
                 {
+                    List<Branch> branches = new List<Branch>();
+                    using (var httpClient = new HttpClient())
+                    {
+                        var token = Request.Cookies["Token"];
+                        // Agrega el encabezado de autorización con el token
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                        using (var response = await httpClient.GetAsync("https://localhost:7271/api/Branch"))
+                        {
+                            string apiResponse = await response.Content.ReadAsStringAsync();
+                            branches = JsonConvert.DeserializeObject<List<Branch>>(apiResponse);
+                        }
+                    }
+
+                    List<SelectListItem> branchesOps = new List<SelectListItem>();
+                    foreach (Branch branch in branches)
+                    {
+                        branchesOps.Add(new SelectListItem
+                        {
+                            Text = branch.name,
+                            Value = branch.id.ToString()
+                        });
+                    };
+
+                    ViewData["Branches"] = branchesOps;
+
                     List<SelectListItem> estados = new List<SelectListItem>();
                     estados.Add(new SelectListItem
                     {
@@ -193,6 +243,9 @@ namespace OdinWeb.Controllers
         {
             try
             {
+                user.idRol = 1;
+                user.restorePass = true;
+                user.password = _userModel.HashPassword(user.password);
                 if (ModelState.IsValid)
                 {
                     var servicio = _clientModel.PutClientById(user);
