@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
 namespace OdinWeb.Models.Obj
@@ -118,10 +119,11 @@ namespace OdinWeb.Models.Obj
         [RegularExpression(@"^\d{8}$", ErrorMessage = "El número de teléfono debe tener 8 dígitos.")]
         public string Telefono { get; set; }
         [Display(Name = "Sucursal mas Cercana")]
-
         public int IdBranch { get; set; }
-        public IFormFile ArchivoImagen { get; set; }
+       
+        public IFormFile Imagen { get; set; }
 
         public string rutaImagen { get; set; }
     }
+   
 }
