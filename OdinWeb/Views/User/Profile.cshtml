@@ -60,8 +60,13 @@
                                 @Html.DropDownList("IdBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3" })
                                 <span asp-validation-for="IdBranch" class="text-danger"></span>
                             </div>
-                            }
-                      
+                        }
+                        else
+                        {
+                            <input asp-for="IdBranch" class="form-control" type="hidden">
+
+                        }
+
                     <div class="row mb-10">
                         <div class="col-md-12">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i> Save</button>
