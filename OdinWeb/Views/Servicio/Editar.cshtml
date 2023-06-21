@@ -6,39 +6,55 @@
     <div class="tile">
         <h3 class="tile-title">Editar Servicio</h3>
         <div class="tile-body">
-            <form asp-action="Actualizar" asp-controller="Servicio" method="post" enctype="multipart/form-data">
-                <input type="hidden" asp-for="id">
-                <div class="form-group">
-                    <label asp-for="name" class="control-label"></label>
-                    <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
-                    <span asp-validation-for="name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="description" class="control-label"></label>
-                    <textarea asp-for="description" class="form-control" rows="4" placeholder="Ingrese su dirección"></textarea>
-                    <span asp-validation-for="name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="active" class="control-label"></label>
-                    @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
-                    {
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input asp-for="active" class="form-check-input" type="radio" name="active" value="@opcion.Value"> @opcion.Text
-                            </label>
+            <div class="row">
+                <div class="col-md-8">
+                    <form asp-action="Actualizar" asp-controller="Servicio" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="id">
+
+                        <div class="form-group">
+                            <label asp-for="name" class="control-label">Nombre</label>
+                            <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
+                            <span asp-validation-for="name" class="text-danger"></span>
                         </div>
-                    }
-                    <span asp-validation-for="active" class="text-danger"></span>
+
+                        <div class="form-group">
+                            <label asp-for="description" class="control-label">Descripción</label>
+                            <textarea asp-for="description" class="form-control" rows="4" placeholder="Ingrese su dirección"></textarea>
+                            <span asp-validation-for="name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="active" class="control-label">Estado</label>
+                            @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
+                            {
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input asp-for="active" class="form-check-input" type="radio" name="active" value="@opcion.Value"> @opcion.Text
+                                    </label>
+                                </div>
+                            }
+                            <span asp-validation-for="active" class="text-danger"></span>
+                        </div>
+
+                        <div class="tile-footer">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio">
+                                <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar
+                            </a>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">Imagen de servicio</label>
-                    <input asp-for="image" class="form-control" type="file" data-val="false">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="300">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Imagen de servicio</label>
+                        <input asp-for="image" class="form-control" type="file" data-val="false">
+                    </div>
                 </div>
-                <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-
