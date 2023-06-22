@@ -10,12 +10,12 @@
                 <div class="form-group">
                     <label asp-for="name" class="control-label"></label>
                     <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
-                    <span asp-validation-for="name"></span>
+                    <span asp-validation-for="name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="description" class="control-label"></label>
                     <textarea asp-for="description" class="form-control" rows="4" placeholder="Ingrese una descripcion"></textarea>
-                    <span asp-validation-for="description"></span>
+                    <span asp-validation-for="description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="active" class="control-label"></label>
@@ -40,3 +40,8 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

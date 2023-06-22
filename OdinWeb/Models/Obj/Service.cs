@@ -22,14 +22,22 @@ namespace OdinWeb.Models.Obj
     {
         public int id { get; set; }
         [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "El campo es requerido")]
+
         public string name { get; set; }
         [Display(Name = "Descripcion")]
+        [Required(ErrorMessage = "El campo es requerido")]
+
         public string description { get; set; }
+        [Required(ErrorMessage = "El campo es requerido")]
+
         [Display(Name = "Activo")]
+
         public bool active { get; set; }
+        [Required(ErrorMessage = "El campo es requerido")]
         public string photo { get; set; }
+        [Required(ErrorMessage = "El campo es requerido")]
         public IFormFile image { get; set; }
         public List<Ticket>? tickets { get; set; }
-        public string rutaImagen { get; set; }
     }
 }
