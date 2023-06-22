@@ -24,14 +24,6 @@
                 <input asp-for="phone" class="form-control" rows="4" placeholder="Ingrese el telefono" readonly>
             </div>
             <div class="form-group">
-                <label asp-for="photo" class="control-label"></label>
-                <input class="form-control" type="file" readonly>
-            </div>
-            <div class="form-group">
-                <label asp-for="password" class="control-label"></label>
-                <input type="password" asp-for="password" class="form-control" placeholder="Ingrese la contraseña temporal" readonly>
-            </div>
-            <div class="form-group">
                 <label asp-for="active" class="control-label"></label>
                 @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
                 {
