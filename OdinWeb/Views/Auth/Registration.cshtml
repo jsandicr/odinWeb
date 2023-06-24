@@ -61,18 +61,3 @@
         </form>
     </div>
 </section>
-@if (!string.IsNullOrEmpty(TempData["AlertMessage"] as string))
-{
-    <script>
-        Swal.fire({
-            icon: '@TempData["AlertType"]',
-            title: '@TempData["AlertMessage"]',
-            showConfirmButton: false,
-            timer: 4000 
-    </script>
-}
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

@@ -60,22 +60,5 @@
                 <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa fa-angle-left fa-fw"></i>Regresar a inicio de sesión</a></p>
             </div>
         </form>
-        @if (!string.IsNullOrEmpty(TempData["AlertMessage"] as string))
-        {
-            <script>
-                Swal.fire({
-                    icon: '@TempData["AlertType"]',
-                    title: '@TempData["AlertMessage"]',
-                    showConfirmButton: false,
-                    timer: 4000 // Duración de la alerta en milisegundos (2 segundos en este ejemplo)
-                });
-            </script>
-        }
     </div>
 </section>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

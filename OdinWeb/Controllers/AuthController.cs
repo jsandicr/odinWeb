@@ -94,6 +94,8 @@ namespace OdinWeb.Controllers
 
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                             new ClaimsPrincipal(claimsIdentity), properties);
+                        TempData["AlertMessage"] = "Incio de Sesion valido.";
+                        TempData["AlertType"] = "success";
                         switch (user.rol.name)
                         {
                             case "Admin":
@@ -108,6 +110,8 @@ namespace OdinWeb.Controllers
                     {
                         ChangePassword changePassword = new ChangePassword();
                         changePassword.id = user.id;
+                        TempData["AlertMessage"] = "Se requeire el cambio de contraseña.";
+                        TempData["AlertType"] = "info";
                         return RedirectToAction("ChangePassword", changePassword);
                     }
 
@@ -249,9 +253,7 @@ namespace OdinWeb.Controllers
             if (Request.Cookies["Id"] != null) {
                 int id = int.Parse(Request.Cookies["Id"]);
                 user.id = id;
-            }
-            
-            
+            }                      
             try {
 
                 var respuesta = _userModel.ChangePassword(user);
