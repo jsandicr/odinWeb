@@ -4,6 +4,7 @@ using OdinWeb.Models.Obj;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OdinWeb.Models.Data.Interfaces;
 using System;
+using System.Net.Sockets;
 
 namespace OdinWeb.Controllers
 {
@@ -59,6 +60,15 @@ namespace OdinWeb.Controllers
                             return View(lista);
 
                         }
+                    }
+                }
+                if (filtro == "Open")
+                {
+                    var lista = _ticketModel.GetOpenTickets();
+                    if (lista != null)
+                    {
+                        return View(lista);
+
                     }
                 }
                 return View();
@@ -159,6 +169,8 @@ namespace OdinWeb.Controllers
         {
             try
             {
+                ticket.creationDate = DateTime.Now;
+                ticket.updateDate = DateTime.Now;
                 if (ModelState.IsValid)
                 {
                     var servicio = _ticketModel.PostTicket(ticket);
@@ -188,8 +200,6 @@ namespace OdinWeb.Controllers
         {
             try
             {
-
-
                 var branch = _ticketModel.GetTicketById(id);
                 if (branch != null)
                 {
@@ -287,9 +297,8 @@ namespace OdinWeb.Controllers
         {
             try
             {
-
-                var branch = _ticketModel.GetTicketById(id);
-                if (branch != null)
+                var ticket = _ticketModel.GetTicketById(id);
+                if (ticket != null)
                 {
                     var clients = _clientModel.GetClients();
                     if (clients != null)
@@ -369,7 +378,7 @@ namespace OdinWeb.Controllers
                     });
 
                     ViewData["Estados"] = estados;
-                    return View(branch);
+                    return View(ticket);
                 }
                 return RedirectToAction(nameof(Home));
             }
@@ -385,6 +394,11 @@ namespace OdinWeb.Controllers
         {
             try
             {
+                ticket.updateDate = DateTime.Now;
+                if (ticket.idStatus == 1)
+                {
+                    ticket.closeDate = DateTime.Now;
+                }
                 if (ModelState.IsValid)
                 {
                     var response = _ticketModel.PutTicketById(ticket);
