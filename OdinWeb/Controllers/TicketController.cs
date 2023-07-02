@@ -433,11 +433,26 @@ namespace OdinWeb.Controllers
                 return RedirectToAction(nameof(Home));
             }
         }
-
+        [HttpGet]
         [Authorize]
-        public async Task<IActionResult> IndexCliente()
+        public async Task<IActionResult> ClienteCrear(int idService)
         {
+            Ticket ticket = new Ticket();
+            ticket.idService = idService;
+            var services = _serviceModel.GetServicioById(idService);
+            TempData["Servicio"] = services.name;
+
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CrearTiquete(Ctiquete nticket) {
+
+            if (ModelState.IsValid){
+
+
+            }
+            return BadRequest();
         }
     }
 }

@@ -1,0 +1,122 @@
+﻿@model OdinWeb.Models.Obj.Ctiquete
+
+@{
+    ViewData["Title"] = "ClienteCrear";
+    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+}
+<style>
+    .file-item {
+        margin-bottom: 5px;
+    }
+
+    .dropzone {
+        border: 2px dashed #ccc;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+    }
+</style>
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-create"></i>@TempData["Servicio"]</h1>
+        <p>Crear tiquete</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item"><a asp-controller="Servicio" asp-action="HCliente">Servicio</a></li>
+        <li class="breadcrumb-item"><a>@TempData["Servicio"]</a></li>
+    </ul>
+</div>
+<div class="col-md-12">
+    <div class="tile">
+        <h3 class="tile-title">Crear Tiquete</h3>
+        <div class="tile-body">
+            <form class="form-horizontal" id="crearT" asp-action="CrearTiquete" asp-controller="Ticket" method="post" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label asp-for="title" class="control-label"></label>
+                    <div class="col-md-12">
+                        <input asp-for="title" class="form-control" type="text" placeholder="Ingrese una pequeña descripción de la solicitud">
+                    </div>
+                    <span asp-validation-for="title" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-12">Descripción</label>
+                    <div class="col-md-12">
+                        <textarea class="form-control" rows="20" placeholder="Describa ampliamente la solicitud" name="description"></textarea>
+                    </div>
+                </div>
+                <div class="dropzone" id="dropzone">
+                    Arrastra y suelta los archivos aquí<br>
+                    <small>O haz clic para seleccionar archivos</small>
+                    <input type="file" name="Archivos" id="fileInput" multiple style="display: none;">
+                </div>
+
+                <div id="fileList"></div>
+
+                <div class="tile-footer">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-3">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        var fileInput = document.getElementById('fileInput');
+        var fileList = document.getElementById('fileList');
+        var dropzone = document.getElementById('dropzone');
+
+        dropzone.addEventListener('click', function () {
+            fileInput.click();
+        });
+
+        dropzone.addEventListener('dragover', function (event) {
+            event.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragleave', function () {
+            dropzone.classList.remove('dragover');
+        });
+
+        dropzone.addEventListener('drop', function (event) {
+            event.preventDefault();
+            dropzone.classList.remove('dragover');
+
+            var files = event.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', function (event) {
+            var files = event.target.files;
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            fileList.innerHTML = '';
+
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var fileItem = document.createElement('div');
+                fileItem.classList.add('file-item');
+                fileItem.textContent = file.name;
+                fileList.appendChild(fileItem);
+
+                // Mostrar el archivo (opcional)
+                var fileReader = new FileReader();
+                fileReader.onload = function (e) {
+                    var filePreview = document.createElement('img');
+                    filePreview.src = e.target.result;
+                    filePreview.classList.add('file-preview');
+                    fileItem.appendChild(filePreview);
+                };
+                fileReader.readAsDataURL(file);
+            }
+        }
+    </script>
+}
+

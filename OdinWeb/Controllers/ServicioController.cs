@@ -279,5 +279,10 @@ namespace OdinWeb.Controllers
                 return RedirectToAction(nameof(Home));
             }
         }
+
+        public async Task<IActionResult> HCliente() { 
+        
+            return View(_serviceModel.GetServiciosStatus(true));
+        }
     }
 }

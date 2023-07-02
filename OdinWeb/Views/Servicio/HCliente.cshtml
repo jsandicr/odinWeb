@@ -1,0 +1,129 @@
+﻿@model IEnumerable<OdinWeb.Models.Obj.Service>
+
+@{
+    ViewData["Title"] = "HCliente";
+    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+}
+@if (Model == null)
+{
+    <main class="app-content">
+        <div class="page-error tile">
+            <h1><i class="fa fa-exclamation-circle"></i>No se cuentan con servicios Activos por el momento</h1>
+            <p>No hay datos.</p>
+            <p><a class="btn btn-primary" href="javascript:window.history.back();">Volver atrás</a></p>
+        </div>
+    </main>
+}
+else
+{
+    <style>
+        .card {
+            background-color: #fff;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px; /* Espacio entre filas */
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+        .card-img-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .card-img-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            line-height: 1.4;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: height 0.3s ease, opacity 0.3s ease;
+        }
+
+        .card:hover .card-text {
+            height: auto;
+            opacity: 1;
+        }
+    </style>
+
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-create"></i>Servicios</h1>
+            <p>Listado de servicios</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
+            <li class="breadcrumb-item"><a>Servicios</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card" onclick="redirectToAction('@Url.Action("ClienteCrear", "Ticket", new { idService = item.id })')">
+                    <div class="card-img-container">
+                        <img class="card-img-top" src="~/images/services/@item.photo" alt="Service Photo">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.name</h5>
+                        <p class="card-text description">@item.description</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.card').hover(
+                function () {
+                    $(this).find('.card-text').css({
+                        height: $(this).find('.card-text')[0].scrollHeight + 'px',
+                        opacity: 1
+                    });
+                },
+                function () {
+                    $(this).find('.card-text').css({
+                        height: '0',
+                        opacity: 0
+                    });
+                }
+            );
+        });
+        function redirectToAction(url) {
+            window.location.href = url;
+        }
+    </script>
+}

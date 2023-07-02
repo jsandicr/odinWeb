@@ -35,4 +35,14 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Comentarios")]
         public List<Comment>? comments { get; set; }
     }
+
+    public class Ctiquete {
+        public int id { get; set; }
+        [Display(Name = "Titulo")]
+        public string title { get; set; }
+        [Display(Name = "Descripcion")]
+        public string description { get; set; }
+
+        public List<IFormFile> Archivos { get; set; }
+    }
 }
