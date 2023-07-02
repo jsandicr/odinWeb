@@ -27,7 +27,7 @@ namespace OdinWeb.Models.Obj
         public string name { get; set; }
         [Display(Name = "Descripcion")]
         [Required(ErrorMessage = "El campo es requerido")]
-
+        [MaxLength(200, ErrorMessage = "El nombre de usuario no puede tener más de 200 caracteres.")]
         public string description { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
 

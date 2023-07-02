@@ -139,7 +139,7 @@ namespace OdinWeb.Controllers
                     newUser.phone = user.phone;
                     newUser.idBranch = user.idBranch; 
                     //Temporal
-                    newUser.photo = "./";
+                    newUser.photo = "./user.png";
                     newUser.password = user.password;
                     newUser.password = _userModel.HashPassword(newUser.password);
                     Rol rol = new Rol();

@@ -67,37 +67,40 @@ namespace OdinWeb.Controllers
 
             var archivoImagen = s.image;
 
-            var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
-            var extension = Path.GetExtension(nombreArchivo);
-            if (extension == ".png" || extension == ".jpg")
+            if (archivoImagen != null && archivoImagen.Length > 0)
             {
-                if (!string.IsNullOrEmpty(s.photo))
+                var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
+                var extension = Path.GetExtension(nombreArchivo);
+                if (extension == ".png" || extension == ".jpg")
                 {
-                    var rutaImagenAnterior = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", s.photo);
-                    if (System.IO.File.Exists(rutaImagenAnterior))
+                    if (!string.IsNullOrEmpty(s.photo))
                     {
-                        System.IO.File.Delete(rutaImagenAnterior);
+                        var rutaImagenAnterior = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", s.photo);
+                        if (System.IO.File.Exists(rutaImagenAnterior))
+                        {
+                            System.IO.File.Delete(rutaImagenAnterior);
+                        }
                     }
-                }
-                var nombreUnico = Guid.NewGuid().ToString() + extension;
+                    var nombreUnico = Guid.NewGuid().ToString() + extension;
 
-                var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", nombreUnico);
-                using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                    var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", nombreUnico);
+                    using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                    {
+                        archivoImagen.CopyTo(stream);
+                    }
+
+                    service.photo = nombreUnico;
+
+                }
+                else
                 {
-                    archivoImagen.CopyTo(stream);
+                    TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
+                    TempData["AlertType"] = "error";
+                    return RedirectToAction("Editar");
+
                 }
-
-                service.photo = nombreUnico;
-
             }
-            else
-            {
-                TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
-                TempData["AlertType"] = "error";
-                return RedirectToAction("Editar");
-
-            }
-            var respuesta = _serviceModel.PutServicioById(service);
+            var respuesta = _serviceModel.PostServicos(service);
             if (respuesta)
             {
                 TempData["AlertMessage"] = "Datos actulizados correctamente";

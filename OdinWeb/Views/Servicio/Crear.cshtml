@@ -32,6 +32,7 @@
                 <div class="form-group">
                     <label class="control-label">Imagen de servico</label>
                     <input asp-for="image" class="form-control" type="file" data-val="false">
+                    <span asp-validation-for="image" class="text-danger"></span>
                 </div>
                 <div class="tile-footer">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
