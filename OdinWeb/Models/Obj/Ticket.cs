@@ -24,6 +24,8 @@ namespace OdinWeb.Models.Obj
         public int idSupervisor { get; set; }
         public int idService { get; set; }
         public int idStatus { get; set; }
+        public string? ubication { get; set; }
+
         [Display(Name = "Cliente")]
         public User? client { get; set; }
         [Display(Name = "Supervisor")]
