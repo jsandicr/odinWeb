@@ -15,9 +15,9 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Fecha Actualizado")]
         public DateTime updateDate { get; set; }
         [Display(Name = "Fecha Cierre")]
-        public DateTime closeDate { get; set; }
+        public DateTime? closeDate { get; set; }
         [Display(Name = "Fecha Estimada")]
-        public DateTime estimatedDate { get; set; }
+        public DateTime? estimatedDate { get; set; }
         [Display(Name = "Activo")]
         public bool active { get; set; }
         public int idClient { get; set; }

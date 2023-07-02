@@ -28,7 +28,30 @@
                         }
                         <span asp-validation-for="active"></span>
                     </div>
-                    
+                    <div class="form-group">
+                        @if(Model.idServiceMain != null){
+                            <input type="checkbox" id="subServiceCheck" disabled checked>
+                        }else{
+                            <input type="checkbox" id="subServiceCheck" disabled>
+                        }
+                        <label class="control-label" >Crear como sub servicio</label>
+                    </div>
+                    <span class="subService" id="subService">
+                        <div class="form-group">
+                            <label class="control-label">Seleccione el servicio</label>
+                            @Html.DropDownList("idServiceMain", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3", @disabled = "disabled" })
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="requirements" class="control-label"></label>
+                            <textarea id="requirements" asp-for="requirements" class="form-control" rows="4" readonly></textarea>
+                            <span asp-validation-for="requirements" class="text-danger"></span>
+                        </div>
+                    </span>
+                    <div class="form-group">
+                        <input asp-for="transport" type="checkbox" disabled>
+                        <label asp-for="transport" class="control-label"></label>
+                        <span asp-validation-for="transport" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <h5 class="control-label">Tiquetes Creados</h5>
                         <h6 class="control-label">@Model.tickets</h6>
@@ -48,3 +71,19 @@
     </div>
 </div>
 
+<script>
+    var subServiceCheck = document.getElementById('subServiceCheck');
+    //Comprueba apenas inicia
+    comprueba()
+
+    function comprueba(){
+        var comboService = document.getElementById('subService');
+        if(subServiceCheck.checked){
+            //Activado
+            comboService.classList.remove("subService");
+        }else{
+            //Desactivado
+            comboService.classList.add("subService");
+        }
+    }
+</script>
