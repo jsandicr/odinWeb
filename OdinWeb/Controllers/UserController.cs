@@ -65,6 +65,7 @@ namespace OdinWeb.Controllers
 
             user.idBranch = u.IdBranch;
             user.phone = u.Telefono;
+            user.mail = u.CorreoElectronico;
 
             var archivoImagen = u.Imagen;
 
