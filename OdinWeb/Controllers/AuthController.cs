@@ -94,8 +94,6 @@ namespace OdinWeb.Controllers
 
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                             new ClaimsPrincipal(claimsIdentity), properties);
-                        TempData["AlertMessage"] = "Incio de Sesion valido.";
-                        TempData["AlertType"] = "success";
                         switch (user.rol.name)
                         {
                             case "Admin":
@@ -143,7 +141,7 @@ namespace OdinWeb.Controllers
                     newUser.phone = user.phone;
                     newUser.idBranch = user.idBranch; 
                     //Temporal
-                    newUser.photo = "./";
+                    newUser.photo = "./user.png";
                     newUser.password = user.password;
                     newUser.password = _userModel.HashPassword(newUser.password);
                     Rol rol = new Rol();

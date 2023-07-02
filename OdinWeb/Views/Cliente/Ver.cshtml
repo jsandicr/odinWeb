@@ -7,21 +7,20 @@
         <h3 class="tile-title">Ver Cliente</h3>
         <div class="tile-body">
             <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
-                <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre" readonly>
+                <h5 class="control-label">Nombre</h5>
+                <h6 class="control-label">@Model.name</h6>
             </div>
             <div class="form-group">
-                <label asp-for="lastName" class="control-label"></label>
-                <input asp-for="lastName" class="form-control" rows="4" placeholder="Ingrese el apellido" readonly>
-                <span asp-validation-for="lastName"></span>
+                <h5 class="control-label">Apellidos</h5>
+                <h6 class="control-label">@Model.lastName</h6>
             </div>
             <div class="form-group">
-                <label asp-for="mail" class="control-label"></label>
-                <input asp-for="mail" class="form-control" rows="4" placeholder="Ingrese el correo" readonly>
+                <h5 class="control-label">Correo</h5>
+                <h6 class="control-label">@Model.mail</h6>
             </div>
             <div class="form-group">
-                <label asp-for="phone" class="control-label"></label>
-                <input asp-for="phone" class="form-control" rows="4" placeholder="Ingrese el telefono" readonly>
+                <h5 class="control-label">Teléfono</h5>
+                <h6 class="control-label">@Model.phone</h6>
             </div>
             <div class="form-group">
                 <label asp-for="active" class="control-label"></label>

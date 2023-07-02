@@ -8,6 +8,8 @@
         <div class="tile-body">
             <form asp-action="Actualizar" asp-controller="Ticket" method="post">
                 <input type="hidden" asp-for="id">
+                <input type="hidden" asp-for="creationDate">
+                <input type="hidden" asp-for="updateDate">
                 <div class="form-group">
                     <label asp-for="title" class="control-label"></label>
                     <input asp-for="title" class="form-control" type="text">
@@ -16,21 +18,6 @@
                     <label asp-for="description" class="control-label"></label>
                     <input asp-for="description" class="form-control" rows="4">
                     <span asp-validation-for="description"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="creationDate" class="control-label"></label>
-                    <input asp-for="creationDate" class="form-control" rows="4">
-                    <span asp-validation-for="creationDate"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="updateDate" class="control-label"></label>
-                    <input asp-for="updateDate" class="form-control" rows="4">
-                    <span asp-validation-for="updateDate"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="closeDate" class="control-label"></label>
-                    <input asp-for="closeDate" class="form-control" rows="4">
-                    <span asp-validation-for="closeDate"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="estimatedDate" class="control-label"></label>

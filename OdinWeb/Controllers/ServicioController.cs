@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OdinWeb.Models.Data.Classes;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net;
@@ -39,6 +40,27 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> Crear()
         {
+            var services = _serviceModel.GetServicios();
+            if (services != null)
+            {
+                List<SelectListItem> servicesOps = new List<SelectListItem>();
+                servicesOps.Add(new SelectListItem
+                {
+                    Text = "",
+                    Value = "0"
+                });
+                foreach (Service service in services)
+                {
+                    servicesOps.Add(new SelectListItem
+                    {
+                        Text = service.name,
+                        Value = service.id.ToString()
+                    });
+                };
+
+                ViewData["Services"] = servicesOps;
+            }
+
             List<SelectListItem> estados = new List<SelectListItem>();
             estados.Add(new SelectListItem
             {
@@ -64,40 +86,53 @@ namespace OdinWeb.Controllers
             service.name = s.name;
             service.description = s.description;
             service.active = s.active;
-
-            var archivoImagen = s.image;
-
-            var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
-            var extension = Path.GetExtension(nombreArchivo);
-            if (extension == ".png" || extension == ".jpg")
+            service.transport = s.transport;
+            if (s.idServiceMain == 0)
             {
-                if (!string.IsNullOrEmpty(s.photo))
-                {
-                    var rutaImagenAnterior = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", s.photo);
-                    if (System.IO.File.Exists(rutaImagenAnterior))
-                    {
-                        System.IO.File.Delete(rutaImagenAnterior);
-                    }
-                }
-                var nombreUnico = Guid.NewGuid().ToString() + extension;
-
-                var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", nombreUnico);
-                using (var stream = new FileStream(rutaGuardar, FileMode.Create))
-                {
-                    archivoImagen.CopyTo(stream);
-                }
-
-                service.photo = nombreUnico;
-
+                s.idServiceMain = null;
             }
             else
             {
-                TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
-                TempData["AlertType"] = "error";
-                return RedirectToAction("Editar");
-
+                service.idServiceMain = s.idServiceMain;
             }
-            var respuesta = _serviceModel.PutServicioById(service);
+            service.requirements = s.requirements;
+
+            var archivoImagen = s.image;
+
+            if (archivoImagen != null && archivoImagen.Length > 0)
+            {
+                var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
+                var extension = Path.GetExtension(nombreArchivo);
+                if (extension == ".png" || extension == ".jpg")
+                {
+                    if (!string.IsNullOrEmpty(s.photo))
+                    {
+                        var rutaImagenAnterior = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", s.photo);
+                        if (System.IO.File.Exists(rutaImagenAnterior))
+                        {
+                            System.IO.File.Delete(rutaImagenAnterior);
+                        }
+                    }
+                    var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                    var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "services", nombreUnico);
+                    using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                    {
+                        archivoImagen.CopyTo(stream);
+                    }
+
+                    service.photo = nombreUnico;
+
+                }
+                else
+                {
+                    TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
+                    TempData["AlertType"] = "error";
+                    return RedirectToAction("Editar");
+
+                }
+            }
+            var respuesta = _serviceModel.PostServicos(service);
             if (respuesta)
             {
                 TempData["AlertMessage"] = "Datos actulizados correctamente";
@@ -114,12 +149,30 @@ namespace OdinWeb.Controllers
         {
             try
             {
+                var services = _serviceModel.GetServicios();
+                if (services != null)
+                {
+                    List<SelectListItem> servicesOps = new List<SelectListItem>();
+                    servicesOps.Add(new SelectListItem
+                    {
+                        Text = "",
+                        Value = "0"
+                    });
+                    foreach (Service service in services)
+                    {
+                        servicesOps.Add(new SelectListItem
+                        {
+                            Text = service.name,
+                            Value = service.id.ToString()
+                        });
+                    };
+
+                    ViewData["Services"] = servicesOps;
+                }
 
                 var servico = _serviceModel.GetServicioById(id);
-
                 if (servico != null)
                 {
-
                     List<SelectListItem> estados = new List<SelectListItem>();
                     estados.Add(new SelectListItem
                     {
@@ -135,20 +188,12 @@ namespace OdinWeb.Controllers
 
                     ViewData["Estados"] = estados;
                     return View(servico);
-
                 }
                 return RedirectToAction(nameof(Home));
-
-
-
             }
-
-            catch
-            {
+            catch{
                 return RedirectToAction(nameof(Home));
             }
-
-
         }
 
         [Authorize]
@@ -156,12 +201,30 @@ namespace OdinWeb.Controllers
         {
             try
             {
-
-                var servico = _serviceModel.GetServicioById(id);
-
-                if (servico != null)
+                var services = _serviceModel.GetServicios();
+                if (services != null)
                 {
+                    List<SelectListItem> servicesOps = new List<SelectListItem>();
+                    servicesOps.Add(new SelectListItem
+                    {
+                        Text = "",
+                        Value = "0"
+                    });
+                    foreach (Service s in services)
+                    {
+                        servicesOps.Add(new SelectListItem
+                        {
+                            Text = s.name,
+                            Value = s.id.ToString()
+                        });
+                    };
 
+                    ViewData["Services"] = servicesOps;
+                }
+
+                var service = _serviceModel.GetServicioById(id);
+                if (service != null)
+                {
                     List<SelectListItem> estados = new List<SelectListItem>();
                     estados.Add(new SelectListItem
                     {
@@ -177,21 +240,19 @@ namespace OdinWeb.Controllers
 
 
                     ServiceUDP s = new ServiceUDP();
-                    s.name = servico.name;
-                    s.description = servico.description;
-                    s.active = servico.active;
-                    s.photo = servico.photo;
+                    s.name = service.name;
+                    s.description = service.description;
+                    s.active = service.active;
+                    s.photo = service.photo;
+                    s.transport = service.transport;
+                    s.idServiceMain = service.idServiceMain;
+                    s.requirements = service.requirements;
                     ViewData["Estados"] = estados;
                     return View(s);
-
                 }
                 return RedirectToAction(nameof(Home));
-
-
             }
-
-            catch
-            {
+            catch{
                 return RedirectToAction(nameof(Home));
             }
         }
@@ -205,6 +266,16 @@ namespace OdinWeb.Controllers
             service.name = s.name;
             service.description = s.description;
             service.active = s.active;
+            service.transport = s.transport;
+            if (s.idServiceMain == 0)
+            {
+                service.idServiceMain = null;
+            }
+            else
+            {
+                service.idServiceMain = s.idServiceMain;
+            }
+            service.requirements = s.requirements;
 
             var archivoImagen = s.image;
 

@@ -89,6 +89,23 @@ namespace OdinWeb.Models.Data.Classes
             return null;
         }
 
+        public List<Ticket> GetOpenTickets()
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.GetAsync("api/Ticket/Open").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var tickets = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Ticket>>(tickets);
+            }
+
+            return null;
+        }
+
 
         public bool PostTicket(Ticket ticket)
         {
