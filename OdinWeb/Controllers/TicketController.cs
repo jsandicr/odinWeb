@@ -449,7 +449,7 @@ namespace OdinWeb.Controllers
         }
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> ClienteCrear(int idService)
+        public async Task<IActionResult> CrearTiquete(int idService)
         {
             Ticket ticket = new Ticket();
             ticket.idService = idService;

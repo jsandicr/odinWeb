@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<OdinWeb.Models.Obj.Service>
 
 @{
-    ViewData["Title"] = "HCliente";
+    ViewData["Title"] = "SubServicios";
     Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
 @if (Model == null)
@@ -77,12 +77,14 @@ else
 
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-create"></i>Servicios</h1>
-            <p>Listado de servicios</p>
+            <h1><i class="fa fa-create"></i>SubServicios</h1>
+            <p>Listado de SubServicios</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
-            <li class="breadcrumb-item"><a>Servicios</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Service" asp-action="HCliente">Servicios</a></li>
+            <li class="breadcrumb-item"><a>SubServicios</a></li>
+
         </ul>
     </div>
 
@@ -90,7 +92,7 @@ else
         @foreach (var item in Model)
         {
             <div class="col-md-4">
-                <div class="card" onclick="redirectToAction('@Url.Action("SubService", "Servicio", new { id = item.id })')">
+                <div class="card" onclick="redirectToAction('@Url.Action("SubService", "Servicio", new { idService = item.id })')">
                     <div class="card-img-container">
                         <img class="card-img-top" src="~/images/services/@item.photo" alt="Service Photo">
                     </div>

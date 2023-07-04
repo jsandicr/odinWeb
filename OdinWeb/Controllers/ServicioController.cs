@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OdinWeb.Models.Data.Classes;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
+using System.Drawing;
 using System.Net;
 using System.Net.Http.Headers;
 
@@ -354,6 +355,23 @@ namespace OdinWeb.Controllers
         public async Task<IActionResult> HCliente() { 
         
             return View(_serviceModel.GetServiciosStatus(true));
+        }
+
+        public async Task<IActionResult> SubService(long id) {
+            try {
+                var respuesta = _serviceModel.GetListSubServicioById(id);
+                if (respuesta!=null)
+                {
+                    return View(respuesta);
+                }
+                return RedirectToAction("CrearTiquete", "Ticket", new { idService = id });
+            }
+
+            catch {
+                return RedirectToAction("CrearTiquete", "Ticket", new { idService = id });
+
+            }
+
         }
     }
 }
