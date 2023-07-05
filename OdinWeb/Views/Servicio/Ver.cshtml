@@ -53,6 +53,11 @@
                         <span asp-validation-for="transport" class="text-danger"></span>
                     </div>
                     <div class="form-group">
+                        <input asp-for="toAdministrator" type="checkbox" disabled>
+                        <label asp-for="toAdministrator" class="control-label"></label>
+                        <span asp-validation-for="toAdministrator" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
                         <h5 class="control-label">Tiquetes Creados</h5>
                         <h6 class="control-label">@Model.tickets</h6>
                     </div>
