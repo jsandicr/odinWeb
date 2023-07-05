@@ -88,6 +88,8 @@ namespace OdinWeb.Controllers
             service.description = s.description;
             service.active = s.active;
             service.transport = s.transport;
+            service.toAdministrator = s.toAdministrator;
+            
             if (s.idServiceMain == 0)
             {
                 s.idServiceMain = null;
@@ -248,6 +250,8 @@ namespace OdinWeb.Controllers
                     s.transport = service.transport;
                     s.idServiceMain = service.idServiceMain;
                     s.requirements = service.requirements;
+                    s.toAdministrator = service.toAdministrator;
+                    
                     ViewData["Estados"] = estados;
                     return View(s);
                 }
@@ -268,6 +272,7 @@ namespace OdinWeb.Controllers
             service.description = s.description;
             service.active = s.active;
             service.transport = s.transport;
+            service.toAdministrator = s.toAdministrator;
             if (s.idServiceMain == 0)
             {
                 service.idServiceMain = null;

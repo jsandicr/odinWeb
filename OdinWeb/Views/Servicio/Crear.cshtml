@@ -50,6 +50,11 @@
                     <span asp-validation-for="transport" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <input asp-for="toAdministrator" type="checkbox">
+                    <label asp-for="toAdministrator" class="control-label"></label>
+                    <span asp-validation-for="toAdministrator" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label class="control-label">Imagen de servico</label>
                     <input asp-for="image" class="form-control" type="file" data-val="false">
                     <span asp-validation-for="image" class="text-danger"></span>

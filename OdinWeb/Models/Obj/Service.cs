@@ -19,6 +19,8 @@ namespace OdinWeb.Models.Obj
         public int? idServiceMain { get; set; }
         [Display(Name = "Necesita transporte")]
         public bool transport { get; set; }
+        [Display(Name = "Asignar al administrador")]
+        public bool toAdministrator { get; set; }
         public List<Ticket>? tickets { get; set; }
         public List<Service>? services { get; set; }
         public Service? serviceMain { get; set; }
@@ -46,6 +48,8 @@ namespace OdinWeb.Models.Obj
         public IFormFile image { get; set; }
         [Display(Name = "Necesita transporte")]
         public bool transport { get; set; }
+        [Display(Name = "Asignar al administrador")]
+        public bool toAdministrator { get; set; }
         public List<Ticket>? tickets { get; set; }
         public List<Service>? services { get; set; }
         public Service? serviceMain { get; set; }
