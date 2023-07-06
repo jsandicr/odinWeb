@@ -158,7 +158,7 @@ namespace OdinWeb.Controllers
                     List<SelectListItem> servicesOps = new List<SelectListItem>();
                     servicesOps.Add(new SelectListItem
                     {
-                        Text = "",
+                        Text = "Seleccione un servicio",
                         Value = "0"
                     });
                     foreach (Service service in services)
