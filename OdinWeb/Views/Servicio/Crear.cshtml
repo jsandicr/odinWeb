@@ -7,58 +7,78 @@
         <h3 class="tile-title">Crear Servicio</h3>
         <div class="tile-body">
             <form asp-action="Guardar" asp-controller="Servicio" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label asp-for="name" class="control-label"></label>
-                    <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
-                    <span asp-validation-for="name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="description" class="control-label"></label>
-                    <textarea asp-for="description" class="form-control" rows="4" placeholder="Ingrese una descripcion"></textarea>
-                    <span asp-validation-for="description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="active" class="control-label"></label>
-                    @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
-                    {
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input asp-for="active" class="form-check-input" type="radio" name="active" value="@opcion.Value"> @opcion.Text
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label asp-for="name" class="control-label"></label>
+                            <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
+                            <span asp-validation-for="name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="description" class="control-label"></label>
+                            <textarea asp-for="description" class="form-control" rows="6" placeholder="Ingrese una descripcion"></textarea>
+                            <span asp-validation-for="description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="requirements" class="control-label"></label>
+                            <textarea id="requirements" asp-for="requirements" class="form-control" rows="6" placeholder="Ingrese los requerimientos necesarios para tomar el ticket"></textarea>
+                            <span asp-validation-for="requirements" class="text-danger"></span>
+                        </div>
+                        <span class="subService" id="subService">
+                            <div class="form-group">
+                                <label class="control-label">Seleccione el servicio</label>
+                                @Html.DropDownList("idServiceMain", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3" })
+                            </div>
+
+                        </span>
+                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="active" class="control-label"></label>
+                            <div class="toggle-flip">
+                                <label>
+                                    <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
+                                </label>
+                            </div>
+                            <span asp-validation-for="active" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Crear como sub servicio</label>
+                            <div class="toggle-flip">
+                            <label>
+                                    <input id="subServiceCheck" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
                             </label>
                         </div>
-                    }
-                    <span asp-validation-for="active" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" id="subServiceCheck">
-                    <label class="control-label">Crear como sub servicio</label>
-                </div>
-                <span class="subService" id="subService">
-                    <div class="form-group">
-                        <label class="control-label">Seleccione el servicio</label>
-                        @Html.DropDownList("idServiceMain", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3" })
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="transport" class="control-label"></label>
+                            <div class="toggle-flip">
+                                <label>
+                                    <input asp-for="transport" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
+                                </label>
+                            </div>
+                            <span asp-validation-for="transport" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="toAdministrator" class="control-label"></label>
+                            <div class="toggle-flip">
+                                <label>
+                                    <input asp-for="toAdministrator" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
+                                </label>
+                            </div>
+                            <span asp-validation-for="toAdministrator" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Imagen de servico</label>
+                            <input asp-for="image" class="form-control" type="file" data-val="false">
+                            <span asp-validation-for="image" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="requirements" class="control-label"></label>
-                        <textarea id="requirements" asp-for="requirements" class="form-control" rows="4" placeholder="Ingrese los requerimientos necesarios para tomar el ticket"></textarea>
-                        <span asp-validation-for="requirements" class="text-danger"></span>
-                    </div>
-                </span>
-                <div class="form-group">
-                    <input asp-for="transport" type="checkbox">
-                    <label asp-for="transport" class="control-label"></label>
-                    <span asp-validation-for="transport" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="toAdministrator" type="checkbox">
-                    <label asp-for="toAdministrator" class="control-label"></label>
-                    <span asp-validation-for="toAdministrator" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Imagen de servico</label>
-                    <input asp-for="image" class="form-control" type="file" data-val="false">
-                    <span asp-validation-for="image" class="text-danger"></span>
-                </div>
+                 </div>
+                               
                 <div class="tile-footer">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                 </div>
