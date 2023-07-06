@@ -92,7 +92,7 @@ else
         @foreach (var item in Model)
         {
             <div class="col-md-4">
-                <div class="card" onclick="redirectToAction('@Url.Action("SubService", "Servicio", new { idService = item.id })')">
+                <div class="card" onclick="redirectToAction('@Url.Action("CrearTiquete", "Ticket", new { idService = item.id })')">
                     <div class="card-img-container">
                         <img class="card-img-top" src="~/images/services/@item.photo" alt="Service Photo">
                     </div>
