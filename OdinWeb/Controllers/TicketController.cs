@@ -16,13 +16,16 @@ namespace OdinWeb.Controllers
         private readonly ISupervisorModel _supervisorModel;
         private readonly IServicioModel _serviceModel;
         private readonly IStatusModel _statusModel;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
 
         public TicketController(
             ITicketModel ticketModel,
             IClienteModel clientModel,
             ISupervisorModel supervisorModel,
             IServicioModel serviceModel,
-            IStatusModel statusModel
+            IStatusModel statusModel,
+            IHttpContextAccessor httpContextAccessor
         )
         {
             _ticketModel = ticketModel;
@@ -30,6 +33,7 @@ namespace OdinWeb.Controllers
             _supervisorModel = supervisorModel;
             _serviceModel = serviceModel;
             _statusModel = statusModel;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [Authorize]
@@ -451,22 +455,24 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> CrearTiquete(int idService)
         {
-            Ticket ticket = new Ticket();
-            ticket.idService = idService;
+            Ctiquete ticket = new Ctiquete();
             var services = _serviceModel.GetServicioById(idService);
             TempData["Servicio"] = services.name;
-
-            return View();
+            ticket.service = services;
+            return View(ticket);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearTiquete(Ctiquete nticket) {
+        public async Task<IActionResult> CrearTiquete(Ctiquete nticket)
+        {
+            Ticket ticket = new Ticket();
+            ticket.title = nticket.title;
+            ticket.description = nticket.description;
+            ticket.idClient = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
+            ticket.active = true;
+            ticket.creationDate = DateTime.Now;
 
-            if (ModelState.IsValid){
-
-
-            }
-            return BadRequest();
+            return View();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace OdinWeb.Models.Obj
@@ -40,11 +41,18 @@ namespace OdinWeb.Models.Obj
 
     public class Ctiquete {
         public int id { get; set; }
+
         [Display(Name = "Titulo")]
         public string title { get; set; }
+
         [Display(Name = "Descripcion")]
         public string description { get; set; }
+        public List<IFormFile> cc { get; set; }
 
-        public List<IFormFile> Archivos { get; set; }
+        public int idService { get; set; }
+
+        public Service? service { get; set; }
+        public string? ubication { get; set; }
+
     }
 }

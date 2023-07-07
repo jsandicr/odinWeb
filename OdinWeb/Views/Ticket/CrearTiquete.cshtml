@@ -5,17 +5,81 @@
     Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
 <style>
-    .file-item {
-        margin-bottom: 5px;
-    }
-
     .dropzone {
         border: 2px dashed #ccc;
         padding: 20px;
         text-align: center;
         cursor: pointer;
+        position: relative; /* Añadido */
     }
+
+    .file-container {
+        background-color: #f2f2f2;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .file-item {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        text-align: center;
+        width: 120px;
+    }
+
+    .file-icon {
+        width: 100%;
+        height: 100px;
+        border-radius: 10px;
+        background-color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .file-info {
+        font-size: 12px;
+        color: #333;
+        padding: 5px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .file-info span {
+        display: block;
+    }
+
+    .file-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .file-size {
+        margin-top: 5px;
+    }
+
+    .file-remove {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+        background-color: #ccc;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+    }
+
 </style>
+
 <div class="app-title">
     <div>
         <h1><i class="fa fa-create"></i>@TempData["Servicio"]</h1>
@@ -32,6 +96,8 @@
         <h3 class="tile-title">Crear Tiquete</h3>
         <div class="tile-body">
             <form class="form-horizontal" id="crearT" asp-action="CrearTiquete" asp-controller="Ticket" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="idService" value="@Model.service?.id">
+
                 <div class="form-group row">
                     <label asp-for="title" class="control-label"></label>
                     <div class="col-md-12">
@@ -39,19 +105,34 @@
                     </div>
                     <span asp-validation-for="title" class="text-danger"></span>
                 </div>
-                <div class="form-group row">
-                    <label class="control-label col-md-12">Descripción</label>
-                    <div class="col-md-12">
-                        <textarea class="form-control" rows="20" placeholder="Describa ampliamente la solicitud" name="description"></textarea>
-                    </div>
-                </div>
-                <div class="dropzone" id="dropzone">
-                    Arrastra y suelta los archivos aquí<br>
-                    <small>O haz clic para seleccionar archivos</small>
-                    <input type="file" name="Archivos" id="fileInput" multiple style="display: none;">
-                </div>
 
-                <div id="fileList"></div>
+                <div class="form-group row">
+                    <label asp-for="description" class="control-label"></label>
+                    <div class="col-md-12">
+                        <textarea asp-for="description" class="form-control" rows="20" placeholder="Describa ampliamente la solicitud" name="description"></textarea>
+                    </div>
+                    <span asp-validation-for="description" class="text-danger"></span>
+
+                </div>
+                @if (Model.service.transport)  
+                {
+                    <div class="form-group row">
+                        <label asp-for="ubication" class="control-label"></label>
+                        <div class="col-md-12">
+                            <textarea asp-for="ubication" class="form-control" rows="20" placeholder="Describa ampliamente la solicitud" name="ubication"></textarea>
+                        </div>
+                        <span asp-validation-for="ubication" class="text-danger"></span>
+
+                    </div>
+                }
+
+                <div class="dropzone">
+                    Arrastra y suelta los archivos aquí<br>
+                    <small id="dropzone">O haz clic aqui para seleccionar archivos</small>
+                    <input type="file" name="cc" id="fileInput" multiple style="display: none;">
+
+                    <div id="fileList"></div>
+                </div>
 
                 <div class="tile-footer">
                     <div class="row">
@@ -59,7 +140,6 @@
                             <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>
@@ -69,6 +149,7 @@
         var fileInput = document.getElementById('fileInput');
         var fileList = document.getElementById('fileList');
         var dropzone = document.getElementById('dropzone');
+        var files = [];
 
         dropzone.addEventListener('click', function () {
             fileInput.click();
@@ -87,36 +168,70 @@
             event.preventDefault();
             dropzone.classList.remove('dragover');
 
-            var files = event.dataTransfer.files;
-            handleFiles(files);
+            var droppedFiles = event.dataTransfer.files;
+            handleFiles(droppedFiles);
         });
 
         fileInput.addEventListener('change', function (event) {
-            var files = event.target.files;
-            handleFiles(files);
+            var selectedFiles = event.target.files;
+            handleFiles(selectedFiles);
         });
 
-        function handleFiles(files) {
+        function handleFiles(selectedFiles) {
             fileList.innerHTML = '';
+            files = [];
 
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                var fileItem = document.createElement('div');
-                fileItem.classList.add('file-item');
-                fileItem.textContent = file.name;
-                fileList.appendChild(fileItem);
-
-                // Mostrar el archivo (opcional)
-                var fileReader = new FileReader();
-                fileReader.onload = function (e) {
-                    var filePreview = document.createElement('img');
-                    filePreview.src = e.target.result;
-                    filePreview.classList.add('file-preview');
-                    fileItem.appendChild(filePreview);
-                };
-                fileReader.readAsDataURL(file);
+            for (var i = 0; i < selectedFiles.length; i++) {
+                var file = selectedFiles[i];
+                files.push(file);
+                addFileToList(file);
             }
         }
+
+        function addFileToList(file) {
+            var fileItem = document.createElement('div');
+            fileItem.classList.add('file-item');
+
+            var fileContainer = document.createElement('div');
+            fileContainer.classList.add('file-container');
+
+            var fileName = document.createElement('span');
+            fileName.classList.add('file-name');
+            fileName.textContent = file.name;
+
+            var fileSize = document.createElement('span');
+            fileSize.classList.add('file-size');
+            fileSize.textContent = getFileSize(file.size);
+
+            var fileRemove = document.createElement('div');
+            fileRemove.classList.add('file-remove');
+            fileRemove.innerHTML = '&times;';
+            fileRemove.addEventListener('click', function () {
+                removeFileFromFileList(file);
+                fileItem.remove();
+            });
+
+            fileContainer.appendChild(fileName);
+            fileContainer.appendChild(fileSize);
+            fileItem.appendChild(fileContainer);
+            fileItem.appendChild(fileRemove);
+            fileList.appendChild(fileItem);
+        }
+
+        function removeFileFromFileList(file) {
+            var index = files.indexOf(file);
+            if (index !== -1) {
+                files.splice(index, 1);
+            }
+        }
+
+        function getFileSize(size) {
+            var i = Math.floor(Math.log(size) / Math.log(1024));
+            var units = ['B', 'KB', 'MB', 'GB', 'TB'];
+            return (size / Math.pow(1024, i)).toFixed(2) + ' ' + units[i];
+        }
     </script>
+
+
 }
 
