@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OdinWeb.Models.Data.Interfaces;
 using System;
 using System.Net.Sockets;
+using Microsoft.Extensions.Hosting.Internal;
+using NuGet.Packaging.Signing;
+using System.Reflection.Metadata;
+using OdinApi.Models.Obj;
 
 namespace OdinWeb.Controllers
 {
@@ -12,6 +16,8 @@ namespace OdinWeb.Controllers
     {
 
         private readonly ITicketModel _ticketModel;
+        private readonly IDocumentModel _documentModel;
+
         private readonly IClienteModel _clientModel;
         private readonly ISupervisorModel _supervisorModel;
         private readonly IServicioModel _serviceModel;
@@ -25,7 +31,8 @@ namespace OdinWeb.Controllers
             ISupervisorModel supervisorModel,
             IServicioModel serviceModel,
             IStatusModel statusModel,
-            IHttpContextAccessor httpContextAccessor
+            IHttpContextAccessor httpContextAccessor,
+            IDocumentModel documentModel
         )
         {
             _ticketModel = ticketModel;
@@ -34,6 +41,7 @@ namespace OdinWeb.Controllers
             _serviceModel = serviceModel;
             _statusModel = statusModel;
             _httpContextAccessor = httpContextAccessor;
+            _documentModel = documentModel;
         }
 
         [Authorize]
@@ -179,7 +187,7 @@ namespace OdinWeb.Controllers
                 {
                     var servicio = _ticketModel.PostTicket(ticket);
 
-                    if (servicio)
+                    if (servicio != null)
                     {
                         TempData["AlertMessage"] = "¡Se creó el ticket!";
                         TempData["AlertType"] = "success";
@@ -463,16 +471,68 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearTiquete(Ctiquete nticket)
+        public async Task<IActionResult> CrearTiquete(Ctiquete nticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
-            Ticket ticket = new Ticket();
-            ticket.title = nticket.title;
-            ticket.description = nticket.description;
-            ticket.idClient = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
-            ticket.active = true;
-            ticket.creationDate = DateTime.Now;
+            try {
 
-            return View();
+                Ticket ticket = new Ticket();
+                ticket.title = nticket.title;
+                ticket.description = nticket.description;
+                ticket.idClient = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
+                ticket.active = true;
+                ticket.creationDate = DateTime.Now;
+                ticket.ubication = nticket.ubication;
+                ticket.idService = nticket.idService;
+                var supervisor = _supervisorModel.GetSupervisorSucursal(int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]));
+                ticket.idSupervisor = supervisor.Result;
+                ticket.idStatus = 1;
+                var respuesta = _ticketModel.PostTicket(ticket);
+                if (respuesta != null) {
+                    if (nticket.Archivos != null)
+                    {
+                        foreach (var item in nticket.Archivos) {
+                            var nombreArchivo = Path.GetFileName(item.FileName);
+                            var extension = Path.GetExtension(nombreArchivo);
+                            var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                            var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "Document", nombreUnico);
+
+                            using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                            {
+                                item.CopyTo(stream);
+                            }
+                            Documento document = new Documento();
+                            document.name = nombreUnico;
+                            document.idUser = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
+                            document.idTicket = respuesta.id;
+                            document.nameDocument = nombreArchivo;
+                            var drespuesta = _documentModel.PostDocument(document);
+                            if (!drespuesta) {
+                                return View(nticket.idService);
+                            }
+
+                        }
+                    }
+
+                    return RedirectToAction(nameof(TiquetesProceso));
+
+
+                }
+                return View(
+                    
+                    );
+
+            } catch { 
+
+                return View(nticket.idService);
+            
+            }
+            
+        }
+
+        public async Task<IActionResult> TiquetesProceso(int id) { 
+            
+            return View(_ticketModel.GetTicketsClients());
         }
     }
 }

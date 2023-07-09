@@ -41,17 +41,20 @@ namespace OdinWeb.Models.Obj
 
     public class Ctiquete {
         public int id { get; set; }
-
+        [Required(ErrorMessage = "El campo es requerido")]
         [Display(Name = "Titulo")]
         public string title { get; set; }
 
+        [Required(ErrorMessage = "El campo es requerido")]
         [Display(Name = "Descripcion")]
         public string description { get; set; }
-        public List<IFormFile> cc { get; set; }
+        public List<IFormFile> Archivos { get; set; }
 
         public int idService { get; set; }
 
         public Service? service { get; set; }
+        [Required(ErrorMessage = "El campo es requerido")]
+        [Display(Name = "Dirreción")]
         public string? ubication { get; set; }
 
     }

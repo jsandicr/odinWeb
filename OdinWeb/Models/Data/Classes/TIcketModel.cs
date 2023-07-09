@@ -107,7 +107,7 @@ namespace OdinWeb.Models.Data.Classes
         }
 
 
-        public bool PostTicket(Ticket ticket)
+        public Ticket PostTicket(Ticket ticket)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
@@ -117,11 +117,12 @@ namespace OdinWeb.Models.Data.Classes
             var response = _httpClient.PostAsync("api/Ticket", content).Result;
 
             if (response.IsSuccessStatusCode)
-            {  
-                return true;
+            {
+                var tickets = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Ticket>(tickets);
             }
 
-            return false;
+            return null;
         }
 
         public bool PutTicketById(Ticket ticket)
@@ -140,6 +141,25 @@ namespace OdinWeb.Models.Data.Classes
             }
 
             return false;
+        }
+
+        public List<Ticket> GetTicketsClients()
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            var id = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
+
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.GetAsync("api/Ticket/GetTicketsClients/"+ id).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var tickets = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Ticket>>(tickets);
+            }
+
+            return null;
         }
     }
 }

@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\Services\" />
+    <Folder Include="wwwroot\Document\" />
   </ItemGroup>
 
 </Project>

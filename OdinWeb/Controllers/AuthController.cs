@@ -30,7 +30,7 @@ namespace OdinWeb.Controllers
         }
         public async Task<IActionResult> Login()
         {
-            
+
             return View();
         }
 
@@ -45,32 +45,33 @@ namespace OdinWeb.Controllers
 
             return View();
         }
-        
+
         [HttpPost]
         //[SessionState(SessionStateBehavior.Required)]
         public async Task<IActionResult> Validate(LoginViewModel userDTO)
         {
-            
+
             try
-            {             
+            {
                 userDTO.User.password = _userModel.HashPassword(userDTO.User.password);
                 var json = JsonConvert.SerializeObject(userDTO.User);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
                 var user = _userModel.Login(userDTO.User);
 
-                        if (user!=null)
-                        {
-                            var cookieOptions = new CookieOptions
-                            {
-                                Expires = DateTime.UtcNow.AddHours(1), // Establece la expiración de la cookie
-                                Secure = true, // Establece la cookie como segura si utilizas HTTPS
-                                HttpOnly = true // Evita que el token sea accesible desde JavaScript
-                            };
-                            Response.Cookies.Append("Token", user.token, cookieOptions);
-                            Response.Cookies.Append("Id", user.id.ToString(), cookieOptions);
-                            Response.Cookies.Append("Rol", user.rol.name.ToString(), cookieOptions);
-                            Response.Cookies.Append("NombreCompleto", user.name+" "+user.lastName, cookieOptions);
+                if (user != null)
+                {
+                    var cookieOptions = new CookieOptions
+                    {
+                        Expires = DateTime.UtcNow.AddHours(1), // Establece la expiración de la cookie
+                        Secure = true, // Establece la cookie como segura si utilizas HTTPS
+                        HttpOnly = true // Evita que el token sea accesible desde JavaScript
+                    };
+                    Response.Cookies.Append("Token", user.token, cookieOptions);
+                    Response.Cookies.Append("Id", user.id.ToString(), cookieOptions);
+                    Response.Cookies.Append("IdBranch", user.idBranch.ToString(), cookieOptions);
+                    Response.Cookies.Append("Rol", user.rol.name.ToString(), cookieOptions);
+                    Response.Cookies.Append("NombreCompleto", user.name + " " + user.lastName, cookieOptions);
 
 
                     // Almacena el token en una cookie
@@ -113,9 +114,9 @@ namespace OdinWeb.Controllers
                         return RedirectToAction("ChangePassword", changePassword);
                     }
 
-                }   
-                            
-                    
+                }
+
+
                 TempData["AlertMessage"] = "Error, verifique las credenciales.";
                 TempData["AlertType"] = "error";
 
@@ -139,7 +140,7 @@ namespace OdinWeb.Controllers
                     newUser.lastName = user.lastName;
                     newUser.mail = user.mail;
                     newUser.phone = user.phone;
-                    newUser.idBranch = user.idBranch; 
+                    newUser.idBranch = user.idBranch;
                     //Temporal
                     newUser.photo = "./user.png";
                     newUser.password = user.password;
@@ -163,7 +164,7 @@ namespace OdinWeb.Controllers
 
                     var isValid = Validator.TryValidateObject(newUser, contexto, resultados, true);
 
-                    if ( isValid )
+                    if (isValid)
                     {
                         var json = JsonConvert.SerializeObject(newUser);
                         var data = new StringContent(json, Encoding.UTF8, "application/json");
@@ -194,36 +195,37 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RestorePassword(LoginViewModel login) {
+        public async Task<IActionResult> RestorePassword(LoginViewModel login)
+        {
 
-           
-                if (!string.IsNullOrEmpty(login.RestorePassword?.mail) || !string.IsNullOrEmpty(login.RestorePassword?.phone))
+
+            if (!string.IsNullOrEmpty(login.RestorePassword?.mail) || !string.IsNullOrEmpty(login.RestorePassword?.phone))
+            {
+                // Ambos campos (mail y phone) tienen valor, puedes continuar con el proceso de restablecimiento de contraseña
+                bool resultado = await _userModel.RestorePassword(login.RestorePassword);
+                if (resultado)
                 {
-                    // Ambos campos (mail y phone) tienen valor, puedes continuar con el proceso de restablecimiento de contraseña
-                    bool resultado = await _userModel.RestorePassword(login.RestorePassword);
-                    if (resultado)
-                    {
 
-                        TempData["AlertMessage"] = "Contraseña restablecida con éxito.";
-                        TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Login));
-                    }
-                    else
-                    {
-                        TempData["AlertMessage"] = "Error a restablecer la contraseña.";
-                        TempData["AlertType"] = "error";
-                        return RedirectToAction(nameof(Login));
-                    }
+                    TempData["AlertMessage"] = "Contraseña restablecida con éxito.";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(Login));
                 }
                 else
                 {
-                    // Al menos uno de los campos (mail o phone) es requerido, muestra un mensaje de error
-                    ModelState.AddModelError(string.Empty, "Debe proporcionar al menos el correo electrónico o el teléfono para restablecer la contraseña.");
+                    TempData["AlertMessage"] = "Error a restablecer la contraseña.";
+                    TempData["AlertType"] = "error";
+                    return RedirectToAction(nameof(Login));
                 }
+            }
+            else
+            {
+                // Al menos uno de los campos (mail o phone) es requerido, muestra un mensaje de error
+                ModelState.AddModelError(string.Empty, "Debe proporcionar al menos el correo electrónico o el teléfono para restablecer la contraseña.");
+            }
             TempData["mostrarSweetAlert"] = true;
 
             return RedirectToAction(nameof(Login)); ;
-            
+
         }
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
 
@@ -240,19 +242,22 @@ namespace OdinWeb.Controllers
             return RedirectToAction("Login", "Auth");
         }
 
-        public async Task<IActionResult> ChangePassword(ChangePassword user) { 
-        
+        public async Task<IActionResult> ChangePassword(ChangePassword user)
+        {
+
             return View(user);
-        
+
         }
         [HttpPost]
         public IActionResult ChangePasswordP(ChangePassword user)
         {
-            if (Request.Cookies["Id"] != null) {
+            if (Request.Cookies["Id"] != null)
+            {
                 int id = int.Parse(Request.Cookies["Id"]);
                 user.id = id;
-            }                      
-            try {
+            }
+            try
+            {
 
                 var respuesta = _userModel.ChangePassword(user);
                 if (respuesta != null)
@@ -266,8 +271,10 @@ namespace OdinWeb.Controllers
                 TempData["AlertType"] = "error";
                 return RedirectToAction("ChangePassword", user);
 
-            } catch {
-               
+            }
+            catch
+            {
+
                 TempData["AlertMessage"] = "Error, verifique los datos";
                 TempData["AlertType"] = "error";
                 return RedirectToAction("ChangePassword", new { user = user });
