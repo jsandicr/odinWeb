@@ -81,6 +81,7 @@
 </style>
 
 <div class="app-title">
+    
     <div>
         <h1><i class="fa fa-create"></i>@TempData["Servicio"]</h1>
         <p>Crear tiquete</p>
@@ -93,7 +94,14 @@
 </div>
 <div class="col-md-12">
     <div class="tile">
-        <h3 class="tile-title">Crear Tiquete</h3>
+        <div class="row">
+            <div class="col-md-9">
+                <h3 class="tile-title">Crear Tiquete</h3>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#verRequeri">Ver requisitos</button>
+            </div>
+        </div>
         <div class="tile-body">
             <form class="form-horizontal" id="crearT" asp-action="CrearTiquete" asp-controller="Ticket" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="idService" value="@Model.service?.id">
@@ -109,7 +117,7 @@
                 <div class="form-group row">
                     <label asp-for="description" class="control-label"></label>
                     <div class="col-md-12">
-                        <textarea asp-for="description" class="form-control" rows="20" placeholder="Describa ampliamente la solicitud" name="description"></textarea>
+                        <textarea asp-for="description" class="form-control" rows="15" placeholder="Describa ampliamente la solicitud" name="description"></textarea>
                     </div>
                     <span asp-validation-for="description" class="text-danger"></span>
 
@@ -119,7 +127,7 @@
                     <div class="form-group row">
                         <label asp-for="ubication" class="control-label"></label>
                         <div class="col-md-12">
-                            <textarea asp-for="ubication" class="form-control" rows="20" placeholder="Describa ampliamente la solicitud" name="ubication"></textarea>
+                            <textarea asp-for="ubication" class="form-control" rows="5" placeholder="Ingrese la dirracion exacta de la solicitud o puede pegar el enlace de la ubicación" name="ubication"></textarea>
                         </div>
                         <span asp-validation-for="ubication" class="text-danger"></span>
 
@@ -129,7 +137,7 @@
                 <div class="dropzone">
                     Arrastra y suelta los archivos aquí<br>
                     <small id="dropzone">O haz clic aqui para seleccionar archivos</small>
-                    <input type="file" name="cc" id="fileInput" multiple style="display: none;">
+                    <input type="file" name="Archivos" id="fileInput" multiple style="display: none;">
 
                     <div id="fileList"></div>
                 </div>
@@ -144,8 +152,33 @@
         </div>
     </div>
 </div>
+@section modals{
+
+    <div class="modal" id="verRequeri">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Requisitos del servicio</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>@Model.service.requirements</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 @section Scripts{
     <script>
+        $(document).ready(function () {
+            $('.modal').on('click', function () {
+                $('.modal').modal('hide');
+            });
+        });
+
         var fileInput = document.getElementById('fileInput');
         var fileList = document.getElementById('fileList');
         var dropzone = document.getElementById('dropzone');

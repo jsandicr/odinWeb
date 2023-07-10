@@ -14,5 +14,7 @@ namespace OdinWeb.Models.Data.Interfaces
 
         public bool DeleteSupervisorById(int id);
 
+        Task<int> GetSupervisorSucursal(int id);
+
     }
 }

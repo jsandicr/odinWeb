@@ -1,0 +1,52 @@
+﻿@model IEnumerable<OdinWeb.Models.Obj.Ticket>
+@{
+    ViewData["Title"] = "TiquetesProceso";
+    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="ttiquete">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.title)</th>
+                                <th>@Html.DisplayNameFor(model => model.description)</th>
+                                <th>@Html.DisplayNameFor(model => model.creationDate)</th>
+                                <th>@Html.DisplayNameFor(model => model.estimatedDate)</th>
+                                <th>@Html.DisplayNameFor(model => model.client)</th>
+                                <th>@Html.DisplayNameFor(model => model.supervisor)</th>
+                                <th>Acciones</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var ticket in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(model => ticket.title)</td>
+                                        <td>@Html.DisplayFor(model => ticket.description)</td>
+                                        <td>@Html.DisplayFor(model => ticket.creationDate)</td>
+                                        <td>@Html.DisplayFor(model => ticket.estimatedDate)</td>
+                                        <td>@Html.DisplayFor(model => ticket.client.name)</td>
+                                        <td>@Html.DisplayFor(model => ticket.supervisor.name)</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@ticket.id"><i class="fa fa-lg fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
