@@ -6,7 +6,7 @@
 }
 <div class="col-md-12">
     <div class="tile">
-        <h3 class="tile-title">Crear Cliente</h3>
+        <h3 class="tile-title">Crear Tiquete</h3>
         <div class="tile-body">
             <form asp-action="Guardar" asp-controller="Ticket" method="post">
                 <div class="form-group">
@@ -44,11 +44,16 @@
                 </div>
                 <div>
                     <label>Seleccione el servicio</label>
-                    @Html.DropDownList("idService", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3" })
+                    @Html.DropDownList("idService", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3", id = "service" })
                 </div>
                 <div>
                     <label>Seleccione el status</label>
                     @Html.DropDownList("idStatus", (IEnumerable<SelectListItem>)ViewData["Status"], new { @class = "form-control form-select mb-3" })
+                </div>
+                <div class="form-group subService" id="ubication">
+                    <label asp-for="ubication" class="control-label"></label>
+                    <input asp-for="ubication" class="form-control" rows="4" id="ubication">
+                    <span asp-validation-for="ubication"></span>
                 </div>
                 <div class="tile-footer">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Ticket"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
@@ -57,3 +62,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    var service = document.getElementById('service');
+    var ubication = document.getElementById('ubication');
+
+    service.addEventListener("change", function () {
+        var selectedOption = this.options[this.selectedIndex];
+        var selectedValue = selectedOption.value;
+
+        $.ajax({
+            url: '/Servicio/GetServiceById/'+selectedValue,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                if (response.transport) {
+                    ubication.classList.remove("subService");
+                } else {
+                    ubication.classList.add("subService");
+                    ubication.value = null;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+</script>

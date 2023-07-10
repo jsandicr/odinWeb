@@ -376,6 +376,23 @@ namespace OdinWeb.Controllers
                 return RedirectToAction("CrearTiquete", "Ticket", new { idService = id });
 
             }
+        }
+
+        public JsonResult GetServiceById(int id)
+        {
+            try
+            {
+                var respuesta = _serviceModel.GetServicioById(id);
+                if (respuesta != null)
+                {
+                    return Json(respuesta);
+                }
+                return Json(new Service());
+            }
+            catch
+            {
+                return Json(new Service());
+            }
 
         }
     }

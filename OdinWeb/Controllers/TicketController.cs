@@ -118,7 +118,8 @@ namespace OdinWeb.Controllers
                 ViewData["Supervisors"] = supervisorsOps;
             }
 
-            var services = _serviceModel.GetServicios();
+            //Servicios que no tienen subservicios
+            var services = _serviceModel.GetFinalServices();
             if (services != null)
             {
                 List<SelectListItem> servicesOps = new List<SelectListItem>();
