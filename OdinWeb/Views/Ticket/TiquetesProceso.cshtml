@@ -1,52 +1,118 @@
-﻿@model IEnumerable<OdinWeb.Models.Obj.Ticket>
-@{
+﻿@{
     ViewData["Title"] = "TiquetesProceso";
     Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
-<div class="row">
-    <div class="col-md-12">
-        <div class="tile">
-            <div class="tile-body">
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered" id="ttiquete">
-                        <thead>
-                            <tr>
-                                <th>@Html.DisplayNameFor(model => model.title)</th>
-                                <th>@Html.DisplayNameFor(model => model.description)</th>
-                                <th>@Html.DisplayNameFor(model => model.creationDate)</th>
-                                <th>@Html.DisplayNameFor(model => model.estimatedDate)</th>
-                                <th>@Html.DisplayNameFor(model => model.client)</th>
-                                <th>@Html.DisplayNameFor(model => model.supervisor)</th>
-                                <th>Acciones</th>
+<style>
+    .custom-square {
+        background-color: #DD6B4D;
+        display: inline-block;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (Model != null)
-                            {
-                                foreach (var ticket in Model)
-                                {
-                                    <tr>
-                                        <td>@Html.DisplayFor(model => ticket.title)</td>
-                                        <td>@Html.DisplayFor(model => ticket.description)</td>
-                                        <td>@Html.DisplayFor(model => ticket.creationDate)</td>
-                                        <td>@Html.DisplayFor(model => ticket.estimatedDate)</td>
-                                        <td>@Html.DisplayFor(model => ticket.client.name)</td>
-                                        <td>@Html.DisplayFor(model => ticket.supervisor.name)</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@ticket.id"><i class="fa fa-lg fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    .custom-square span.badge {
+        margin-right: 5px;
+    }
+
+    .grouping_tabs {
+        margin-bottom: 10px; /* Ajusta el valor según el espacio que desees */
+    }
+
+        .grouping_tabs li {
+            margin-right: 10px; /* Ajusta el valor según el espacio que desees */
+        }
+</style>
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i>Tiquetes en Proceso</h1>
+        <p>Detalle de tiquetes</p>
     </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Tiquetes</li>
+        <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+    </ul>
 </div>
+<ul class="nav nav-pills grouping_tabs">
+    <li class="active">
+        <a href="#" class="status-tab" data-status="Asignado">
+            <div class="custom-square">
+                <span class="badge">En revisión</span>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="#" class="status-tab" data-status="Pendiente información">
+            <div class="custom-square">
+                <span class="badge">Pendiente Información</span>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="#" class="status-tab" data-status="En Proceso">
+            <div class="custom-square">
+                <span class="badge">En Proceso</span>
+            </div>
+        </a>
+    </li>
+    <!-- Agrega más elementos ul para otros estados de los tickets -->
+</ul>
+
+<div id="vista_parcial_container"></div>
+
+@section Scripts{
+
+ 
+    <script>
+
+        $(document).ready(function () {
+            // Obtén todos los elementos de clase status-tab
+            var statusTabs = $('.status-tab');
+
+            // Asigna el evento de clic a cada elemento
+            statusTabs.on('click', function (event) {
+                event.preventDefault();
+
+                // Obtén el estado asociado al elemento clickeado
+                var status = $(this).data('status');
+
+                // Cargar la vista parcial correspondiente al estado seleccionado
+                cargarVistaParcial(status);
+
+                // Remueve la clase 'active' de todos los elementos
+                statusTabs.removeClass('active');
+
+                // Agrega la clase 'active' al elemento clickeado
+                $(this).addClass('active');
+            });
+
+            // Cargar la vista parcial correspondiente al estado "Asignado" por defecto
+            var firstTabLink = statusTabs.first();
+            var status = firstTabLink.data('status');
+            cargarVistaParcial(status);
+        });
+
+        function cargarVistaParcial(status) {
+            var container = $('#vista_parcial_container');
+
+            // Realiza la llamada AJAX para cargar la vista parcial
+            $.ajax({
+                url: '/Ticket/TiquetesProcesoAjax',
+                type: 'GET',
+                data: { status: status },
+                success: function (result) {
+                    container.html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.log('Error al cargar la vista parcial:', error);
+                }
+            });
+        }
+
+
+
+    </script>
+
+
+}

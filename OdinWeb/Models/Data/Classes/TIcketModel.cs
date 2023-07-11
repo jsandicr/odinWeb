@@ -143,7 +143,7 @@ namespace OdinWeb.Models.Data.Classes
             return false;
         }
 
-        public List<Ticket> GetTicketsClients()
+        public List<Ticket> GetTicketsClientsStatus(string status)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             var id = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
@@ -151,7 +151,7 @@ namespace OdinWeb.Models.Data.Classes
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = _httpClient.GetAsync("api/Ticket/GetTicketsClients/"+ id).Result;
+            var response = _httpClient.GetAsync("api/Ticket/GetTicketsClients/" + id + "," + status).Result;
 
             if (response.IsSuccessStatusCode)
             {

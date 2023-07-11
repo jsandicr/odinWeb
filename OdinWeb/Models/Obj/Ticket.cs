@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OdinApi.Models.Obj;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 using System.Xml.Linq;
 
 namespace OdinWeb.Models.Obj
@@ -37,6 +39,9 @@ namespace OdinWeb.Models.Obj
         public Status? status { get; set; }
         [Display(Name = "Comentarios")]
         public List<Comment>? comments { get; set; }
+
+        public List<Documento>? documents { get; set; }
+
     }
 
     public class Ctiquete {

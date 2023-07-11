@@ -1,4 +1,4 @@
-﻿@model OdinWeb.Models.Obj.Ctiquete
+﻿@model OdinWeb.Models.Obj.Ticket
 
 @{
     ViewData["Title"] = "CrearTiquete";
@@ -49,9 +49,9 @@
         text-overflow: ellipsis;
     }
 
-    .file-info span {
-        display: block;
-    }
+        .file-info span {
+            display: block;
+        }
 
     .file-name {
         font-weight: bold;
@@ -78,10 +78,23 @@
         cursor: pointer;
     }
 
+    .documents-toggle {
+        cursor: pointer;
+    }
+
+    .documents-container {
+        display: none;
+        margin-top: 10px;
+    }
+
+    .document-item {
+        margin-bottom: 10px;
+    }
+
 </style>
 
 <div class="app-title">
-    
+
     <div>
         <h1><i class="fa fa-create"></i>@TempData["Servicio"]</h1>
         <p>Crear tiquete</p>
@@ -96,7 +109,7 @@
     <div class="tile">
         <div class="row">
             <div class="col-md-9">
-                <h3 class="tile-title">Crear Tiquete</h3>
+                <h3 class="tile-title">Editar Tiquete</h3>
             </div>
             <div class="col-md-3">
                 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#verRequeri">Ver requisitos</button>
@@ -122,8 +135,8 @@
                     <span asp-validation-for="description" class="text-danger"></span>
 
                 </div>
-                @if (Model.service.transport)  
-                {
+                    @if (Model.service.transport)
+                    {
                     <div class="form-group row">
                         <label asp-for="ubication" class="control-label"></label>
                         <div class="col-md-12">
@@ -132,8 +145,36 @@
                         <span asp-validation-for="ubication" class="text-danger"></span>
 
                     </div>
-                }
+                    }
 
+                <div class="ticket-section">
+                    <h6 class="documents-toggle btn btn-primary" onclick="toggleDocuments()" id="toggle-button">Mostrar Documentos</h6>
+                    <div id="documents-container" style="display: none;">
+                            @if (Model.documents != null && Model.documents.Count > 0)
+                            {
+                                foreach (var item in Model.documents)
+                                {
+
+                                <h5>
+                                    <span class="d-inline-block">@Html.DisplayFor(m => item.nameDocument)</span>
+                                    <span class="d-inline-block ml-2">
+                                        <button class="btn btn-success btn-sm" onclick="downloadDocument('@item.name')">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="btn btn-info btn-sm" onclick="viewDocument('@item.name')">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                </h5>
+                                }
+                            }
+                            else
+                            {
+                            <p>No hay documentos disponibles.</p>
+                            }
+                    </div>
+                </div>
+                <br>
                 <div class="dropzone" id="dropzone">
                     Arrastra y suelta los archivos aquí<br>
                     <small>O haz clic aqui para seleccionar archivos</small>
@@ -145,9 +186,10 @@
                 <div class="tile-footer">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-3">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
-                        </div>
-                    </div>
+                         <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                     </div>
+
+                 </div>
             </form>
         </div>
     </div>
@@ -173,6 +215,7 @@
 }
 @section Scripts{
     <script>
+
         $(document).ready(function () {
             $('.modal').on('click', function () {
                 $('.modal').modal('hide');
@@ -262,6 +305,30 @@
             var i = Math.floor(Math.log(size) / Math.log(1024));
             var units = ['B', 'KB', 'MB', 'GB', 'TB'];
             return (size / Math.pow(1024, i)).toFixed(2) + ' ' + units[i];
+        }
+        function toggleDocuments() {
+            var documentsContainer = document.getElementById("documents-container");
+            var toggleButton = document.getElementById("toggle-button");
+
+            if (documentsContainer.style.display === "none") {
+                documentsContainer.style.display = "block";
+                toggleButton.textContent = "Ocultar Documentos";
+            } else {
+                documentsContainer.style.display = "none";
+                toggleButton.textContent = "Mostrar Documentos";
+            }
+        }
+        function downloadDocument(documentName) {
+            var url = '@Url.Action("DownloadDocument", "Ticket")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
+
+            // Realizar una solicitud de descarga mediante una redirección
+            window.location.href = url + "?name=" + documentName;
+        }
+        function viewDocument(documentName) {
+            var url = '@Url.Action("ViewDocument", "Ticket")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
+
+            // Abrir el documento en una nueva ventana del navegador
+            window.open(url + "?name=" + documentName, "_blank");
         }
     </script>
 

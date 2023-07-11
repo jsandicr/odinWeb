@@ -1,0 +1,1316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu Jun  1 10:57:42 2023 as: nmap -sS -sV -p - -T4 -A -v -iL Redes.txt -oX Redes.xml -->
+<nmaprun scanner="nmap" args="nmap -sS -sV -p - -T4 -A -v -iL Redes.txt -oX Redes.xml" start="1685631462" startstr="Thu Jun  1 10:57:42 2023" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1685631463"/>
+<taskend task="NSE" time="1685631463"/>
+<taskbegin task="NSE" time="1685631463"/>
+<taskend task="NSE" time="1685631463"/>
+<taskbegin task="NSE" time="1685631463"/>
+<taskend task="NSE" time="1685631463"/>
+<taskbegin task="Ping Scan" time="1685631463"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="172.16.2.4" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="172.16.3.2" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="172.16.2.3" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.95.3" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="172.30.2.4" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.95.2" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.1.89.110" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.1.98.42" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.1.101.240" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.1.101.140" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="172.30.2.1" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.1.110.8" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskend task="Ping Scan" time="1685631464" extrainfo="18 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 12 hosts." time="1685631464"/>
+<taskend task="Parallel DNS resolution of 12 hosts." time="1685631465"/>
+<host><status state="down" reason="no-response" reason_ttl="0"/>
+<address addr="10.1.101.141" addrtype="ipv4"/>
+</host>
+<host><status state="down" reason="no-response" reason_ttl="0"/>
+<address addr="10.1.98.80" addrtype="ipv4"/>
+</host>
+<host><status state="down" reason="no-response" reason_ttl="0"/>
+<address addr="10.80.5.110" addrtype="ipv4"/>
+</host>
+<host><status state="down" reason="no-response" reason_ttl="0"/>
+<address addr="10.80.62.40" addrtype="ipv4"/>
+</host>
+<taskbegin task="SYN Stealth Scan" time="1685631465"/>
+<taskprogress task="SYN Stealth Scan" time="1685631496" percent="14.48" remaining="184" etc="1685631679"/>
+<taskprogress task="SYN Stealth Scan" time="1685631538" percent="30.68" remaining="165" etc="1685631703"/>
+<taskprogress task="SYN Stealth Scan" time="1685631568" percent="41.51" remaining="146" etc="1685631713"/>
+<taskprogress task="SYN Stealth Scan" time="1685631598" percent="52.85" remaining="119" etc="1685631717"/>
+<taskprogress task="SYN Stealth Scan" time="1685631628" percent="64.88" remaining="89" etc="1685631716"/>
+<taskprogress task="SYN Stealth Scan" time="1685631658" percent="76.30" remaining="60" etc="1685631718"/>
+<taskend task="SYN Stealth Scan" time="1685631790" extrainfo="524280 total ports"/>
+<taskbegin task="Service scan" time="1685631790"/>
+<taskend task="Service scan" time="1685631834" extrainfo="23 services on 8 hosts"/>
+<taskbegin task="Traceroute" time="1685631838"/>
+<taskend task="Traceroute" time="1685631838"/>
+<taskbegin task="Parallel DNS resolution of 13 hosts." time="1685631838"/>
+<taskend task="Parallel DNS resolution of 13 hosts." time="1685631838"/>
+<taskbegin task="NSE" time="1685631838"/>
+<taskend task="NSE" time="1685631872"/>
+<taskbegin task="NSE" time="1685631872"/>
+<taskend task="NSE" time="1685631874"/>
+<taskbegin task="NSE" time="1685631874"/>
+<taskend task="NSE" time="1685631874"/>
+<host starttime="1685631465" endtime="1685631874"><status state="up" reason="echo-reply" reason_ttl="254"/>
+<address addr="10.1.101.140" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65530">
+<extrareasons reason="reset" count="65530" proto="tcp" ports="1-21,23-79,81-178,180-442,444-829,831-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="254"/><service name="ssh" product="Cisco SSH" version="1.25" extrainfo="protocol 1.99" ostype="IOS" method="probed" conf="10"><cpe>cpe:/a:cisco:ssh:1.25</cpe><cpe>cpe:/o:cisco:ios</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="OpenResty web app server" method="probed" conf="10"><cpe>cpe:/a:openresty:ngx_openresty</cpe></service><script id="http-server-header" output="openresty"><elem>openresty</elem>
+</script><script id="http-title" output="Site doesn&apos;t have a title (text/html; charset=utf-8)."></script><script id="http-methods" output="&#xa;  Supported Methods: GET"><table key="Supported Methods">
+<elem>GET</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="OpenResty web app server" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:openresty:ngx_openresty</cpe></service><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=IOS-Self-Signed-Certificate-991586869&#xa;Issuer: commonName=IOS-Self-Signed-Certificate-991586869&#xa;Public Key type: rsa&#xa;Public Key bits: 2048&#xa;Signature Algorithm: sha1WithRSAEncryption&#xa;Not valid before: 2021-03-26T22:52:43&#xa;Not valid after:  2030-01-01T00:00:00&#xa;MD5:   0554 ae0a 5da2 c4d8 a2d9 832c 2107 888f&#xa;SHA-1: cbe0 0e62 7158 d008 d1e0 3334 2e09 683c 62f4 f54e"><table key="subject">
+<elem key="commonName">IOS-Self-Signed-Certificate-991586869</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">IOS-Self-Signed-Certificate-991586869</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">9ECD3E92717D779380ED2A3DD34D376B9EB8F3763B9DAAEAAB93D3C32CBF2309A329EC51765026B9953C34AF9C0F244FE514A89AC70069E8A066F71D9D2E03A743F46D6C8BC483B6BAF3D3751CA660D65EBB597E23A07F0856DE450D5440CF76083960F885C987DDBD48A9F4AC382E1B08D9950D01E9435FCE615EF114FEF2160F998EB02EFCA985848C364ECB195A272A5BBA05E69710ACC4EB07949E86E6ECD2C35CDF7ABC37E8C407DDF2C75FA6BB2B36C1FD65DA7FBB57A50EC4E4B93A3916069DF4BC5B0A651C974DD0EB0615139DD1E1F2BDE5E09274BCAED555945D8992302F624714E9227C09BA09279EC5591064B26F664AFABF9F1DFC948122E85F</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:TRUE</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:B7:63:B5:D4:E2:A3:C3:12:36:26:DE:E6:B4:8F:5E:33:A2:88:5A:06&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">B7:63:B5:D4:E2:A3:C3:12:36:26:DE:E6:B4:8F:5E:33:A2:88:5A:06</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2021-03-26T22:52:43</elem>
+<elem key="notAfter">2030-01-01T00:00:00</elem>
+</table>
+<elem key="md5">0554ae0a5da2c4d8a2d9832c2107888f</elem>
+<elem key="sha1">cbe00e627158d008d1e033342e09683c62f4f54e</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDLjCCAhagAwIBAgIBATANBgkqhkiG9w0BAQUFADAwMS4wLAYDVQQDEyVJT1Mt&#xa;U2VsZi1TaWduZWQtQ2VydGlmaWNhdGUtOTkxNTg2ODY5MB4XDTIxMDMyNjIyNTI0&#xa;M1oXDTMwMDEwMTAwMDAwMFowMDEuMCwGA1UEAxMlSU9TLVNlbGYtU2lnbmVkLUNl&#xa;cnRpZmljYXRlLTk5MTU4Njg2OTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC&#xa;ggEBAJ7NPpJxfXeTgO0qPdNNN2ueuPN2O52q6quT08MsvyMJoynsUXZQJrmVPDSv&#xa;nA8kT+UUqJrHAGnooGb3HZ0uA6dD9G1si8SDtrrz03UcpmDWXrtZfiOgfwhW3kUN&#xa;VEDPdgg5YPiFyYfdvUip9Kw4LhsI2ZUNAelDX85hXvEU/vIWD5mOsC78qYWEjDZO&#xa;yxlaJypbugXmlxCsxOsHlJ6G5uzSw1zferw36MQH3fLHX6a7KzbB/WXaf7tXpQ7E&#xa;5Lk6ORYGnfS8WwplHJdN0OsGFROd0eHyveXgknS8rtVVlF2JkjAvYkcU6SJ8CboJ&#xa;J57FWRBksm9mSvq/nx38lIEi6F8CAwEAAaNTMFEwDwYDVR0TAQH/BAUwAwEB/zAf&#xa;BgNVHSMEGDAWgBS3Y7XU4qPDEjYm3ua0j14zoohaBjAdBgNVHQ4EFgQUt2O11OKj&#xa;wxI2Jt7mtI9eM6KIWgYwDQYJKoZIhvcNAQEFBQADggEBACOpKYq5ZfUUdGQx9hcH&#xa;wE0IgJ8qngOwuOnC71novLqJj919HObPzObmPr99rdX2YZzEBpWX4DyAC3mAlJ8t&#xa;FGh+cVK13Jywd9txP2ZOC0tdkWB+sArLQipNUy9gXnnMy3HA4rL3CgSf70lV7rUZ&#xa;qdpMR20yIIevumGgAuJj3tYCuQlOYYagIsR8QOKMbciTNNLzjqgE6NPToCu0Szxq&#xa;lHcqBWQxG0O8pdW1aZWDSail7Fgk8gF5ykliz3PAecHLMxj9vcBIKDwObuBQdvl5&#xa;nvXOfT0wC+BI55mZ1FdLxWj/NJmVO/oqvgYom4e4q7+1z9IBhXPsGxoHL9lAgiLc&#xa;Dio=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="tls-nextprotoneg" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="http-server-header" output="openresty"><elem>openresty</elem>
+</script><script id="http-methods" output="&#xa;  Supported Methods: GET"><table key="Supported Methods">
+<elem>GET</elem>
+</table>
+</script><script id="http-title" output="Site doesn&apos;t have a title (text/html; charset=utf-8)."></script></port>
+<port protocol="tcp" portid="830"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" extrainfo="protocol 2.0" servicefp="SF-Port830-TCP:V=7.92%I=7%D=6/1%Time=6478B334%P=x86_64-pc-linux-gnu%r(NULL,1F,&quot;SSH-2\.0-OpenSSH_7\.9\x20PKIX\[11\.6\]\n&quot;);" method="probed" conf="10"/><script id="fingerprint-strings" output="&#xa;  NULL: &#xa;    SSH-2.0-OpenSSH_7.9 PKIX[11.6]"><elem key="NULL">&#xa;    SSH-2.0-OpenSSH_7.9 PKIX[11.6]</elem>
+</script><script id="ssh-hostkey" output="&#xa;  2048 ea:31:78:bd:10:5b:8a:40:39:4d:14:14:12:c0:17:7e (RSA)"><table>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQCezT6ScX13k4DtKj3TTTdrnrjzdjudquqrk9PDLL8jCaMp7FF2UCa5lTw0r5wPJE/lFKiaxwBp6KBm9x2dLgOnQ/RtbIvEg7a689N1HKZg1l67WX4joH8IVt5FDVRAz3YIOWD4hcmH3b1IqfSsOC4bCNmVDQHpQ1/OYV7xFP7yFg+ZjrAu/KmFhIw2TssZWicqW7oF5pcQrMTrB5Sehubs0sNc33q8N+jEB93yx1+muys2wf1l2n+7V6UOxOS5OjkWBp30vFsKZRyXTdDrBhUTndHh8r3l4JJ0vK7VVZRdiZIwL2JHFOkifAm6CSeexVkQZLJvZkr6v58d/JSBIuhf</elem>
+<elem key="fingerprint">ea3178bd105b8a40394d141412c0177e</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<portused state="closed" proto="udp" portid="41805"/>
+<osmatch name="Cisco IOS 12.4 or IOS-XE 15.3" accuracy="100" line="16659">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="100"><cpe>cpe:/o:cisco:ios:12.4</cpe></osclass>
+<osclass type="router" vendor="Cisco" osfamily="IOS-XE" osgen="15.X" accuracy="100"><cpe>cpe:/o:cisco:ios_xe:15.3</cpe></osclass>
+</osmatch>
+</os>
+<distance value="2"/>
+<tcpsequence index="260" difficulty="Good luck!" values="3D22D49,F4D21B77,2463F30,C8D014A4,2895C882,1DF5E2F8"/>
+<ipidsequence class="Randomized" values="C292,F3F8,D374,2009,C5F3,B4FB"/>
+<tcptssequence class="none returned (unsupported)"/>
+<trace port="199" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.1.101.140" rtt="0.83"/>
+</trace>
+<times srtt="21100" rttvar="18510" to="100000"/>
+</host>
+<host starttime="1685631465" endtime="1685631874"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.1.101.240" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65532">
+<extrareasons reason="no-response" count="65532" proto="tcp" ports="1-21,23-442,444-8304,8306-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" extrainfo="protocol 2.0" servicefp="SF-Port22-TCP:V=7.92%I=7%D=6/1%Time=6478B334%P=x86_64-pc-linux-gnu%r(NULL,1F,&quot;SSH-2\.0-OpenSSH_7\.6\x20PKIX\[11\.0\]\n&quot;);" method="probed" conf="10"/><script id="fingerprint-strings" output="&#xa;  NULL: &#xa;    SSH-2.0-OpenSSH_7.6 PKIX[11.0]"><elem key="NULL">&#xa;    SSH-2.0-OpenSSH_7.6 PKIX[11.0]</elem>
+</script></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server</cpe></service><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=OC-FP7125-1/organizationName=Cisco Systems, Inc/countryName=US&#xa;Issuer: commonName=OC-FP7125-1/organizationName=Cisco Systems, Inc/countryName=US&#xa;Public Key type: rsa&#xa;Public Key bits: 2048&#xa;Signature Algorithm: sha256WithRSAEncryption&#xa;Not valid before: 2021-05-12T02:46:43&#xa;Not valid after:  2023-07-22T02:46:43&#xa;MD5:   7918 1d59 5ba2 3ce4 0ecc fb28 c9bd 281a&#xa;SHA-1: 8bfb a47b 7880 9971 0eff d708 243f b169 749b 4f97"><table key="subject">
+<elem key="commonName">OC-FP7125-1</elem>
+<elem key="countryName">US</elem>
+<elem key="organizationName">Cisco Systems, Inc</elem>
+<elem key="organizationalUnitName">Intrusion Management System</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">OC-FP7125-1</elem>
+<elem key="countryName">US</elem>
+<elem key="organizationName">Cisco Systems, Inc</elem>
+<elem key="organizationalUnitName">Intrusion Management System</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">BDA825756E2E382CA9567CDFEB0D61C6365239BA2FC134F7297DC0AA679A42CFF28A4F6B39024D9BF5E1D9A44A153362013150CE495EA0A2EED3C40035DA4778A84F83B605E8A207D4FBC81AF59A6193AB8F34CE24F9B952BDB721A640533F9B7D3DEC7B4687CB7CD09ED9A983D50FB37B459FC27201D04CAB59E83F6539276357CB178FE8F921995C42EBB7C2DCAA909D7A633CCA4838A4235CB75EC1A3AB00EAA14AF0DF544162F79CC061ED1E102812986CCA032A4A3F3DEBC1526560D5701C855C2B8A3A6352557388E1DAA706C4E19994B382CC339A639D726B67C31EF8ACBC0055BC878046E9C5782B06E9B1B240E475C93B4C9D4028869E9042DC91DB</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:TRUE</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">2C:90:BB:2B:C6:53:54:5B:EE:4C:90:AD:03:5A:F1:88:35:D6:CF:E9</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:2C:90:BB:2B:C6:53:54:5B:EE:4C:90:AD:03:5A:F1:88:35:D6:CF:E9&#xa;DirName:/C=US/CN=OC-FP7125-1/O=Cisco Systems, Inc/OU=Intrusion Management System&#xa;serial:A7:81:D7:33:D9:29:27:0F&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2021-05-12T02:46:43</elem>
+<elem key="notAfter">2023-07-22T02:46:43</elem>
+</table>
+<elem key="md5">79181d595ba23ce40eccfb28c9bd281a</elem>
+<elem key="sha1">8bfba47b788099710effd708243fb169749b4f97</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIEMzCCAxugAwIBAgIJAKeB1zPZKScPMA0GCSqGSIb3DQEBCwUAMGYxCzAJBgNV&#xa;BAYTAlVTMRQwEgYDVQQDDAtPQy1GUDcxMjUtMTEbMBkGA1UECgwSQ2lzY28gU3lz&#xa;dGVtcywgSW5jMSQwIgYDVQQLDBtJbnRydXNpb24gTWFuYWdlbWVudCBTeXN0ZW0w&#xa;HhcNMjEwNTEyMDI0NjQzWhcNMjMwNzIyMDI0NjQzWjBmMQswCQYDVQQGEwJVUzEU&#xa;MBIGA1UEAwwLT0MtRlA3MTI1LTExGzAZBgNVBAoMEkNpc2NvIFN5c3RlbXMsIElu&#xa;YzEkMCIGA1UECwwbSW50cnVzaW9uIE1hbmFnZW1lbnQgU3lzdGVtMIIBIjANBgkq&#xa;hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvagldW4uOCypVnzf6w1hxjZSObovwTT3&#xa;KX3AqmeaQs/yik9rOQJNm/Xh2aRKFTNiATFQzkleoKLu08QANdpHeKhPg7YF6KIH&#xa;1PvIGvWaYZOrjzTOJPm5Ur23IaZAUz+bfT3se0aHy3zQntmpg9UPs3tFn8JyAdBM&#xa;q1noP2U5J2NXyxeP6PkhmVxC67fC3KqQnXpjPMpIOKQjXLdewaOrAOqhSvDfVEFi&#xa;95zAYe0eECgSmGzKAypKPz3rwVJlYNVwHIVcK4o6Y1JVc4jh2qcGxOGZlLOCzDOa&#xa;Y51ya2fDHvisvABVvIeARunFeCsG6bGyQOR1yTtMnUAohp6QQtyR2wIDAQABo4Hj&#xa;MIHgMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFCyQuyvGU1Rb7kyQrQNa8Yg1&#xa;1s/pMIGYBgNVHSMEgZAwgY2AFCyQuyvGU1Rb7kyQrQNa8Yg11s/poWqkaDBmMQsw&#xa;CQYDVQQGEwJVUzEUMBIGA1UEAwwLT0MtRlA3MTI1LTExGzAZBgNVBAoMEkNpc2Nv&#xa;IFN5c3RlbXMsIEluYzEkMCIGA1UECwwbSW50cnVzaW9uIE1hbmFnZW1lbnQgU3lz&#xa;dGVtggkAp4HXM9kpJw8wEwYDVR0lBAwwCgYIKwYBBQUHAwEwDQYJKoZIhvcNAQEL&#xa;BQADggEBACrESDs6c5RCt900xaseGP6kPqeAi5VEdQtSXqneQD2vkHpPfdJJZ55d&#xa;so0t5pWtJF1tnrdtb0fpOUwTTCtrZMWx2jxI7c5sj/mOUsUG/gRte6n0A6njn2HO&#xa;k0C0n+26FvER5SPkIdzQa6WpSVWKW48zcLuUa7FIb79e3lGA/+L049KD2UuZQng8&#xa;6LZBwzAcozcgjcAF+J91lAhCFSllsABRAa1eYi8bv9RccFd76sYmeVRX6836c4fy&#xa;EL2X4uwecUl69P6EHKAWrV58tF+W3GU3r+f8VwooHo+/ER8ZWJ6bUKWWIGUPVf7n&#xa;VkEHrX/TJq3kI4e1RUsWjlcmKCPpBoA=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="http-methods" output="&#xa;  Supported Methods: GET HEAD POST OPTIONS"><table key="Supported Methods">
+<elem>GET</elem>
+<elem>HEAD</elem>
+<elem>POST</elem>
+<elem>OPTIONS</elem>
+</table>
+</script><script id="http-title" output="Login&#xa;Requested resource was /login.cgi"><elem key="title">Login</elem>
+<elem key="redirect_url">/login.cgi</elem>
+</script><script id="http-server-header" output="Apache"><elem>Apache</elem>
+</script></port>
+<port protocol="tcp" portid="8305"><state state="closed" reason="reset" reason_ttl="63"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="8305"/>
+<osmatch name="Linux 5.1" accuracy="100" line="68124">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:5.1</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="407846" lastboot="Sat May 27 17:47:08 2023"/>
+<distance value="2"/>
+<tcpsequence index="262" difficulty="Good luck!" values="9995613F,CB48B5B9,C07B363C,50821448,DE69406A,351C70C9"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="184EA241,184EA2A7,184EA30C,184EA371,184EA3D6,184EA43C"/>
+<trace port="8305" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.1.101.240" rtt="0.42"/>
+</trace>
+<times srtt="476" rttvar="65" to="100000"/>
+</host>
+<host starttime="1685631465" endtime="1685631874"><status state="up" reason="echo-reply" reason_ttl="253"/>
+<address addr="10.1.110.8" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="55536">
+<extrareasons reason="reset" count="55536" proto="tcp" ports="1-21,23-54999,55080,64999-65535"/>
+</extraports>
+<extraports state="filtered" count="9998">
+<extrareasons reason="no-response" count="9998" proto="tcp" ports="55000-55079,55081-64998"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="253"/><service name="ssh" product="Cisco SSH" version="1.25" extrainfo="protocol 1.99" ostype="IOS" method="probed" conf="10"><cpe>cpe:/a:cisco:ssh:1.25</cpe><cpe>cpe:/o:cisco:ios</cpe></service></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<osmatch name="Cisco IOS 12.4 or IOS-XE 15.3" accuracy="100" line="16659">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="100"><cpe>cpe:/o:cisco:ios:12.4</cpe></osclass>
+<osclass type="router" vendor="Cisco" osfamily="IOS-XE" osgen="15.X" accuracy="100"><cpe>cpe:/o:cisco:ios_xe:15.3</cpe></osclass>
+</osmatch>
+</os>
+<distance value="3"/>
+<tcpsequence index="260" difficulty="Good luck!" values="A77F633A,3C2E62B,2C319BA9,558305F,CCF1F20,BBCF196"/>
+<ipidsequence class="Randomized" values="22EB,AB73,5B21,762A,EF83,C052"/>
+<tcptssequence class="none returned (unsupported)"/>
+<trace port="199" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.1.100.229" rtt="0.88"/>
+<hop ttl="3" ipaddr="10.1.110.8" rtt="1.65"/>
+</trace>
+<times srtt="7858" rttvar="10543" to="100000"/>
+</host>
+<host starttime="1685631465" endtime="1685631874"><status state="up" reason="echo-reply" reason_ttl="252"/>
+<address addr="10.1.89.110" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65535">
+<extrareasons reason="reset" count="65535" proto="tcp" ports="1-65535"/>
+</extraports>
+</ports>
+<os><portused state="closed" proto="tcp" portid="1"/>
+</os>
+<distance value="4"/>
+<trace port="199" proto="tcp">
+<hop ttl="2" ipaddr="10.1.100.241" rtt="0.78"/>
+<hop ttl="3" ipaddr="10.1.100.42" rtt="2.55"/>
+<hop ttl="4" ipaddr="10.1.89.110" rtt="0.49"/>
+</trace>
+<times srtt="653" rttvar="372" to="100000"/>
+</host>
+<host starttime="1685631465" endtime="1685631874"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.1.98.42" addrtype="ipv4"/>
+<hostnames>
+<hostname name="INS-ISE-3655-Nodo2" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="65518">
+<extrareasons reason="no-response" count="65518" proto="tcp" ports="1-21,23-48,50-79,81-442,444-1467,1469-2559,2561-6513,6515-8079,8081-8083,8085-8442,8446-8448,8450-8904,8906-8908,8910-9089,9091-30513,30515-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" extrainfo="protocol 2.0" servicefp="SF-Port22-TCP:V=7.92%I=7%D=6/1%Time=6478B334%P=x86_64-pc-linux-gnu%r(NULL,22,&quot;SSH-2\.0-OpenSSH_8\.8\x20PKIX\[13\.2\.3\]\r\n&quot;);" method="probed" conf="10"/><script id="fingerprint-strings" output="&#xa;  NULL: &#xa;    SSH-2.0-OpenSSH_8.8 PKIX[13.2.3]"><elem key="NULL">&#xa;    SSH-2.0-OpenSSH_8.8 PKIX[13.2.3]</elem>
+</script><script id="ssh-hostkey" output="&#xa;  3072 ea:a5:02:5e:6e:d3:56:23:88:42:09:20:c8:98:9a:36 (RSA)"><table>
+<elem key="bits">3072</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQC7DDvuHFgzE+lBhjxAEL0fQiA74AS0EqEIASoEkWj6VNfnW9Z0ncAUjLz2K+wrOuCci4FWGmNN4+wRBb4eA3nQjXHTu1bYcTfUPAlJt6xFYzLVUgPRJVYMgBGldtdXVBa9goNfNcftxWy2ufS1WDKnil3cnThNN40d0v8b0qkhIUwJYoodJZkXUavbm84wXVlTWU65KH2kp7rfYE9jYvwwW7/d6JgkKno9OSP0WnBOD901gNpgEgWJJKrnOFDXB6nIPN1tgoN7wEef2b0/Mv52slKvcmHMG4Xj1k5WqGHktJjC6Im4W3sjCnQdXxO+zdOeUOO5CPcOyYOlBLc5PTYpCqQT+yoeS6tyljtW2CU9RXZV9/6IOpV/QQ3XfzzBRNJIcxS4FgAkAJD653AdLHgJAeiThKxIJ7UVXGaZcBwpt2vWFqBz0X8pT8QBN2AiYogrERVQhrFveR26G0N7kVztUsQb705LhdKm5xI/oLjWTf4Qk8IsbxWIxToeyEpfZGs=</elem>
+<elem key="fingerprint">eaa5025e6ed3562388420920c8989a36</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="49"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="tacacs" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="http" product="OpenResty web app server" method="probed" conf="10"><cpe>cpe:/a:openresty:ngx_openresty</cpe></service><script id="http-server-header" output="openresty"><elem>openresty</elem>
+</script><script id="http-methods" output="&#xa;  Supported Methods: GET HEAD POST OPTIONS"><table key="Supported Methods">
+<elem>GET</elem>
+<elem>HEAD</elem>
+<elem>POST</elem>
+<elem>OPTIONS</elem>
+</table>
+</script><script id="http-title" output="Did not follow redirect to https://ins-ise-3655-nodo2/"><elem key="redirect_url">https://ins-ise-3655-nodo2/</elem>
+</script></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="https" product="" servicefp="SF-Port443-TCP:V=7.92%T=SSL%I=7%D=6/1%Time=6478B33A%P=x86_64-pc-linux-gnu%r(GetRequest,D8,&quot;HTTP/1\.1\x20302\x20\r\nContent-Length:\x200\r\nConnection:\x20close\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://INS-ISE-3655-Nodo2:9443/admin/\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:20\x20GMT\r\nServer:\x20\r\n\r\n&quot;)%r(HTTPOptions,C5,&quot;HTTP/1\.1\x20404\x20Not\x20Found\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:20\x20GMT\r\nContent-Type:\x20application/json;\x20charset=utf-8\r\nConnection:\x20close\r\nContent-Length:\x2048\r\n\r\n{\&quot;message\&quot;:\&quot;no\x20Route\x20matched\x20with\x20those\x20values\&quot;}&quot;)%r(FourOhFourRequest,D8,&quot;HTTP/1\.1\x20302\x20\r\nContent-Length:\x200\r\nConnection:\x20close\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://INS-ISE-3655-Nodo2:9443/admin/\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:20\x20GMT\r\nServer:\x20\r\n\r\n&quot;)%r(tor-versions,C5,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:20\x20GMT\r\nContent-Type:\x20application/json;\x20charset=utf-8\r\nConnection:\x20close\r\nContent-Length:\x2046\r\n\r\n{\n\x20\x20\&quot;message\&quot;:\x20\&quot;Bad\x20request\&quot;,\n\x20\x20\&quot;code\&quot;:\x20400\n}\n&quot;)%r(RTSPRequest,2E,&quot;{\n\x20\x20\&quot;message\&quot;:\x20\&quot;Bad\x20request\&quot;,\n\x20\x20\&quot;code\&quot;:\x20400\n}\n&quot;)%r(RPCCheck,C5,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:26\x20GMT\r\nContent-Type:\x20application/json;\x20charset=utf-8\r\nConnection:\x20close\r\nContent-Length:\x2046\r\n\r\n{\n\x20\x20\&quot;message\&quot;:\x20\&quot;Bad\x20request\&quot;,\n\x20\x20\&quot;code\&quot;:\x20400\n}\n&quot;)%r(DNSVersionBindReqTCP,C5,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:26\x20GMT\r\nContent-Type:\x20application/json;\x20charset=utf-8\r\nConnection:\x20close\r\nContent-Length:\x2046\r\n\r\n{\n\x20\x20\&quot;message\&quot;:\x20\&quot;Bad\x20request\&quot;,\n\x20\x20\&quot;code\&quot;:\x20400\n}\n&quot;)%r(DNSStatusRequestTCP,C5,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:26\x20GMT\r\nContent-Type:\x20application/json;\x20charset=utf-8\r\nConnection:\x20close\r\nContent-Length:\x2046\r\n\r\n{\n\x20\x20\&quot;message\&quot;:\x20\&quot;Bad\x20request\&quot;,\n\x20\x20\&quot;code\&quot;:\x20400\n}\n&quot;);" tunnel="ssl" method="probed" conf="10"/><script id="http-server-header" output="&lt;empty&gt;"><elem></elem>
+</script><script id="ssl-cert" output="Subject: commonName=INS-ISE-3655-Nodo2.grupoins.local/organizationName=Instituto Nacional de Seguros/stateOrProvinceName=SJO/countryName=CR&#xa;Subject Alternative Name: DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40&#xa;Issuer: commonName=GRUPOINS Certificate Authority&#xa;Public Key type: rsa&#xa;Public Key bits: 4096&#xa;Signature Algorithm: sha512WithRSAEncryption&#xa;Not valid before: 2022-08-03T22:04:06&#xa;Not valid after:  2024-08-02T22:04:06&#xa;MD5:   62dc 04f1 e97a fa25 17bf d16d cea3 bc18&#xa;SHA-1: 12d7 44c4 e971 1770 96e8 814b 0ae0 3048 532d 3cec"><table key="subject">
+<elem key="commonName">INS-ISE-3655-Nodo2.grupoins.local</elem>
+<elem key="countryName">CR</elem>
+<elem key="localityName">San Jose</elem>
+<elem key="organizationName">Instituto Nacional de Seguros</elem>
+<elem key="organizationalUnitName">GRUPOINS</elem>
+<elem key="stateOrProvinceName">SJO</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">GRUPOINS Certificate Authority</elem>
+<elem key="domainComponent">grupoins</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">4096</elem>
+<elem key="modulus">9AC93DF0E89F1EBB08DD57D8E07F53935DE841CD6805A43D6054566AE03E5539EAA4A88066D7F90640EFD68AB371C2B4DA00591515D70F8F14A679B6C603F558C3F6AAF293D723605889CFEDD718CA4D4BCE3E967EB2D27D4BBE780182CF3CC12A1A826D4B9112EF3994F8ADD14E086595F7E5497B5FF251BCC696B96BA92D420CE8F2E4055D93AF4A17AEAFCE91693E5B04AC7F4B66EFB2C47395BE810D082A0A101029D9EA8878EFF412335C9299E22E5A1B5D3C464655612CE3B042780A7459335281B6280C5AEE241CABEBF2E4D4B74249BC3E881E53CFE73FF549DC7A0C153AC6107A4E3376073395F956BFD1A8BDDC57785CFC43E0F5A7334A182E6B5A071E9EBC4BBBF2D61A1F7CDCD4D4ABD358A83522CBE959A8BF93AA81301D1A6265BE236FB036FB454C94399EA3D2C8BF60D81322BC7BA2989E85109A4426947E8A545F2B9FF9C15CC43A6E9416F28634CAE3CBF3809A20AFB6AC184CCF1A2D4C2981C73AC75281022D22480DB713846B63D1F03A4E5290A549EA141B5FD84E8ACBBC5074ABF146472339B08BDFAF1AD16F63E24EF01A6BC281B1F96947019B39B406DF1FA810DED3916D133328EEE2DE4B8D251DE6D018021C9CE724C89DE9AED49838E6751D5E8A0C7A0CA579184DE7541F6E89853EFEA89D8AA04E11CB0481CD4C4792466C6F3E6DD20AD42FC24183A97064E4DA52C2FCCCC616B0995F5A91</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">DA:39:A3:EE:5E:6B:4B:0D:32:55:BF:EF:95:60:18:90:AF:D8:07:09</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:B8:49:F8:3B:3C:5D:1A:05:31:BB:AA:05:6E:4C:F7:B7:CD:E8:A0:25&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=INS-SJ-CARAIZ01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+</table>
+<elem key="sig_algo">sha512WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-08-03T22:04:06</elem>
+<elem key="notAfter">2024-08-02T22:04:06</elem>
+</table>
+<elem key="md5">62dc04f1e97afa2517bfd16dcea3bc18</elem>
+<elem key="sha1">12d744c4e971177096e8814b0ae03048532d3cec</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIIMDCCBhigAwIBAgITcgAAZPnp+Ucl4YQDnQAAAABk+TANBgkqhkiG9w0BAQ0F&#xa;ADBaMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxGDAWBgoJkiaJk/IsZAEZFghncnVw&#xa;b2luczEnMCUGA1UEAxMeR1JVUE9JTlMgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4X&#xa;DTIyMDgwMzIyMDQwNloXDTI0MDgwMjIyMDQwNlowgZUxCzAJBgNVBAYTAkNSMQww&#xa;CgYDVQQIEwNTSk8xETAPBgNVBAcTCFNhbiBKb3NlMSYwJAYDVQQKEx1JbnN0aXR1&#xa;dG8gTmFjaW9uYWwgZGUgU2VndXJvczERMA8GA1UECxMIR1JVUE9JTlMxKjAoBgNV&#xa;BAMTIUlOUy1JU0UtMzY1NS1Ob2RvMi5ncnVwb2lucy5sb2NhbDCCAiIwDQYJKoZI&#xa;hvcNAQEBBQADggIPADCCAgoCggIBAJrJPfDonx67CN1X2OB/U5Nd6EHNaAWkPWBU&#xa;VmrgPlU56qSogGbX+QZA79aKs3HCtNoAWRUV1w+PFKZ5tsYD9VjD9qryk9cjYFiJ&#xa;z+3XGMpNS84+ln6y0n1LvngBgs88wSoagm1LkRLvOZT4rdFOCGWV9+VJe1/yUbzG&#xa;lrlrqS1CDOjy5AVdk69KF66vzpFpPlsErH9LZu+yxHOVvoENCCoKEBAp2eqIeO/0&#xa;EjNckpniLlobXTxGRlVhLOOwQngKdFkzUoG2KAxa7iQcq+vy5NS3Qkm8PogeU8/n&#xa;P/VJ3HoMFTrGEHpOM3YHM5X5Vr/RqL3cV3hc/EPg9aczShgua1oHHp68S7vy1hof&#xa;fNzU1KvTWKg1IsvpWai/k6qBMB0aYmW+I2+wNvtFTJQ5nqPSyL9g2BMivHuimJ6F&#xa;EJpEJpR+ilRfK5/5wVzEOm6UFvKGNMrjy/OAmiCvtqwYTM8aLUwpgcc6x1KBAi0i&#xa;SA23E4RrY9HwOk5SkKVJ6hQbX9hOisu8UHSr8UZHIzmwi9+vGtFvY+JO8BprwoGx&#xa;+WlHAZs5tAbfH6gQ3tORbRMzKO7i3kuNJR3m0BgCHJznJMid6a7UmDjmdR1eigx6&#xa;DKV5GE3nVB9uiYU+/qidiqBOEcsEgc1MR5JGbG8+bdIK1C/CQYOpcGTk2lLC/MzG&#xa;FrCZX1qRAgMBAAGjggKxMIICrTAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0OBBYEFNo5&#xa;o+5ea0sNMlW/75VgGJCv2AcJMBMGA1UdJQQMMAoGCCsGAQUFBwMBMFsGA1UdEQRU&#xa;MFKCIUlOUy1JU0UtMzY1NS1Ob2RvMi5ncnVwb2lucy5sb2NhbIIhSU5TLUlTRS0z&#xa;NjU1LU5vZG8xLmdydXBvaW5zLmxvY2FshwQKAWIqhwQKAWIoMB8GA1UdIwQYMBaA&#xa;FLhJ+Ds8XRoFMbuqBW5M97fN6KAlMIHrBgNVHR8EgeMwgeAwgd2ggdqggdeGgdRs&#xa;ZGFwOi8vL0NOPUdSVVBPSU5TJTIwQ2VydGlmaWNhdGUlMjBBdXRob3JpdHksQ049&#xa;SU5TLVNKLUNBUkFJWjAxLENOPUNEUCxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2aWNl&#xa;cyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPWdydXBvaW5zLERDPWxv&#xa;Y2FsP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1j&#xa;UkxEaXN0cmlidXRpb25Qb2ludDCB1wYIKwYBBQUHAQEEgcowgccwgcQGCCsGAQUF&#xa;BzAChoG3bGRhcDovLy9DTj1HUlVQT0lOUyUyMENlcnRpZmljYXRlJTIwQXV0aG9y&#xa;aXR5LENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2aWNl&#xa;cyxDTj1Db25maWd1cmF0aW9uLERDPWdydXBvaW5zLERDPWxvY2FsP2NBQ2VydGlm&#xa;aWNhdGU/YmFzZT9vYmplY3RDbGFzcz1jZXJ0aWZpY2F0aW9uQXV0aG9yaXR5MCEG&#xa;CSsGAQQBgjcUAgQUHhIAVwBlAGIAUwBlAHIAdgBlAHIwDQYJKoZIhvcNAQENBQAD&#xa;ggIBAGUbE5Smn8IRVIpzG1PMFwDqqW7JgDsugb07FrMZK1InEODKPECiA2F4ssJ1&#xa;gcAer/MWOILVGJ7moxNddrnG38IDuTsUgRC2Yt2YFrupR0fNgMC3uWjCg/iqhCKU&#xa;2cs4qTEL6+rqWOIEDkbWc+t4yezkQL4Fqbprp63vOUMoPOLLghHXYyhn/0fFw9HY&#xa;OqxSNAG+9N3+K1hALYGi9lCu5mVRrRm786ufcrse7qGO3EdGnoXyDryry21Fu3s7&#xa;BVgUUejKcIUP8ppijqF/fb4ewycvlZqJxxfmobwyf0eYXDQVdOYFrf5lrhgQ02vQ&#xa;Nqtm5CK354C+gBIdZMMwOiObBomvgZMdeBJ93fcaXRHGGk4FfPTeVH/OBpQZTKQj&#xa;CiksR5ieA3Gu1j0sMskvvBACEEJnj4Us70JAAY6GCJuB1u5LvsYDBg7KMMUyiNjL&#xa;zKtHcNxve9vBcSmMYhbKwN6eV2QPwU1qMZ/ihPqLBx9dbfe3uOnFyY2SoCcX19+f&#xa;yAI/RJ7NX+XTDT6i/KJu2Xj0tObMlPeToaKpqQehgwkrOCNR7wuhVlzYStL9zC4o&#xa;xVnDzFtLVekm9GFZAQeCIFbs7Zu3u70tb55iQjVeLTe9/FTxuHHTwZPanGaN4X9J&#xa;vIVi5MyfepBRDPfZSos4CF7lmXAaAfyIk51z/RbZvAc0k9bs&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-methods" output="&#xa;  Supported Methods: GET POST"><table key="Supported Methods">
+<elem>GET</elem>
+<elem>POST</elem>
+</table>
+</script><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, RPCCheck: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Date: Thu, 01 Jun 2023 15:03:26 GMT&#xa;    Content-Type: application/json; charset=utf-8&#xa;    Connection: close&#xa;    Content-Length: 46&#xa;    &quot;message&quot;: &quot;Bad request&quot;,&#xa;    &quot;code&quot;: 400&#xa;  FourOhFourRequest, GetRequest: &#xa;    HTTP/1.1 302 &#xa;    Content-Length: 0&#xa;    Connection: close&#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://INS-ISE-3655-Nodo2:9443/admin/&#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Server:&#xa;  HTTPOptions: &#xa;    HTTP/1.1 404 Not Found&#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Content-Type: application/json; charset=utf-8&#xa;    Connection: close&#xa;    Content-Length: 48&#xa;    {&quot;message&quot;:&quot;no Route matched with those values&quot;}&#xa;  RTSPRequest: &#xa;    &quot;message&quot;: &quot;Bad request&quot;,&#xa;    &quot;code&quot;: 400&#xa;  tor-versions: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Content-Type: application/json; charset=utf-8&#xa;    Connection: close&#xa;    Content-Length: 46&#xa;    &quot;message&quot;: &quot;Bad request&quot;,&#xa;    &quot;code&quot;: 400"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, RPCCheck">&#xa;    HTTP/1.1 400 Bad Request&#xa;    Date: Thu, 01 Jun 2023 15:03:26 GMT&#xa;    Content-Type: application/json; charset=utf-8&#xa;    Connection: close&#xa;    Content-Length: 46&#xa;    &quot;message&quot;: &quot;Bad request&quot;,&#xa;    &quot;code&quot;: 400</elem>
+<elem key="FourOhFourRequest, GetRequest">&#xa;    HTTP/1.1 302 &#xa;    Content-Length: 0&#xa;    Connection: close&#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://INS-ISE-3655-Nodo2:9443/admin/&#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Server:</elem>
+<elem key="HTTPOptions">&#xa;    HTTP/1.1 404 Not Found&#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Content-Type: application/json; charset=utf-8&#xa;    Connection: close&#xa;    Content-Length: 48&#xa;    {&quot;message&quot;:&quot;no Route matched with those values&quot;}</elem>
+<elem key="RTSPRequest">&#xa;    &quot;message&quot;: &quot;Bad request&quot;,&#xa;    &quot;code&quot;: 400</elem>
+<elem key="tor-versions">&#xa;    HTTP/1.1 400 Bad Request&#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Content-Type: application/json; charset=utf-8&#xa;    Connection: close&#xa;    Content-Length: 46&#xa;    &quot;message&quot;: &quot;Bad request&quot;,&#xa;    &quot;code&quot;: 400</elem>
+</script></port>
+<port protocol="tcp" portid="1468"><state state="closed" reason="reset" reason_ttl="63"/><service name="csdm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="2560"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="labrat" servicefp="SF-Port2560-TCP:V=7.92%I=7%D=6/1%Time=6478B339%P=x86_64-pc-linux-gnu%r(GetRequest,8A,&quot;HTTP/1\.1\x20302\x20\r\nLocation:\x20https://localhost/admin\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(HTTPOptions,54,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(RTSPRequest,54,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(RPCCheck,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(DNSStatusRequestTCP,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(Help,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(SSLSessionReq,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(TerminalServerCookie,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(TLSSessionReq,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(Kerberos,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(SMBProgNeg,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(X11Probe,54,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;)%r(FourOhFourRequest,8A,&quot;HTTP/1\.1\x20302\x20\r\nLocation:\x20https://localhost/admin\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20\x20\r\n\r\n&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe: &#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;    Server:&#xa;  FourOhFourRequest, GetRequest: &#xa;    HTTP/1.1 302 &#xa;    Location: https://localhost/admin&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;    Server:&#xa;  HTTPOptions, RTSPRequest: &#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;    Server:"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe">&#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;    Server:</elem>
+<elem key="FourOhFourRequest, GetRequest">&#xa;    HTTP/1.1 302 &#xa;    Location: https://localhost/admin&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;    Server:</elem>
+<elem key="HTTPOptions, RTSPRequest">&#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;    Server:</elem>
+</script></port>
+<port protocol="tcp" portid="6514"><state state="closed" reason="reset" reason_ttl="63"/><service name="syslog-tls" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="63"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8084"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="websnp" servicefp="SF-Port8084-TCP:V=7.92%T=SSL%I=7%D=6/1%Time=6478B33A%P=x86_64-pc-linux-gnu%r(GenericLines,7A,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Length:\x2055\r\nConnection:\x20close\r\n\r\nError\x20400:\x20Bad\x20Request\nCannot\x20parse\x20HTTP\x20request:\x20\[\r\n\r\]&quot;)%r(GetRequest,7C,&quot;HTTP/1\.1\x20404\x20Not\x20Found\r\nContent-Length:\x2059\r\nConnection:\x20close\r\n\r\nError\x20404:\x20Not\x20Found\nThe\x20path\x20specified\x20is\x20not\x20recognized\.\n&quot;)%r(HTTPOptions,7E,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Length:\x2059\r\nConnection:\x20close\r\n\r\nError\x20400:\x20Bad\x20Request\nCannot\x20parse\x20HTTP\x20request:\x20\[OPTIONS\]&quot;)%r(RTSPRequest,7E,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Length:\x2059\r\nConnection:\x20close\r\n\r\nError\x20400:\x20Bad\x20Request\nCannot\x20parse\x20HTTP\x20request:\x20\[OPTIONS\]&quot;)%r(FourOhFourRequest,7C,&quot;HTTP/1\.1\x20404\x20Not\x20Found\r\nContent-Length:\x2059\r\nConnection:\x20close\r\n\r\nError\x20404:\x20Not\x20Found\nThe\x20path\x20specified\x20is\x20not\x20recognized\.\n&quot;)%r(SIPOptions,7E,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Length:\x2059\r\nConnection:\x20close\r\n\r\nError\x20400:\x20Bad\x20Request\nCannot\x20parse\x20HTTP\x20request:\x20\[OPTIONS\]&quot;);" tunnel="ssl" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  FourOhFourRequest, GetRequest: &#xa;    HTTP/1.1 404 Not Found&#xa;    Content-Length: 59&#xa;    Connection: close&#xa;    Error 404: Not Found&#xa;    path specified is not recognized.&#xa;  GenericLines: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Content-Length: 55&#xa;    Connection: close&#xa;    Error 400: Bad Request&#xa;    Cannot parse HTTP request: [&#xa;  HTTPOptions, RTSPRequest, SIPOptions: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Content-Length: 59&#xa;    Connection: close&#xa;    Error 400: Bad Request&#xa;    Cannot parse HTTP request: [OPTIONS]"><elem key="FourOhFourRequest, GetRequest">&#xa;    HTTP/1.1 404 Not Found&#xa;    Content-Length: 59&#xa;    Connection: close&#xa;    Error 404: Not Found&#xa;    path specified is not recognized.</elem>
+<elem key="GenericLines">&#xa;    HTTP/1.1 400 Bad Request&#xa;    Content-Length: 55&#xa;    Connection: close&#xa;    Error 400: Bad Request&#xa;    Cannot parse HTTP request: [</elem>
+<elem key="HTTPOptions, RTSPRequest, SIPOptions">&#xa;    HTTP/1.1 400 Bad Request&#xa;    Content-Length: 59&#xa;    Connection: close&#xa;    Error 400: Bad Request&#xa;    Cannot parse HTTP request: [OPTIONS]</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=Certificate Services EST Server Certificate - INS-ISE-3655-Nodo2.grupoins.local&#xa;Subject Alternative Name: DNS:INS-ISE-3655-Nodo2.grupoins.local&#xa;Issuer: commonName=Certificate Services Endpoint Sub CA - INS-ISE-3655-Nodo2&#xa;Public Key type: rsa&#xa;Public Key bits: 2048&#xa;Signature Algorithm: sha256WithRSAEncryption&#xa;Not valid before: 2023-05-26T06:48:39&#xa;Not valid after:  2033-05-27T06:48:09&#xa;MD5:   f9e8 1c63 ff96 b728 dd8d 5901 5741 d72b&#xa;SHA-1: 6dea 0b53 da02 2832 c3d7 7049 3abf e454 0d15 3ee8"><table key="subject">
+<elem key="commonName">Certificate Services EST Server Certificate - INS-ISE-3655-Nodo2.grupoins.local</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">Certificate Services Endpoint Sub CA - INS-ISE-3655-Nodo2</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">AC8A5A847413F6EE77AC4D2BC84EE89E0214681586E2249EF82A6014C355A1243F367571A647BED1A8E6CA40EE760B59F7C7AA95B3BE77B1415FADD365DFD696D6DCBBB0A43B0B836D30DFC64A80718D735E3512448D0D994D266456760991ECFFF8CA1E9C93DD92ACAD2620984CCD715BDB3D3D0AE93A3CBDAD5588E3507693DE98BBE91F35EBAABDADF50A5705C9E1EA1D8B464369A46D1B4E97876AC7FB857F0F41DC3A9EB909738F1747002A657BACE65BCAC473ADC518BD266FDEC035E3F3191AD68E53DF0E57B2358FE72A34FCA459290176C5879FDC8B1016088797B6FBE0CEFA9433FFE2476DAD2AEF6F35FD9B802DB3F734FAA01E878D6B99D50019</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:2D:11:CE:B1:1E:94:9B:10:BD:A7:37:BB:72:49:B6:06:53:FD:B4:1A&#xa;DirName:/CN=Certificate Services Node CA - INS-ISE-3655-Nodo2&#xa;serial:60:B3:23:06:E8:DB:40:62:AD:13:55:F8:06:1B:54:B1&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">55:6A:13:0D:DC:62:15:21:20:12:EC:EB:84:9A:26:A8:C6:B7:E3:F7</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Non Repudiation, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:FALSE</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:INS-ISE-3655-Nodo2.grupoins.local</elem>
+<elem key="critical">true</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-05-26T06:48:39</elem>
+<elem key="notAfter">2033-05-27T06:48:09</elem>
+</table>
+<elem key="md5">f9e81c63ff96b728dd8d59015741d72b</elem>
+<elem key="sha1">6dea0b53da022832c3d770493abfe4540d153ee8</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIFDzCCAvegAwIBAgIQJ0puBwasQbWfqsGAYCWDKDANBgkqhkiG9w0BAQsFADBE&#xa;MUIwQAYDVQQDDDlDZXJ0aWZpY2F0ZSBTZXJ2aWNlcyBFbmRwb2ludCBTdWIgQ0Eg&#xa;LSBJTlMtSVNFLTM2NTUtTm9kbzIwHhcNMjMwNTI2MDY0ODM5WhcNMzMwNTI3MDY0&#xa;ODA5WjBaMVgwVgYDVQQDDE9DZXJ0aWZpY2F0ZSBTZXJ2aWNlcyBFU1QgU2VydmVy&#xa;IENlcnRpZmljYXRlIC0gSU5TLUlTRS0zNjU1LU5vZG8yLmdydXBvaW5zLmxvY2Fs&#xa;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArIpahHQT9u53rE0ryE7o&#xa;ngIUaBWG4iSe+CpgFMNVoSQ/NnVxpke+0ajmykDudgtZ98eqlbO+d7FBX63TZd/W&#xa;ltbcu7CkOwuDbTDfxkqAcY1zXjUSRI0NmU0mZFZ2CZHs//jKHpyT3ZKsrSYgmEzN&#xa;cVvbPT0K6To8va1ViONQdpPemLvpHzXrqr2t9QpXBcnh6h2LRkNppG0bTpeHasf7&#xa;hX8PQdw6nrkJc48XRwAqZXus5lvKxHOtxRi9Jm/ewDXj8xka1o5T3w5XsjWP5yo0&#xa;/KRZKQF2xYef3IsQFgiHl7b74M76lDP/4kdtrSrvbzX9m4Ats/c0+qAeh41rmdUA&#xa;GQIDAQABo4HmMIHjMHMGA1UdIwRsMGqAFC0RzrEelJsQvac3u3JJtgZT/bQaoUCk&#xa;PjA8MTowOAYDVQQDDDFDZXJ0aWZpY2F0ZSBTZXJ2aWNlcyBOb2RlIENBIC0gSU5T&#xa;LUlTRS0zNjU1LU5vZG8yghBgsyMG6NtAYq0TVfgGG1SxMB0GA1UdDgQWBBRVahMN&#xa;3GIVISAS7OuEmiaoxrfj9zAOBgNVHQ8BAf8EBAMCBeAwDAYDVR0TAQH/BAIwADAv&#xa;BgNVHREBAf8EJTAjgiFJTlMtSVNFLTM2NTUtTm9kbzIuZ3J1cG9pbnMubG9jYWww&#xa;DQYJKoZIhvcNAQELBQADggIBAA/tWeQnLoBgWAziiT6qeg5vaB1cTrBtzttzDQH8&#xa;L3KrIu3zbqandOSXb29JHsgGjBtwlZhA5pYFyXZzJvNutnQprq99qO9S6K7Qz52Y&#xa;R4OZvrjtUilySOmjDQf7O8QiPn/8ky791EvY26byS6Lf5yIIQWM66rTPho95Ymry&#xa;sOhf/+18HO7VRsn0hTVlBUmS4eLcEkKfvmgpxwq5eqoOy5Tiy/abndLEjyddjZRV&#xa;xd2Yj8Wn42RQbhybaogx4DZnw58jsM4jO23Fz+Qve+zkh0raECceiZ0YyuD7dFXL&#xa;kJdmkn8QheA3OzMcdrqEZHLtSYAc/qzfiE5HMMlDZqvyAAKOqS6jKMZZlVeAtA/U&#xa;u4PX7VHf8yBQDCT3Qc5dAdqVEAprus/m2EhG/CHaTRicmKlIw11tw8IKP3E/ndtr&#xa;0I9GKPwEcv7FOUTV2dNOmdyetjN9EKINQ7i8jlgMnsgRsH+U9RxjJCnGuwp9/3B4&#xa;8jU3VajTvbgCBxgvMQglrJVg4uy8g5743187oiXayjKENuhqQQnBBrsNMTTq+F1a&#xa;9q5Djys215/z1+4YLRKCVAwnHFUukkQgG4H4wk31gvcaZWBXLSkHxh2ovGdHG5VM&#xa;33pkT6ni10rpOIZYAjzvFzQMgI5TP1sJkB1F3uj4Ro8Ien0Dg2/gprulOkHlVroK&#xa;VHb4&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="8443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="https-alt" product="server" servicefp="SF-Port8443-TCP:V=7.92%T=SSL%I=7%D=6/1%Time=6478B33A%P=x86_64-pc-linux-gnu%r(GetRequest,D6,&quot;HTTP/1\.1\x20302\x20\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://localhost:8443/portal/\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(HTTPOptions,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:20\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(FourOhFourRequest,D6,&quot;HTTP/1\.1\x20302\x20\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://localhost:8443/portal/\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:20\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RTSPRequest,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RPCCheck,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSStatusRequestTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Help,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SSLSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TerminalServerCookie,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TLSSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Kerberos,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:25\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;);" tunnel="ssl" method="probed" conf="10"/><script id="ssl-cert" output="Subject: commonName=INS-ISE-3655-Nodo2.grupoins.local/organizationName=Grupo INS/stateOrProvinceName=SJO/countryName=CR&#xa;Subject Alternative Name: DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40, DNS:aprovisionamientoise.grupoins.local&#xa;Issuer: commonName=GRUPOINS Certificate Authority&#xa;Public Key type: rsa&#xa;Public Key bits: 4096&#xa;Signature Algorithm: sha512WithRSAEncryption&#xa;Not valid before: 2023-03-10T18:41:48&#xa;Not valid after:  2025-03-09T18:41:48&#xa;MD5:   12f1 2190 0aec 602a 62d2 8c1e 7975 45e1&#xa;SHA-1: 2d8e 7ec1 1161 a5b2 f456 379f 9e9c 5e09 a32f ebef"><table key="subject">
+<elem key="commonName">INS-ISE-3655-Nodo2.grupoins.local</elem>
+<elem key="countryName">CR</elem>
+<elem key="localityName">San Jose</elem>
+<elem key="organizationName">Grupo INS</elem>
+<elem key="organizationalUnitName">GRUPOINS</elem>
+<elem key="stateOrProvinceName">SJO</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">GRUPOINS Certificate Authority</elem>
+<elem key="domainComponent">grupoins</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">4096</elem>
+<elem key="modulus">B22FD9B31BE21695731CC0F38DA6B7D48C6251B7B4D52EF39ED5F1ED7DF8F1AE706A3E3D54614768872099B8E4DDE21AD256D447F0D0AF19CBFE167CBC95ACAFD04C8C1F5CCC4676F414A4B22BCE45B59A30A8C568525695374E71C14B1AEF2F2FFFFDCF1D41002BB98932A3DA837280D2FBC05F41288ADDD9DEB697B8313DE03E603C9A007EEC7C7382C07BC473287D0EB3CC8C87C98378D94033847F983CAEEB38C790759F64BEFD1528E9F64819E04560FA3842405A64529ED2AAA954C137D2841BA76AF9ED545CAFAC16D8B473F455FC43E5AE0CDE44AC1C2134FE204D02E99074B02FF1424B35DFCCB54FD1EB8A80A1588C682BA9FFBEB490C263E4F0762F0FED8363BA4C3A1A6C2AD8C9FA9A8C89C3AC9E66B91D4EA5685CB830AA8CA42883C193B52C48BF50F1EC94D3C3580E57B26EF2F4B54E64A888B4FCE6AE3B85DAB3B02578BE0D2AF3FA601DFD477E4428548F23E8E44657AFE7E38EC23753F4232152B3C579BD8375C9038EFE51CFE17CC461F6C0A7D43A74A55EAEBA0C75C9E52EC05A352C0B8CC2D48F1B02997A0173772D26A4905757B4DB654352D06DC222A8B8BE98CEA6AE06D830E34DE2DCF927743B18CB2DFE5CB827AF99AACF11BA5B24E50A45754732895E3860413C113B12BBA4418E25644CB4B722C991F4C36D12EE26265DD71E2D0687BAC2F6EB361E5515607B4FEC22E889606B3DFB63EC9F</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">DA:39:A3:EE:5E:6B:4B:0D:32:55:BF:EF:95:60:18:90:AF:D8:07:09</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40, DNS:aprovisionamientoise.grupoins.local</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:B8:49:F8:3B:3C:5D:1A:05:31:BB:AA:05:6E:4C:F7:B7:CD:E8:A0:25&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=INS-SJ-CARAIZ01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+</table>
+<elem key="sig_algo">sha512WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-03-10T18:41:48</elem>
+<elem key="notAfter">2025-03-09T18:41:48</elem>
+</table>
+<elem key="md5">12f121900aec602a62d28c1e797545e1</elem>
+<elem key="sha1">2d8e7ec11161a5b2f456379f9e9c5e09a32febef</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIIQjCCBiqgAwIBAgITcgAAfxCnzNVqND5v2gAAAAB/EDANBgkqhkiG9w0BAQ0F&#xa;ADBaMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxGDAWBgoJkiaJk/IsZAEZFghncnVw&#xa;b2luczEnMCUGA1UEAxMeR1JVUE9JTlMgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4X&#xa;DTIzMDMxMDE4NDE0OFoXDTI1MDMwOTE4NDE0OFowgYExCzAJBgNVBAYTAkNSMQww&#xa;CgYDVQQIEwNTSk8xETAPBgNVBAcTCFNhbiBKb3NlMRIwEAYDVQQKEwlHcnVwbyBJ&#xa;TlMxETAPBgNVBAsTCEdSVVBPSU5TMSowKAYDVQQDEyFJTlMtSVNFLTM2NTUtTm9k&#xa;bzIuZ3J1cG9pbnMubG9jYWwwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC&#xa;AQCyL9mzG+IWlXMcwPONprfUjGJRt7TVLvOe1fHtffjxrnBqPj1UYUdohyCZuOTd&#xa;4hrSVtRH8NCvGcv+Fny8layv0EyMH1zMRnb0FKSyK85FtZowqMVoUlaVN05xwUsa&#xa;7y8v//3PHUEAK7mJMqPag3KA0vvAX0Eoit3Z3raXuDE94D5gPJoAfux8c4LAe8Rz&#xa;KH0Os8yMh8mDeNlAM4R/mDyu6zjHkHWfZL79FSjp9kgZ4EVg+jhCQFpkUp7SqqlU&#xa;wTfShBunavntVFyvrBbYtHP0VfxD5a4M3kSsHCE0/iBNAumQdLAv8UJLNd/MtU/R&#xa;64qAoViMaCup/760kMJj5PB2Lw/tg2O6TDoabCrYyfqajInDrJ5muR1OpWhcuDCq&#xa;jKQog8GTtSxIv1Dx7JTTw1gOV7Ju8vS1TmSoiLT85q47hdqzsCV4vg0q8/pgHf1H&#xa;fkQoVI8j6ORGV6/n447CN1P0IyFSs8V5vYN1yQOO/lHP4XzEYfbAp9Q6dKVerroM&#xa;dcnlLsBaNSwLjMLUjxsCmXoBc3ctJqSQV1e022VDUtBtwiKouL6YzqauBtgw403i&#xa;3PkndDsYyy3+XLgnr5mqzxG6WyTlCkV1RzKJXjhgQTwROxK7pEGOJWRMtLciyZH0&#xa;w20S7iYmXdceLQaHusL26zYeVRVge0/sIuiJYGs9+2PsnwIDAQABo4IC1zCCAtMw&#xa;DgYDVR0PAQH/BAQDAgWgMB0GA1UdDgQWBBTaOaPuXmtLDTJVv++VYBiQr9gHCTAT&#xa;BgNVHSUEDDAKBggrBgEFBQcDATCBgAYDVR0RBHkwd4IhSU5TLUlTRS0zNjU1LU5v&#xa;ZG8yLmdydXBvaW5zLmxvY2FsgiFJTlMtSVNFLTM2NTUtTm9kbzEuZ3J1cG9pbnMu&#xa;bG9jYWyHBAoBYiqHBAoBYiiCI2Fwcm92aXNpb25hbWllbnRvaXNlLmdydXBvaW5z&#xa;LmxvY2FsMB8GA1UdIwQYMBaAFLhJ+Ds8XRoFMbuqBW5M97fN6KAlMIHrBgNVHR8E&#xa;geMwgeAwgd2ggdqggdeGgdRsZGFwOi8vL0NOPUdSVVBPSU5TJTIwQ2VydGlmaWNh&#xa;dGUlMjBBdXRob3JpdHksQ049SU5TLVNKLUNBUkFJWjAxLENOPUNEUCxDTj1QdWJs&#xa;aWMlMjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9u&#xa;LERDPWdydXBvaW5zLERDPWxvY2FsP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/&#xa;YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRpb25Qb2ludDCB1wYIKwYBBQUH&#xa;AQEEgcowgccwgcQGCCsGAQUFBzAChoG3bGRhcDovLy9DTj1HUlVQT0lOUyUyMENl&#xa;cnRpZmljYXRlJTIwQXV0aG9yaXR5LENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBT&#xa;ZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPWdydXBvaW5z&#xa;LERDPWxvY2FsP2NBQ2VydGlmaWNhdGU/YmFzZT9vYmplY3RDbGFzcz1jZXJ0aWZp&#xa;Y2F0aW9uQXV0aG9yaXR5MCEGCSsGAQQBgjcUAgQUHhIAVwBlAGIAUwBlAHIAdgBl&#xa;AHIwDQYJKoZIhvcNAQENBQADggIBACE1MIsDJkdBP1Jkj7W6az0a09aG5gSZGKZ1&#xa;FeNfBf/Bec6tPNstgEB9shEM1T3qs+1ZEpnUqC1QBciyMYSFjN9J2BkDPtb4K5+T&#xa;j9sdcEGTwJAvSZw3/n/2ULbGCtSSgU9ZfS3pi9mMh1OY5oOkdcqr4VhEFWRBGE4K&#xa;X/8+cr3juvF7ibhzNU18Pep/sah2bDeTT9DyV1pHktR+Ud1Qvc/LzN9V4gTkGn/u&#xa;MF1LeZkK72B5jbJEhiFU3fvEmi9KlVAViX4hc+7UMLWvltH+kQzN7HJIRxxwY3Jz&#xa;/uEhPLkMuSK5IDevyD2hw0v+ubdhLQeaSdgbh+1WYHS4dkWRmJ+yoprNx7NzD5rc&#xa;zDqMMSOFXs5cnRN1W5oge5Q10ARYpwjymw33Fros55SLXRBb7CD3DzI7Nl4uTp/h&#xa;4kzitqyu3/+lrWQK2IJzIj2tILGDc3acfEzvAeP6RAabawHxgdUPtl1Zlgbds+ai&#xa;aOmY7hdpR5zb8kdvxuSptp/uHEEpmyouQzGplG/Ei4sKNno2ny8/jOxkzBSaNNs9&#xa;Lu3c6Bft9TpPQTKTqrJDwTz6EoOB/Gu7Xy2twS4GS3q9H/M43LopJ8lFmqyucJjs&#xa;KTt04+cpkifIh3lKz2v8VGH2vV+BNbFwMq1rI2XDZWw5wbIVxq7y3yqV5P2sOus7&#xa;hO6X86Ch&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SSLSessionReq, TLSSessionReq, TerminalServerCookie: &#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:25 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  FourOhFourRequest: &#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8443/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  GetRequest: &#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8443/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  HTTPOptions: &#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  RTSPRequest: &#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:25 GMT&#xa;    Connection: close&#xa;    Server: server"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SSLSessionReq, TLSSessionReq, TerminalServerCookie">&#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:25 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="FourOhFourRequest">&#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8443/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8443/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="HTTPOptions">&#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:20 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="RTSPRequest">&#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:25 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+</script><script id="http-server-header" output="server"><elem>server</elem>
+</script><script id="http-methods" output="&#xa;  Supported Methods: GET HEAD POST"><table key="Supported Methods">
+<elem>GET</elem>
+<elem>HEAD</elem>
+<elem>POST</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="8444"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="pcsync-http" servicefp="SF-Port8444-TCP:V=7.92%T=SSL%I=7%D=6/1%Time=6478B344%P=x86_64-pc-linux-gnu%r(GetRequest,D6,&quot;HTTP/1\.1\x20302\x20\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://localhost:8444/portal/\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(HTTPOptions,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RTSPRequest,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RPCCheck,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSStatusRequestTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Help,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SSLSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TerminalServerCookie,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TLSSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Kerberos,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SMBProgNeg,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(X11Probe,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;);" tunnel="ssl" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=INS-ISE-3655-Nodo2.grupoins.local/organizationName=Grupo INS/stateOrProvinceName=SJO/countryName=CR&#xa;Subject Alternative Name: DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40, DNS:aprovisionamientoise.grupoins.local&#xa;Issuer: commonName=GRUPOINS Certificate Authority&#xa;Public Key type: rsa&#xa;Public Key bits: 4096&#xa;Signature Algorithm: sha512WithRSAEncryption&#xa;Not valid before: 2023-03-10T18:41:48&#xa;Not valid after:  2025-03-09T18:41:48&#xa;MD5:   12f1 2190 0aec 602a 62d2 8c1e 7975 45e1&#xa;SHA-1: 2d8e 7ec1 1161 a5b2 f456 379f 9e9c 5e09 a32f ebef"><table key="subject">
+<elem key="commonName">INS-ISE-3655-Nodo2.grupoins.local</elem>
+<elem key="countryName">CR</elem>
+<elem key="localityName">San Jose</elem>
+<elem key="organizationName">Grupo INS</elem>
+<elem key="organizationalUnitName">GRUPOINS</elem>
+<elem key="stateOrProvinceName">SJO</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">GRUPOINS Certificate Authority</elem>
+<elem key="domainComponent">grupoins</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">4096</elem>
+<elem key="modulus">B22FD9B31BE21695731CC0F38DA6B7D48C6251B7B4D52EF39ED5F1ED7DF8F1AE706A3E3D54614768872099B8E4DDE21AD256D447F0D0AF19CBFE167CBC95ACAFD04C8C1F5CCC4676F414A4B22BCE45B59A30A8C568525695374E71C14B1AEF2F2FFFFDCF1D41002BB98932A3DA837280D2FBC05F41288ADDD9DEB697B8313DE03E603C9A007EEC7C7382C07BC473287D0EB3CC8C87C98378D94033847F983CAEEB38C790759F64BEFD1528E9F64819E04560FA3842405A64529ED2AAA954C137D2841BA76AF9ED545CAFAC16D8B473F455FC43E5AE0CDE44AC1C2134FE204D02E99074B02FF1424B35DFCCB54FD1EB8A80A1588C682BA9FFBEB490C263E4F0762F0FED8363BA4C3A1A6C2AD8C9FA9A8C89C3AC9E66B91D4EA5685CB830AA8CA42883C193B52C48BF50F1EC94D3C3580E57B26EF2F4B54E64A888B4FCE6AE3B85DAB3B02578BE0D2AF3FA601DFD477E4428548F23E8E44657AFE7E38EC23753F4232152B3C579BD8375C9038EFE51CFE17CC461F6C0A7D43A74A55EAEBA0C75C9E52EC05A352C0B8CC2D48F1B02997A0173772D26A4905757B4DB654352D06DC222A8B8BE98CEA6AE06D830E34DE2DCF927743B18CB2DFE5CB827AF99AACF11BA5B24E50A45754732895E3860413C113B12BBA4418E25644CB4B722C991F4C36D12EE26265DD71E2D0687BAC2F6EB361E5515607B4FEC22E889606B3DFB63EC9F</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">DA:39:A3:EE:5E:6B:4B:0D:32:55:BF:EF:95:60:18:90:AF:D8:07:09</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40, DNS:aprovisionamientoise.grupoins.local</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:B8:49:F8:3B:3C:5D:1A:05:31:BB:AA:05:6E:4C:F7:B7:CD:E8:A0:25&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=INS-SJ-CARAIZ01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+</table>
+<elem key="sig_algo">sha512WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-03-10T18:41:48</elem>
+<elem key="notAfter">2025-03-09T18:41:48</elem>
+</table>
+<elem key="md5">12f121900aec602a62d28c1e797545e1</elem>
+<elem key="sha1">2d8e7ec11161a5b2f456379f9e9c5e09a32febef</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIIQjCCBiqgAwIBAgITcgAAfxCnzNVqND5v2gAAAAB/EDANBgkqhkiG9w0BAQ0F&#xa;ADBaMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxGDAWBgoJkiaJk/IsZAEZFghncnVw&#xa;b2luczEnMCUGA1UEAxMeR1JVUE9JTlMgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4X&#xa;DTIzMDMxMDE4NDE0OFoXDTI1MDMwOTE4NDE0OFowgYExCzAJBgNVBAYTAkNSMQww&#xa;CgYDVQQIEwNTSk8xETAPBgNVBAcTCFNhbiBKb3NlMRIwEAYDVQQKEwlHcnVwbyBJ&#xa;TlMxETAPBgNVBAsTCEdSVVBPSU5TMSowKAYDVQQDEyFJTlMtSVNFLTM2NTUtTm9k&#xa;bzIuZ3J1cG9pbnMubG9jYWwwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC&#xa;AQCyL9mzG+IWlXMcwPONprfUjGJRt7TVLvOe1fHtffjxrnBqPj1UYUdohyCZuOTd&#xa;4hrSVtRH8NCvGcv+Fny8layv0EyMH1zMRnb0FKSyK85FtZowqMVoUlaVN05xwUsa&#xa;7y8v//3PHUEAK7mJMqPag3KA0vvAX0Eoit3Z3raXuDE94D5gPJoAfux8c4LAe8Rz&#xa;KH0Os8yMh8mDeNlAM4R/mDyu6zjHkHWfZL79FSjp9kgZ4EVg+jhCQFpkUp7SqqlU&#xa;wTfShBunavntVFyvrBbYtHP0VfxD5a4M3kSsHCE0/iBNAumQdLAv8UJLNd/MtU/R&#xa;64qAoViMaCup/760kMJj5PB2Lw/tg2O6TDoabCrYyfqajInDrJ5muR1OpWhcuDCq&#xa;jKQog8GTtSxIv1Dx7JTTw1gOV7Ju8vS1TmSoiLT85q47hdqzsCV4vg0q8/pgHf1H&#xa;fkQoVI8j6ORGV6/n447CN1P0IyFSs8V5vYN1yQOO/lHP4XzEYfbAp9Q6dKVerroM&#xa;dcnlLsBaNSwLjMLUjxsCmXoBc3ctJqSQV1e022VDUtBtwiKouL6YzqauBtgw403i&#xa;3PkndDsYyy3+XLgnr5mqzxG6WyTlCkV1RzKJXjhgQTwROxK7pEGOJWRMtLciyZH0&#xa;w20S7iYmXdceLQaHusL26zYeVRVge0/sIuiJYGs9+2PsnwIDAQABo4IC1zCCAtMw&#xa;DgYDVR0PAQH/BAQDAgWgMB0GA1UdDgQWBBTaOaPuXmtLDTJVv++VYBiQr9gHCTAT&#xa;BgNVHSUEDDAKBggrBgEFBQcDATCBgAYDVR0RBHkwd4IhSU5TLUlTRS0zNjU1LU5v&#xa;ZG8yLmdydXBvaW5zLmxvY2FsgiFJTlMtSVNFLTM2NTUtTm9kbzEuZ3J1cG9pbnMu&#xa;bG9jYWyHBAoBYiqHBAoBYiiCI2Fwcm92aXNpb25hbWllbnRvaXNlLmdydXBvaW5z&#xa;LmxvY2FsMB8GA1UdIwQYMBaAFLhJ+Ds8XRoFMbuqBW5M97fN6KAlMIHrBgNVHR8E&#xa;geMwgeAwgd2ggdqggdeGgdRsZGFwOi8vL0NOPUdSVVBPSU5TJTIwQ2VydGlmaWNh&#xa;dGUlMjBBdXRob3JpdHksQ049SU5TLVNKLUNBUkFJWjAxLENOPUNEUCxDTj1QdWJs&#xa;aWMlMjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9u&#xa;LERDPWdydXBvaW5zLERDPWxvY2FsP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/&#xa;YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRpb25Qb2ludDCB1wYIKwYBBQUH&#xa;AQEEgcowgccwgcQGCCsGAQUFBzAChoG3bGRhcDovLy9DTj1HUlVQT0lOUyUyMENl&#xa;cnRpZmljYXRlJTIwQXV0aG9yaXR5LENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBT&#xa;ZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPWdydXBvaW5z&#xa;LERDPWxvY2FsP2NBQ2VydGlmaWNhdGU/YmFzZT9vYmplY3RDbGFzcz1jZXJ0aWZp&#xa;Y2F0aW9uQXV0aG9yaXR5MCEGCSsGAQQBgjcUAgQUHhIAVwBlAGIAUwBlAHIAdgBl&#xa;AHIwDQYJKoZIhvcNAQENBQADggIBACE1MIsDJkdBP1Jkj7W6az0a09aG5gSZGKZ1&#xa;FeNfBf/Bec6tPNstgEB9shEM1T3qs+1ZEpnUqC1QBciyMYSFjN9J2BkDPtb4K5+T&#xa;j9sdcEGTwJAvSZw3/n/2ULbGCtSSgU9ZfS3pi9mMh1OY5oOkdcqr4VhEFWRBGE4K&#xa;X/8+cr3juvF7ibhzNU18Pep/sah2bDeTT9DyV1pHktR+Ud1Qvc/LzN9V4gTkGn/u&#xa;MF1LeZkK72B5jbJEhiFU3fvEmi9KlVAViX4hc+7UMLWvltH+kQzN7HJIRxxwY3Jz&#xa;/uEhPLkMuSK5IDevyD2hw0v+ubdhLQeaSdgbh+1WYHS4dkWRmJ+yoprNx7NzD5rc&#xa;zDqMMSOFXs5cnRN1W5oge5Q10ARYpwjymw33Fros55SLXRBb7CD3DzI7Nl4uTp/h&#xa;4kzitqyu3/+lrWQK2IJzIj2tILGDc3acfEzvAeP6RAabawHxgdUPtl1Zlgbds+ai&#xa;aOmY7hdpR5zb8kdvxuSptp/uHEEpmyouQzGplG/Ei4sKNno2ny8/jOxkzBSaNNs9&#xa;Lu3c6Bft9TpPQTKTqrJDwTz6EoOB/Gu7Xy2twS4GS3q9H/M43LopJ8lFmqyucJjs&#xa;KTt04+cpkifIh3lKz2v8VGH2vV+BNbFwMq1rI2XDZWw5wbIVxq7y3yqV5P2sOus7&#xa;hO6X86Ch&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe: &#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  GetRequest: &#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8444/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  HTTPOptions, RTSPRequest: &#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe">&#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8444/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="HTTPOptions, RTSPRequest">&#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+</script></port>
+<port protocol="tcp" portid="8445"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="copy" servicefp="SF-Port8445-TCP:V=7.92%T=SSL%I=7%D=6/1%Time=6478B344%P=x86_64-pc-linux-gnu%r(GetRequest,D6,&quot;HTTP/1\.1\x20302\x20\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://localhost:8445/portal/\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(HTTPOptions,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RTSPRequest,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RPCCheck,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSStatusRequestTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Help,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SSLSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TerminalServerCookie,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TLSSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Kerberos,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SMBProgNeg,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(X11Probe,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;);" tunnel="ssl" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=INS-ISE-3655-Nodo2.grupoins.local/organizationName=Grupo INS/stateOrProvinceName=SJO/countryName=CR&#xa;Subject Alternative Name: DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40, DNS:aprovisionamientoise.grupoins.local&#xa;Issuer: commonName=GRUPOINS Certificate Authority&#xa;Public Key type: rsa&#xa;Public Key bits: 4096&#xa;Signature Algorithm: sha512WithRSAEncryption&#xa;Not valid before: 2023-03-10T18:41:48&#xa;Not valid after:  2025-03-09T18:41:48&#xa;MD5:   12f1 2190 0aec 602a 62d2 8c1e 7975 45e1&#xa;SHA-1: 2d8e 7ec1 1161 a5b2 f456 379f 9e9c 5e09 a32f ebef"><table key="subject">
+<elem key="commonName">INS-ISE-3655-Nodo2.grupoins.local</elem>
+<elem key="countryName">CR</elem>
+<elem key="localityName">San Jose</elem>
+<elem key="organizationName">Grupo INS</elem>
+<elem key="organizationalUnitName">GRUPOINS</elem>
+<elem key="stateOrProvinceName">SJO</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">GRUPOINS Certificate Authority</elem>
+<elem key="domainComponent">grupoins</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">4096</elem>
+<elem key="modulus">B22FD9B31BE21695731CC0F38DA6B7D48C6251B7B4D52EF39ED5F1ED7DF8F1AE706A3E3D54614768872099B8E4DDE21AD256D447F0D0AF19CBFE167CBC95ACAFD04C8C1F5CCC4676F414A4B22BCE45B59A30A8C568525695374E71C14B1AEF2F2FFFFDCF1D41002BB98932A3DA837280D2FBC05F41288ADDD9DEB697B8313DE03E603C9A007EEC7C7382C07BC473287D0EB3CC8C87C98378D94033847F983CAEEB38C790759F64BEFD1528E9F64819E04560FA3842405A64529ED2AAA954C137D2841BA76AF9ED545CAFAC16D8B473F455FC43E5AE0CDE44AC1C2134FE204D02E99074B02FF1424B35DFCCB54FD1EB8A80A1588C682BA9FFBEB490C263E4F0762F0FED8363BA4C3A1A6C2AD8C9FA9A8C89C3AC9E66B91D4EA5685CB830AA8CA42883C193B52C48BF50F1EC94D3C3580E57B26EF2F4B54E64A888B4FCE6AE3B85DAB3B02578BE0D2AF3FA601DFD477E4428548F23E8E44657AFE7E38EC23753F4232152B3C579BD8375C9038EFE51CFE17CC461F6C0A7D43A74A55EAEBA0C75C9E52EC05A352C0B8CC2D48F1B02997A0173772D26A4905757B4DB654352D06DC222A8B8BE98CEA6AE06D830E34DE2DCF927743B18CB2DFE5CB827AF99AACF11BA5B24E50A45754732895E3860413C113B12BBA4418E25644CB4B722C991F4C36D12EE26265DD71E2D0687BAC2F6EB361E5515607B4FEC22E889606B3DFB63EC9F</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">DA:39:A3:EE:5E:6B:4B:0D:32:55:BF:EF:95:60:18:90:AF:D8:07:09</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40, DNS:aprovisionamientoise.grupoins.local</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:B8:49:F8:3B:3C:5D:1A:05:31:BB:AA:05:6E:4C:F7:B7:CD:E8:A0:25&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=INS-SJ-CARAIZ01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+</table>
+<elem key="sig_algo">sha512WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-03-10T18:41:48</elem>
+<elem key="notAfter">2025-03-09T18:41:48</elem>
+</table>
+<elem key="md5">12f121900aec602a62d28c1e797545e1</elem>
+<elem key="sha1">2d8e7ec11161a5b2f456379f9e9c5e09a32febef</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIIQjCCBiqgAwIBAgITcgAAfxCnzNVqND5v2gAAAAB/EDANBgkqhkiG9w0BAQ0F&#xa;ADBaMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxGDAWBgoJkiaJk/IsZAEZFghncnVw&#xa;b2luczEnMCUGA1UEAxMeR1JVUE9JTlMgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4X&#xa;DTIzMDMxMDE4NDE0OFoXDTI1MDMwOTE4NDE0OFowgYExCzAJBgNVBAYTAkNSMQww&#xa;CgYDVQQIEwNTSk8xETAPBgNVBAcTCFNhbiBKb3NlMRIwEAYDVQQKEwlHcnVwbyBJ&#xa;TlMxETAPBgNVBAsTCEdSVVBPSU5TMSowKAYDVQQDEyFJTlMtSVNFLTM2NTUtTm9k&#xa;bzIuZ3J1cG9pbnMubG9jYWwwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC&#xa;AQCyL9mzG+IWlXMcwPONprfUjGJRt7TVLvOe1fHtffjxrnBqPj1UYUdohyCZuOTd&#xa;4hrSVtRH8NCvGcv+Fny8layv0EyMH1zMRnb0FKSyK85FtZowqMVoUlaVN05xwUsa&#xa;7y8v//3PHUEAK7mJMqPag3KA0vvAX0Eoit3Z3raXuDE94D5gPJoAfux8c4LAe8Rz&#xa;KH0Os8yMh8mDeNlAM4R/mDyu6zjHkHWfZL79FSjp9kgZ4EVg+jhCQFpkUp7SqqlU&#xa;wTfShBunavntVFyvrBbYtHP0VfxD5a4M3kSsHCE0/iBNAumQdLAv8UJLNd/MtU/R&#xa;64qAoViMaCup/760kMJj5PB2Lw/tg2O6TDoabCrYyfqajInDrJ5muR1OpWhcuDCq&#xa;jKQog8GTtSxIv1Dx7JTTw1gOV7Ju8vS1TmSoiLT85q47hdqzsCV4vg0q8/pgHf1H&#xa;fkQoVI8j6ORGV6/n447CN1P0IyFSs8V5vYN1yQOO/lHP4XzEYfbAp9Q6dKVerroM&#xa;dcnlLsBaNSwLjMLUjxsCmXoBc3ctJqSQV1e022VDUtBtwiKouL6YzqauBtgw403i&#xa;3PkndDsYyy3+XLgnr5mqzxG6WyTlCkV1RzKJXjhgQTwROxK7pEGOJWRMtLciyZH0&#xa;w20S7iYmXdceLQaHusL26zYeVRVge0/sIuiJYGs9+2PsnwIDAQABo4IC1zCCAtMw&#xa;DgYDVR0PAQH/BAQDAgWgMB0GA1UdDgQWBBTaOaPuXmtLDTJVv++VYBiQr9gHCTAT&#xa;BgNVHSUEDDAKBggrBgEFBQcDATCBgAYDVR0RBHkwd4IhSU5TLUlTRS0zNjU1LU5v&#xa;ZG8yLmdydXBvaW5zLmxvY2FsgiFJTlMtSVNFLTM2NTUtTm9kbzEuZ3J1cG9pbnMu&#xa;bG9jYWyHBAoBYiqHBAoBYiiCI2Fwcm92aXNpb25hbWllbnRvaXNlLmdydXBvaW5z&#xa;LmxvY2FsMB8GA1UdIwQYMBaAFLhJ+Ds8XRoFMbuqBW5M97fN6KAlMIHrBgNVHR8E&#xa;geMwgeAwgd2ggdqggdeGgdRsZGFwOi8vL0NOPUdSVVBPSU5TJTIwQ2VydGlmaWNh&#xa;dGUlMjBBdXRob3JpdHksQ049SU5TLVNKLUNBUkFJWjAxLENOPUNEUCxDTj1QdWJs&#xa;aWMlMjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9u&#xa;LERDPWdydXBvaW5zLERDPWxvY2FsP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/&#xa;YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRpb25Qb2ludDCB1wYIKwYBBQUH&#xa;AQEEgcowgccwgcQGCCsGAQUFBzAChoG3bGRhcDovLy9DTj1HUlVQT0lOUyUyMENl&#xa;cnRpZmljYXRlJTIwQXV0aG9yaXR5LENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBT&#xa;ZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPWdydXBvaW5z&#xa;LERDPWxvY2FsP2NBQ2VydGlmaWNhdGU/YmFzZT9vYmplY3RDbGFzcz1jZXJ0aWZp&#xa;Y2F0aW9uQXV0aG9yaXR5MCEGCSsGAQQBgjcUAgQUHhIAVwBlAGIAUwBlAHIAdgBl&#xa;AHIwDQYJKoZIhvcNAQENBQADggIBACE1MIsDJkdBP1Jkj7W6az0a09aG5gSZGKZ1&#xa;FeNfBf/Bec6tPNstgEB9shEM1T3qs+1ZEpnUqC1QBciyMYSFjN9J2BkDPtb4K5+T&#xa;j9sdcEGTwJAvSZw3/n/2ULbGCtSSgU9ZfS3pi9mMh1OY5oOkdcqr4VhEFWRBGE4K&#xa;X/8+cr3juvF7ibhzNU18Pep/sah2bDeTT9DyV1pHktR+Ud1Qvc/LzN9V4gTkGn/u&#xa;MF1LeZkK72B5jbJEhiFU3fvEmi9KlVAViX4hc+7UMLWvltH+kQzN7HJIRxxwY3Jz&#xa;/uEhPLkMuSK5IDevyD2hw0v+ubdhLQeaSdgbh+1WYHS4dkWRmJ+yoprNx7NzD5rc&#xa;zDqMMSOFXs5cnRN1W5oge5Q10ARYpwjymw33Fros55SLXRBb7CD3DzI7Nl4uTp/h&#xa;4kzitqyu3/+lrWQK2IJzIj2tILGDc3acfEzvAeP6RAabawHxgdUPtl1Zlgbds+ai&#xa;aOmY7hdpR5zb8kdvxuSptp/uHEEpmyouQzGplG/Ei4sKNno2ny8/jOxkzBSaNNs9&#xa;Lu3c6Bft9TpPQTKTqrJDwTz6EoOB/Gu7Xy2twS4GS3q9H/M43LopJ8lFmqyucJjs&#xa;KTt04+cpkifIh3lKz2v8VGH2vV+BNbFwMq1rI2XDZWw5wbIVxq7y3yqV5P2sOus7&#xa;hO6X86Ch&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe: &#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  GetRequest: &#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8445/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  HTTPOptions, RTSPRequest: &#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe">&#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8445/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="HTTPOptions, RTSPRequest">&#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+</script></port>
+<port protocol="tcp" portid="8449"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="unknown" servicefp="SF-Port8449-TCP:V=7.92%T=SSL%I=7%D=6/1%Time=6478B344%P=x86_64-pc-linux-gnu%r(GetRequest,D6,&quot;HTTP/1\.1\x20302\x20\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://localhost:8449/portal/\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(HTTPOptions,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RTSPRequest,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RPCCheck,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSStatusRequestTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Help,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SSLSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TerminalServerCookie,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TLSSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Kerberos,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SMBProgNeg,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(X11Probe,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;);" tunnel="ssl" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=INS-ISE-3655-Nodo2.grupoins.local/organizationName=Grupo INS/stateOrProvinceName=SJO/countryName=CR&#xa;Subject Alternative Name: DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40, DNS:aprovisionamientoise.grupoins.local&#xa;Issuer: commonName=GRUPOINS Certificate Authority&#xa;Public Key type: rsa&#xa;Public Key bits: 4096&#xa;Signature Algorithm: sha512WithRSAEncryption&#xa;Not valid before: 2023-03-10T18:41:48&#xa;Not valid after:  2025-03-09T18:41:48&#xa;MD5:   12f1 2190 0aec 602a 62d2 8c1e 7975 45e1&#xa;SHA-1: 2d8e 7ec1 1161 a5b2 f456 379f 9e9c 5e09 a32f ebef"><table key="subject">
+<elem key="commonName">INS-ISE-3655-Nodo2.grupoins.local</elem>
+<elem key="countryName">CR</elem>
+<elem key="localityName">San Jose</elem>
+<elem key="organizationName">Grupo INS</elem>
+<elem key="organizationalUnitName">GRUPOINS</elem>
+<elem key="stateOrProvinceName">SJO</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">GRUPOINS Certificate Authority</elem>
+<elem key="domainComponent">grupoins</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">4096</elem>
+<elem key="modulus">B22FD9B31BE21695731CC0F38DA6B7D48C6251B7B4D52EF39ED5F1ED7DF8F1AE706A3E3D54614768872099B8E4DDE21AD256D447F0D0AF19CBFE167CBC95ACAFD04C8C1F5CCC4676F414A4B22BCE45B59A30A8C568525695374E71C14B1AEF2F2FFFFDCF1D41002BB98932A3DA837280D2FBC05F41288ADDD9DEB697B8313DE03E603C9A007EEC7C7382C07BC473287D0EB3CC8C87C98378D94033847F983CAEEB38C790759F64BEFD1528E9F64819E04560FA3842405A64529ED2AAA954C137D2841BA76AF9ED545CAFAC16D8B473F455FC43E5AE0CDE44AC1C2134FE204D02E99074B02FF1424B35DFCCB54FD1EB8A80A1588C682BA9FFBEB490C263E4F0762F0FED8363BA4C3A1A6C2AD8C9FA9A8C89C3AC9E66B91D4EA5685CB830AA8CA42883C193B52C48BF50F1EC94D3C3580E57B26EF2F4B54E64A888B4FCE6AE3B85DAB3B02578BE0D2AF3FA601DFD477E4428548F23E8E44657AFE7E38EC23753F4232152B3C579BD8375C9038EFE51CFE17CC461F6C0A7D43A74A55EAEBA0C75C9E52EC05A352C0B8CC2D48F1B02997A0173772D26A4905757B4DB654352D06DC222A8B8BE98CEA6AE06D830E34DE2DCF927743B18CB2DFE5CB827AF99AACF11BA5B24E50A45754732895E3860413C113B12BBA4418E25644CB4B722C991F4C36D12EE26265DD71E2D0687BAC2F6EB361E5515607B4FEC22E889606B3DFB63EC9F</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">DA:39:A3:EE:5E:6B:4B:0D:32:55:BF:EF:95:60:18:90:AF:D8:07:09</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40, DNS:aprovisionamientoise.grupoins.local</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:B8:49:F8:3B:3C:5D:1A:05:31:BB:AA:05:6E:4C:F7:B7:CD:E8:A0:25&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=INS-SJ-CARAIZ01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+</table>
+<elem key="sig_algo">sha512WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-03-10T18:41:48</elem>
+<elem key="notAfter">2025-03-09T18:41:48</elem>
+</table>
+<elem key="md5">12f121900aec602a62d28c1e797545e1</elem>
+<elem key="sha1">2d8e7ec11161a5b2f456379f9e9c5e09a32febef</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIIQjCCBiqgAwIBAgITcgAAfxCnzNVqND5v2gAAAAB/EDANBgkqhkiG9w0BAQ0F&#xa;ADBaMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxGDAWBgoJkiaJk/IsZAEZFghncnVw&#xa;b2luczEnMCUGA1UEAxMeR1JVUE9JTlMgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4X&#xa;DTIzMDMxMDE4NDE0OFoXDTI1MDMwOTE4NDE0OFowgYExCzAJBgNVBAYTAkNSMQww&#xa;CgYDVQQIEwNTSk8xETAPBgNVBAcTCFNhbiBKb3NlMRIwEAYDVQQKEwlHcnVwbyBJ&#xa;TlMxETAPBgNVBAsTCEdSVVBPSU5TMSowKAYDVQQDEyFJTlMtSVNFLTM2NTUtTm9k&#xa;bzIuZ3J1cG9pbnMubG9jYWwwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC&#xa;AQCyL9mzG+IWlXMcwPONprfUjGJRt7TVLvOe1fHtffjxrnBqPj1UYUdohyCZuOTd&#xa;4hrSVtRH8NCvGcv+Fny8layv0EyMH1zMRnb0FKSyK85FtZowqMVoUlaVN05xwUsa&#xa;7y8v//3PHUEAK7mJMqPag3KA0vvAX0Eoit3Z3raXuDE94D5gPJoAfux8c4LAe8Rz&#xa;KH0Os8yMh8mDeNlAM4R/mDyu6zjHkHWfZL79FSjp9kgZ4EVg+jhCQFpkUp7SqqlU&#xa;wTfShBunavntVFyvrBbYtHP0VfxD5a4M3kSsHCE0/iBNAumQdLAv8UJLNd/MtU/R&#xa;64qAoViMaCup/760kMJj5PB2Lw/tg2O6TDoabCrYyfqajInDrJ5muR1OpWhcuDCq&#xa;jKQog8GTtSxIv1Dx7JTTw1gOV7Ju8vS1TmSoiLT85q47hdqzsCV4vg0q8/pgHf1H&#xa;fkQoVI8j6ORGV6/n447CN1P0IyFSs8V5vYN1yQOO/lHP4XzEYfbAp9Q6dKVerroM&#xa;dcnlLsBaNSwLjMLUjxsCmXoBc3ctJqSQV1e022VDUtBtwiKouL6YzqauBtgw403i&#xa;3PkndDsYyy3+XLgnr5mqzxG6WyTlCkV1RzKJXjhgQTwROxK7pEGOJWRMtLciyZH0&#xa;w20S7iYmXdceLQaHusL26zYeVRVge0/sIuiJYGs9+2PsnwIDAQABo4IC1zCCAtMw&#xa;DgYDVR0PAQH/BAQDAgWgMB0GA1UdDgQWBBTaOaPuXmtLDTJVv++VYBiQr9gHCTAT&#xa;BgNVHSUEDDAKBggrBgEFBQcDATCBgAYDVR0RBHkwd4IhSU5TLUlTRS0zNjU1LU5v&#xa;ZG8yLmdydXBvaW5zLmxvY2FsgiFJTlMtSVNFLTM2NTUtTm9kbzEuZ3J1cG9pbnMu&#xa;bG9jYWyHBAoBYiqHBAoBYiiCI2Fwcm92aXNpb25hbWllbnRvaXNlLmdydXBvaW5z&#xa;LmxvY2FsMB8GA1UdIwQYMBaAFLhJ+Ds8XRoFMbuqBW5M97fN6KAlMIHrBgNVHR8E&#xa;geMwgeAwgd2ggdqggdeGgdRsZGFwOi8vL0NOPUdSVVBPSU5TJTIwQ2VydGlmaWNh&#xa;dGUlMjBBdXRob3JpdHksQ049SU5TLVNKLUNBUkFJWjAxLENOPUNEUCxDTj1QdWJs&#xa;aWMlMjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9u&#xa;LERDPWdydXBvaW5zLERDPWxvY2FsP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/&#xa;YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRpb25Qb2ludDCB1wYIKwYBBQUH&#xa;AQEEgcowgccwgcQGCCsGAQUFBzAChoG3bGRhcDovLy9DTj1HUlVQT0lOUyUyMENl&#xa;cnRpZmljYXRlJTIwQXV0aG9yaXR5LENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBT&#xa;ZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPWdydXBvaW5z&#xa;LERDPWxvY2FsP2NBQ2VydGlmaWNhdGU/YmFzZT9vYmplY3RDbGFzcz1jZXJ0aWZp&#xa;Y2F0aW9uQXV0aG9yaXR5MCEGCSsGAQQBgjcUAgQUHhIAVwBlAGIAUwBlAHIAdgBl&#xa;AHIwDQYJKoZIhvcNAQENBQADggIBACE1MIsDJkdBP1Jkj7W6az0a09aG5gSZGKZ1&#xa;FeNfBf/Bec6tPNstgEB9shEM1T3qs+1ZEpnUqC1QBciyMYSFjN9J2BkDPtb4K5+T&#xa;j9sdcEGTwJAvSZw3/n/2ULbGCtSSgU9ZfS3pi9mMh1OY5oOkdcqr4VhEFWRBGE4K&#xa;X/8+cr3juvF7ibhzNU18Pep/sah2bDeTT9DyV1pHktR+Ud1Qvc/LzN9V4gTkGn/u&#xa;MF1LeZkK72B5jbJEhiFU3fvEmi9KlVAViX4hc+7UMLWvltH+kQzN7HJIRxxwY3Jz&#xa;/uEhPLkMuSK5IDevyD2hw0v+ubdhLQeaSdgbh+1WYHS4dkWRmJ+yoprNx7NzD5rc&#xa;zDqMMSOFXs5cnRN1W5oge5Q10ARYpwjymw33Fros55SLXRBb7CD3DzI7Nl4uTp/h&#xa;4kzitqyu3/+lrWQK2IJzIj2tILGDc3acfEzvAeP6RAabawHxgdUPtl1Zlgbds+ai&#xa;aOmY7hdpR5zb8kdvxuSptp/uHEEpmyouQzGplG/Ei4sKNno2ny8/jOxkzBSaNNs9&#xa;Lu3c6Bft9TpPQTKTqrJDwTz6EoOB/Gu7Xy2twS4GS3q9H/M43LopJ8lFmqyucJjs&#xa;KTt04+cpkifIh3lKz2v8VGH2vV+BNbFwMq1rI2XDZWw5wbIVxq7y3yqV5P2sOus7&#xa;hO6X86Ch&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe: &#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  GetRequest: &#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8449/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  HTTPOptions, RTSPRequest: &#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe">&#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8449/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="HTTPOptions, RTSPRequest">&#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+</script></port>
+<port protocol="tcp" portid="8905"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="unknown" servicefp="SF-Port8905-TCP:V=7.92%T=SSL%I=7%D=6/1%Time=6478B344%P=x86_64-pc-linux-gnu%r(GetRequest,D6,&quot;HTTP/1\.1\x20302\x20\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://localhost:8905/portal/\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(HTTPOptions,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RTSPRequest,59,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(RPCCheck,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(DNSStatusRequestTCP,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Help,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SSLSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TerminalServerCookie,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(TLSSessionReq,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(Kerberos,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(SMBProgNeg,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;)%r(X11Probe,59,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20server\r\n\r\n&quot;);" tunnel="ssl" method="table" conf="3"/><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe: &#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  GetRequest: &#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8905/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server&#xa;  HTTPOptions, RTSPRequest: &#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe">&#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:8905/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+<elem key="HTTPOptions, RTSPRequest">&#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:30 GMT&#xa;    Connection: close&#xa;    Server: server</elem>
+</script><script id="ssl-cert" output="Subject: commonName=INS-ISE-3655-Nodo2.grupoins.local/organizationName=Instituto Nacional de Seguros/stateOrProvinceName=SJO/countryName=CR&#xa;Subject Alternative Name: DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40&#xa;Issuer: commonName=GRUPOINS Certificate Authority&#xa;Public Key type: rsa&#xa;Public Key bits: 4096&#xa;Signature Algorithm: sha512WithRSAEncryption&#xa;Not valid before: 2022-08-03T22:04:06&#xa;Not valid after:  2024-08-02T22:04:06&#xa;MD5:   62dc 04f1 e97a fa25 17bf d16d cea3 bc18&#xa;SHA-1: 12d7 44c4 e971 1770 96e8 814b 0ae0 3048 532d 3cec"><table key="subject">
+<elem key="commonName">INS-ISE-3655-Nodo2.grupoins.local</elem>
+<elem key="countryName">CR</elem>
+<elem key="localityName">San Jose</elem>
+<elem key="organizationName">Instituto Nacional de Seguros</elem>
+<elem key="organizationalUnitName">GRUPOINS</elem>
+<elem key="stateOrProvinceName">SJO</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">GRUPOINS Certificate Authority</elem>
+<elem key="domainComponent">grupoins</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">4096</elem>
+<elem key="modulus">9AC93DF0E89F1EBB08DD57D8E07F53935DE841CD6805A43D6054566AE03E5539EAA4A88066D7F90640EFD68AB371C2B4DA00591515D70F8F14A679B6C603F558C3F6AAF293D723605889CFEDD718CA4D4BCE3E967EB2D27D4BBE780182CF3CC12A1A826D4B9112EF3994F8ADD14E086595F7E5497B5FF251BCC696B96BA92D420CE8F2E4055D93AF4A17AEAFCE91693E5B04AC7F4B66EFB2C47395BE810D082A0A101029D9EA8878EFF412335C9299E22E5A1B5D3C464655612CE3B042780A7459335281B6280C5AEE241CABEBF2E4D4B74249BC3E881E53CFE73FF549DC7A0C153AC6107A4E3376073395F956BFD1A8BDDC57785CFC43E0F5A7334A182E6B5A071E9EBC4BBBF2D61A1F7CDCD4D4ABD358A83522CBE959A8BF93AA81301D1A6265BE236FB036FB454C94399EA3D2C8BF60D81322BC7BA2989E85109A4426947E8A545F2B9FF9C15CC43A6E9416F28634CAE3CBF3809A20AFB6AC184CCF1A2D4C2981C73AC75281022D22480DB713846B63D1F03A4E5290A549EA141B5FD84E8ACBBC5074ABF146472339B08BDFAF1AD16F63E24EF01A6BC281B1F96947019B39B406DF1FA810DED3916D133328EEE2DE4B8D251DE6D018021C9CE724C89DE9AED49838E6751D5E8A0C7A0CA579184DE7541F6E89853EFEA89D8AA04E11CB0481CD4C4792466C6F3E6DD20AD42FC24183A97064E4DA52C2FCCCC616B0995F5A91</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">DA:39:A3:EE:5E:6B:4B:0D:32:55:BF:EF:95:60:18:90:AF:D8:07:09</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:INS-ISE-3655-Nodo2.grupoins.local, DNS:INS-ISE-3655-Nodo1.grupoins.local, IP Address:10.1.98.42, IP Address:10.1.98.40</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:B8:49:F8:3B:3C:5D:1A:05:31:BB:AA:05:6E:4C:F7:B7:CD:E8:A0:25&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=INS-SJ-CARAIZ01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=GRUPOINS%20Certificate%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=grupoins,DC=local?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+</table>
+<elem key="sig_algo">sha512WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-08-03T22:04:06</elem>
+<elem key="notAfter">2024-08-02T22:04:06</elem>
+</table>
+<elem key="md5">62dc04f1e97afa2517bfd16dcea3bc18</elem>
+<elem key="sha1">12d744c4e971177096e8814b0ae03048532d3cec</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIIMDCCBhigAwIBAgITcgAAZPnp+Ucl4YQDnQAAAABk+TANBgkqhkiG9w0BAQ0F&#xa;ADBaMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxGDAWBgoJkiaJk/IsZAEZFghncnVw&#xa;b2luczEnMCUGA1UEAxMeR1JVUE9JTlMgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4X&#xa;DTIyMDgwMzIyMDQwNloXDTI0MDgwMjIyMDQwNlowgZUxCzAJBgNVBAYTAkNSMQww&#xa;CgYDVQQIEwNTSk8xETAPBgNVBAcTCFNhbiBKb3NlMSYwJAYDVQQKEx1JbnN0aXR1&#xa;dG8gTmFjaW9uYWwgZGUgU2VndXJvczERMA8GA1UECxMIR1JVUE9JTlMxKjAoBgNV&#xa;BAMTIUlOUy1JU0UtMzY1NS1Ob2RvMi5ncnVwb2lucy5sb2NhbDCCAiIwDQYJKoZI&#xa;hvcNAQEBBQADggIPADCCAgoCggIBAJrJPfDonx67CN1X2OB/U5Nd6EHNaAWkPWBU&#xa;VmrgPlU56qSogGbX+QZA79aKs3HCtNoAWRUV1w+PFKZ5tsYD9VjD9qryk9cjYFiJ&#xa;z+3XGMpNS84+ln6y0n1LvngBgs88wSoagm1LkRLvOZT4rdFOCGWV9+VJe1/yUbzG&#xa;lrlrqS1CDOjy5AVdk69KF66vzpFpPlsErH9LZu+yxHOVvoENCCoKEBAp2eqIeO/0&#xa;EjNckpniLlobXTxGRlVhLOOwQngKdFkzUoG2KAxa7iQcq+vy5NS3Qkm8PogeU8/n&#xa;P/VJ3HoMFTrGEHpOM3YHM5X5Vr/RqL3cV3hc/EPg9aczShgua1oHHp68S7vy1hof&#xa;fNzU1KvTWKg1IsvpWai/k6qBMB0aYmW+I2+wNvtFTJQ5nqPSyL9g2BMivHuimJ6F&#xa;EJpEJpR+ilRfK5/5wVzEOm6UFvKGNMrjy/OAmiCvtqwYTM8aLUwpgcc6x1KBAi0i&#xa;SA23E4RrY9HwOk5SkKVJ6hQbX9hOisu8UHSr8UZHIzmwi9+vGtFvY+JO8BprwoGx&#xa;+WlHAZs5tAbfH6gQ3tORbRMzKO7i3kuNJR3m0BgCHJznJMid6a7UmDjmdR1eigx6&#xa;DKV5GE3nVB9uiYU+/qidiqBOEcsEgc1MR5JGbG8+bdIK1C/CQYOpcGTk2lLC/MzG&#xa;FrCZX1qRAgMBAAGjggKxMIICrTAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0OBBYEFNo5&#xa;o+5ea0sNMlW/75VgGJCv2AcJMBMGA1UdJQQMMAoGCCsGAQUFBwMBMFsGA1UdEQRU&#xa;MFKCIUlOUy1JU0UtMzY1NS1Ob2RvMi5ncnVwb2lucy5sb2NhbIIhSU5TLUlTRS0z&#xa;NjU1LU5vZG8xLmdydXBvaW5zLmxvY2FshwQKAWIqhwQKAWIoMB8GA1UdIwQYMBaA&#xa;FLhJ+Ds8XRoFMbuqBW5M97fN6KAlMIHrBgNVHR8EgeMwgeAwgd2ggdqggdeGgdRs&#xa;ZGFwOi8vL0NOPUdSVVBPSU5TJTIwQ2VydGlmaWNhdGUlMjBBdXRob3JpdHksQ049&#xa;SU5TLVNKLUNBUkFJWjAxLENOPUNEUCxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2aWNl&#xa;cyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPWdydXBvaW5zLERDPWxv&#xa;Y2FsP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1j&#xa;UkxEaXN0cmlidXRpb25Qb2ludDCB1wYIKwYBBQUHAQEEgcowgccwgcQGCCsGAQUF&#xa;BzAChoG3bGRhcDovLy9DTj1HUlVQT0lOUyUyMENlcnRpZmljYXRlJTIwQXV0aG9y&#xa;aXR5LENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2aWNl&#xa;cyxDTj1Db25maWd1cmF0aW9uLERDPWdydXBvaW5zLERDPWxvY2FsP2NBQ2VydGlm&#xa;aWNhdGU/YmFzZT9vYmplY3RDbGFzcz1jZXJ0aWZpY2F0aW9uQXV0aG9yaXR5MCEG&#xa;CSsGAQQBgjcUAgQUHhIAVwBlAGIAUwBlAHIAdgBlAHIwDQYJKoZIhvcNAQENBQAD&#xa;ggIBAGUbE5Smn8IRVIpzG1PMFwDqqW7JgDsugb07FrMZK1InEODKPECiA2F4ssJ1&#xa;gcAer/MWOILVGJ7moxNddrnG38IDuTsUgRC2Yt2YFrupR0fNgMC3uWjCg/iqhCKU&#xa;2cs4qTEL6+rqWOIEDkbWc+t4yezkQL4Fqbprp63vOUMoPOLLghHXYyhn/0fFw9HY&#xa;OqxSNAG+9N3+K1hALYGi9lCu5mVRrRm786ufcrse7qGO3EdGnoXyDryry21Fu3s7&#xa;BVgUUejKcIUP8ppijqF/fb4ewycvlZqJxxfmobwyf0eYXDQVdOYFrf5lrhgQ02vQ&#xa;Nqtm5CK354C+gBIdZMMwOiObBomvgZMdeBJ93fcaXRHGGk4FfPTeVH/OBpQZTKQj&#xa;CiksR5ieA3Gu1j0sMskvvBACEEJnj4Us70JAAY6GCJuB1u5LvsYDBg7KMMUyiNjL&#xa;zKtHcNxve9vBcSmMYhbKwN6eV2QPwU1qMZ/ihPqLBx9dbfe3uOnFyY2SoCcX19+f&#xa;yAI/RJ7NX+XTDT6i/KJu2Xj0tObMlPeToaKpqQehgwkrOCNR7wuhVlzYStL9zC4o&#xa;xVnDzFtLVekm9GFZAQeCIFbs7Zu3u70tb55iQjVeLTe9/FTxuHHTwZPanGaN4X9J&#xa;vIVi5MyfepBRDPfZSos4CF7lmXAaAfyIk51z/RbZvAc0k9bs&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="8909"><state state="closed" reason="reset" reason_ttl="63"/></port>
+<port protocol="tcp" portid="9090"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="zeus-admin" servicefp="SF-Port9090-TCP:V=7.92%I=7%D=6/1%Time=6478B334%P=x86_64-pc-linux-gnu%r(GetRequest,C6,&quot;HTTP/1\.1\x20302\x20\r\nStrict-Transport-Security:\x20max-age=31536000;\x20includeSubDomains\r\nLocation:\x20https://localhost:9090/portal/\r\nContent-Length:\x200\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:14\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(JavaRMI,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:14\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(WMSRequest,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:14\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(ibm-db2-das,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:14\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(SqueezeCenter_CLI,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:14\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(informix,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:14\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(drda,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:14\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(HTTPOptions,49,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(RTSPRequest,49,&quot;HTTP/1\.1\x20405\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(RPCCheck,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(DNSStatusRequestTCP,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(Help,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(SSLSessionReq,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(TerminalServerCookie,49,&quot;HTTP/1\.1\x20500\x20\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:03:19\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, TerminalServerCookie: &#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;  GetRequest: &#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:9090/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:14 GMT&#xa;    Connection: close&#xa;  HTTPOptions, RTSPRequest: &#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close&#xa;  JavaRMI, SqueezeCenter_CLI, WMSRequest, drda, ibm-db2-das, informix: &#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:14 GMT&#xa;    Connection: close"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, TerminalServerCookie">&#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.1 302 &#xa;    Strict-Transport-Security: max-age=31536000; includeSubDomains&#xa;    Location: https://localhost:9090/portal/&#xa;    Content-Length: 0&#xa;    Date: Thu, 01 Jun 2023 15:03:14 GMT&#xa;    Connection: close</elem>
+<elem key="HTTPOptions, RTSPRequest">&#xa;    HTTP/1.1 405 &#xa;    Date: Thu, 01 Jun 2023 15:03:19 GMT&#xa;    Connection: close</elem>
+<elem key="JavaRMI, SqueezeCenter_CLI, WMSRequest, drda, ibm-db2-das, informix">&#xa;    HTTP/1.1 500 &#xa;    Date: Thu, 01 Jun 2023 15:03:14 GMT&#xa;    Connection: close</elem>
+</script></port>
+<port protocol="tcp" portid="30514"><state state="closed" reason="reset" reason_ttl="63"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1468"/>
+<osmatch name="Linux 3.2 - 4.9" accuracy="100" line="65317">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:4</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="2352336" lastboot="Fri May  5 05:38:58 2023"/>
+<distance value="2"/>
+<tcpsequence index="266" difficulty="Good luck!" values="DFD2D9E4,E7FA5CA9,72E34D9F,ED18EEF,E33A744,92E74F78"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="8C35314B,8C3531B1,8C353216,8C35327B,8C3532E0,8C353346"/>
+<trace port="8080" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.1.98.42" rtt="0.44" host="INS-ISE-3655-Nodo2"/>
+</trace>
+<times srtt="462" rttvar="61" to="100000"/>
+</host>
+<host starttime="1685631465" endtime="1685631874"><status state="up" reason="echo-reply" reason_ttl="252"/>
+<address addr="172.16.2.3" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="reset" count="65533" proto="tcp" ports="1-21,23-160,162-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ssh" product="OpenSSH" version="6.2" extrainfo="protocol 2.0; Cisco NX-OS" devicetype="switch" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:6.2</cpe></service><script id="ssh-hostkey" output="&#xa;  1024 b3:bc:a3:e9:2f:1a:4c:0e:3a:b0:28:f7:8b:cd:5c:dc (RSA)"><table>
+<elem key="bits">1024</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAAAgQDrrz5kk118E5dwn03DTVphOo0DcvAQteVIJJjVXoePpeImgZY6isY6K1kuwZj0xFS68IT9cSBi5+QwnnAmpMrG+3gRBcLNDsnGJI8r9q0P745FO+Be8B4ssMWfZJvWRxBCEQr12m0zKuCnapFQXaXEcbWpHicyVw3rfg0o5LhjAQ==</elem>
+<elem key="fingerprint">b3bca3e92f1a4c0e3ab028f78bcd5cdc</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="161"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<osmatch name="Cisco NX-OS 5.2" accuracy="96" line="18745">
+<osclass type="switch" vendor="Cisco" osfamily="NX-OS" osgen="5.X" accuracy="96"><cpe>cpe:/o:cisco:nx_os:5.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Nexus 7000 switch (NX-OS 4.2.6)" accuracy="94" line="18481">
+<osclass type="switch" vendor="Cisco" osfamily="NX-OS" osgen="4.X" accuracy="94"><cpe>cpe:/o:cisco:nexus_7000</cpe><cpe>cpe:/o:cisco:nx_os:4.2.6</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco NX-OS 4.0(1a)N1(1)" accuracy="91" line="18557">
+<osclass type="switch" vendor="Cisco" osfamily="NX-OS" osgen="4.X" accuracy="91"><cpe>cpe:/o:cisco:nx_os:4.0</cpe></osclass>
+</osmatch>
+<osmatch name="Tripp Lite NetOS 7.5.2tl" accuracy="88" line="103203">
+<osclass type="specialized" vendor="Tripp Lite" osfamily="NetOS" osgen="7.X" accuracy="88"><cpe>cpe:/o:tripplite:netos:7.5.2tl</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco RFGW-1-D radio" accuracy="86" line="14284">
+<osclass type="specialized" vendor="Cisco" osfamily="embedded" accuracy="86"/>
+</osmatch>
+<osmatch name="Linksys BEFSR41 router" accuracy="86" line="43814">
+<osclass type="router" vendor="Linksys" osfamily="embedded" accuracy="86"><cpe>cpe:/h:linksys:befsr41</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="37598818" lastboot="Wed Mar 23 06:57:36 2022"/>
+<distance value="4"/>
+<tcpsequence index="259" difficulty="Good luck!" values="B539F54F,DCD795CD,A648E6CA,91498132,9F2B4C14,3055D3E"/>
+<ipidsequence class="Incremental" values="1B0C,1B0D,1B0E,1B0F,1B10,1B11"/>
+<tcptssequence class="other" values="16691E6A,16691E6B,16691E6C,16691E6D,16691E6E,16691E6F"/>
+<trace port="199" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.1.100.229" rtt="0.88"/>
+<hop ttl="3" ipaddr="10.1.100.46" rtt="2.20"/>
+<hop ttl="4" ipaddr="172.16.2.3" rtt="0.94"/>
+</trace>
+<times srtt="950" rttvar="236" to="100000"/>
+</host>
+<host starttime="1685631465" endtime="1685631874"><status state="up" reason="echo-reply" reason_ttl="252"/>
+<address addr="172.16.2.4" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65535">
+<extrareasons reason="reset" count="65535" proto="tcp" ports="1-65535"/>
+</extraports>
+</ports>
+<os><portused state="closed" proto="tcp" portid="1"/>
+<osmatch name="Cisco ASA 5510 firewall (PIX OS 8.2)" accuracy="100" line="18982">
+<osclass type="firewall" vendor="Cisco" osfamily="PIX OS" osgen="6.X" accuracy="100"><cpe>cpe:/o:cisco:pix_os:6</cpe></osclass>
+</osmatch>
+</os>
+<distance value="4"/>
+<trace port="1720" proto="tcp">
+<hop ttl="2" ipaddr="10.1.100.241" rtt="0.78"/>
+<hop ttl="3" ipaddr="10.1.100.42" rtt="2.55"/>
+<hop ttl="4" ipaddr="172.16.2.4" rtt="0.60"/>
+</trace>
+<times srtt="683" rttvar="260" to="100000"/>
+</host>
+<host starttime="1685631465" endtime="1685631874"><status state="up" reason="echo-reply" reason_ttl="252"/>
+<address addr="172.16.3.2" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="reset" count="65533" proto="tcp" ports="1-21,23-442,444-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="252"/><service name="ssh" product="Cisco SSH" version="1.25" extrainfo="protocol 2.0" ostype="IOS" method="probed" conf="10"><cpe>cpe:/a:cisco:ssh:1.25</cpe><cpe>cpe:/o:cisco:ios</cpe></service><script id="ssh-hostkey" output="&#xa;  4096 f5:c6:b4:0c:b1:6b:ad:c5:b4:b8:b5:ea:11:64:d5:55 (RSA)"><table>
+<elem key="bits">4096</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAACAQC1V+gxuIqCUVyAED4pEAaETeLvZyBZOGLyBYj1Kt1ISaikISR6pmJoibhH5T2KMq560a4FS1lVXT3IuZdp/Unhrs/NYUcoSi9a3QC3vpKHmsD1aZcTKpFtzKylYdLCt1kvld1yJawvIpN4SdnhnwLPynYgmPiujo/vY87OF+OHDNPnL/WAWMpsvWeWvINoR9d7RaBuUG2FmAN6GULjjbyTnmYRxxp1PAq1MIKC0jTbPDv3ae/LYEjAvt7WKhcCp0VbkfSLddlzJsOuL5lClO/AvRu3SRSCreJc5CODZPYrI3oQgzPlj6CtXVQC4dXusjzKGM2gzOcCIqmlFZ585TphDXgVwNdoa2F9H5p5UV2FqzF+Ci9+jks704HN3sJu2RRDVjOFvzRue1hubVV2P4Y/e1/I/MOnLR+Vi3iVO0oHvbbHL/TZELifioPsRVOx7tnsiz7aW5dQzR8HMftQfYFuymFBExYPA3Vv+UDggH3rgIavrtub/hmXjg78WBkKrx8v2zc3dtartEGBeojCpLXevfc/XlEBCOfQqwZXleve6X5242uKZsGHDnjfahe1t+Gmb4YVuY1MKkHSN3TXa5iNxN8jt8x25yJMXJsZ0hkycdt1VDi1sTMgyWc6HsSnqxIDFzZkz1q2bZDJY5qSw6D59UfR2jrHLeM1Io3H6nmzww==</elem>
+<elem key="fingerprint">f5c6b40cb16badc5b4b8b5ea1164d555</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="252"/><service name="https" servicefp="SF-Port443-TCP:V=7.92%T=SSL%I=7%D=6/1%Time=6478B33A%P=x86_64-pc-linux-gnu%r(GetRequest,BF,&quot;HTTP/1\.1\x20301\x20Moved\x20Permanently\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:11:14\x20UTC\r\nStrict-Transport-Security:\x20max-age=31536000\nX-XSS-Protection:\x201\r\nConnection:\x20close\r\nLocation:\x20/admin/public/index\.html\r\n\r\n&quot;)%r(HTTPOptions,B8,&quot;HTTP/1\.1\x20501\x20Not\x20Implemented\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:11:14\x20UTC\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\nExpires:\x20Thu,\x2016\x20Feb\x201989\x2000:00:00\x20GMT\r\n\r\n&lt;H1&gt;501\x20Not\x20Implemented&lt;/H1&gt;\n\n\n&quot;)%r(FourOhFourRequest,B0,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Thu,\x2001\x20Jun\x202023\x2015:11:14\x20UTC\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\nExpires:\x20Thu,\x2016\x20Feb\x201989\x2000:00:00\x20GMT\r\n\r\n&lt;H1&gt;400\x20Bad\x20Request&lt;/H1&gt;\n\n\n&quot;);" tunnel="ssl" method="probed" conf="10"/><script id="fingerprint-strings" output="&#xa;  FourOhFourRequest: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Date: Thu, 01 Jun 2023 15:11:14 UTC&#xa;    Connection: close&#xa;    Content-Type: text/html&#xa;    Expires: Thu, 16 Feb 1989 00:00:00 GMT&#xa;    &lt;H1&gt;400 Bad Request&lt;/H1&gt;&#xa;  GetRequest: &#xa;    HTTP/1.1 301 Moved Permanently&#xa;    Date: Thu, 01 Jun 2023 15:11:14 UTC&#xa;    Strict-Transport-Security: max-age=31536000&#xa;    X-XSS-Protection: 1&#xa;    Connection: close&#xa;    Location: /admin/public/index.html&#xa;  HTTPOptions: &#xa;    HTTP/1.1 501 Not Implemented&#xa;    Date: Thu, 01 Jun 2023 15:11:14 UTC&#xa;    Connection: close&#xa;    Content-Type: text/html&#xa;    Expires: Thu, 16 Feb 1989 00:00:00 GMT&#xa;    &lt;H1&gt;501 Not Implemented&lt;/H1&gt;"><elem key="FourOhFourRequest">&#xa;    HTTP/1.1 400 Bad Request&#xa;    Date: Thu, 01 Jun 2023 15:11:14 UTC&#xa;    Connection: close&#xa;    Content-Type: text/html&#xa;    Expires: Thu, 16 Feb 1989 00:00:00 GMT&#xa;    &lt;H1&gt;400 Bad Request&lt;/H1&gt;</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.1 301 Moved Permanently&#xa;    Date: Thu, 01 Jun 2023 15:11:14 UTC&#xa;    Strict-Transport-Security: max-age=31536000&#xa;    X-XSS-Protection: 1&#xa;    Connection: close&#xa;    Location: /admin/public/index.html</elem>
+<elem key="HTTPOptions">&#xa;    HTTP/1.1 501 Not Implemented&#xa;    Date: Thu, 01 Jun 2023 15:11:14 UTC&#xa;    Connection: close&#xa;    Content-Type: text/html&#xa;    Expires: Thu, 16 Feb 1989 00:00:00 GMT&#xa;    &lt;H1&gt;501 Not Implemented&lt;/H1&gt;</elem>
+</script><script id="http-title" output="Cisco ASDM 7.18(1)&#xa;Requested resource was /admin/public/index.html"><elem key="title">Cisco ASDM 7.18(1)</elem>
+<elem key="redirect_url">/admin/public/index.html</elem>
+</script><script id="http-favicon" output="Unknown favicon MD5: 91A53356671C980F1C3AC09A71AA8D01"/><script id="http-robots.txt" output="1 disallowed entry &#xa;/"/><script id="http-trane-info" output="Problem with XML parsing of /evox/about"/><script id="http-methods" output="&#xa;  Supported Methods: GET HEAD POST"><table key="Supported Methods">
+<elem>GET</elem>
+<elem>HEAD</elem>
+<elem>POST</elem>
+</table>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=ASA Temporary Self Signed Certificate&#xa;Issuer: commonName=ASA Temporary Self Signed Certificate&#xa;Public Key type: rsa&#xa;Public Key bits: 2048&#xa;Signature Algorithm: sha256WithRSAEncryption&#xa;Not valid before: 2023-01-26T23:27:44&#xa;Not valid after:  2033-01-23T23:27:44&#xa;MD5:   4969 4fa5 4985 07c3 a6c0 8094 faaa 17f3&#xa;SHA-1: 0fc9 97a3 8068 5fe5 8079 671d 0337 4f6a 7689 9107"><table key="subject">
+<elem key="commonName">ASA Temporary Self Signed Certificate</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">ASA Temporary Self Signed Certificate</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">AC09493B8414B314DB6D06DAD50342AAC954F5D58E087D18100AE99C63F407B751A754ACBF79FD40D40C78A01F86F3D66DD580E171C42EA3CEAE329387DB25A9C5CF4ECC0615ED8DA1C4C0F12C2309C020FB7172905107E1CAEB7A742D30F118CE77A63BAE3ACA1634DD7EA62F8515BB5B0132CBC86A2D76C5130549D8E9092CCD8C8E5770955A01366D9832562B808459F6365AE3ABB15CEA547D200DD273F851F84EC6507B88A5E91DBD490A40AF08E8256F9DFE9F488DA703ADB62B53F2F190FD026C6EB669948CFC08B7F3788754557B21CB05A16A71ADBD67E9E93618F7E254193CDE05F508F01707FD6F44948F94A59E7C6B71A3B0D22512CD313717EB</elem>
+<elem key="exponent">65537</elem>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-01-26T23:27:44</elem>
+<elem key="notAfter">2033-01-23T23:27:44</elem>
+</table>
+<elem key="md5">49694fa5498507c3a6c08094faaa17f3</elem>
+<elem key="sha1">0fc997a380685fe58079671d03374f6a76899107</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC3DCCAcSgAwIBAgIEcAzTYzANBgkqhkiG9w0BAQsFADAwMS4wLAYDVQQDEyVB&#xa;U0EgVGVtcG9yYXJ5IFNlbGYgU2lnbmVkIENlcnRpZmljYXRlMB4XDTIzMDEyNjIz&#xa;Mjc0NFoXDTMzMDEyMzIzMjc0NFowMDEuMCwGA1UEAxMlQVNBIFRlbXBvcmFyeSBT&#xa;ZWxmIFNpZ25lZCBDZXJ0aWZpY2F0ZTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC&#xa;AQoCggEBAKwJSTuEFLMU220G2tUDQqrJVPXVjgh9GBAK6Zxj9Ae3UadUrL95/UDU&#xa;DHigH4bz1m3VgOFxxC6jzq4yk4fbJanFz07MBhXtjaHEwPEsIwnAIPtxcpBRB+HK&#xa;63p0LTDxGM53pjuuOsoWNN1+pi+FFbtbATLLyGotdsUTBUnY6QkszYyOV3CVWgE2&#xa;bZgyViuAhFn2Nlrjq7Fc6lR9IA3Sc/hR+E7GUHuIpekdvUkKQK8I6CVvnf6fSI2n&#xa;A622K1Py8ZD9AmxutmmUjPwIt/N4h1RVeyHLBaFqca29Z+npNhj34lQZPN4F9Qjw&#xa;Fwf9b0SUj5SlnnxrcaOw0iUSzTE3F+sCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEA&#xa;T85P96nrZ6cJFWPswRC6zAttbhZJJqtKeAywKgRhIXTx4/D/kUqt1JRUlXMkFLO8&#xa;SoVC96mNTFl7/sGtcPlx2QSxhDbcNrLzyebXaAQdGLiGSktpT/doSiDmNuYqugO6&#xa;wNfswWAcXGZ1mOns6NtO7qxGOBuzTpoWpeRpqKgZbtlUO+yLnwtybFQvyUJSygWL&#xa;BIKkyE1PU3MvN29s9icKgV1qKZWb+mYzAM3PHHPuyEQQgMecX+hRkNoeBH2N/vLv&#xa;NbIrnF2NJLefiKFRaD561ZVlTQ1u9lm4vqWnIG8MwsuR7J6egwbbOp2suBdZEddc&#xa;UD8ahjAH4Kt5nG1WKP+Evw==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<osmatch name="Cisco ASA 5510 firewall (PIX OS 8.2)" accuracy="95" line="18982">
+<osclass type="firewall" vendor="Cisco" osfamily="PIX OS" osgen="6.X" accuracy="95"><cpe>cpe:/o:cisco:pix_os:6</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Adaptive Security Appliance 5510 or 5540 firewall (ASA 8.0)" accuracy="94" line="13456">
+<osclass type="firewall" vendor="Cisco" osfamily="ASA" osgen="8.X" accuracy="94"><cpe>cpe:/a:cisco:adaptive_security_appliance_software:8.0</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Adaptive Security Appliance (ASA 9.2)" accuracy="91" line="13474">
+<osclass type="firewall" vendor="Cisco" osfamily="ASA" osgen="9.X" accuracy="91"><cpe>cpe:/a:cisco:adaptive_security_appliance_software:9.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 3925 router (IOS 12.4)" accuracy="90" line="16081">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="90"><cpe>cpe:/o:cisco:ios:12.4</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 2811 router (IOS 12.2 - 12.4)" accuracy="90" line="16005">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="90"><cpe>cpe:/h:cisco:2811_router</cpe><cpe>cpe:/o:cisco:ios:12</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco IOS 15.5" accuracy="90" line="18314">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="90"><cpe>cpe:/o:cisco:ios:15.5</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 880 router (IOS 15.0) or 3750 switch (IOS 12.2)" accuracy="90" line="17278">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="90"><cpe>cpe:/h:cisco:catalyst_3750</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="90"><cpe>cpe:/h:cisco:880_router</cpe><cpe>cpe:/o:cisco:ios:15.0</cpe></osclass>
+</osmatch>
+<osmatch name="Linksys BEFSR41 router" accuracy="89" line="43814">
+<osclass type="router" vendor="Linksys" osfamily="embedded" accuracy="89"><cpe>cpe:/h:linksys:befsr41</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco C2960 switch (IOS 12.2)" accuracy="88" line="17301">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="88"><cpe>cpe:/h:cisco:catalyst_2960</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 6506 router (IOS 12.2)" accuracy="88" line="16181">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="88"><cpe>cpe:/h:cisco:6506_router</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+</os>
+<distance value="3"/>
+<tcpsequence index="259" difficulty="Good luck!" values="2BDCABF3,BE822CC,4C4CA4C4,5CDBB1E2,38F0FF99,D3BD121F"/>
+<ipidsequence class="Randomized" values="E3EB,C31F,AF05,F1FF,91AC,D0F1"/>
+<tcptssequence class="none returned (unsupported)"/>
+<trace port="199" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.40.0.202" rtt="0.54"/>
+<hop ttl="3" ipaddr="172.16.3.2" rtt="0.58"/>
+</trace>
+<times srtt="559" rttvar="55" to="100000"/>
+</host>
+<host><status state="down" reason="no-response" reason_ttl="0"/>
+<address addr="10.1.101.11" addrtype="ipv4"/>
+</host>
+<host><status state="down" reason="no-response" reason_ttl="0"/>
+<address addr="10.1.101.12" addrtype="ipv4"/>
+</host>
+<taskbegin task="Ping Scan" time="1685631875"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.1.110.8" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskend task="Ping Scan" time="1685631875" extrainfo="1 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1685631875"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1685631875"/>
+<taskbegin task="SYN Stealth Scan" time="1685631875"/>
+<taskprogress task="SYN Stealth Scan" time="1685631906" percent="18.10" remaining="141" etc="1685632046"/>
+<taskprogress task="SYN Stealth Scan" time="1685631936" percent="33.52" remaining="121" etc="1685632057"/>
+<taskprogress task="SYN Stealth Scan" time="1685631966" percent="48.02" remaining="99" etc="1685632065"/>
+<taskprogress task="SYN Stealth Scan" time="1685631996" percent="62.86" remaining="72" etc="1685632067"/>
+<taskprogress task="SYN Stealth Scan" time="1685632026" percent="78.21" remaining="43" etc="1685632068"/>
+<taskend task="SYN Stealth Scan" time="1685632127" extrainfo="327675 total ports"/>
+<taskbegin task="Service scan" time="1685632127"/>
+<taskend task="Service scan" time="1685632176" extrainfo="7 services on 5 hosts"/>
+<taskbegin task="Traceroute" time="1685632187"/>
+<taskend task="Traceroute" time="1685632187"/>
+<taskbegin task="Parallel DNS resolution of 8 hosts." time="1685632187"/>
+<taskend task="Parallel DNS resolution of 8 hosts." time="1685632187"/>
+<taskbegin task="NSE" time="1685632187"/>
+<taskend task="NSE" time="1685632188"/>
+<taskbegin task="NSE" time="1685632188"/>
+<taskend task="NSE" time="1685632188"/>
+<taskbegin task="NSE" time="1685632188"/>
+<taskend task="NSE" time="1685632188"/>
+<host starttime="1685631875" endtime="1685632188"><status state="up" reason="echo-reply" reason_ttl="252"/>
+<address addr="172.30.2.4" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="reset" count="65534" proto="tcp" ports="1-21,23-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="252"/><service name="ssh" product="Cisco SSH" version="1.25" extrainfo="protocol 1.99" ostype="IOS" method="probed" conf="10"><cpe>cpe:/a:cisco:ssh:1.25</cpe><cpe>cpe:/o:cisco:ios</cpe></service><script id="ssh-hostkey" output="&#xa;  1024 97:68:22:e4:eb:36:a5:9b:63:84:6a:e2:d3:9d:56:77 (RSA)"><table>
+<elem key="bits">1024</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAAAgQCcFhy9JM0Gd45gAqQg5EnNGcXND2vfyvjPiKypMtq6JI+b8hP3+18wI0JEUqUkPX/FZLuHag7TthmpAbHlWmarrE+82Oh/Xodj4QYu9bov6MNwRiCeXLczcimeKoOND3P06rL1HPVHERVOKFM7543KoU5n0mDoR7b6Du3Q2usljQ==</elem>
+<elem key="fingerprint">976822e4eb36a59b63846ae2d39d5677</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<osmatch name="Cisco 880 router (IOS 15.0) or 3750 switch (IOS 12.2)" accuracy="98" line="17278">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="98"><cpe>cpe:/h:cisco:catalyst_3750</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="98"><cpe>cpe:/h:cisco:880_router</cpe><cpe>cpe:/o:cisco:ios:15.0</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco C2960 switch (IOS 12.2)" accuracy="96" line="17301">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="96"><cpe>cpe:/h:cisco:catalyst_2960</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 3925 router (IOS 12.4)" accuracy="96" line="16081">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="96"><cpe>cpe:/o:cisco:ios:12.4</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 2811 router (IOS 12.2 - 12.4)" accuracy="95" line="16005">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="95"><cpe>cpe:/h:cisco:2811_router</cpe><cpe>cpe:/o:cisco:ios:12</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco IOS 15.5" accuracy="95" line="18314">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="95"><cpe>cpe:/o:cisco:ios:15.5</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Aironet 1231G WAP (IOS 12.3)" accuracy="93" line="18003">
+<osclass type="WAP" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="93"><cpe>cpe:/h:cisco:aironet_ap1231g</cpe><cpe>cpe:/o:cisco:ios:12.3</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 6506 router (IOS 12.2)" accuracy="92" line="16181">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="92"><cpe>cpe:/h:cisco:6506_router</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco ASA 5510 firewall (PIX OS 8.2)" accuracy="89" line="18982">
+<osclass type="firewall" vendor="Cisco" osfamily="PIX OS" osgen="6.X" accuracy="89"><cpe>cpe:/o:cisco:pix_os:6</cpe></osclass>
+</osmatch>
+</os>
+<distance value="3"/>
+<tcpsequence index="263" difficulty="Good luck!" values="DFF726D6,6A529B15,C5131364,EB297D11,5C969B63,66139203"/>
+<ipidsequence class="Randomized" values="27E6,C44C,5BD5,4E05,F6B4,4BF6"/>
+<tcptssequence class="none returned (unsupported)"/>
+<trace port="1720" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.40.0.202" rtt="0.54"/>
+<hop ttl="3" ipaddr="172.30.2.4" rtt="7.62"/>
+</trace>
+<times srtt="4715" rttvar="3806" to="100000"/>
+</host>
+<host starttime="1685631875" endtime="1685632188"><status state="up" reason="echo-reply" reason_ttl="252"/>
+<address addr="192.168.95.2" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="reset" count="65533" proto="tcp" ports="1-21,23-4785,4787-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="252"/><service name="ssh" product="Cisco SSH" version="1.25" extrainfo="protocol 1.99" ostype="IOS" method="probed" conf="10"><cpe>cpe:/a:cisco:ssh:1.25</cpe><cpe>cpe:/o:cisco:ios</cpe></service><script id="ssh-hostkey" output="&#xa;  1024 f3:19:66:b7:67:84:32:ca:12:00:8f:31:1c:3c:5f:c3 (RSA1)&#xa;  1024 21:0b:cb:14:ef:94:94:bc:2c:17:57:6b:5e:87:ab:45 (RSA)"><table>
+<elem key="bits">1024</elem>
+<elem key="key">65537 162623907843149725986112894673601987694648000652083691664062291676239797079931508542900820403823403700569142366156053884220529115714940786994194654891608159174716499878152515950228464552957606364733647949061996196045721736954736857447811629861898128132390484094508893757135479105170667863473778719854090974581</elem>
+<elem key="fingerprint">f31966b7678432ca12008f311c3c5fc3</elem>
+<elem key="type">rsa1</elem>
+</table>
+<table>
+<elem key="bits">1024</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAAAgQDnlYmrO+3GW3EcO/0KgUF++1XhKDiedKYnRZwUcUf1xGVv+plBTqi0NDwyEf5jGBhwUWhEw+Too35hqseg539KqOcO4UY6lp/fwgKBLTMj9ZtWzyWaO2E/kphVB8RHSdz+ZqVLZEjUxnlPvmpT7SgJkDgoAh9/1qETMnPdasb1dQ==</elem>
+<elem key="fingerprint">210bcb14ef9494bc2c17576b5e87ab45</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script><script id="sshv1" output="Server supports SSHv1">true</script></port>
+<port protocol="tcp" portid="4786"><state state="open" reason="syn-ack" reason_ttl="252"/><service name="smart-install" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<portused state="closed" proto="udp" portid="34535"/>
+<osmatch name="Cisco 2811 router (IOS 12.2 - 12.4)" accuracy="97" line="16005">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="97"><cpe>cpe:/h:cisco:2811_router</cpe><cpe>cpe:/o:cisco:ios:12</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco C2960 switch (IOS 12.2)" accuracy="97" line="17301">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="97"><cpe>cpe:/h:cisco:catalyst_2960</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco IOS 15.5" accuracy="97" line="18314">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="97"><cpe>cpe:/o:cisco:ios:15.5</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 3925 router (IOS 12.4)" accuracy="96" line="16081">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="96"><cpe>cpe:/o:cisco:ios:12.4</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 880 router (IOS 15.0) or 3750 switch (IOS 12.2)" accuracy="96" line="17278">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="96"><cpe>cpe:/h:cisco:catalyst_3750</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="96"><cpe>cpe:/h:cisco:880_router</cpe><cpe>cpe:/o:cisco:ios:15.0</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Aironet 1231G WAP (IOS 12.3)" accuracy="95" line="18003">
+<osclass type="WAP" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="95"><cpe>cpe:/h:cisco:aironet_ap1231g</cpe><cpe>cpe:/o:cisco:ios:12.3</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 6506 router (IOS 12.2)" accuracy="93" line="16181">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="93"><cpe>cpe:/h:cisco:6506_router</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Catalyst Express 500 or 520 switch" accuracy="88" line="17840">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="88"><cpe>cpe:/h:cisco:catalyst_express_500</cpe><cpe>cpe:/h:cisco:catalyst_express_520</cpe><cpe>cpe:/o:cisco:ios:12</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Catalyst switch (IOS 12.2)" accuracy="88" line="17884">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="88"><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco ASA 5510 firewall (PIX OS 8.2)" accuracy="88" line="18982">
+<osclass type="firewall" vendor="Cisco" osfamily="PIX OS" osgen="6.X" accuracy="88"><cpe>cpe:/o:cisco:pix_os:6</cpe></osclass>
+</osmatch>
+<osfingerprint fingerprint="OS:SCAN(V=7.92%E=4%D=6/1%OT=22%CT=1%CU=34535%PV=Y%DS=3%DC=T%G=Y%TM=6478B4BC&#xa;OS:%P=x86_64-pc-linux-gnu)SEQ(SP=105%GCD=1%ISR=10A%TI=RD%CI=RD%II=RI%TS=U)O&#xa;OS:PS(O1=M546%O2=M546%O3=M280%O4=M218%O5=M218%O6=M109)WIN(W1=1020%W2=1020%W&#xa;OS:3=1020%W4=1020%W5=1020%W6=1020)ECN(R=Y%DF=N%T=FE%W=1020%O=M546%CC=N%Q=)T&#xa;OS:1(R=Y%DF=N%T=FE%S=O%A=S+%F=AS%RD=0%Q=)T2(R=Y%DF=N%T=FF%W=80%S=Z%A=S%F=AR&#xa;OS:%O=%RD=0%Q=)T3(R=Y%DF=N%T=FF%W=100%S=Z%A=S+%F=AR%O=%RD=0%Q=)T4(R=Y%DF=N%&#xa;OS:T=FF%W=400%S=A%A=S%F=AR%O=%RD=0%Q=)T5(R=Y%DF=N%T=FE%W=0%S=O%A=S+%F=AR%O=&#xa;OS:%RD=0%Q=)T6(R=Y%DF=N%T=FF%W=8000%S=A%A=S%F=AR%O=%RD=0%Q=)T7(R=Y%DF=N%T=F&#xa;OS:F%W=FFFF%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=FE%IPL=38%UN=0%RIPL=G%RI&#xa;OS:D=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=S%T=FE%CD=S)&#xa;"/>
+</os>
+<distance value="3"/>
+<tcpsequence index="261" difficulty="Good luck!" values="2C63A3BA,F9A597D7,E322C113,B51AF76F,35C45F07,483CC43"/>
+<ipidsequence class="Randomized" values="9315,4ABB,B943,9C5D,AF3E,208A"/>
+<tcptssequence class="none returned (unsupported)"/>
+<trace port="199" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.40.0.202" rtt="0.54"/>
+<hop ttl="3" ipaddr="192.168.95.2" rtt="1.48"/>
+</trace>
+<times srtt="1298" rttvar="593" to="100000"/>
+</host>
+<host starttime="1685631875" endtime="1685632188"><status state="up" reason="echo-reply" reason_ttl="252"/>
+<address addr="192.168.95.3" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="reset" count="65533" proto="tcp" ports="1-21,23-4785,4787-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="252"/><service name="ssh" product="Cisco SSH" version="1.25" extrainfo="protocol 1.99" ostype="IOS" method="probed" conf="10"><cpe>cpe:/a:cisco:ssh:1.25</cpe><cpe>cpe:/o:cisco:ios</cpe></service><script id="ssh-hostkey" output="&#xa;  1024 60:02:c0:56:ff:0b:e2:94:eb:8c:a8:28:97:1c:c7:92 (RSA1)"><table>
+<elem key="bits">1024</elem>
+<elem key="key">65537 125859280806010538894121349428870089386391778144212710144135140049946376192264696086866899664124818524510427465412794792773074160617755382243464494289818217147184788581721155277642764753945301404049345520242426383050836961316121206955597640573197643737183656541238438943660720230570755484916924261363068673017</elem>
+<elem key="fingerprint">6002c056ff0be294eb8ca828971cc792</elem>
+<elem key="type">rsa1</elem>
+</table>
+</script><script id="sshv1" output="Server supports SSHv1">true</script></port>
+<port protocol="tcp" portid="4786"><state state="open" reason="syn-ack" reason_ttl="252"/><service name="smart-install" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<portused state="closed" proto="udp" portid="40365"/>
+<osmatch name="Cisco 2811 router (IOS 12.2 - 12.4)" accuracy="97" line="16005">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="97"><cpe>cpe:/h:cisco:2811_router</cpe><cpe>cpe:/o:cisco:ios:12</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco C2960 switch (IOS 12.2)" accuracy="97" line="17301">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="97"><cpe>cpe:/h:cisco:catalyst_2960</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco IOS 15.5" accuracy="97" line="18314">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="97"><cpe>cpe:/o:cisco:ios:15.5</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 3925 router (IOS 12.4)" accuracy="96" line="16081">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="96"><cpe>cpe:/o:cisco:ios:12.4</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 880 router (IOS 15.0) or 3750 switch (IOS 12.2)" accuracy="96" line="17278">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="96"><cpe>cpe:/h:cisco:catalyst_3750</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="96"><cpe>cpe:/h:cisco:880_router</cpe><cpe>cpe:/o:cisco:ios:15.0</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Aironet 1231G WAP (IOS 12.3)" accuracy="95" line="18003">
+<osclass type="WAP" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="95"><cpe>cpe:/h:cisco:aironet_ap1231g</cpe><cpe>cpe:/o:cisco:ios:12.3</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 6506 router (IOS 12.2)" accuracy="93" line="16181">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="93"><cpe>cpe:/h:cisco:6506_router</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Catalyst Express 500 or 520 switch" accuracy="88" line="17840">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="88"><cpe>cpe:/h:cisco:catalyst_express_500</cpe><cpe>cpe:/h:cisco:catalyst_express_520</cpe><cpe>cpe:/o:cisco:ios:12</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Catalyst switch (IOS 12.2)" accuracy="88" line="17884">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="88"><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco ASA 5510 firewall (PIX OS 8.2)" accuracy="88" line="18982">
+<osclass type="firewall" vendor="Cisco" osfamily="PIX OS" osgen="6.X" accuracy="88"><cpe>cpe:/o:cisco:pix_os:6</cpe></osclass>
+</osmatch>
+<osfingerprint fingerprint="OS:SCAN(V=7.92%E=4%D=6/1%OT=22%CT=1%CU=40365%PV=Y%DS=3%DC=T%G=Y%TM=6478B4BC&#xa;OS:%P=x86_64-pc-linux-gnu)SEQ(SP=106%GCD=1%ISR=10B%TI=RD%CI=RD%II=RI%TS=U)O&#xa;OS:PS(O1=M546%O2=M546%O3=M280%O4=M218%O5=M218%O6=M109)WIN(W1=1020%W2=1020%W&#xa;OS:3=1020%W4=1020%W5=1020%W6=1020)ECN(R=Y%DF=N%T=FE%W=1020%O=M546%CC=N%Q=)T&#xa;OS:1(R=Y%DF=N%T=FE%S=O%A=S+%F=AS%RD=0%Q=)T2(R=Y%DF=N%T=FF%W=80%S=Z%A=S%F=AR&#xa;OS:%O=%RD=0%Q=)T3(R=Y%DF=N%T=FF%W=100%S=Z%A=S+%F=AR%O=%RD=0%Q=)T4(R=Y%DF=N%&#xa;OS:T=FF%W=400%S=A%A=S%F=AR%O=%RD=0%Q=)T5(R=Y%DF=N%T=FE%W=0%S=O%A=S+%F=AR%O=&#xa;OS:%RD=0%Q=)T6(R=Y%DF=N%T=FF%W=8000%S=A%A=S%F=AR%O=%RD=0%Q=)T7(R=Y%DF=N%T=F&#xa;OS:F%W=FFFF%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=FE%IPL=38%UN=0%RIPL=G%RI&#xa;OS:D=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=S%T=FE%CD=S)&#xa;"/>
+</os>
+<distance value="3"/>
+<tcpsequence index="262" difficulty="Good luck!" values="D81AE726,4D4FA1F2,B16B17C2,442A17BC,529EF21C,72C2040"/>
+<ipidsequence class="Randomized" values="D00B,55BE,3C3F,F0AA,A2D5,A289"/>
+<tcptssequence class="none returned (unsupported)"/>
+<trace port="199" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.40.0.202" rtt="0.54"/>
+<hop ttl="3" ipaddr="192.168.95.3" rtt="1.38"/>
+</trace>
+<times srtt="1182" rttvar="541" to="100000"/>
+</host>
+<host starttime="1685631875" endtime="1685632188"><status state="up" reason="echo-reply" reason_ttl="252"/>
+<address addr="172.30.2.1" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="reset" count="65534" proto="tcp" ports="1-21,23-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="252"/><service name="ssh" product="Cisco SSH" version="1.25" extrainfo="protocol 2.0" ostype="IOS" method="probed" conf="10"><cpe>cpe:/a:cisco:ssh:1.25</cpe><cpe>cpe:/o:cisco:ios</cpe></service><script id="ssh-hostkey" output="&#xa;  1024 a6:cb:fd:cb:f2:c7:d1:5c:9e:3a:82:7f:f7:fd:13:25 (RSA)"><table>
+<elem key="bits">1024</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAAAgQCgmXQZMTStRuA9qdOUvqZOMqkJQy3/hL9ogbBn/zVycxVfs+N3D2TjWKdPE6gRvdCQaSh+0fDUHba0TTBmo3NJgrgdnC7XJZSdkGvNxFpoLsFEvO9HtcsylLWsFiQ7j/YD5NMRGi9d9tmprldHis1/q4ls7Ojt26qNGBaIZnQpgw==</elem>
+<elem key="fingerprint">a6cbfdcbf2c7d15c9e3a827ff7fd1325</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<osmatch name="Cisco 3925 router (IOS 12.4)" accuracy="98" line="16081">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="98"><cpe>cpe:/o:cisco:ios:12.4</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 880 router (IOS 15.0) or 3750 switch (IOS 12.2)" accuracy="98" line="17278">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="98"><cpe>cpe:/h:cisco:catalyst_3750</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="98"><cpe>cpe:/h:cisco:880_router</cpe><cpe>cpe:/o:cisco:ios:15.0</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 2811 router (IOS 12.2 - 12.4)" accuracy="97" line="16005">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="97"><cpe>cpe:/h:cisco:2811_router</cpe><cpe>cpe:/o:cisco:ios:12</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco C2960 switch (IOS 12.2)" accuracy="96" line="17301">
+<osclass type="switch" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="96"><cpe>cpe:/h:cisco:catalyst_2960</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco IOS 15.5" accuracy="96" line="18314">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="15.X" accuracy="96"><cpe>cpe:/o:cisco:ios:15.5</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Aironet 1231G WAP (IOS 12.3)" accuracy="93" line="18003">
+<osclass type="WAP" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="93"><cpe>cpe:/h:cisco:aironet_ap1231g</cpe><cpe>cpe:/o:cisco:ios:12.3</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco 6506 router (IOS 12.2)" accuracy="92" line="16181">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="92"><cpe>cpe:/h:cisco:6506_router</cpe><cpe>cpe:/o:cisco:ios:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco ASA 5510 firewall (PIX OS 8.2)" accuracy="89" line="18982">
+<osclass type="firewall" vendor="Cisco" osfamily="PIX OS" osgen="6.X" accuracy="89"><cpe>cpe:/o:cisco:pix_os:6</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Adaptive Security Appliance 5510 or 5540 firewall (ASA 8.0)" accuracy="89" line="13456">
+<osclass type="firewall" vendor="Cisco" osfamily="ASA" osgen="8.X" accuracy="89"><cpe>cpe:/a:cisco:adaptive_security_appliance_software:8.0</cpe></osclass>
+</osmatch>
+</os>
+<distance value="3"/>
+<tcpsequence index="256" difficulty="Good luck!" values="FF0FE571,95719EA0,34D976E1,6F370F14,23C7D056,F7C707C2"/>
+<ipidsequence class="Randomized" values="95FC,CDA5,8755,4E22,451A,ED2"/>
+<tcptssequence class="none returned (unsupported)"/>
+<trace port="1720" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.40.0.202" rtt="0.54"/>
+<hop ttl="3" ipaddr="172.30.2.1" rtt="0.96"/>
+</trace>
+<times srtt="852" rttvar="237" to="100000"/>
+</host>
+<host starttime="1685631875" endtime="1685632188"><status state="up" reason="reset" reason_ttl="253"/>
+<address addr="10.1.110.8" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="55536">
+<extrareasons reason="reset" count="55536" proto="tcp" ports="1-21,23-54999,55080,64999-65535"/>
+</extraports>
+<extraports state="filtered" count="9998">
+<extrareasons reason="no-response" count="9998" proto="tcp" ports="55000-55079,55081-64998"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="253"/><service name="ssh" product="Cisco SSH" version="1.25" extrainfo="protocol 1.99" ostype="IOS" method="probed" conf="10"><cpe>cpe:/a:cisco:ssh:1.25</cpe><cpe>cpe:/o:cisco:ios</cpe></service><script id="ssh-hostkey" output="&#xa;  1024 be:7e:71:1c:cf:f2:d3:3e:8a:b2:8b:b0:c9:01:7b:66 (RSA)"><table>
+<elem key="bits">1024</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAAAgQDMe38CL1VrnTzG/6602UzkDxzjNp0ILBVlpzE8zZjH0fSGjH/0qDNAPmSLqH8fuX5Hrg9aItahjNkXSsrEdMIrt2Yx8K2uqPms+R59CCBMjdjRuClFj+VhILyOEQAuBN0DM3+DrA/WsppxW+572ca2bOuvO1lWzTZRrNVPTxoIHw==</elem>
+<elem key="fingerprint">be7e711ccff2d33e8ab28bb0c9017b66</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<osmatch name="Cisco IOS 12.4 or IOS-XE 15.3" accuracy="100" line="16659">
+<osclass type="router" vendor="Cisco" osfamily="IOS" osgen="12.X" accuracy="100"><cpe>cpe:/o:cisco:ios:12.4</cpe></osclass>
+<osclass type="router" vendor="Cisco" osfamily="IOS-XE" osgen="15.X" accuracy="100"><cpe>cpe:/o:cisco:ios_xe:15.3</cpe></osclass>
+</osmatch>
+</os>
+<distance value="3"/>
+<tcpsequence index="260" difficulty="Good luck!" values="BDFF9A7D,812D3CC9,3ADECA74,CEDBA8BA,41BCA4D9,22E73E98"/>
+<ipidsequence class="Randomized" values="6B7,B109,5B91,9418,A48F,776"/>
+<tcptssequence class="none returned (unsupported)"/>
+<trace port="80" proto="tcp">
+<hop ttl="1" ipaddr="10.1.96.5" rtt="0.90"/>
+<hop ttl="2" ipaddr="10.1.100.229" rtt="0.88"/>
+<hop ttl="3" ipaddr="10.1.110.8" rtt="1.65"/>
+</trace>
+<times srtt="6514" rttvar="6364" to="100000"/>
+</host>
+<taskbegin task="NSE" time="1685632188"/>
+<taskend task="NSE" time="1685632188"/>
+<taskbegin task="NSE" time="1685632188"/>
+<taskend task="NSE" time="1685632188"/>
+<taskbegin task="NSE" time="1685632188"/>
+<taskend task="NSE" time="1685632188"/>
+<runstats><finished time="1685632188" timestr="Thu Jun  1 11:09:48 2023" summary="Nmap done at Thu Jun  1 11:09:48 2023; 19 IP addresses (13 hosts up) scanned in 725.90 seconds" elapsed="725.90" exit="success"/><hosts up="13" down="6" total="19"/>
+</runstats>
+</nmaprun>

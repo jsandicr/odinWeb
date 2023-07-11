@@ -9,6 +9,9 @@ using Microsoft.Extensions.Hosting.Internal;
 using NuGet.Packaging.Signing;
 using System.Reflection.Metadata;
 using OdinApi.Models.Obj;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using System.IO;
 
 namespace OdinWeb.Controllers
 {
@@ -23,6 +26,7 @@ namespace OdinWeb.Controllers
         private readonly IServicioModel _serviceModel;
         private readonly IStatusModel _statusModel;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private IWebHostEnvironment _env;
 
 
         public TicketController(
@@ -32,7 +36,8 @@ namespace OdinWeb.Controllers
             IServicioModel serviceModel,
             IStatusModel statusModel,
             IHttpContextAccessor httpContextAccessor,
-            IDocumentModel documentModel
+            IDocumentModel documentModel,
+            IWebHostEnvironment env
         )
         {
             _ticketModel = ticketModel;
@@ -42,6 +47,7 @@ namespace OdinWeb.Controllers
             _statusModel = statusModel;
             _httpContextAccessor = httpContextAccessor;
             _documentModel = documentModel;
+            _env = env;
         }
 
         [Authorize]
@@ -481,10 +487,19 @@ namespace OdinWeb.Controllers
                 ticket.idClient = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
                 ticket.active = true;
                 ticket.creationDate = DateTime.Now;
+                ticket.updateDate = DateTime.Now;  
                 ticket.ubication = nticket.ubication;
                 ticket.idService = nticket.idService;
-                var supervisor = _supervisorModel.GetSupervisorSucursal(int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]));
-                ticket.idSupervisor = supervisor.Result;
+                var service = _serviceModel.GetServicioById(nticket.idService);
+                if (service.toAdministrator)
+                {
+                    ticket.idSupervisor = 1;
+
+                }
+                else {
+                    var supervisor = _supervisorModel.GetSupervisorSucursal(int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]));
+                    ticket.idSupervisor = supervisor.Result;
+                }       
                 ticket.idStatus = 1;
                 var respuesta = _ticketModel.PostTicket(ticket);
                 if (respuesta != null) {
@@ -508,31 +523,105 @@ namespace OdinWeb.Controllers
                             document.nameDocument = nombreArchivo;
                             var drespuesta = _documentModel.PostDocument(document);
                             if (!drespuesta) {
+                                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
+                                TempData["AlertType"] = "error";
                                 return View(nticket.idService);
                             }
 
                         }
                     }
-
+                    TempData["AlertMessage"] = "¡Se creó el ticket!";
+                    TempData["AlertType"] = "success";
                     return RedirectToAction(nameof(TiquetesProceso));
 
 
                 }
-                return View(
-                    
-                    );
+                return View(nticket.idService);
 
-            } catch { 
-
+            } catch {
+                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
+                TempData["AlertType"] = "error";
                 return View(nticket.idService);
             
             }
             
         }
 
-        public async Task<IActionResult> TiquetesProceso(int id) { 
-            
-            return View(_ticketModel.GetTicketsClients());
+      
+
+        [HttpGet]
+        public IActionResult TiquetesProceso(string status)
+        {      
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult TiquetesProcesoAjax(string status)
+        {
+            var tickets = _ticketModel.GetTicketsClientsStatus(status);
+            return PartialView("_ParcialTable", tickets);
+        }
+
+        [HttpGet]
+        public IActionResult TiquetesCerrados()
+        {
+            var tickets = _ticketModel.GetTicketsClientsStatus("Finalizado");
+            return View(tickets);
+        }
+
+        [HttpGet]
+        public IActionResult VerTiquete(int id)
+        {
+            return View(_ticketModel.GetTicketById(id));
+        }
+        [HttpGet]
+        public IActionResult EditarTiquete(int id)
+        {
+            return View(_ticketModel.GetTicketById(id));
+        }
+
+        [HttpGet]
+        public IActionResult DownloadDocument(string name)
+        {
+            var webRootPath = _env.WebRootPath; // Obtener la ruta raíz del servidor
+            var documentPath = Path.Combine(webRootPath, "Document", name); // Combinar la ruta raíz con la ruta relativa del documento
+
+            if (!System.IO.File.Exists(documentPath))
+            {
+                return NotFound();
+            }
+
+            string fileName = Path.GetFileName(documentPath);
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(fileName, out string contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+
+            FileStream fileStream = new FileStream(documentPath, FileMode.Open, FileAccess.Read);
+            return File(fileStream, contentType, fileName);
+        }
+
+        [HttpGet]
+        public IActionResult ViewDocument(string name)
+        {
+            var webRootPath = _env.WebRootPath; // Obtener la ruta raíz del servidor
+            var documentPath = Path.Combine(webRootPath, "Document", name); // Combinar la ruta raíz con la ruta relativa del documento
+
+            if (!System.IO.File.Exists(documentPath))
+            {
+                return NotFound();
+            }
+
+            string fileName = Path.GetFileName(documentPath);
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(fileName, out string contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+
+            FileStream fileStream = new FileStream(documentPath, FileMode.Open, FileAccess.Read);
+            return new FileStreamResult(fileStream, contentType);
         }
     }
 }
