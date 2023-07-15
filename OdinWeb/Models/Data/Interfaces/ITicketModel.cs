@@ -11,7 +11,6 @@ namespace OdinWeb.Models.Data.Interfaces
         public Ticket GetTicketById(int id);
         public bool PutTicketById(Ticket ticket);
         public bool DeleteTicketById(int id);
-
-        public List<Ticket> GetTicketsClients();
+        public List<Ticket> GetTicketsClientsStatus(string status);
     }
 }

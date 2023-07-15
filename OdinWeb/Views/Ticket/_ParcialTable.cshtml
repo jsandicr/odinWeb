@@ -1,0 +1,80 @@
+﻿@model IEnumerable<OdinWeb.Models.Obj.Ticket>
+@if(Model.Any()){
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="ttiquete">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.id)</th>
+                                    <th>@Html.DisplayNameFor(model => model.title)</th>
+                                    <th>@Html.DisplayNameFor(model => model.service)</th>
+                                    <th>@Html.DisplayNameFor(model => model.supervisor)</th>
+                                    <th>Fechas</th>
+                                    
+
+                                    <th>Acciones</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var ticket in Model)
+                                    {
+                                        <tr>
+                                            <td>Cod-@Html.DisplayFor(model => ticket.id)</td>
+                                            <td>@Html.DisplayFor(model => ticket.title)</td>
+                                            <td>@Html.DisplayFor(model => ticket.service.name)</td>
+                                            <td>@Html.Raw(ticket.supervisor.name + " " + ticket.supervisor.lastName)</td>
+                                            <td>
+                                                Fecha de creación: @Html.DisplayFor(model => ticket.updateDate)<br>
+                                                Última actualización: @Html.DisplayFor(model => ticket.creationDate)
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-primary" asp-action="VerTiquete" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-eye"></i></a>
+
+                                                    @if (ticket.status.description == "Pendiente información")
+                                                {
+                                                        <a class="btn btn-primary" asp-action="EditarTiquete" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                }
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+        <div class="page-error tile">
+            <h1><i class="fa fa-exclamation-circle"></i>No hay tiquetes que visualizar</h1>
+            <p>No hay datos.</p>
+        </div>
+}
+
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/plugins/chart.js"></script>
+<script src="~/js/plugins/pace.min.js"></script>
+<script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+<script type="text/javascript" src="~/js/plugins/chart.js"></script>
+<script src="~/js/main.js"></script>
+<script src="~/js/plugins/jquery.datatables.min.js"></script>
+<script src="~/js/plugins/datatables.bootstrap.min.js"></script>
+<script type="text/javascript">$('#ttiquete').DataTable();</script>
+
+
+

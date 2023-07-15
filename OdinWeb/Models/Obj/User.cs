@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using OdinApi.Models.Obj;
 using System.ComponentModel.DataAnnotations;
 
 namespace OdinWeb.Models.Obj
@@ -47,6 +48,7 @@ namespace OdinWeb.Models.Obj
         public List<Ticket>? ticketsS { get; set; }
         public List<Ticket>? ticketsC { get; set; }
         public List<Comment>? comments { get; set; }
+        public List<Documento>? documents { get; set; }
         public List<ErrorLog>? errorsLog { get; set; }
         public List<TransactionalLog>? transactionsLog { get; set; }
     }

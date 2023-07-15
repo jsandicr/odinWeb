@@ -6,5 +6,7 @@ namespace OdinWeb.Models.Data.Interfaces
     {
         public bool PostDocument(Document Document);
 
+        Task<Documento> DeleteDocuemnt(int id);
+
     }
 }

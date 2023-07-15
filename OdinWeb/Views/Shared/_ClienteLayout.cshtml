@@ -61,7 +61,7 @@
                 </a>
             </li>
             <li>
-                <a class="app-menu__item" href="@Url.Action("TiquetesCerrados", "Tiquete")">
+                <a class="app-menu__item" href="@Url.Action("TiquetesCerrados", "Ticket")">
                     <i class="app-menu__icon fa fa-check-circle"></i>
                     <span class="app-menu__label">Tiquetes cerrados</span>
                 </a>
@@ -88,8 +88,8 @@
     <script src="~/js/plugins/chart.js"></script>
     <script src="~/js/plugins/pace.min.js"></script>
     <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
-    <script src="~/js/main.js"></script>
     <script type="text/javascript" src="~/js/plugins/chart.js"></script>
+    <script src="~/js/main.js"></script>
     @if (!string.IsNullOrEmpty(TempData["AlertMessage"] as string))
     {
         <script>

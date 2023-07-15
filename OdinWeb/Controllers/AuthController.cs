@@ -94,7 +94,10 @@ namespace OdinWeb.Controllers
                         };
 
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+
                             new ClaimsPrincipal(claimsIdentity), properties);
+                        TempData["AlertMessage"] = "Inicio de Sesión Valido";
+                        TempData["AlertType"] = "success";
                         switch (user.rol.name)
                         {
                             case "Admin":

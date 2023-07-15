@@ -3,6 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using OdinWeb.Models.Obj;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OdinWeb.Models.Data.Interfaces;
+using System;
+using System.Net.Sockets;
+using Microsoft.Extensions.Hosting.Internal;
+using NuGet.Packaging.Signing;
+using System.Reflection.Metadata;
+using OdinApi.Models.Obj;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using System.IO;
 
 namespace OdinWeb.Controllers
 {
@@ -17,6 +26,7 @@ namespace OdinWeb.Controllers
         private readonly IServicioModel _serviceModel;
         private readonly IStatusModel _statusModel;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private IWebHostEnvironment _env;
 
 
         public TicketController(
@@ -26,7 +36,8 @@ namespace OdinWeb.Controllers
             IServicioModel serviceModel,
             IStatusModel statusModel,
             IHttpContextAccessor httpContextAccessor,
-            IDocumentModel documentModel
+            IDocumentModel documentModel,
+            IWebHostEnvironment env
         )
         {
             _ticketModel = ticketModel;
@@ -36,6 +47,7 @@ namespace OdinWeb.Controllers
             _statusModel = statusModel;
             _httpContextAccessor = httpContextAccessor;
             _documentModel = documentModel;
+            _env = env;
         }
 
         [Authorize]
@@ -458,7 +470,7 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> CrearTiquete(int idService)
         {
-            Ctiquete ticket = new Ctiquete();
+            Ticket ticket = new Ticket();
             var services = _serviceModel.GetServicioById(idService);
             TempData["Servicio"] = services.name;
             ticket.service = services;
@@ -466,26 +478,32 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearTiquete(Ctiquete nticket, [FromServices] IWebHostEnvironment hostingEnvironment)
+        public async Task<IActionResult> CrearTiquete(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try {
 
-                Ticket ticket = new Ticket();
-                ticket.title = nticket.title;
-                ticket.description = nticket.description;
                 ticket.idClient = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
                 ticket.active = true;
                 ticket.creationDate = DateTime.Now;
-                ticket.ubication = nticket.ubication;
-                ticket.idService = nticket.idService;
-                var supervisor = _supervisorModel.GetSupervisorSucursal(int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]));
-                ticket.idSupervisor = supervisor.Result;
+                ticket.updateDate = DateTime.Now;  
+                var service = _serviceModel.GetServicioById(ticket.idService);
+                if (service.toAdministrator)
+                {
+                    ticket.idSupervisor = 1;
+
+                }
+                else {
+                    var supervisor = _supervisorModel.GetSupervisorSucursal(int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]));
+                    ticket.idSupervisor = supervisor.Result;
+                }       
                 ticket.idStatus = 1;
+                var documentos = ticket.Archivos;
+                ticket.Archivos = null;
                 var respuesta = _ticketModel.PostTicket(ticket);
                 if (respuesta != null) {
-                    if (nticket.Archivos != null)
+                    if (documentos != null)
                     {
-                        foreach (var item in nticket.Archivos) {
+                        foreach (var item in documentos) {
                             var nombreArchivo = Path.GetFileName(item.FileName);
                             var extension = Path.GetExtension(nombreArchivo);
                             var nombreUnico = Guid.NewGuid().ToString() + extension;
@@ -503,31 +521,164 @@ namespace OdinWeb.Controllers
                             document.nameDocument = nombreArchivo;
                             var drespuesta = _documentModel.PostDocument(document);
                             if (!drespuesta) {
-                                return View(nticket.idService);
+                                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
+                                TempData["AlertType"] = "error";
+                                return View(ticket.idService);
                             }
 
                         }
                     }
-
+                    TempData["AlertMessage"] = "¡Se creó el ticket Cod-"+respuesta.id+"!";
+                    TempData["AlertType"] = "success";
                     return RedirectToAction(nameof(TiquetesProceso));
 
 
                 }
-                return View(
-                    
-                    );
+                return View(ticket.idService);
 
-            } catch { 
-
-                return View(nticket.idService);
+            } catch {
+                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
+                TempData["AlertType"] = "error";
+                return View(ticket.idService);
             
             }
             
         }
 
-        public async Task<IActionResult> TiquetesProceso(int id) { 
-            
-            return View(_ticketModel.GetTicketsClients());
+      
+
+        [HttpGet]
+        public IActionResult TiquetesProceso(string status)
+        {      
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult TiquetesProcesoAjax(string status)
+        {
+            var tickets = _ticketModel.GetTicketsClientsStatus(status);
+            return PartialView("_ParcialTable", tickets);
+        }
+
+        [HttpGet]
+        public IActionResult TiquetesCerrados()
+        {
+            var tickets = _ticketModel.GetTicketsClientsStatus("Finalizado");
+            return View(tickets);
+        }
+
+        [HttpGet]
+        public IActionResult VerTiquete(int id)
+        {
+            return View(_ticketModel.GetTicketById(id));
+        }
+        [HttpGet]
+        public IActionResult EditarTiquete(int id)
+        {
+            return View(_ticketModel.GetTicketById(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditarTiquete(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
+        {
+            try
+            {
+
+                var t = _ticketModel.GetTicketById(ticket.id);
+                t.description = ticket.description;
+                t.updateDate = DateTime.Now;
+                t.idStatus = 1;   
+                var documentos = ticket.Archivos;
+                ticket.Archivos = null;
+                var respuesta = _ticketModel.PutTicketById(t);
+                if(respuesta)
+                {
+                    if (documentos != null)
+                    {
+                        foreach (var item in documentos)
+                        {
+                            var nombreArchivo = Path.GetFileName(item.FileName);
+                            var extension = Path.GetExtension(nombreArchivo);
+                            var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                            var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "Document", nombreUnico);
+
+                            using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                            {
+                                item.CopyTo(stream);
+                            }
+                            Documento document = new Documento();
+                            document.name = nombreUnico;
+                            document.idUser = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
+                            document.idTicket = t.id;
+                            document.nameDocument = nombreArchivo;
+                            var drespuesta = _documentModel.PostDocument(document);
+                            if (!drespuesta)
+                            {
+                                TempData["AlertMessage"] = "¡Ocurrio un error al actulizar el ticket!";
+                                TempData["AlertType"] = "error";
+                                return View(t);
+                            }
+                        }
+                    }
+                    TempData["AlertMessage"] = "¡Se actualizo el ticket!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(TiquetesProceso));
+                }
+                TempData["AlertMessage"] = "¡Ocurrio un error al actulizar el ticket!";
+                TempData["AlertType"] = "error";
+                return View(t);
+            }
+            catch
+            {
+                TempData["AlertMessage"] = "¡Ocurrio un error al actulizar el ticket!";
+                TempData["AlertType"] = "error";
+                return View();
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult DownloadDocument(string name)
+        {
+            var webRootPath = _env.WebRootPath; // Obtener la ruta raíz del servidor
+            var documentPath = Path.Combine(webRootPath, "Document", name); // Combinar la ruta raíz con la ruta relativa del documento
+
+            if (!System.IO.File.Exists(documentPath))
+            {
+                return NotFound();
+            }
+
+            string fileName = Path.GetFileName(documentPath);
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(fileName, out string contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+
+            FileStream fileStream = new FileStream(documentPath, FileMode.Open, FileAccess.Read);
+            return File(fileStream, contentType, fileName);
+        }
+
+        [HttpGet]
+        public IActionResult ViewDocument(string name)
+        {
+            var webRootPath = _env.WebRootPath; // Obtener la ruta raíz del servidor
+            var documentPath = Path.Combine(webRootPath, "Document", name); // Combinar la ruta raíz con la ruta relativa del documento
+
+            if (!System.IO.File.Exists(documentPath))
+            {
+                return NotFound();
+            }
+
+            string fileName = Path.GetFileName(documentPath);
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(fileName, out string contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+
+            FileStream fileStream = new FileStream(documentPath, FileMode.Open, FileAccess.Read);
+            return new FileStreamResult(fileStream, contentType);
         }
     }
 }
