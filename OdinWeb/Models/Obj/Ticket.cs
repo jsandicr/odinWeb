@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OdinApi.Models.Obj;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
-using System.Xml.Linq;
+using Microsoft.AspNetCore.Http;
+using OdinWeb.Models.Obj;
 
 namespace OdinWeb.Models.Obj
 {
@@ -10,10 +12,13 @@ namespace OdinWeb.Models.Obj
     {
         public int id { get; set; }
         [Display(Name = "Titulo")]
+        [Required(ErrorMessage = "El campo es requerido")]
         public string title { get; set; }
         [Display(Name = "Descripcion")]
+        [Required(ErrorMessage = "El campo es requerido")]
         public string description { get; set; }
         [Display(Name = "Fecha Creacion")]
+        [Required(ErrorMessage = "El campo es requerido")]
         public DateTime creationDate { get; set; }
         [Display(Name = "Fecha Actualizado")]
         public DateTime updateDate { get; set; }
@@ -27,6 +32,7 @@ namespace OdinWeb.Models.Obj
         public int idSupervisor { get; set; }
         public int idService { get; set; }
         public int idStatus { get; set; }
+        [Required(ErrorMessage = "El campo es requerido")]
         public string? ubication { get; set; }
 
         [Display(Name = "Cliente")]
@@ -42,25 +48,7 @@ namespace OdinWeb.Models.Obj
 
         public List<Documento>? documents { get; set; }
 
+        public List<IFormFile>? Archivos { get; set; }
     }
 
-    public class Ctiquete {
-        public int id { get; set; }
-        [Required(ErrorMessage = "El campo es requerido")]
-        [Display(Name = "Titulo")]
-        public string title { get; set; }
-
-        [Required(ErrorMessage = "El campo es requerido")]
-        [Display(Name = "Descripcion")]
-        public string description { get; set; }
-        public List<IFormFile> Archivos { get; set; }
-
-        public int idService { get; set; }
-
-        public Service? service { get; set; }
-        [Required(ErrorMessage = "El campo es requerido")]
-        [Display(Name = "Dirreción")]
-        public string? ubication { get; set; }
-
-    }
 }
