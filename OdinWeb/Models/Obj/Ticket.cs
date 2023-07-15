@@ -10,6 +10,7 @@ namespace OdinWeb.Models.Obj
 {
     public class Ticket
     {
+        [Display(Name = "Codigo")]
         public int id { get; set; }
         [Display(Name = "Titulo")]
         [Required(ErrorMessage = "El campo es requerido")]
@@ -20,7 +21,7 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Fecha Creacion")]
         [Required(ErrorMessage = "El campo es requerido")]
         public DateTime creationDate { get; set; }
-        [Display(Name = "Fecha Actualizado")]
+        [Display(Name = "Ultima Actualización")]
         public DateTime updateDate { get; set; }
         [Display(Name = "Fecha Cierre")]
         public DateTime? closeDate { get; set; }
@@ -33,6 +34,7 @@ namespace OdinWeb.Models.Obj
         public int idService { get; set; }
         public int idStatus { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
+        [Display(Name = "Dirrección")]
         public string? ubication { get; set; }
 
         [Display(Name = "Cliente")]

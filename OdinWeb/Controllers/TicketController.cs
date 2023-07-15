@@ -527,7 +527,7 @@ namespace OdinWeb.Controllers
 
                         }
                     }
-                    TempData["AlertMessage"] = "¡Se creó el ticket!";
+                    TempData["AlertMessage"] = "¡Se creó el ticket Cod-"+respuesta.id+"!";
                     TempData["AlertType"] = "success";
                     return RedirectToAction(nameof(TiquetesProceso));
 

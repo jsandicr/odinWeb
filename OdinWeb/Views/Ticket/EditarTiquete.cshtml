@@ -96,19 +96,19 @@
 <div class="app-title">
 
     <div>
-        <h1><i class="fa fa-create"></i>@TempData["Servicio"]</h1>
-        <p>Crear tiquete</p>
+        <h1><i class="fa fa-create"></i>Editar Tiquete</h1>
+        <p>Editar Tiquete</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
-        <li class="breadcrumb-item"><a>@TempData["Servicio"]</a></li>
+        <li class="breadcrumb-item"><a a asp-controller="Ticket" asp-action="TiquetesProceso">Tiquetes en proceso</a></li>
     </ul>
 </div>
 <div class="col-md-12">
     <div class="tile">
         <div class="row">
             <div class="col-md-9">
-                <h3 class="tile-title">Editar Tiquete</h3>
+                <h3 class="tile-title">Cod-@Model.id</h3>
             </div>
             <div class="col-md-3">
                 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#verRequeri">Ver requisitos</button>
@@ -191,7 +191,7 @@
                 <div class="tile-footer">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-3">
-                         <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="javascript:history.go(-1)"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                      </div>
 
                  </div>
