@@ -1,10 +1,21 @@
-﻿namespace OdinWeb.Models.Obj
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+namespace OdinWeb.Models.Obj
 {
     public class Branch
     {
         public int id { get; set; }
+
+        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "El campo es requerido")]
         public string name { get; set; }
+        [Display(Name = "Dirección")]
+        [Required(ErrorMessage = "El campo es requerido")]
+
         public string direction { get; set; }
+        [Display(Name = "Estado")]
+        [Required(ErrorMessage = "El campo es requerido")]
         public bool active { get; set; }
         public List<User>? users { get; set; }
     }
