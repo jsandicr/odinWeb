@@ -2,7 +2,10 @@
 
 @{
     ViewData["Title"] = "SubServicios";
-    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+    if (ViewBag.Layout != null)
+    {
+        Layout = ViewBag.Layout;
+    }
 }
 @if (Model == null)
 {
@@ -84,7 +87,6 @@ else
             <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
             <li class="breadcrumb-item"><a asp-controller="Service" asp-action="HCliente">Servicios</a></li>
             <li class="breadcrumb-item"><a>SubServicios</a></li>
-
         </ul>
     </div>
 
@@ -92,7 +94,7 @@ else
         @foreach (var item in Model)
         {
             <div class="col-md-4">
-                <div class="card" onclick="redirectToAction('@Url.Action("CrearTiquete", "Ticket", new { idService = item.id })')">
+                <div class="card" onclick="redirectToAction(@item.id)">
                     <div class="card-img-container">
                         <img class="card-img-top" src="~/images/services/@item.photo" alt="Service Photo">
                     </div>
@@ -124,7 +126,20 @@ else
                 }
             );
         });
-        function redirectToAction(url) {
+
+        function redirectToAction(id) {
+            var url = '';
+
+            var layout = @Html.Raw(Json.Serialize(ViewBag.Layout));
+
+            if(layout == null){
+                //Admin
+                url = '/Ticket/Crear?idService=' + encodeURIComponent(id);
+            }else{
+                //Cliente
+                url = '/Ticket/CrearTiquete?idService=' + encodeURIComponent(id);
+            }
+
             window.location.href = url;
         }
     </script>

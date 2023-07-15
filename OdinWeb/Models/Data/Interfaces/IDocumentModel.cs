@@ -1,10 +1,11 @@
-﻿using OdinWeb.Models.Obj;
+﻿using OdinApi.Models.Obj;
+using OdinWeb.Models.Obj;
 
 namespace OdinWeb.Models.Data.Interfaces
 {
     public interface IDocumentModel
     {
-        public bool PostDocument(Document Document);
+        public bool PostDocument(Documento Document);
 
         Task<Documento> DeleteDocuemnt(int id);
 
