@@ -3,12 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using OdinWeb.Models.Obj;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OdinWeb.Models.Data.Interfaces;
-using System;
-using System.Net.Sockets;
-using Microsoft.Extensions.Hosting.Internal;
-using NuGet.Packaging.Signing;
-using System.Reflection.Metadata;
-using OdinApi.Models.Obj;
 
 namespace OdinWeb.Controllers
 {
@@ -502,7 +496,7 @@ namespace OdinWeb.Controllers
                             {
                                 item.CopyTo(stream);
                             }
-                            Documento document = new Documento();
+                            Document document = new Document();
                             document.name = nombreUnico;
                             document.idUser = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
                             document.idTicket = respuesta.id;
