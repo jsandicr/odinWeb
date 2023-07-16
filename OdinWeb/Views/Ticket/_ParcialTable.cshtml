@@ -8,10 +8,13 @@
                         <table class="table table-hover table-bordered" id="ttiquete">
                             <thead>
                                 <tr>
+                                    <th>@Html.DisplayNameFor(model => model.id)</th>
                                     <th>@Html.DisplayNameFor(model => model.title)</th>
-                                    <th>@Html.DisplayNameFor(model => model.description)</th>
-                                    <th>@Html.DisplayNameFor(model => model.creationDate)</th>
+                                    <th>@Html.DisplayNameFor(model => model.service)</th>
                                     <th>@Html.DisplayNameFor(model => model.supervisor)</th>
+                                    <th>Fechas</th>
+                                    
+
                                     <th>Acciones</th>
 
                                 </tr>
@@ -22,10 +25,14 @@
                                     foreach (var ticket in Model)
                                     {
                                         <tr>
+                                            <td>Cod-@Html.DisplayFor(model => ticket.id)</td>
                                             <td>@Html.DisplayFor(model => ticket.title)</td>
-                                            <td>@Html.DisplayFor(model => ticket.description)</td>
-                                            <td>@Html.DisplayFor(model => ticket.creationDate)</td>
+                                            <td>@Html.DisplayFor(model => ticket.service.name)</td>
                                             <td>@Html.Raw(ticket.supervisor.name + " " + ticket.supervisor.lastName)</td>
+                                            <td>
+                                                Fecha de creación: @Html.DisplayFor(model => ticket.updateDate)<br>
+                                                Última actualización: @Html.DisplayFor(model => ticket.creationDate)
+                                            </td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a class="btn btn-primary" asp-action="VerTiquete" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-eye"></i></a>
@@ -54,7 +61,6 @@ else
         <div class="page-error tile">
             <h1><i class="fa fa-exclamation-circle"></i>No hay tiquetes que visualizar</h1>
             <p>No hay datos.</p>
-            <p><a class="btn btn-primary" href="javascript:window.history.back();">Volver atrás</a></p>
         </div>
 }
 

@@ -52,27 +52,8 @@
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Cliente"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Clientes</span></a></li>
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Supervisor"><i class="app-menu__icon fa fa-solid fa-wrench"></i><span class="app-menu__label">Supervisores</span></a></li>
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Branch"><i class="app-menu__icon fa fa-solid fa-wrench"></i><span class="app-menu__label">Sucursales</span></a></li>
-            <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview">
-                    <i class="app-menu__icon fa fa-ticket"></i>
-                    <span class="app-menu__label">Tiquetes</span>
-                    <i class="treeview-indicator fa fa-angle-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a class="treeview-item" asp-action="Home" asp-controller="Ticket" asp-route-filtro="Assigned">
-                            <i class="icon fa fa-user"></i>
-                            Tiquetes Asignados a mí
-                        </a>
-                    </li>
-                    <li>
-                        <a class="treeview-item" asp-action="Home" asp-controller="Ticket" asp-route-filtro="Open">
-                            <i class="icon fa fa-exclamation-circle"></i>
-                            Tiquetes Abiertos
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            <li><a class="app-menu__item" asp-action="TiquetesProceso" asp-controller="Ticket"><i class="app-menu__icon fa fa-solid fa-wrench"></i><span class="app-menu__label">Tiquetes</span></a></li>
+            <li><a class="app-menu__item" asp-action="HCliente" asp-controller="Servicio"><i class="app-menu__icon fa fa-solid fa-wrench"></i><span class="app-menu__label">Crear Tiquete</span></a></li>
             <li><a class="app-menu__item" href=""><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Reportes</span></a></li>
         </ul>
     </aside>

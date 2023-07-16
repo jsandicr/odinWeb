@@ -1,4 +1,4 @@
-﻿@model OdinWeb.Models.Obj.Ctiquete
+﻿@model OdinWeb.Models.Obj.Ticket
 
 @{
     ViewData["Title"] = "CrearTiquete";
@@ -88,7 +88,7 @@
     </div>
     <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
-        <li class="breadcrumb-item"><a asp-controller="Servicio" asp-action="HCliente">Servicio</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Servicio" asp-action="HCliente">Servicios</a></li>
         <li class="breadcrumb-item"><a>@TempData["Servicio"]</a></li>
     </ul>
 </div>
@@ -145,7 +145,7 @@
                 <div class="tile-footer">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-3">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-controller="Servicio" asp-action="HCliente"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                         </div>
                     </div>
             </form>

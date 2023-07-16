@@ -357,17 +357,36 @@ namespace OdinWeb.Controllers
             }
         }
 
-        public async Task<IActionResult> HCliente() { 
-        
+        public async Task<IActionResult> HCliente()
+        {
+            string rol = Request.Cookies["Rol"];
+            if (rol == "Cliente")
+            {
+                ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+            }
             return View(_serviceModel.GetServiciosStatus(true));
         }
 
         public async Task<IActionResult> SubService(long id) {
             try {
+                
                 var respuesta = _serviceModel.GetListSubServicioById(id);
+
+                string rol = Request.Cookies["Rol"];
+
                 if (respuesta!=null)
                 {
+
+                    if (rol == "Cliente")
+                    {
+                        ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+                    }
+
                     return View(respuesta);
+                }
+                if (rol == "Cliente")
+                {
+                    return RedirectToAction("Crear", "Ticket", new { idService = id });
                 }
                 return RedirectToAction("CrearTiquete", "Ticket", new { idService = id });
             }
@@ -375,6 +394,23 @@ namespace OdinWeb.Controllers
             catch {
                 return RedirectToAction("CrearTiquete", "Ticket", new { idService = id });
 
+            }
+        }
+
+        public JsonResult GetServiceById(int id)
+        {
+            try
+            {
+                var respuesta = _serviceModel.GetServicioById(id);
+                if (respuesta != null)
+                {
+                    return Json(respuesta);
+                }
+                return Json(new Service());
+            }
+            catch
+            {
+                return Json(new Service());
             }
 
         }
