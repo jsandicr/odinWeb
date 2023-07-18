@@ -295,6 +295,13 @@ namespace OdinWeb.Controllers
             }
         }
 
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> GetAnswer()
+        {
+            return View();
+        }
+
         [Authorize]
         public async Task<IActionResult> Principal()
         {

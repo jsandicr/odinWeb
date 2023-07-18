@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\plugins\chat2.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\images\Users\Sperfil.jpg" />
+    <None Include="wwwroot\js\plugins\chat2.js" />
   </ItemGroup>
 
   <ItemGroup>
