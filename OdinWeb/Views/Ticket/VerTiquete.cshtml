@@ -69,9 +69,20 @@
         margin-bottom: 10px;
     }
 </style>
+<div class="app-title">
+
+    <div>
+        <h1><i class="fa fa-create"></i>Información del Tiquete</h1>
+        <p>Ver Tiquete</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item"><a a asp-controller="Ticket" asp-action="TiquetesProceso">Tiquetes en proceso</a></li>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
-        <h3 class="tile-title">Información del Tiquete</h3>
+        <h3 class="tile-title">Cod-@Model.id</h3>
         <div class="tile-body">
             <div class="ticket-section">
                 <h4>@Html.DisplayFor(model => model.title)</h4>

@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
+using OdinApi.Models.Obj;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http.Headers;
-using System.Net.Http;
 using System.Reflection.Metadata;
 using System.Text;
-using OdinApi.Models.Obj;
 
 namespace OdinWeb.Models.Data.Classes
 {
@@ -14,6 +13,7 @@ namespace OdinWeb.Models.Data.Classes
         private readonly IConfiguration _config;
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
         public DocumentModel(IConfiguration config, IHttpContextAccessor httpContextAccessor)
         {
 
@@ -24,6 +24,25 @@ namespace OdinWeb.Models.Data.Classes
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+
+        public async Task<Documento> DeleteDocuemnt(int id)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.DeleteAsync("api/Document/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var documentoJson = await response.Content.ReadAsStringAsync();
+                var documento = JsonConvert.DeserializeObject<Documento>(documentoJson);
+                return documento;
+            }
+
+            return null;
+        }
+
         public bool PostDocument(Documento Document)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];

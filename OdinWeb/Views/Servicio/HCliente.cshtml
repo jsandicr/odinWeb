@@ -2,7 +2,11 @@
 
 @{
     ViewData["Title"] = "HCliente";
-    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+    if(ViewBag.Layout != null){
+        Layout = ViewBag.Layout;
+    }
+
+    //Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
 @if (Model == null)
 {

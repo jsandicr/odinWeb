@@ -98,7 +98,7 @@ namespace OdinWeb.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Crear()
+        public async Task<IActionResult> Crear(int idService)
         {
             var clients = _clientModel.GetClients();
             if (clients != null)
@@ -132,22 +132,6 @@ namespace OdinWeb.Controllers
                 ViewData["Supervisors"] = supervisorsOps;
             }
 
-            var services = _serviceModel.GetServicios();
-            if (services != null)
-            {
-                List<SelectListItem> servicesOps = new List<SelectListItem>();
-                foreach (Service service in services)
-                {
-                    servicesOps.Add(new SelectListItem
-                    {
-                        Text = service.name,
-                        Value = service.id.ToString()
-                    });
-                };
-
-                ViewData["Services"] = servicesOps;
-            }
-
             var statusL = _statusModel.GetStatus();
             if (statusL != null)
             {
@@ -178,23 +162,64 @@ namespace OdinWeb.Controllers
             });
 
             ViewData["Estados"] = estados;
-            return View();
+
+            Ticket ticket = new Ticket();
+
+            var services_ = _serviceModel.GetServicioById(idService);
+            TempData["Servicio"] = services_.name;
+            ticket.service = services_;
+            return View(ticket);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Guardar(Ticket ticket)
+        public async Task<IActionResult> Guardar(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try
             {
                 ticket.creationDate = DateTime.Now;
                 ticket.updateDate = DateTime.Now;
+                ticket.active = true;
+                ticket.idStatus = 1;
+                var documentos = ticket.Archivos;
+                ticket.Archivos = null;
+
                 if (ModelState.IsValid)
                 {
                     var servicio = _ticketModel.PostTicket(ticket);
 
                     if (servicio != null)
                     {
+                        if (documentos != null)
+                        {
+                            foreach (var item in documentos)
+                            {
+                                var nombreArchivo = Path.GetFileName(item.FileName);
+                                var extension = Path.GetExtension(nombreArchivo);
+                                var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                                var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "Document", nombreUnico);
+
+                                using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                                {
+                                    item.CopyTo(stream);
+                                }
+                                Documento document = new Documento();
+                                document.name = nombreUnico;
+                                document.idUser = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
+                                document.idTicket = servicio.id;
+                                document.nameDocument = nombreArchivo;
+                                var drespuesta = _documentModel.PostDocument(document);
+                                if (!drespuesta)
+                                {
+                                    TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
+                                    TempData["AlertType"] = "error";
+                                    return View(ticket.idService);
+                                }
+
+                            }
+                        }
+
                         TempData["AlertMessage"] = "¡Se creó el ticket!";
                         TempData["AlertType"] = "success";
                         return RedirectToAction(nameof(Home));
@@ -211,6 +236,68 @@ namespace OdinWeb.Controllers
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Crear));
             }
+
+            /*
+             ticket.idClient = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
+                ticket.active = true;
+                ticket.creationDate = DateTime.Now;
+                ticket.updateDate = DateTime.Now;  
+                var service = _serviceModel.GetServicioById(ticket.idService);
+                if (service.toAdministrator)
+                {
+                    ticket.idSupervisor = 1;
+
+                }
+                else {
+                    var supervisor = _supervisorModel.GetSupervisorSucursal(int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]));
+                    ticket.idSupervisor = supervisor.Result;
+                }       
+                ticket.idStatus = 1;
+                var documentos = ticket.Archivos;
+                ticket.Archivos = null;
+                var respuesta = _ticketModel.PostTicket(ticket);
+                if (respuesta != null) {
+                    if (documentos != null)
+                    {
+                        foreach (var item in documentos) {
+                            var nombreArchivo = Path.GetFileName(item.FileName);
+                            var extension = Path.GetExtension(nombreArchivo);
+                            var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                            var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "Document", nombreUnico);
+
+                            using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                            {
+                                item.CopyTo(stream);
+                            }
+                            Documento document = new Documento();
+                            document.name = nombreUnico;
+                            document.idUser = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
+                            document.idTicket = respuesta.id;
+                            document.nameDocument = nombreArchivo;
+                            var drespuesta = _documentModel.PostDocument(document);
+                            if (!drespuesta) {
+                                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
+                                TempData["AlertType"] = "error";
+                                return View(ticket.idService);
+                            }
+
+                        }
+                    }
+                    TempData["AlertMessage"] = "¡Se creó el ticket Cod-"+respuesta.id+"!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(TiquetesProceso));
+
+
+                }
+                return View(ticket.idService);
+
+            } catch {
+                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
+                TempData["AlertType"] = "error";
+                return View(ticket.idService);
+            
+            }*/
         }
 
         [Authorize]
@@ -469,7 +556,7 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> CrearTiquete(int idService)
         {
-            Ctiquete ticket = new Ctiquete();
+            Ticket ticket = new Ticket();
             var services = _serviceModel.GetServicioById(idService);
             TempData["Servicio"] = services.name;
             ticket.service = services;
@@ -477,20 +564,15 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearTiquete(Ctiquete nticket, [FromServices] IWebHostEnvironment hostingEnvironment)
+        public async Task<IActionResult> CrearTiquete(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try {
 
-                Ticket ticket = new Ticket();
-                ticket.title = nticket.title;
-                ticket.description = nticket.description;
                 ticket.idClient = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
                 ticket.active = true;
                 ticket.creationDate = DateTime.Now;
                 ticket.updateDate = DateTime.Now;  
-                ticket.ubication = nticket.ubication;
-                ticket.idService = nticket.idService;
-                var service = _serviceModel.GetServicioById(nticket.idService);
+                var service = _serviceModel.GetServicioById(ticket.idService);
                 if (service.toAdministrator)
                 {
                     ticket.idSupervisor = 1;
@@ -501,11 +583,13 @@ namespace OdinWeb.Controllers
                     ticket.idSupervisor = supervisor.Result;
                 }       
                 ticket.idStatus = 1;
+                var documentos = ticket.Archivos;
+                ticket.Archivos = null;
                 var respuesta = _ticketModel.PostTicket(ticket);
                 if (respuesta != null) {
-                    if (nticket.Archivos != null)
+                    if (documentos != null)
                     {
-                        foreach (var item in nticket.Archivos) {
+                        foreach (var item in documentos) {
                             var nombreArchivo = Path.GetFileName(item.FileName);
                             var extension = Path.GetExtension(nombreArchivo);
                             var nombreUnico = Guid.NewGuid().ToString() + extension;
@@ -525,33 +609,36 @@ namespace OdinWeb.Controllers
                             if (!drespuesta) {
                                 TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
                                 TempData["AlertType"] = "error";
-                                return View(nticket.idService);
+                                return View(ticket.idService);
                             }
 
                         }
                     }
-                    TempData["AlertMessage"] = "¡Se creó el ticket!";
+                    TempData["AlertMessage"] = "¡Se creó el ticket Cod-"+respuesta.id+"!";
                     TempData["AlertType"] = "success";
                     return RedirectToAction(nameof(TiquetesProceso));
 
 
                 }
-                return View(nticket.idService);
+                return View(ticket.idService);
 
             } catch {
                 TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
                 TempData["AlertType"] = "error";
-                return View(nticket.idService);
+                return View(ticket.idService);
             
             }
             
         }
 
-      
-
         [HttpGet]
         public IActionResult TiquetesProceso(string status)
-        {      
+        {
+            string rol = Request.Cookies["Rol"];
+            if (rol == "Cliente")
+            {
+                ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+            }
             return View();
         }
 
@@ -580,6 +667,65 @@ namespace OdinWeb.Controllers
             return View(_ticketModel.GetTicketById(id));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditarTiquete(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
+        {
+            try
+            {
+
+                var t = _ticketModel.GetTicketById(ticket.id);
+                t.description = ticket.description;
+                t.updateDate = DateTime.Now;
+                t.idStatus = 1;   
+                var documentos = ticket.Archivos;
+                ticket.Archivos = null;
+                var respuesta = _ticketModel.PutTicketById(t);
+                if(respuesta)
+                {
+                    if (documentos != null)
+                    {
+                        foreach (var item in documentos)
+                        {
+                            var nombreArchivo = Path.GetFileName(item.FileName);
+                            var extension = Path.GetExtension(nombreArchivo);
+                            var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                            var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "Document", nombreUnico);
+
+                            using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                            {
+                                item.CopyTo(stream);
+                            }
+                            Documento document = new Documento();
+                            document.name = nombreUnico;
+                            document.idUser = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
+                            document.idTicket = t.id;
+                            document.nameDocument = nombreArchivo;
+                            var drespuesta = _documentModel.PostDocument(document);
+                            if (!drespuesta)
+                            {
+                                TempData["AlertMessage"] = "¡Ocurrio un error al actulizar el ticket!";
+                                TempData["AlertType"] = "error";
+                                return View(t);
+                            }
+                        }
+                    }
+                    TempData["AlertMessage"] = "¡Se actualizo el ticket!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(TiquetesProceso));
+                }
+                TempData["AlertMessage"] = "¡Ocurrio un error al actulizar el ticket!";
+                TempData["AlertType"] = "error";
+                return View(t);
+            }
+            catch
+            {
+                TempData["AlertMessage"] = "¡Ocurrio un error al actulizar el ticket!";
+                TempData["AlertType"] = "error";
+                return View();
+            }
+            return View();
+        }
         [HttpGet]
         public IActionResult DownloadDocument(string name)
         {

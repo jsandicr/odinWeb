@@ -1,6 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "TiquetesProceso";
-    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+    ViewData["Title"] = "Tiquetes";
+    if (ViewBag.Layout != null)
+    {
+        Layout = ViewBag.Layout;
+    }
 }
 <style>
     .custom-square {
@@ -19,13 +22,13 @@
         margin-bottom: 10px; /* Ajusta el valor según el espacio que desees */
     }
 
-        .grouping_tabs li {
-            margin-right: 10px; /* Ajusta el valor según el espacio que desees */
-        }
+    .grouping_tabs li {
+        margin-right: 10px; /* Ajusta el valor según el espacio que desees */
+    }
 </style>
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i>Tiquetes en Proceso</h1>
+        <h1><i class="fa fa-th-list"></i>Tiquetes</h1>
         <p>Detalle de tiquetes</p>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
