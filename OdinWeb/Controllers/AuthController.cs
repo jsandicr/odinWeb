@@ -21,12 +21,13 @@ namespace OdinWeb.Controllers
     {
         private readonly IUserModel _userModel;
         private readonly IBranchModel _branchModel;
+        private readonly IRolModel _rolModel;
 
-
-        public AuthController(IUserModel userModel, IBranchModel branchModel)
+        public AuthController(IUserModel userModel, IBranchModel branchModel, IRolModel rolModel)
         {
             _userModel = userModel;
             _branchModel = branchModel;
+            _rolModel = rolModel;
         }
         public async Task<IActionResult> Login()
         {
@@ -149,18 +150,7 @@ namespace OdinWeb.Controllers
                     newUser.photo = "./user.png";
                     newUser.password = user.password;
                     newUser.password = _userModel.HashPassword(newUser.password);
-                    Rol rol = new Rol();
-                    using (var httpClient = new HttpClient())
-                    {
-                        using (var response = await httpClient.GetAsync("https://localhost:7271/api/Rol/First"))
-                        {
-                            if (response.IsSuccessStatusCode)
-                            {
-                                string apiResponse = await response.Content.ReadAsStringAsync();
-                                rol = JsonConvert.DeserializeObject<Rol>(apiResponse);
-                            }
-                        }
-                    }
+                    var rol = _rolModel.GetRolFirst();
 
                     newUser.idRol = rol.id;
                     var contexto = new ValidationContext(newUser, serviceProvider: null, items: null);
@@ -170,21 +160,16 @@ namespace OdinWeb.Controllers
 
                     if (isValid)
                     {
-                        var json = JsonConvert.SerializeObject(newUser);
-                        var data = new StringContent(json, Encoding.UTF8, "application/json");
-                        using (var httpClient = new HttpClient())
-                        {
-                            using (var response = await httpClient.PostAsync("https://localhost:7271/api/User", data))
-                            {
-                                if (response.IsSuccessStatusCode)
-                                {
-                                    TempData["AlertMessage"] = "Se creo la cuenta con éxito";
-                                    TempData["AlertType"] = "success";
-                                    return RedirectToAction("Login", "Auth");
-                                }
-                            }
+                        var respuesta = _userModel.PostUser(newUser);
+                        if(respuesta){
+                            TempData["AlertMessage"] = "Se creo la cuenta con éxito";
+                            TempData["AlertType"] = "success";
+                            return RedirectToAction("Login", "Auth");
                         }
+                        TempData["AlertMessage"] = "Error al crear la cuenta";
+                        TempData["AlertType"] = "error";
 
+                        return RedirectToAction(nameof(Registration));
                     }
                 }
                 TempData["AlertMessage"] = "Error al crear la cuenta";

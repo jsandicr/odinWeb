@@ -23,7 +23,7 @@ namespace OdinWeb.Models.Data.Classes
 
         public Rol GetRolFirst()
         {
-            var response = _httpClient.GetAsync("api/Rol/Firs").Result;
+            var response = _httpClient.GetAsync("api/Rol/First").Result;
 
             if (response.IsSuccessStatusCode)
             {

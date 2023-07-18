@@ -135,5 +135,22 @@ namespace OdinWeb.Models.Data.Classes
 
             return false;
         }
+
+        public bool PostUser(User user)
+        {
+            // Agrega el encabezado de autorización con el token
+            var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+
+
+            var response = _httpClient.PostAsync("api/User", content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                return true;
+            }
+
+            return false;
+        }
     }
 }

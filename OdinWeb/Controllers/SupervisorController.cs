@@ -13,11 +13,13 @@ namespace OdinWeb.Controllers
     {
         private readonly ISupervisorModel _supervisorModel;
         private readonly IUserModel _userModel;
+        public readonly IBranchModel _branchModel;
 
-        public SupervisorController(ISupervisorModel supervisorModel, IUserModel userModel)
+        public SupervisorController(ISupervisorModel supervisorModel, IUserModel userModel, IBranchModel branchModel)
         {
             _supervisorModel = supervisorModel;
             _userModel = userModel;
+            _branchModel = branchModel;
         }
 
         [Authorize]
@@ -42,18 +44,7 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> Crear()
         {
-            List<Branch> branches = new List<Branch>();
-            using (var httpSupervisor = new HttpClient())
-            {
-                var token = Request.Cookies["Token"];
-                // Agrega el encabezado de autorización con el token
-                httpSupervisor.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                using (var response = await httpSupervisor.GetAsync("https://localhost:7271/api/Branch"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    branches = JsonConvert.DeserializeObject<List<Branch>>(apiResponse);
-                }
-            }
+            var branches = _branchModel.GetBranch();            
 
             List<SelectListItem> branchesOps = new List<SelectListItem>();
             foreach (Branch branch in branches)
@@ -67,20 +58,6 @@ namespace OdinWeb.Controllers
 
             ViewData["Branches"] = branchesOps;
 
-            List<SelectListItem> estados = new List<SelectListItem>();
-            estados.Add(new SelectListItem
-            {
-                Text = "Activo",
-                Value = "true"
-            });
-
-            estados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "false"
-            });
-
-            ViewData["Estados"] = estados;
             return View();
         }
 
@@ -126,18 +103,8 @@ namespace OdinWeb.Controllers
                 var Supervisor = _supervisorModel.GetSupervisorById(id);
                 if (Supervisor != null)
                 {
-                    List<Branch> branches = new List<Branch>();
-                    using (var httpSupervisor = new HttpClient())
-                    {
-                        var token = Request.Cookies["Token"];
-                        // Agrega el encabezado de autorización con el token
-                        httpSupervisor.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                        using (var response = await httpSupervisor.GetAsync("https://localhost:7271/api/Branch"))
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            branches = JsonConvert.DeserializeObject<List<Branch>>(apiResponse);
-                        }
-                    }
+                    var branches = _branchModel.GetBranch();
+
 
                     List<SelectListItem> branchesOps = new List<SelectListItem>();
                     foreach (Branch branch in branches)
@@ -151,20 +118,7 @@ namespace OdinWeb.Controllers
 
                     ViewData["Branches"] = branchesOps;
 
-                    List<SelectListItem> estados = new List<SelectListItem>();
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Activo",
-                        Value = "true"
-                    });
-
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Inactivo",
-                        Value = "false"
-                    });
-
-                    ViewData["Estados"] = estados;
+                  
                     return View(Supervisor);
                 }
                 return RedirectToAction(nameof(Home));
@@ -185,18 +139,8 @@ namespace OdinWeb.Controllers
                 var Supervisor = _supervisorModel.GetSupervisorById(id);
                 if (Supervisor != null)
                 {
-                    List<Branch> branches = new List<Branch>();
-                    using (var httpSupervisor = new HttpClient())
-                    {
-                        var token = Request.Cookies["Token"];
-                        // Agrega el encabezado de autorización con el token
-                        httpSupervisor.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                        using (var response = await httpSupervisor.GetAsync("https://localhost:7271/api/Branch"))
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            branches = JsonConvert.DeserializeObject<List<Branch>>(apiResponse);
-                        }
-                    }
+                    var branches = _branchModel.GetBranch();
+
 
                     List<SelectListItem> branchesOps = new List<SelectListItem>();
                     foreach (Branch branch in branches)
@@ -210,20 +154,6 @@ namespace OdinWeb.Controllers
 
                     ViewData["Branches"] = branchesOps;
 
-                    List<SelectListItem> estados = new List<SelectListItem>();
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Activo",
-                        Value = "true"
-                    });
-
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Inactivo",
-                        Value = "false"
-                    });
-
-                    ViewData["Estados"] = estados;
                     return View(Supervisor);
                 }
                 return RedirectToAction(nameof(Home));

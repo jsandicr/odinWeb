@@ -220,7 +220,7 @@ namespace OdinWeb.Controllers
                             }
                         }
 
-                        TempData["AlertMessage"] = "¡Se creó el ticket!";
+                        TempData["AlertMessage"] = "¡Se creó el ticket Cod-"+ticket.id+"!";
                         TempData["AlertType"] = "success";
                         return RedirectToAction(nameof(Home));
 
@@ -638,6 +638,10 @@ namespace OdinWeb.Controllers
             if (rol == "Cliente")
             {
                 ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+            }
+            if (rol == "Supervisor")
+            {
+                ViewBag.Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
             }
             return View();
         }

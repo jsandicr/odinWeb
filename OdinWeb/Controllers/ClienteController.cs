@@ -16,11 +16,13 @@ namespace OdinWeb.Controllers
 
         private readonly IClienteModel _clientModel;
         private readonly IUserModel _userModel;
+        private readonly IBranchModel _branchModel;
 
-        public ClienteController(IClienteModel clientModel, IUserModel userModel)
+        public ClienteController(IClienteModel clientModel, IUserModel userModel, IBranchModel branchModel)
         {
             _clientModel = clientModel;
             _userModel = userModel;
+            _branchModel = branchModel;
         }
 
         [Authorize]
@@ -45,18 +47,8 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> Crear()
         {
-            List<Branch> branches = new List<Branch>();
-            using (var httpClient = new HttpClient())
-            {
-                var token = Request.Cookies["Token"];
-                // Agrega el encabezado de autorización con el token
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                using (var response = await httpClient.GetAsync("https://localhost:7271/api/Branch"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    branches = JsonConvert.DeserializeObject<List<Branch>>(apiResponse);
-                }
-            }
+            var branches = _branchModel.GetBranch();
+
 
             List<SelectListItem> branchesOps = new List<SelectListItem>();
             foreach (Branch branch in branches)
@@ -70,20 +62,7 @@ namespace OdinWeb.Controllers
 
             ViewData["Branches"] = branchesOps;
 
-            List<SelectListItem> estados = new List<SelectListItem>();
-            estados.Add(new SelectListItem
-            {
-                Text = "Activo",
-                Value = "true"
-            });
-
-            estados.Add(new SelectListItem
-            {
-                Text = "Inactivo",
-                Value = "false"
-            });
-
-            ViewData["Estados"] = estados;
+            
             return View();
         }
 
@@ -129,18 +108,7 @@ namespace OdinWeb.Controllers
                 var client = _clientModel.GetClientById(id);
                 if (client != null)
                 {
-                    List<Branch> branches = new List<Branch>();
-                    using (var httpClient = new HttpClient())
-                    {
-                        var token = Request.Cookies["Token"];
-                        // Agrega el encabezado de autorización con el token
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                        using (var response = await httpClient.GetAsync("https://localhost:7271/api/Branch"))
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            branches = JsonConvert.DeserializeObject<List<Branch>>(apiResponse);
-                        }
-                    }
+                    var branches = _branchModel.GetBranch();
 
                     List<SelectListItem> branchesOps = new List<SelectListItem>();
                     foreach (Branch branch in branches)
@@ -154,20 +122,7 @@ namespace OdinWeb.Controllers
 
                     ViewData["Branches"] = branchesOps;
 
-                    List<SelectListItem> estados = new List<SelectListItem>();
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Activo",
-                        Value = "true"
-                    });
-
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Inactivo",
-                        Value = "false"
-                    });
-
-                    ViewData["Estados"] = estados;
+                    
                     return View(client);
                 }
                 return RedirectToAction(nameof(Home));
@@ -188,18 +143,8 @@ namespace OdinWeb.Controllers
                 var client = _clientModel.GetClientById(id);
                 if (client != null)
                 {
-                    List<Branch> branches = new List<Branch>();
-                    using (var httpClient = new HttpClient())
-                    {
-                        var token = Request.Cookies["Token"];
-                        // Agrega el encabezado de autorización con el token
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                        using (var response = await httpClient.GetAsync("https://localhost:7271/api/Branch"))
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            branches = JsonConvert.DeserializeObject<List<Branch>>(apiResponse);
-                        }
-                    }
+                    var branches = _branchModel.GetBranch();
+
 
                     List<SelectListItem> branchesOps = new List<SelectListItem>();
                     foreach (Branch branch in branches)
@@ -213,20 +158,7 @@ namespace OdinWeb.Controllers
 
                     ViewData["Branches"] = branchesOps;
 
-                    List<SelectListItem> estados = new List<SelectListItem>();
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Activo",
-                        Value = "true"
-                    });
-
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Inactivo",
-                        Value = "false"
-                    });
-
-                    ViewData["Estados"] = estados;
+                    
                     return View(client);
                 }
                 return RedirectToAction(nameof(Home));

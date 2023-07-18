@@ -364,6 +364,10 @@ namespace OdinWeb.Controllers
             {
                 ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
             }
+            if (rol == "Supervisor")
+            {
+                ViewBag.Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+            }
             return View(_serviceModel.GetServiciosStatus(true));
         }
 
@@ -374,25 +378,29 @@ namespace OdinWeb.Controllers
 
                 string rol = Request.Cookies["Rol"];
 
-                if (respuesta!=null)
+                if (respuesta != null)
                 {
 
                     if (rol == "Cliente")
                     {
                         ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
                     }
+                    if (rol == "Supervisor")
+                    {
+                        ViewBag.Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+                    }
 
                     return View(respuesta);
                 }
                 if (rol == "Cliente")
                 {
-                    return RedirectToAction("Crear", "Ticket", new { idService = id });
+                    return RedirectToAction("CrearTiquete", "Ticket", new { idService = id });
                 }
-                return RedirectToAction("CrearTiquete", "Ticket", new { idService = id });
+                return RedirectToAction("Crear", "Ticket", new { idService = id });
             }
 
             catch {
-                return RedirectToAction("CrearTiquete", "Ticket", new { idService = id });
+                return RedirectToAction("Crear", "Ticket", new { idService = id });
 
             }
         }
