@@ -71,6 +71,7 @@ namespace OdinWeb.Controllers
                     Response.Cookies.Append("Id", user.id.ToString(), cookieOptions);
                     Response.Cookies.Append("IdBranch", user.idBranch.ToString(), cookieOptions);
                     Response.Cookies.Append("Rol", user.rol.name.ToString(), cookieOptions);
+                    Response.Cookies.Append("Foto", user.photo.ToString(), cookieOptions);
                     Response.Cookies.Append("NombreCompleto", user.name + " " + user.lastName, cookieOptions);
 
 

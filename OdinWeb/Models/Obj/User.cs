@@ -19,7 +19,7 @@ namespace OdinWeb.Models.Obj
         public string lastName { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         [DataType(DataType.EmailAddress, ErrorMessage = "El campo 'Email' debe ser una dirección de correo electrónico válida")]
-        [Display(Name = "Email")]
+        [Display(Name = "Correo")]
         public string mail { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
@@ -43,7 +43,7 @@ namespace OdinWeb.Models.Obj
         public string? token { get; set; }
         [Display(Name = "Rol")]
         public Rol? rol { get; set; }
-        [Display(Name = "Branch")]
+        [Display(Name = "Ubicación")]
         public Branch? branch { get; set; }
         public List<Ticket>? ticketsS { get; set; }
         public List<Ticket>? ticketsC { get; set; }

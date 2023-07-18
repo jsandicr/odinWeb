@@ -5,14 +5,14 @@
 <div class="app-title">
     <div>
         <h1><i class="fa fa-th-list"></i>Administración de Clientes</h1>
-        <p>Usuarios</p>
+        <p>Clientes registrados</p>
         <br>
-        <a asp-action="Crear" asp-controller="Cliente" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Crear</a>
+        <a asp-action="Crear" asp-controller="Cliente" class="btn btn-dark"><i class="fa fa-plus" aria-hidden="true"></i>Crear</a>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
         <li class="breadcrumb-item">Clientes</li>
-        <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Cliente">Clientes</a></li>
     </ul>
 </div>
 <div class="row">
@@ -43,12 +43,19 @@
                                         <td>@Html.DisplayFor(model => user.phone)</td>
                                         <td>@Html.DisplayFor(model => user.rol.name)</td>
                                         <td>@Html.DisplayFor(model => user.branch.name)</td>
-                                        <td>@Html.DisplayFor(model => user.active)</td>
+                                        @if (user.active == true)
+                                        {
+                                            <td><span asp-for="active" class="badge badge-pill badge-success">Activo</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span asp-for="active" class="badge badge-pill badge-danger">Desactivo</span></td>
+                                        }
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="Cliente" asp-route-id="@user.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="Cliente" asp-route-id="@user.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@user.id"><i class="fa fa-lg fa-trash"></i></button>
+                                                <a class="btn btn-dark" asp-action="Ver" asp-controller="Cliente" asp-route-id="@user.id"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Cliente" asp-route-id="@user.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-dark" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@user.id"><i class="fa fa-lg fa-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>

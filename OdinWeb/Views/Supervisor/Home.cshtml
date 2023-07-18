@@ -8,14 +8,14 @@
         <h1><i class="fa fa-th-list"></i>Administración de Supervisores</h1>
         <p>Información de supervisores registrados</p>
         <br>
-        <a asp-action="Crear" asp-controller="Supervisor" class="btn btn-primary">Crear</a>
+        <a asp-action="Crear" asp-controller="Supervisor" class="btn btn-dark">Crear</a>
 
     </div>
 
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
         <li class="breadcrumb-item">Supervisores</li>
-        <li class="breadcrumb-item active"><a href="/docs/supervisores.html">Data Table</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Supervisor">Supervisores</a></li>
     </ul>
 
 </div>
@@ -50,12 +50,19 @@
                                         <td>@Html.DisplayFor(model => user.phone)</td>
                                         <td>@Html.DisplayFor(model => user.rol.name)</td>
                                         <td>@Html.DisplayFor(model => user.branch.name)</td>
-                                        <td>@Html.DisplayFor(model => user.active)</td>
+                                        @if (user.active == true)
+                                        {
+                                            <td><span asp-for="active" class="badge badge-pill badge-success">Activo</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span asp-for="active" class="badge badge-pill badge-danger">Desactivo</span></td>
+                                        }
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="Supervisor" asp-route-id="@user.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="Supervisor" asp-route-id="@user.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@user.id"><i class="fa fa-lg fa-trash"></i></button>
+                                                <a class="btn btn-dark" asp-action="Ver" asp-controller="Supervisor" asp-route-id="@user.id"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Supervisor" asp-route-id="@user.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-dark" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@user.id"><i class="fa fa-lg fa-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>

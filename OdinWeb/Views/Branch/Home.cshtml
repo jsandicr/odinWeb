@@ -5,14 +5,14 @@
 <div class="app-title">
     <div>
         <h1><i class="fa fa-th-list"></i>Administración de Sucursales</h1>
-        <p>Usuarios</p>
+        <p>Sucursales Registradas</p>
         <br>
-        <a asp-action="Crear" asp-controller="Branch" class="btn btn-primary">Crear</a>
+        <a asp-action="Crear" asp-controller="Branch" class="btn btn-dark">Sucursales</a>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
         <li class="breadcrumb-item">Sucursales</li>
-        <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Branch">Sucursales</a></li>
     </ul>
 </div>
 <div class="row">
@@ -36,12 +36,19 @@
                                     <tr>
                                         <td>@Html.DisplayFor(model => branch.name)</td>
                                         <td>@Html.DisplayFor(model => branch.direction)</td>
-                                        <td>@Html.DisplayFor(model => branch.active)</td>
+                                        @if (branch.active == true)
+                                        {
+                                            <td><span asp-for="active" class="badge badge-pill badge-success">Activo</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span asp-for="active" class="badge badge-pill badge-danger">Desactivo</span></td>
+                                        }
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-primary" asp-action="Ver" asp-controller="Branch" asp-route-id="@branch.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-primary" asp-action="Editar" asp-controller="Branch" asp-route-id="@branch.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@branch.id"><i class="fa fa-lg fa-trash"></i></button>
+                                                <a class="btn btn-dark" asp-action="Ver" asp-controller="Branch" asp-route-id="@branch.id"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Branch" asp-route-id="@branch.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-dark" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@branch.id"><i class="fa fa-lg fa-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>
