@@ -500,31 +500,30 @@ namespace OdinWeb.Controllers
             try
             {
                 ticket.updateDate = DateTime.Now;
-                if (ticket.idStatus == 1)
+                if (ticket.idStatus == 4)
                 {
                     ticket.closeDate = DateTime.Now;
                 }
-                if (ModelState.IsValid)
-                {
+                ticket.updateDate= DateTime.Now;
                     var response = _ticketModel.PutTicketById(ticket);
 
                     if (response)
                     {
                         TempData["AlertMessage"] = "¡Se actualizó el ticket!";
                         TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Home));
+                        return RedirectToAction(nameof(TiquetesProcesoAS));
                     }
 
-                }
+
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el ticket!";
                 TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Editar));
+                return RedirectToAction(nameof(Editar), new {id=ticket.id });
             }
             catch
             {
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el ticket!";
                 TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Editar));
+                return RedirectToAction(nameof(Editar), new { id = ticket.id });
             }
         }
 
@@ -552,6 +551,8 @@ namespace OdinWeb.Controllers
                 return RedirectToAction(nameof(Home));
             }
         }
+
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> CrearTiquete(int idService)
@@ -564,6 +565,8 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+
         public async Task<IActionResult> CrearTiquete(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try {
@@ -632,13 +635,18 @@ namespace OdinWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult TiquetesProceso(string status)
+        [Authorize]
+
+        public IActionResult TiquetesProceso()
+        {
+            return View();
+        }
+        [HttpGet]
+        [Authorize]
+
+        public IActionResult TiquetesProcesoAS()
         {
             string rol = Request.Cookies["Rol"];
-            if (rol == "Cliente")
-            {
-                ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
-            }
             if (rol == "Supervisor")
             {
                 ViewBag.Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
@@ -647,13 +655,27 @@ namespace OdinWeb.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+
         public IActionResult TiquetesProcesoAjax(string status)
         {
             var tickets = _ticketModel.GetTicketsClientsStatus(status);
             return PartialView("_ParcialTable", tickets);
+
         }
 
         [HttpGet]
+        [Authorize]
+
+        public IActionResult TiquetesAsignadosAjax(string status)
+        {
+            var tickets = _ticketModel.GetAssignedTickets(status);
+            return PartialView("_ParcialTableAS", tickets);
+        }
+
+        [HttpGet]
+        [Authorize]
+
         public IActionResult TiquetesCerrados()
         {
             var tickets = _ticketModel.GetTicketsClientsStatus("Finalizado");
@@ -661,17 +683,23 @@ namespace OdinWeb.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+
         public IActionResult VerTiquete(int id)
         {
             return View(_ticketModel.GetTicketById(id));
         }
         [HttpGet]
+        [Authorize]
+
         public IActionResult EditarTiquete(int id)
         {
             return View(_ticketModel.GetTicketById(id));
         }
 
         [HttpPost]
+        [Authorize]
+
         public async Task<IActionResult> EditarTiquete(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try
@@ -731,6 +759,8 @@ namespace OdinWeb.Controllers
             return View();
         }
         [HttpGet]
+        [Authorize]
+
         public IActionResult DownloadDocument(string name)
         {
             var webRootPath = _env.WebRootPath; // Obtener la ruta raíz del servidor
@@ -753,6 +783,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult ViewDocument(string name)
         {
             var webRootPath = _env.WebRootPath; // Obtener la ruta raíz del servidor

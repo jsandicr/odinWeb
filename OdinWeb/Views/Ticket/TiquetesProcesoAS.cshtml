@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Tiquetes";
-    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+    if (ViewBag.Layout != null)
+    {
+        Layout = ViewBag.Layout;
+    }
 }
 <style>
     .custom-square {
@@ -98,7 +101,7 @@
 
             // Realiza la llamada AJAX para cargar la vista parcial
             $.ajax({
-                url: '/Ticket/TiquetesProcesoAjax',
+                url: '/Ticket/TiquetesAsignadosAjax',
                 type: 'GET',
                 data: { status: status },
                 success: function (result) {

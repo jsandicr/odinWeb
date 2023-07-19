@@ -72,13 +72,15 @@ namespace OdinWeb.Models.Data.Classes
             return null;
         }
 
-        public List<Ticket> GetAssignedTickets(string id)
+        public List<Ticket> GetAssignedTickets(string status)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            var id = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
+
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = _httpClient.GetAsync("api/Ticket/Assigned/"+id).Result;
+            var response = _httpClient.GetAsync("api/Ticket/Assigned/"+ id + "," + status).Result;
 
             if (response.IsSuccessStatusCode)
             {
