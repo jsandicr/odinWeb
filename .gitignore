@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /OdinWeb/wwwroot/images/Users/1a108d0a-d467-4c82-9112-bb9bc2de5ee0.pdf
+/OdinWeb/wwwroot/Document
