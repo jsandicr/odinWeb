@@ -2,23 +2,34 @@
 @{
     ViewData["Title"] = "Crear Sucursal";
 }
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Administración de Sucursales</h1>
+        <p>Sucursales Registradas</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Branch">Sucursales</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Crear" asp-controller="Branch">Crear Sucursal</a></li>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
         <h3 class="tile-title">Crear Sucursal</h3>
         <div class="tile-body">
             <form asp-action="Guardar" asp-controller="Branch" method="post">
                 <div class="form-group">
-                    <label asp-for="name" class="control-label"></label>
+                    <label asp-for="name" class="control-label">Nombre</label>
                     <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
-                    <span asp-validation-for="name"></span>
+                    <span asp-validation-for="name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="direction" class="control-label"></label>
-                    <input asp-for="direction" class="form-control" rows="4" placeholder="Ingrese la direccion"></input>
-                    <span asp-validation-for="direction"></span>
+                    <label asp-for="direction" class="control-label">Dirección</label>
+                    <input asp-for="direction" class="form-control" rows="4" placeholder="Ingrese la dirección"></input>
+                    <span asp-validation-for="direction" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="active" class="control-label"></label>
+                    <label asp-for="active" class="control-label">Estado</label>
                     <div class="toggle-flip">
                         <label>
                             <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>

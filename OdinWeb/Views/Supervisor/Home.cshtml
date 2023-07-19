@@ -5,19 +5,16 @@
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i>Administración de Supervisores</h1>
+        <h1><i class="fa fa-th-list"></i> Administración de Supervisores</h1>
         <p>Información de supervisores registrados</p>
         <br>
-        <a asp-action="Crear" asp-controller="Supervisor" class="btn btn-dark">Crear</a>
+        <a asp-action="Crear" asp-controller="Supervisor" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
 
     </div>
-
     <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item">Supervisores</li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
         <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Supervisor">Supervisores</a></li>
     </ul>
-
 </div>
 <div class="row">
     <div class="col-md-12">

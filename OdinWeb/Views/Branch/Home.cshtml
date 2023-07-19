@@ -4,14 +4,13 @@
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i>Administración de Sucursales</h1>
+        <h1><i class="fa fa-th-list"></i> Administración de Sucursales</h1>
         <p>Sucursales Registradas</p>
         <br>
-        <a asp-action="Crear" asp-controller="Branch" class="btn btn-dark">Sucursales</a>
+        <a asp-action="Crear" asp-controller="Branch" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item">Sucursales</li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
         <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Branch">Sucursales</a></li>
     </ul>
 </div>

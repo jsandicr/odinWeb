@@ -2,13 +2,24 @@
 @{
     ViewData["Title"] = "Editar Servicio";
 }
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Administración de Servicios</h1>
+        <p>Servicios Ofrecidos</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Servicio">Servicios</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Editar" asp-controller="Servicio">Editar</a></li>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
         <h3 class="tile-title">Editar Servicio</h3>
-        <div class="tile-body">
-            <div class="row">
-                <div class="col-md-8">
-                    <form asp-action="Actualizar" asp-controller="Servicio" method="post" enctype="multipart/form-data">
+        <form asp-action="Actualizar" asp-controller="Servicio" method="post" enctype="multipart/form-data">
+            <div class="tile-body">
+                <div class="row">
+                    <div class="col-md-8">
                         <input type="hidden" asp-for="id">
 
                         <div class="form-group">
@@ -22,7 +33,11 @@
                             <textarea asp-for="description" class="form-control" rows="4" placeholder="Ingrese su dirección"></textarea>
                             <span asp-validation-for="name" class="text-danger"></span>
                         </div>
-
+                        <div class="form-group">
+                            <label asp-for="requirements" class="control-label"></label>
+                            <textarea id="requirements" asp-for="requirements" class="form-control" rows="6" placeholder="Ingrese los requerimientos necesarios para tomar el ticket"></textarea>
+                            <span asp-validation-for="requirements" class="text-danger"></span>
+                        </div>
                         <div class="form-group">
                             <label asp-for="active" class="control-label">Estado</label>
                             <div class="toggle-flip">
@@ -60,28 +75,28 @@
                             <input asp-for="toAdministrator" type="checkbox">
                             <label asp-for="toAdministrator" class="control-label"></label>
                             <span asp-validation-for="toAdministrator" class="text-danger"></span>
-                        </div>
-                        <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>
-                            &nbsp;&nbsp;&nbsp;
-                            <a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio">
-                                <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar
-                            </a>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="300">
+                        </div>  
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Imagen de servicio</label>
-                        <input asp-for="image" class="form-control" type="file" data-val="false">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" height="200">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Imagen de servicio</label>
+                            <input asp-for="image" class="form-control" type="file" data-val="false">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="tile-footer">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio">
+                    <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar
+                </a>
+            </div>
+        </form>
+   </div>
 </div>
 <script>
     var subServiceCheck = document.getElementById('subServiceCheck');

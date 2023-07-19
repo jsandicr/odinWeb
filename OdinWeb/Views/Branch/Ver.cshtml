@@ -2,25 +2,49 @@
 @{
     ViewData["Title"] = "Ver Sucursal";
 }
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Administración de Sucursales</h1>
+        <p>Sucursales Registradas</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Branch">Sucursales</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Ver" asp-controller="Branch"> Información</a></li>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
         <h3 class="tile-title">Ver Sucursal</h3>
         <div class="tile-body">
-            <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
-                <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre" readonly>
-            </div>
-            <div class="form-group">
-                <label asp-for="direction" class="control-label"></label>
-                <input asp-for="direction" class="form-control" rows="4" placeholder="Ingrese la direccion" readonly>
-                <span asp-validation-for="direction"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="active" class="control-label"></label>
-                <div class="toggle-flip">
-                    <label>
-                        <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
-                    </label>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="name" class="control-label">Nombre</label>
+                        <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="direction" class="control-label">Dirección</label>
+                        <input asp-for="direction" class="form-control" rows="2" placeholder="Ingrese la dirección" readonly>
+                        <span asp-validation-for="direction"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="active" class="control-label">Estado</label>
+                        @if (@Model.active == true)
+                        {
+                           <div>
+                                <span asp-for="active" class="badge badge-pill badge-success">Activo</span>
+                           </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <span asp-for="active" class="badge badge-pill badge-danger">Desactivo</span>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,4 +53,3 @@
         </div>
     </div>
 </div>
-

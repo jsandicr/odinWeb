@@ -15,6 +15,7 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Activo")]
         public bool active { get; set; }
         public string photo { get; set; }
+        [Display(Name = "Requerimientos")]
         public string? requirements { get; set; }
         public int? idServiceMain { get; set; }
         [Display(Name = "Necesita transporte")]

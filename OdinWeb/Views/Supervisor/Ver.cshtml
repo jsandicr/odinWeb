@@ -2,37 +2,61 @@
 @{
     ViewData["Title"] = "Ver Supervisor";
 }
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Administración de Supervisores</h1>
+        <p>Información de supervisores registrados</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Supervisor">Supervisores</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Ver" asp-controller="Supervisor"> Información</a></li>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
         <h3 class="tile-title">Ver Supervisor</h3>
         <div class="tile-body">
-            <div class="form-group">
-                <h5 class="control-label">Nombre</h5>
-                <h6 class="control-label">@Model.name</h6>
-            </div>
-            <div class="form-group">
-                <h5 class="control-label">Apellidos</h5>
-                <h6 class="control-label">@Model.lastName</h6>
-            </div>
-            <div class="form-group">
-                <h5 class="control-label">Correo</h5>
-                <h6 class="control-label">@Model.mail</h6>
-            </div>
-            <div class="form-group">
-                <h5 class="control-label">Teléfono</h5>
-                <h6 class="control-label">@Model.phone</h6>
-            </div>
-            <div class="form-group">
-                <label asp-for="active" class="control-label"></label>
-                <div class="toggle-flip">
-                    <label>
-                        <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
-                    </label>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <h5 class="control-label">Nombre</h5>
+                        <h6 class="control-label">@Model.name</h6>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="control-label">Apellidos</h5>
+                        <h6 class="control-label">@Model.lastName</h6>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="control-label">Correo</h5>
+                        <h6 class="control-label">@Model.mail</h6>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="control-label">Teléfono</h5>
+                        <h6 class="control-label">@Model.phone</h6>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label>Seleccione la sucursal</label>
-                @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3", @disabled = "disabled" })
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="active" class="control-label">Estado</label>
+                        @if (@Model.active == true)
+                        {
+                           <div>
+                                <span asp-for="active" class="badge badge-pill badge-success">Activo</span>
+                           </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <span asp-for="active" class="badge badge-pill badge-danger">Desactivo</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label>Sucursal</label>
+                        @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3", @disabled = "disabled" })
+                    </div>
+                </div>
             </div>
         </div>
         <div class="tile-footer">
@@ -40,3 +64,4 @@
         </div>
     </div>
 </div>
+

@@ -95,9 +95,7 @@ namespace OdinWeb.Controllers
                             AllowRefresh = true
                         };
 
-                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-
-                            new ClaimsPrincipal(claimsIdentity), properties);
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity), properties);
                         TempData["AlertMessage"] = "Inicio de Sesión Valido";
                         TempData["AlertType"] = "success";
                         switch (user.rol.name)

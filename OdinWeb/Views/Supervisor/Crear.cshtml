@@ -2,57 +2,75 @@
 @{
     ViewData["Title"] = "Crear Supervisor";
 }
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Administración de Supervisores</h1>
+        <p>Información de supervisores registrados</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Supervisor">Supervisores</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Crear" asp-controller="Supervisor">Crear Supervisores</a></li>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
         <h3 class="tile-title">Crear Supervisor</h3>
         <div class="tile-body">
-                <form asp-action="Guardar" asp-controller="Supervisor" method="post">
-                    <div class="form-group">
-                        <label asp-for="name" class="control-label"></label>
-                        <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
-                    <span asp-validation-for="name" class="text-danger"></span>
+            <form asp-action="Guardar" asp-controller="Supervisor" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="name" class="control-label">Nombre</label>
+                            <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
+                            <span asp-validation-for="name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="lastName" class="control-label">Apellidos</label>
+                            <input asp-for="lastName" class="form-control" rows="2" placeholder="Ingrese el apellido"></input>
+                            <span asp-validation-for="lastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="mail" class="control-label">Correo</label>
+                            <input asp-for="mail" class="form-control" rows="2" placeholder="Ingrese el correo"></input>
+                            <span asp-validation-for="mail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="phone" class="control-label">Teléfono</label>
+                            <input asp-for="phone" class="form-control" rows="2" placeholder="Ingrese el teléfono"></input>
+                            <span asp-validation-for="phone" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="lastName" class="control-label"></label>
-                        <input asp-for="lastName" class="form-control" rows="4" placeholder="Ingrese el apellido"></input>
-                    <span asp-validation-for="lastName" class="text-danger"></span>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="photo" class="control-label">Imagen de perfil</label>
+                            <input class="form-control" type="file">
+                        </div>
+@*                      <div class="form-group">
+                            <label asp-for="password" class="control-label">Contraseña temporal</label>
+                            <input type="password" asp-for="password" class="form-control" rows="2" placeholder="Ingrese la contraseña temporal"></input>
+                            <span asp-validation-for="password" class="text-danger"></span>
+                        </div>*@
+                        <div class="form-group">
+                            <label asp-for="active" class="control-label">Estado</label>
+                            <div class="toggle-flip">
+                                <label>
+                                    <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
+                                </label>
+                            </div>
+                            <span asp-validation-for="active" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Sucursal</label>
+                            @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3" })
+                        </div>
+                        <div class="tile-footer">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>
+                            <a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="mail" class="control-label"></label>
-                        <input asp-for="mail" class="form-control" rows="4" placeholder="Ingrese el correo"></input>
-                    <span asp-validation-for="mail" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="phone" class="control-label"></label>
-                        <input asp-for="phone" class="form-control" rows="4" placeholder="Ingrese el telefono"></input>
-                    <span asp-validation-for="phone" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="photo" class="control-label"></label>
-                        <input class="form-control" type="file">
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="password" class="control-label"></label>
-                        <input type="password" asp-for="password" class="form-control" rows="4" placeholder="Ingrese la contraseña temporal"></input>
-                    <span asp-validation-for="password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="active" class="control-label"></label>
-                    <div class="toggle-flip">
-                        <label>
-                            <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
-                        </label>
-                    </div>
-                    <span asp-validation-for="active" class="text-danger"></span>
-                    </div>
-                    <div>
-                        <label>Seleccione la sucursal</label>
-                        @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3" })
-                    </div>
-                    <div class="tile-footer">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
-                    </div>
-                </form>
+                </div>
+            </form>
         </div>
     </div>
 </div>

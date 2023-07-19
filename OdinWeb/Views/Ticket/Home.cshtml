@@ -10,9 +10,8 @@
         <a class="btn btn-primary" asp-action="Crear" asp-controller="Ticket"><i class="fa fa-plus" aria-hidden="true"></i>Crear</a>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item">Tiquetes</li>
-        <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item"><a asp-action="TiquetesProceso" asp-controller="Ticket">Tiquetes</a></li>
     </ul>
 </div>
 <div class="row">
