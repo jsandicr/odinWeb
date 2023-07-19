@@ -1,71 +1,353 @@
 ﻿@model OdinWeb.Models.Obj.Ticket
+
 @{
-    ViewData["Title"] = "Ver Ticket";
+    ViewData["Title"] = "Ver Tiquete";
+    if (Context.Request.Cookies["Rol"] == "Supervisor")
+    {
+        Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+    }
 }
+
+<style>
+    .ticket-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .ticket-section {
+        margin-bottom: 20px;
+    }
+
+    .ticket-section-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .ticket-section-content {
+        margin-left: 20px;
+    }
+
+    .comment-section {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+    }
+
+        .comment-section .comment-author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .comment-section .comment-date {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .comment-section .comment-text {
+            margin-bottom: 0;
+        }
+
+    .ticket-actions {
+        margin-top: 30px;
+    }
+
+    .comment-toggle {
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .documents-toggle {
+        cursor: pointer;
+    }
+
+    .documents-container {
+        display: none;
+        margin-top: 10px;
+    }
+
+    .document-item {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="app-title">
+
+    <div>
+        <h1><i class="fa fa-create"></i>Información del Tiquete</h1>
+        <p>Ver Tiquete</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item"><a a asp-controller="Ticket" asp-action="TiquetesProceso">Tiquetes en proceso</a></li>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
-        <h3 class="tile-title">Ver Ticket</h3>
+        <h3 class="tile-title">Cod-@Model.id</h3>
         <div class="tile-body">
-            <div class="form-group">
-                <label asp-for="title" class="control-label"></label>
-                <input asp-for="title" class="form-control" type="text" readonly>
+            <div class="ticket-section">
+                <h4>@Html.DisplayFor(model => model.title)</h4>
+
+                <div>
+                    <h6>Descripcion</h6>
+                    <p>@Html.DisplayFor(model => model.description)</p>
+
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="description" class="control-label"></label>
-                <input asp-for="description" class="form-control" rows="4" readonly>
-                <span asp-validation-for="description"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="creationDate" class="control-label"></label>
-                <input asp-for="creationDate" class="form-control" rows="4" readonly>
-                <span asp-validation-for="creationDate"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="updateDate" class="control-label"></label>
-                <input asp-for="updateDate" class="form-control" rows="4" readonly>
-                <span asp-validation-for="updateDate"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="closeDate" class="control-label"></label>
-                <input asp-for="closeDate" class="form-control" rows="4" readonly>
-                <span asp-validation-for="closeDate"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="estimatedDate" class="control-label"></label>
-                <input asp-for="estimatedDate" class="form-control" rows="4" readonly>
-                <span asp-validation-for="estimatedDate"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="active" class="control-label"></label>
-                @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
-                {
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input asp-for="active" class="form-check-input" type="radio" name="active" value="@opcion.Value" disabled> @opcion.Text
-                        </label>
+            <div class="ticket-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Fecha de inicio</h6>
+                        <div class="ticket-section-content">
+                            <p>@Html.DisplayFor(model => model.creationDate)</p>
+                        </div>
                     </div>
-                }
+                    <div class="col-md-6">
+                        <h6>Última actualización</h6>
+                        <div class="ticket-section-content">
+                            <p>@Html.DisplayFor(model => model.updateDate)</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="ticket-section">
+                <div class="row">
+                    @if (Model.estimatedDate != null)
+                    {
+                        <div class="col-md-6">
+                            <h6>Fecha estimada</h6>
+                            <div class="ticket-section-content">
+                                <p>@Html.DisplayFor(model => model.estimatedDate)</p>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.closeDate != null)
+                    {
+                        <div class="col-md-6">
+                            <h6>Fecha de cierre</h6>
+                            <div class="ticket-section-content">
+                                <p>@Html.DisplayFor(model => model.closeDate)</p>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+
+            <div class="ticket-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Supervisor a Cargo</h6>
+                        <div class="ticket-section-content">
+                            <p>@Html.Raw(Model.supervisor.name + " " + Model.supervisor.lastName)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Cliente</h6>
+                        <div class="ticket-section-content">
+                            <p>@Html.Raw(Model.client.name + " " + Model.client.lastName)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Servicio</h6>
+                        <div class="ticket-section-content">
+                            <p>@Html.DisplayFor(model => model.service.name)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-section">
+                <h6 class="comment-toggle btn btn-primary" onclick="toggleComments()" id="toggle-button">Mostrar Comentarios</h6>
+                <div id="comments-container" style="display: none;">
+                    @if (Model.comments != null && Model.comments.Count > 0)
+                    {
+                        foreach (var item in Model.comments)
+                        {
+                            <div class="comment-section">
+                                <div class="comment-author">@item.user.name @item.user.lastName</div>
+                                <div class="comment-date">Fecha: @item.date.ToString("yyyy-MM-dd HH:mm")</div>
+                                <div class="comment-text">@Html.DisplayFor(m => item.description)</div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>No hay comentarios disponibles.</p>
+                    }
+                    @if (Model.status.description != "Finalizado")
+                    {
+                        <button class="btn btn-success" data-toggle="modal" data-target="#addCommentModal" data-id="@Model.id">Agregar</button>
+                    }
+                </div>
+            </div>
+            <div class="ticket-section">
+                <h6 class="documents-toggle btn btn-primary" onclick="toggleDocuments()" id="toggle-buttond">Mostrar Documentos</h6>
+                <div id="documents-container" style="display: none;">
+                    @if (Model.documents != null && Model.documents.Count > 0)
+                    {
+                        foreach (var item in Model.documents)
+                        {
+                            <h5>
+                                <span class="d-inline-block">@Html.DisplayFor(m => item.nameDocument)</span>
+                                <span class="d-inline-block ml-2">
+                                    <button class="btn btn-success btn-sm" onclick="downloadDocument('@item.name')">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-info btn-sm" onclick="viewDocument('@item.name')">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </span>
+                            </h5>
+
+                        }
+                    }
+                    else
+                    {
+                        <p>No hay documentos disponibles.</p>
+                    }
+                </div>
+            </div>
+
             <div>
-                <label>Seleccione el cliente</label>
-                @Html.DropDownList("idClient", (IEnumerable<SelectListItem>)ViewData["Clients"], new { @class = "form-control form-select mb-3" })
+                <a href="javascript:history.go(-1)" class="btn btn-secondary">Volver atrás</a>
             </div>
-            <div>
-                <label>Seleccione el supervisor</label>
-                @Html.DropDownList("idSupervisor", (IEnumerable<SelectListItem>)ViewData["Supervisors"], new { @class = "form-control form-select mb-3" })
-            </div>
-            <div>
-                <label>Seleccione el servicio</label>
-                @Html.DropDownList("idService", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3" })
-            </div>
-            <div>
-                <label>Seleccione el status</label>
-                @Html.DropDownList("idStatus", (IEnumerable<SelectListItem>)ViewData["Status"], new { @class = "form-control form-select mb-3" })
-            </div>
-        </div>
-        <div class="tile-footer">
-            <a class="btn btn-secondary" asp-action="Home" asp-controller="Ticket"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Volver</a>
         </div>
     </div>
 </div>
 
+@section modals{
+    <div class="modal fade" id="addCommentModal" tabindex="-1" role="dialog" aria-labelledby="addCommentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCommentModalLabel">Agregar Comentario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="ticketId" value="@Model.id" />
+                    <div class="form-group">
+                        <label for="comment">Mensaje</label>
+                        <textarea class="form-control" id="comment" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="guardarComentario()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+@section Scripts{
+    <script>
+        function toggleComments() {
+            var commentsContainer = document.getElementById("comments-container");
+            var toggleButton = document.getElementById("toggle-button");
+
+            if (commentsContainer.style.display === "none") {
+                commentsContainer.style.display = "block";
+                toggleButton.textContent = "Ocultar Comentarios";
+            } else {
+                commentsContainer.style.display = "none";
+                toggleButton.textContent = "Mostrar Comentarios";
+            }
+        }
+        function toggleDocuments() {
+            var documentsContainer = document.getElementById("documents-container");
+            var toggleButton = document.getElementById("toggle-buttond");
+
+            if (documentsContainer.style.display === "none") {
+                documentsContainer.style.display = "block";
+                toggleButton.textContent = "Ocultar Documentos";
+            } else {
+                documentsContainer.style.display = "none";
+                toggleButton.textContent = "Mostrar Documentos";
+            }
+        }
+
+        function downloadDocument(documentName) {
+            var url = '@Url.Action("DownloadDocument", "Ticket")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
+
+            // Realizar una solicitud de descarga mediante una redirección
+            window.location.href = url + "?name=" + documentName;
+        }
+        function viewDocument(documentName) {
+            var url = '@Url.Action("ViewDocument", "Ticket")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
+
+            // Abrir el documento en una nueva ventana del navegador
+            window.open(url + "?name=" + documentName, "_blank");
+        }
+        function guardarComentario() {
+            var ticketId = document.getElementById("ticketId").value;
+            var comment = document.getElementById("comment").value;
+
+            // Objeto de datos para enviar al servidor
+            var data = {
+                mjs: comment,
+                id: ticketId
+            };
+
+            $.ajax({
+                url: '/Comment/AddComment', // Reemplaza 'ControllerName' con el nombre real de tu controlador
+                type: 'POST',
+                data: data,
+                success: function (response) {
+                    // Manejar la respuesta del servidor
+                    if (response) {
+                        // Comentario agregado correctamente
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Comentario agregado',
+                            text: 'El comentario se ha agregado correctamente.',
+                            showConfirmButton: false,
+                            timer: 2000
+                        }).then(function () {
+                            // Realizar las acciones necesarias, como actualizar la interfaz de usuario
+                            console.log('Comentario agregado correctamente');
+                            // Cerrar el modal después de guardar el comentario
+                            $('#addCommentModal').modal('hide');
+                            location.reload();
+                        });
+                    } else {
+                        // Ocurrió un error al agregar el comentario
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Ocurrió un error al agregar el comentario. Inténtalo de nuevo más tarde.',
+                            showConfirmButton: false,
+                            timer: 2000
+                        }).then(function () {
+                            console.log('Error al agregar el comentario');
+                        });
+                    }
+                },
+                error: function () {
+                    // Ocurrió un error al realizar la solicitud AJAX
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrió un error al realizar la solicitud. Inténtalo de nuevo más tarde.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(function () {
+                        console.log('Error al realizar la solicitud AJAX');
+                    });
+                }
+            });
+        }
+
+
+
+    </script>
+
+}
