@@ -43,11 +43,8 @@
                                         <td>
                                             <div class="btn-group">
                                                 <a class="btn btn-dark" asp-action="Ver" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                @if (service.active == true)
-                                                {
-                                                    <button class="btn btn-dark cambiar-estado-btn" data-id="@service.id"><i class="fa fa-lg fa-trash"></i></button>
-                                                }
+                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-edit"></i></a>                                             
+                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@service.id"><i class="fa fa-lg fa-trash"></i></button>                                               
                                             </div>
                                         </td>
                                     </tr>
@@ -76,7 +73,7 @@
                 // Mostrar confirmación con SweetAlert2
                 Swal.fire({
                     title: 'Confirmación',
-                    text: '¿Estás seguro de que deseas desahabilitar el servicio?',
+                    text: '¿Estás seguro de que deseas cambiar el estado del servicio?',
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonText: 'Sí',
@@ -90,14 +87,14 @@
                             data: { id: id },
                             success: function (response) {
                                 // Mostrar mensaje de éxito con SweetAlert2
-                                Swal.fire('Éxito', 'Se ha eliminado correctamente.', 'success').then(function () {
+                                Swal.fire('Éxito', 'Se ha cambiado el estado correctamente.', 'success').then(function () {
                                     // Recargar la página
                                     location.reload();
                                 });
                             },
                             error: function (xhr, status, error) {
                                 // Mostrar mensaje de error con SweetAlert2
-                                Swal.fire('Error', 'Error al eliminar.', 'error');
+                                Swal.fire('Error', 'Error al cambiar el estado.', 'error');
                                 console.error('Error:', error);
                             }
                         });
