@@ -41,11 +41,9 @@
                                             <td><span asp-for="active" class="badge badge-pill badge-danger">Desactivo</span></td>
                                         }
                                         <td>
-                                            <div class="btn-group">
-                                                <a class="btn btn-dark" asp-action="Ver" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-dark" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@service.id"><i class="fa fa-lg fa-trash"></i></button>
-                                            </div>
+                                            <a class="btn btn-dark" asp-action="Ver" asp-controller="Servicio" asp-route-id="@service.id" data-toggle="tooltip" data-placement="left" title="" data-original-title="Ver"><i class="fa fa-lg fa-eye"></i></a>
+                                            <a class="btn btn-dark" asp-action="Editar" asp-controller="Servicio" asp-route-id="@service.id" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver"><i class="fa fa-lg fa-edit"></i></a>
+                                            <button class="btn btn-dark" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@service.id"><i class="fa fa-lg fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 }

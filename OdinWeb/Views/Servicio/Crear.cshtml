@@ -37,18 +37,19 @@
                             <span asp-validation-for="requirements" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="active" class="control-label"></label>
-                            <div class="toggle">
-                                <label>
-                                    <input asp-for="active" type="checkbox"><span class="button-indecator"></span>
-                                </label>
-                            </div>
-                            <span asp-validation-for="active" class="text-danger"></span>
-                            <label class="control-label">Crear como sub servicio</label>
+                                <div class="animated-checkbox">
+                                    <label>
+                                    <input asp-for="active" type="checkbox"><span class="label-text"></span>
+                                    </label>
+                                    <label asp-for="active" class="control-label"> Servicio Activo</label>
+                                </div>
+                        </div>
+                        <div class="form-group">
                             <div class="animated-checkbox">
                                 <label>
                                     <input id="subServiceCheck" type="checkbox"><span class="label-text"></span>
                                 </label>
+                                <label class="control-label">Crear como sub servicio</label>
                             </div>
                         </div>
                         <span class="subService" id="subService">
@@ -58,30 +59,29 @@
                             </div>
                         
                         </span>
-                     </div>
-                    <div class="form-group">
-                        <label asp-for="transport" class="control-label"></label>
-                        <div class="toggle-flip">
-                            <label>
-                                <input asp-for="transport" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
-                            </label>
+                        <div class="form-group">
+                            <div class="animated-checkbox">
+                                <label>
+                                    <input asp-for="transport" type="checkbox"><span class="label-text"></span>
+                                </label>
+                                <label asp-for="transport" class="control-label"></label>
+                            </div>
                         </div>
-                        <span asp-validation-for="transport" class="text-danger"></span>
-                        <label asp-for="toAdministrator" class="control-label"></label>
-                        <div class="toggle-flip">
-                            <label>
-                                <input asp-for="toAdministrator" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
-                            </label>
+                        <div class="form-group">
+                            <div class="animated-checkbox">
+                                <label>
+                                    <input asp-for="toAdministrator" type="checkbox"><span class="label-text"></span>
+                                </label>
+                                <label asp-for="toAdministrator" class="control-label"></label>
+                            </div>
                         </div>
-                        <span asp-validation-for="toAdministrator" class="text-danger"></span>
+                        <div class="form-group">
+                            <label class="control-label">Imagen de servico</label>
+                            <input asp-for="image" class="form-control" type="file" data-val="false">
+                            <span asp-validation-for="image" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Imagen de servico</label>
-                        <input asp-for="image" class="form-control" type="file" data-val="false">
-                        <span asp-validation-for="image" class="text-danger"></span>
-                    </div>
-                 </div>
-                               
+                 </div>             
                 <div class="tile-footer">
                     <a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>
                 </div>
