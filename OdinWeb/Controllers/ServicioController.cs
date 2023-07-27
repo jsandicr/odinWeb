@@ -341,19 +341,13 @@ namespace OdinWeb.Controllers
 
                 if (respuesta)
                 {
-                    TempData["AlertMessage"] = "¡Se eliminó el servicio!";
-                    TempData["AlertType"] = "success";
-                    return RedirectToAction(nameof(Home));
+                    return Ok();
                 }
-                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el servicio!";
-                TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Home));
+                return BadRequest();
             }
             catch
             {
-                TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el servicio!";
-                TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Home));
+                return BadRequest();
             }
         }
 

@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<OdinWeb.Models.Obj.Ticket>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="~/css/main.css">
+<link href="~/css/img.css" rel="stylesheet" />
+<link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
 @if(Model.Any()){
     <div class="row">
         <div class="col-md-12">
@@ -63,7 +67,6 @@ else
             <p>No hay datos.</p>
         </div>
 }
-
 <script src="~/js/jquery-3.3.1.min.js"></script>
 <script src="~/js/popper.min.js"></script>
 <script src="~/js/bootstrap.min.js"></script>
