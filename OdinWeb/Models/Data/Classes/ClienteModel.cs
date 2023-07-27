@@ -8,8 +8,8 @@ namespace OdinWeb.Models.Data.Classes
 {
     public class ClienteModel : IClienteModel
     {
-        private readonly IConfiguration _config;
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _config;
         private readonly IHttpContextAccessor _httpContextAccessor;
         public ClienteModel(IConfiguration config, IHttpContextAccessor httpContextAccessor) {
 

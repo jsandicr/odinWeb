@@ -38,7 +38,7 @@ namespace OdinWeb.Models.Obj
 
         public string description { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
-        [Display(Name = "Activo")]
+        [Display(Name = "Estado")]
         public bool active { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         public string photo { get; set; }

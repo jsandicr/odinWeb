@@ -15621,9 +15621,10 @@ be a descendant of the grid when it is being dragged.
 }
 
 .tile .tile-footer {
-  border-top: 1px solid #ddd;
-  padding: 20px 0 0 0;
-  margin-top: 10px;
+    border-top: 1px solid #ddd;
+    padding: 20px 0 0 0;
+    margin-top: 10px;
+    text-align: right; 
 }
 
 /* Custom Checkbox and Radio Buttons */
