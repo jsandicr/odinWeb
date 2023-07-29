@@ -158,7 +158,7 @@ namespace OdinWeb.Controllers
 
                     if (isValid)
                     {
-                        var respuesta = _userModel.PostUser(newUser);
+                        var respuesta = _userModel.PostCliente(newUser);
                         if(respuesta){
                             TempData["AlertMessage"] = "Se creo la cuenta con éxito";
                             TempData["AlertType"] = "success";
