@@ -17,6 +17,9 @@ namespace OdinWeb.Models.Data.Interfaces
 
         public bool PostUser(User user);
 
+        public bool PostCliente(User user);
+
+
     }
 }
 
