@@ -23,7 +23,7 @@ namespace OdinWeb.Models.Obj
         public string mail { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
-        [Display(Name = "Telefono")]
+        [Display(Name = "Teléfono")]
         public string phone { get; set; }
         [Display(Name = "Foto")]
         public string photo { get; set; } = "./user.png";
@@ -73,7 +73,7 @@ namespace OdinWeb.Models.Obj
         [StringLength(8, ErrorMessage = "El campo debe tener 8 números", MinimumLength = 8)]
         [RegularExpression("^[0-9]+$", ErrorMessage = "Debe ingresar solo números.")]
 
-        [Display(Name = "Telefono")]
+        [Display(Name = "Teléfono")]
         public string phone { get; set; }
 
         [Required(ErrorMessage = "El campo es requerido")]
@@ -81,7 +81,7 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Contraseña")]
         public string password { get; set; }
 
-        [Display(Name = "Sucursal mas Cercana")]
+        [Display(Name = "Sucursal más Cercana")]
         [Required(ErrorMessage = "El campo es requerido")]
         public int idBranch { get; set; }
 
@@ -120,7 +120,7 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Contraseña Actual")]
         public string oldPassword { get; set; }
 
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo contraseña debe tener entre 6 y 20 caracteres")]
         [Display(Name = "Nueva Contraseña")]
         [Required(ErrorMessage = "El campo es requerido.")]
         public string password { get; set; }
