@@ -12,6 +12,7 @@ using OdinApi.Models.Obj;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO;
+using System.Drawing;
 
 namespace OdinWeb.Controllers
 {
@@ -671,6 +672,23 @@ namespace OdinWeb.Controllers
         {
             var tickets = _ticketModel.GetAssignedTickets(status);
             return PartialView("_ParcialTableAS", tickets);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetTicketsByBranchAJAX(int idbranch,string status)
+        {
+            var tickets = _ticketModel.GetTicketsByBranch(idbranch, status);
+            return PartialView("_ParcialTableAS", tickets.Result);
+        }
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetTicketsByBranch(int idbranch,string nombre)
+        {
+            Branch branch= new Branch();
+            branch.id= idbranch;
+            branch.name= nombre;
+            return View(branch);
         }
 
         [HttpGet]

@@ -34,6 +34,24 @@ namespace OdinWeb.Controllers
                 return View();
             }
         }
+        [Authorize]
+        public async Task<IActionResult> BranchByTickets()
+        {
+            try
+            {
+                var lista = _branchModel.GetBranch();
+                if (lista != null)
+                {
+                    return View(lista);
+
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+        }
 
         [Authorize]
         public async Task<IActionResult> Crear()

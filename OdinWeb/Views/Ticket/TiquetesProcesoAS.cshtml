@@ -5,27 +5,7 @@
         Layout = ViewBag.Layout;
     }
 }
-<style>
-    .custom-square {
-        background-color: #DD6B4D;
-        display: inline-block;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .custom-square span.badge {
-        margin-right: 5px;
-    }
-
-    .grouping_tabs {
-        margin-bottom: 10px; /* Ajusta el valor según el espacio que desees */
-    }
-
-    .grouping_tabs li {
-        margin-right: 10px; /* Ajusta el valor según el espacio que desees */
-    }
-</style>
+<link href="~/css/excss.css" rel="stylesheet" />
 <div class="app-title">
     <div>
         <h1><i class="fa fa-th-list"></i>Tiquetes</h1>
@@ -70,30 +50,29 @@
     <script>
 
         $(document).ready(function () {
-            // Obtén todos los elementos de clase status-tab
             var statusTabs = $('.status-tab');
 
-            // Asigna el evento de clic a cada elemento
             statusTabs.on('click', function (event) {
                 event.preventDefault();
 
-                // Obtén el estado asociado al elemento clickeado
                 var status = $(this).data('status');
 
-                // Cargar la vista parcial correspondiente al estado seleccionado
                 cargarVistaParcial(status);
 
-                // Remueve la clase 'active' de todos los elementos
-                statusTabs.removeClass('active');
+                // Remueve la clase 'active-button' de todos los divs custom-square
+                $('.custom-square').removeClass('active-button');
 
-                // Agrega la clase 'active' al elemento clickeado
-                $(this).addClass('active');
+                // Agrega la clase 'active-button' al div custom-square clickeado
+                $(this).find('.custom-square').addClass('active-button');
             });
 
             // Cargar la vista parcial correspondiente al estado "Asignado" por defecto
             var firstTabLink = statusTabs.first();
             var status = firstTabLink.data('status');
             cargarVistaParcial(status);
+
+            // Opcional: Agregar la clase 'active-button' al div custom-square del estado "Asignado" por defecto
+            firstTabLink.find('.custom-square').addClass('active-button');
         });
 
         function cargarVistaParcial(status) {

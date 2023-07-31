@@ -1,6 +1,10 @@
 ﻿@model OdinWeb.Models.Obj.Ticket
 @{
     ViewData["Title"] = "Editar Ticket";
+    if (Context.Request.Cookies["Rol"] == "Supervisor")
+    {
+        Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+    }
 }
 <div class="col-md-12">
     <div class="tile">

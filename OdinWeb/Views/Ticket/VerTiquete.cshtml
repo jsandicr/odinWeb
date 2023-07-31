@@ -5,70 +5,7 @@
     Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
 
-<style>
-    .ticket-title {
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    .ticket-section {
-        margin-bottom: 20px;
-    }
-
-    .ticket-section-title {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .ticket-section-content {
-        margin-left: 20px;
-    }
-
-    .comment-section {
-        margin-bottom: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #f5f5f5;
-    }
-
-    .comment-section .comment-author {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-
-    .comment-section .comment-date {
-        font-size: 12px;
-        color: #666;
-        margin-bottom: 5px;
-    }
-
-    .comment-section .comment-text {
-        margin-bottom: 0;
-    }
-
-    .ticket-actions {
-        margin-top: 30px;
-    }
-    .comment-toggle {
-        margin-bottom: 10px;
-        cursor: pointer;
-    }
-
-    .documents-toggle {
-        cursor: pointer;
-    }
-
-    .documents-container {
-        display: none;
-        margin-top: 10px;
-    }
-
-    .document-item {
-        margin-bottom: 10px;
-    }
-</style>
+<link href="~/css/excss.css" rel="stylesheet" />
 <div class="app-title">
 
     <div>
@@ -153,7 +90,11 @@
             </div>
 
             <div class="ticket-section">
-                <h6 class="comment-toggle btn btn-primary" onclick="toggleComments()" id="toggle-button">Mostrar Comentarios</h6>
+                <div class="animated-checkbox">
+                    <label>
+                        <input type="checkbox" id="toggle-comments-checkbox" onclick="toggleComments()"><span class="label-text">Mostrar Comentarios</span>
+                    </label>
+                </div>
                 <div id="comments-container" style="display: none;">
                     @if (Model.comments != null && Model.comments.Count > 0)
                     {
@@ -177,7 +118,11 @@
                 </div>
             </div>
             <div class="ticket-section">
-                <h6 class="documents-toggle btn btn-primary" onclick="toggleDocuments()" id="toggle-buttond">Mostrar Documentos</h6>
+                <div class="animated-checkbox">
+                    <label>
+                        <input type="checkbox" id="toggle-document-checkbox" onclick="toggleDocuments()"><span class="label-text">Mostrar Docuementos</span>
+                    </label>
+                </div>
                 <div id="documents-container" style="display: none;">
                     @if (Model.documents != null && Model.documents.Count > 0)
                     {
@@ -239,105 +184,5 @@
 
 }
 @section Scripts{
-    <script>
-        function toggleComments() {
-            var commentsContainer = document.getElementById("comments-container");
-            var toggleButton = document.getElementById("toggle-button");
-
-            if (commentsContainer.style.display === "none") {
-                commentsContainer.style.display = "block";
-                toggleButton.textContent = "Ocultar Comentarios";
-            } else {
-                commentsContainer.style.display = "none";
-                toggleButton.textContent = "Mostrar Comentarios";
-            }
-        }
-        function toggleDocuments() {
-            var documentsContainer = document.getElementById("documents-container");
-            var toggleButton = document.getElementById("toggle-buttond");
-
-            if (documentsContainer.style.display === "none") {
-                documentsContainer.style.display = "block";
-                toggleButton.textContent = "Ocultar Documentos";
-            } else {
-                documentsContainer.style.display = "none";
-                toggleButton.textContent = "Mostrar Documentos";
-            }
-        }
-
-        function downloadDocument(documentName) {
-            var url = '@Url.Action("DownloadDocument", "Ticket")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
-
-            // Realizar una solicitud de descarga mediante una redirección
-            window.location.href = url + "?name=" + documentName;
-        }
-        function viewDocument(documentName) {
-            var url = '@Url.Action("ViewDocument", "Ticket")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
-
-            // Abrir el documento en una nueva ventana del navegador
-            window.open(url + "?name=" + documentName, "_blank");
-        }
-        function guardarComentario() {
-            var ticketId = document.getElementById("ticketId").value;
-            var comment = document.getElementById("comment").value;
-
-            // Objeto de datos para enviar al servidor
-            var data = {
-                mjs: comment,
-                id: ticketId
-            };
-
-            $.ajax({
-                url: '/Comment/AddComment', // Reemplaza 'ControllerName' con el nombre real de tu controlador
-                type: 'POST',
-                data: data,
-                success: function (response) {
-                    // Manejar la respuesta del servidor
-                    if (response) {
-                        // Comentario agregado correctamente
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Comentario agregado',
-                            text: 'El comentario se ha agregado correctamente.',
-                            showConfirmButton: false,
-                            timer: 2000
-                        }).then(function () {
-                            // Realizar las acciones necesarias, como actualizar la interfaz de usuario
-                            console.log('Comentario agregado correctamente');
-                            // Cerrar el modal después de guardar el comentario
-                            $('#addCommentModal').modal('hide');
-                            location.reload();
-                        });
-                    } else {
-                        // Ocurrió un error al agregar el comentario
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Ocurrió un error al agregar el comentario. Inténtalo de nuevo más tarde.',
-                            showConfirmButton: false,
-                            timer: 2000
-                        }).then(function () {
-                            console.log('Error al agregar el comentario');
-                        });
-                    }
-                },
-                error: function () {
-                    // Ocurrió un error al realizar la solicitud AJAX
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Ocurrió un error al realizar la solicitud. Inténtalo de nuevo más tarde.',
-                        showConfirmButton: false,
-                        timer: 2000
-                    }).then(function () {
-                        console.log('Error al realizar la solicitud AJAX');
-                    });
-                }
-            });
-        }
-
-        
-
-    </script>
-
+    <script src="~/js/exjsmain.js"></script>
 }

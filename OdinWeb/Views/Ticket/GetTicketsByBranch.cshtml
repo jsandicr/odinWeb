@@ -1,11 +1,12 @@
-﻿@{
+﻿@model OdinWeb.Models.Obj.Branch
+@{
     ViewData["Title"] = "Tiquetes";
-    Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
 <link href="~/css/excss.css" rel="stylesheet" />
 <div class="app-title">
+    <input type="hidden" asp-for="id">
     <div>
-        <h1><i class="fa fa-th-list"></i>Tiquetes</h1>
+        <h1><i class="fa fa-th-list"></i>Tiquetes por sucursal de @Model.name</h1>
         <p>Detalle de tiquetes</p>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
@@ -36,16 +37,20 @@
             </div>
         </a>
     </li>
+    <li>
+        <a href="#" class="status-tab" data-status="Finalizado">
+            <div class="custom-square">
+                <span class="badge">Finalizado</span>
+            </div>
+        </a>
+    </li>
     <!-- Agrega más elementos ul para otros estados de los tickets -->
 </ul>
 
 <div id="vista_parcial_container"></div>
 
 @section Scripts{
-
- 
     <script>
-
         $(document).ready(function () {
             var statusTabs = $('.status-tab');
 
@@ -77,9 +82,12 @@
 
             // Realiza la llamada AJAX para cargar la vista parcial
             $.ajax({
-                url: '/Ticket/TiquetesProcesoAjax',
+                url: '/Ticket/GetTicketsByBranchAJAX',
                 type: 'GET',
-                data: { status: status },
+                data: {
+                    idbranch: @Model.id, // Corregir aquí
+                    status: status
+                },
                 success: function (result) {
                     container.html(result);
                 },
@@ -88,10 +96,5 @@
                 }
             });
         }
-
-
-
     </script>
-
-
 }
