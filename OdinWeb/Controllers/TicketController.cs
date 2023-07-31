@@ -12,6 +12,7 @@ using OdinApi.Models.Obj;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO;
+using System.Globalization;
 
 namespace OdinWeb.Controllers
 {
@@ -803,6 +804,57 @@ namespace OdinWeb.Controllers
 
             FileStream fileStream = new FileStream(documentPath, FileMode.Open, FileAccess.Read);
             return new FileStreamResult(fileStream, contentType);
+        }
+
+        public JsonResult GetTicketsXTime()
+        {
+            try
+            {
+                var tickets = _ticketModel.GetTickets();
+
+                var tiemposTranscurridos = tickets
+                .Where(ticket => ticket.closeDate != null)
+                .Select(ticket => new
+                {
+                    TicketId = ticket.id, 
+                    TiempoTranscurrido = (int)ticket.closeDate.Value.Subtract(ticket.creationDate).TotalDays
+                }).ToList();
+
+                return Json(tiemposTranscurridos);
+            }
+            catch
+            {
+                return Json(new List<object>());
+            }
+        }
+
+        public JsonResult GetTicketsOpen_Close()
+        {
+            try
+            {
+                var tickets = _ticketModel.GetTickets();
+
+                var cantidadTiquetesAbiertos = tickets.Count(t => t.closeDate == null);
+                var cantidadTiquetesCerrados = tickets.Count(t => t.closeDate != null);
+
+                var resultado = new
+                {
+                    Abiertos = cantidadTiquetesAbiertos,
+                    Cerrados = cantidadTiquetesCerrados
+                };
+
+                return Json(resultado);
+            }
+            catch
+            {
+                return Json(
+                    new
+                    {
+                        Abiertos = 0,
+                        Cerrados = 0
+                    }
+                );
+            }
         }
     }
 }

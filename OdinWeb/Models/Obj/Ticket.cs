@@ -53,4 +53,9 @@ namespace OdinWeb.Models.Obj
         public List<IFormFile>? Archivos { get; set; }
     }
 
+    public class TicketsXSupervisorViewModel
+    {
+        public IEnumerable<dynamic> CantidadTicketsPorSupervisor { get; set; }
+    }
+
 }

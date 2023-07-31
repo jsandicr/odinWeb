@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-dashboard"></i> Reportes</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Reportes</a></li>
+    </ul>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="bs-component">
+            <div class="card">
+                <div style="height: 200px; width: 100%; display: flex; justify-content: center; align-items: center;" class="bg-primary">
+                        <i style="color: white;" class="icon fa fa-users fa-3x"></i>
+                </div>
+                <h5 class="card-title" style="text-align:center; margin: 10px 0px;">Tiquetes por tiempo transcurrido</h5>
+                <span style="display: flex; justify-content: center; align-items: center; margin: 10px 0px;">
+                    <a asp-controller="PDF" asp-action="TicketsXTime"><b>Generar</b></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="bs-component">
+            <div class="card">
+                <div style="height: 200px; width: 100%; display: flex; justify-content: center; align-items: center;" class="bg-primary">
+                    <i style="color: white;" class="icon fa fa-users fa-3x"></i>
+                </div>
+                <h5 class="card-title" style="text-align:center; margin: 10px 0px;">Tiquetes abiertos por supervisor</h5>
+                <span style="display: flex; justify-content: center; align-items: center; margin: 10px 0px;">
+                    <a asp-controller="PDF" asp-action="TicketsXSupervisor"><b>Generar</b></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="bs-component">
+            <div class="card">
+                <div style="height: 200px; width: 100%; display: flex; justify-content: center; align-items: center;" class="bg-primary">
+                    <i style="color: white;" class="icon fa fa-users fa-3x"></i>
+                </div>
+                <h5 class="card-title" style="text-align:center; margin: 10px 0px;">Tiquetes abiertos por supervisor por mes</h5>
+                <span style="display: flex; justify-content: center; align-items: center; margin: 10px 0px;">
+                    <a asp-controller="PDF" asp-action="TicketsXSupervisorM"><b>Generar</b></a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
