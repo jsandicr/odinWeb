@@ -10,7 +10,7 @@ namespace OdinWeb.Models.Obj
         public int id { get; set; }
         [Display(Name = "Nombre")]
         public string name { get; set; }
-        [Display(Name = "Descripcion")]
+        [Display(Name = "Descripción")]
         public string description { get; set; }
         [Display(Name = "Activo")]
         public bool active { get; set; }
@@ -33,7 +33,7 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "El campo es requerido")]
         public string name { get; set; }
-        [Display(Name = "Descripcion")]
+        [Display(Name = "Descripción")]
         [Required(ErrorMessage = "El campo es requerido")]
 
         public string description { get; set; }
