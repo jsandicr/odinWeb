@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using OdinWeb.Models.Data.Classes;
 using OdinWeb.Models.Data.Interfaces;
+using Rotativa.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,10 +23,19 @@ builder.Services.AddScoped<ISupervisorModel, SupervisorModel>();
 builder.Services.AddScoped<ITicketModel, TicketModel>();
 builder.Services.AddScoped<IDocumentModel, DocumentModel>();
 builder.Services.AddScoped<ICommentModel, CommentModel>();
+builder.Services.AddScoped<IReportModel, ReportModel>();
 
 
 builder.Services.AddScoped<IStatusModel, StatusModel>();
 builder.Services.AddHttpContextAccessor();
+
+//Rotativa para PDF
+var rotativaPath = "../PDF";
+
+RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)builder.Services
+    .BuildServiceProvider()
+    .GetService(typeof(Microsoft.AspNetCore.Hosting.IHostingEnvironment)),
+    rotativaPath);
 
 var app = builder.Build();
 

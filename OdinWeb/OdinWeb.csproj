@@ -24,6 +24,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.15" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="PDF\" />
     <Folder Include="wwwroot\images\Services\" />
     <Folder Include="wwwroot\Document\" />
   </ItemGroup>
