@@ -1,0 +1,73 @@
+﻿@model IEnumerable<OdinWeb.Models.Obj.TransactionalLog>
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i>Registro de Transacciones</h1>
+        <p>Acciones registradas</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="TransLog"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a>Lista</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="tlogs">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.type)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.description)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.module)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.date)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.user)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.module)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.date)
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item.user.name + " " + item.user.lastName)<br>
+                                        Corrreo: @Html.DisplayFor(modelItem => item.user.mail)
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <script src="~/js/plugins/jquery.datatables.min.js"></script>
+    <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#tlogs').DataTable();</script>
+}

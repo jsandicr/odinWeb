@@ -1,0 +1,41 @@
+﻿using Newtonsoft.Json;
+using OdinWeb.Models.Data.Interfaces;
+using OdinWeb.Models.Obj;
+using System.Net.Http.Headers;
+using System.Net.Http;
+
+namespace OdinWeb.Models.Data.Classes
+{
+    public class TransLogModel : ITransLogModel
+    {
+        private readonly IConfiguration _config;
+        private readonly HttpClient _httpClient;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public TransLogModel(IConfiguration config, IHttpContextAccessor httpContextAccessor)
+        {
+
+            _httpContextAccessor = httpContextAccessor;
+            _config = config;
+            _httpClient = new HttpClient();
+            _httpClient.BaseAddress = new Uri(_config["ApiSettings:BaseUrl"]); // URL base del API
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+        public async Task<List<TransactionalLog>> GetAsync()
+        {
+
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync("api/TransactionalLog");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var logs = await response.Content.ReadAsStringAsync();
+                var logsR = JsonConvert.DeserializeObject<List<TransactionalLog>>(logs);
+                return logsR;
+            }
+            return null;
+        }
+    }
+}

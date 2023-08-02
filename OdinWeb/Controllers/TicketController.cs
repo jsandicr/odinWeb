@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.StaticFiles;
 using System.IO;
 using System.Globalization;
 using System.Drawing;
+using OdinWeb.Models.Data.Classes;
 
 namespace OdinWeb.Controllers
 {
@@ -697,9 +698,18 @@ namespace OdinWeb.Controllers
 
         public IActionResult TiquetesCerrados()
         {
-            var tickets = _ticketModel.GetTicketsClientsStatus("Finalizado");
-            return View(tickets);
+            if (Request.Cookies["Rol"] == "Cliente") {
+                var tickets = _ticketModel.GetTicketsClientsStatus("Finalizado");
+                return View(tickets);
+
+            }
+            else {
+                var tickets = _ticketModel.GetAssignedTickets("Finalizado");
+                return View(tickets);
+
+            }
         }
+
 
         [HttpGet]
         [Authorize]

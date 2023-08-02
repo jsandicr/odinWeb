@@ -24,7 +24,7 @@ builder.Services.AddScoped<ITicketModel, TicketModel>();
 builder.Services.AddScoped<IDocumentModel, DocumentModel>();
 builder.Services.AddScoped<ICommentModel, CommentModel>();
 builder.Services.AddScoped<IReportModel, ReportModel>();
-
+builder.Services.AddScoped<ITransLogModel, TransLogModel>();
 
 builder.Services.AddScoped<IStatusModel, StatusModel>();
 builder.Services.AddHttpContextAccessor();
