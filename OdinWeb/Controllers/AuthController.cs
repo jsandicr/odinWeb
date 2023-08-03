@@ -215,13 +215,14 @@ namespace OdinWeb.Controllers
 
         }
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-
         public async Task<IActionResult> CerrarSesion()
         {
             try
             {
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 Response.Cookies.Delete("Token");
+                TempData["AlertMessage"] = "Se cerró la sesión correctamente";
+                TempData["AlertType"] = "success";
             }
             catch (Exception)
             {
