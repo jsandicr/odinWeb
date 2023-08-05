@@ -19,18 +19,6 @@ function toggleDocuments() {
     }
 }
 
-function downloadDocument(documentName) {
-    var url = '@Url.Action("DownloadDocument", "Ticket")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
-
-    // Realizar una solicitud de descarga mediante una redirección
-    window.location.href = url + "?name=" + documentName;
-}
-function viewDocument(documentName) {
-    var url = '@Url.Action("ViewDocument", "Ticket")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
-
-    // Abrir el documento en una nueva ventana del navegador
-    window.open(url + "?name=" + documentName, "_blank");
-}
 function guardarComentario() {
     var ticketId = document.getElementById("ticketId").value;
     var comment = document.getElementById("comment").value;

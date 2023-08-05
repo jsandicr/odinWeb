@@ -29,10 +29,17 @@ namespace OdinWeb.Controllers
             _branchModel = branchModel;
             _rolModel = rolModel;
         }
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(string? ReturnUrl)
         {
 
             return View();
+        }
+
+        public IActionResult AccessDenied()
+        {
+            TempData["AlertMessage"] = "No tiene permisos para ingresar a la pagína";
+            TempData["AlertType"] = "error";
+            return Redirect("Index");
         }
 
         public async Task<IActionResult> Registration()
@@ -49,7 +56,7 @@ namespace OdinWeb.Controllers
 
         [HttpPost]
         //[SessionState(SessionStateBehavior.Required)]
-        public async Task<IActionResult> Validate(LoginViewModel userDTO)
+        public async Task<IActionResult> Validate(LoginViewModel userDTO, string? ReturnUrl)
         {
 
             try
@@ -98,6 +105,10 @@ namespace OdinWeb.Controllers
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity), properties);
                         TempData["AlertMessage"] = "Inicio de Sesión Valido";
                         TempData["AlertType"] = "success";
+                        if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                        {
+                            return Redirect(ReturnUrl);
+                        }
                         switch (user.rol.name)
                         {
                             case "Admin":
