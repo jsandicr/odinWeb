@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using NuGet.Common;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http;
@@ -138,11 +139,27 @@ namespace OdinWeb.Models.Data.Classes
 
         public bool PostUser(User user)
         {
-            // Agrega el encabezado de autorización con el token
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.PostAsync("api/User", content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool PostCliente(User user)
+        {
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 
 
-            var response = _httpClient.PostAsync("api/User", content).Result;
+            var response = _httpClient.PostAsync("api/User/Cliente", content).Result;
 
             if (response.IsSuccessStatusCode)
             {

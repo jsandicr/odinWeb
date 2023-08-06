@@ -1,8 +1,47 @@
-﻿
+﻿@inject OdinWeb.Models.Data.Interfaces.ITicketModel Tiquetes
 @{
     ViewData["Title"] = "Principal";
     Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
+<h2>Información de estado de Tiquetes</h2>
+<div class="row">
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-eye fa-3x"></i>
+            <div class="info">
+                <h4>En Revisión</h4>
+                <p><b>@Tiquetes.GetTicketsClientsStatus("Asignado").Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-exclamation-triangle fa-3x"></i>
+            <div class="info">
+                <h4>Falta de información</h4>
+                <p><b>@Tiquetes.GetTicketsClientsStatus("Pendiente información").Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-spinner fa-3x"></i>
+            <div class="info">
+                <h4>En Proceso</h4>
+                <p><b>@Tiquetes.GetTicketsClientsStatus("En Proceso").Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-check-circle fa-3x"></i>
+            <div class="info">
+                <h4>Finalizados</h4>
+                <p><b>@Tiquetes.GetTicketsClientsStatus("Finalizado").Count()</b></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="bs-component">
     <div class="jumbotron">

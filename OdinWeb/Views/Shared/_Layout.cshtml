@@ -10,6 +10,7 @@
     <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body class="app sidebar-mini">
     <header class="app-header">
@@ -66,8 +67,16 @@
                 <ul class="treeview-menu">
                     <li>
                         <a class="treeview-item" asp-action="TiquetesProcesoAS" asp-controller="Ticket">
-                            <i class="icon fa fa-user"></i>
+                            <i class="app-menu__icon fa fa-building"></i>
                             Tiquetes Asignados
+                        </a>
+                        <a class="treeview-item" asp-action="TiquetesCerrados" asp-controller="Ticket">
+                            <i class="app-menu__icon fa fa-building"></i>
+                            Tiquetes Cerrados
+                        </a>
+                        <a class="treeview-item" asp-action="BranchByTickets" asp-controller="Branch">
+                            <i class="app-menu__icon fa fa-building"></i>
+                            Tiquetes por Sucursal
                         </a>
                     </li>
                     <li>
@@ -78,8 +87,24 @@
                     </li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a class="app-menu__item" href="#" data-toggle="treeview">
+                    <i class="fa fa-info-circle"></i>
+                    <span class="app-menu__label"> Informes</span>
+                    <i class="treeview-indicator fa fa-angle-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a class="app-menu__item" asp-controller="PDF" asp-action="Index"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Reportes</span></a></li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li><a class="app-menu__item" asp-action="Index" asp-controller="TransLog"><i class="fa fa-list-alt"></i><span class="app-menu__label">Historial de transacciones</span></a></li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li><a class="app-menu__item" asp-controller="" asp-action=""><i class="fa fa-exclamation-triangle"></i><span class="app-menu__label">Historial de errores</span></a></li>
+                </ul>
+            </li>
 @*            <li><a class="app-menu__item" asp-action="HCliente" asp-controller="Servicio"><i class="app-menu__icon fa fa-pencil-square"></i><span class="app-menu__label">Crear Tiquete</span></a></li>
-*@            <li><a class="app-menu__item" href=""><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Reportes</span></a></li>
+*@            
         </ul>
     </aside>
     <main role="main" class="app-content">

@@ -12,6 +12,9 @@ using OdinApi.Models.Obj;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO;
+using System.Globalization;
+using System.Drawing;
+using OdinWeb.Models.Data.Classes;
 
 namespace OdinWeb.Controllers
 {
@@ -675,12 +678,38 @@ namespace OdinWeb.Controllers
 
         [HttpGet]
         [Authorize]
+        public IActionResult GetTicketsByBranchAJAX(int idbranch,string status)
+        {
+            var tickets = _ticketModel.GetTicketsByBranch(idbranch, status);
+            return PartialView("_ParcialTableAS", tickets.Result);
+        }
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetTicketsByBranch(int idbranch,string nombre)
+        {
+            Branch branch= new Branch();
+            branch.id= idbranch;
+            branch.name= nombre;
+            return View(branch);
+        }
+
+        [HttpGet]
+        [Authorize]
 
         public IActionResult TiquetesCerrados()
         {
-            var tickets = _ticketModel.GetTicketsClientsStatus("Finalizado");
-            return View(tickets);
+            if (Request.Cookies["Rol"] == "Cliente") {
+                var tickets = _ticketModel.GetTicketsClientsStatus("Finalizado");
+                return View(tickets);
+
+            }
+            else {
+                var tickets = _ticketModel.GetAssignedTickets("Finalizado");
+                return View(tickets);
+
+            }
         }
+
 
         [HttpGet]
         [Authorize]
@@ -803,6 +832,57 @@ namespace OdinWeb.Controllers
 
             FileStream fileStream = new FileStream(documentPath, FileMode.Open, FileAccess.Read);
             return new FileStreamResult(fileStream, contentType);
+        }
+
+        public JsonResult GetTicketsXTime()
+        {
+            try
+            {
+                var tickets = _ticketModel.GetTickets();
+
+                var tiemposTranscurridos = tickets
+                .Where(ticket => ticket.closeDate != null)
+                .Select(ticket => new
+                {
+                    TicketId = ticket.id, 
+                    TiempoTranscurrido = (int)ticket.closeDate.Value.Subtract(ticket.creationDate).TotalDays
+                }).ToList();
+
+                return Json(tiemposTranscurridos);
+            }
+            catch
+            {
+                return Json(new List<object>());
+            }
+        }
+
+        public JsonResult GetTicketsOpen_Close()
+        {
+            try
+            {
+                var tickets = _ticketModel.GetTickets();
+
+                var cantidadTiquetesAbiertos = tickets.Count(t => t.closeDate == null);
+                var cantidadTiquetesCerrados = tickets.Count(t => t.closeDate != null);
+
+                var resultado = new
+                {
+                    Abiertos = cantidadTiquetesAbiertos,
+                    Cerrados = cantidadTiquetesCerrados
+                };
+
+                return Json(resultado);
+            }
+            catch
+            {
+                return Json(
+                    new
+                    {
+                        Abiertos = 0,
+                        Cerrados = 0
+                    }
+                );
+            }
         }
     }
 }

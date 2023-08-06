@@ -1,0 +1,100 @@
+﻿@model OdinWeb.Models.Obj.Branch
+@{
+    ViewData["Title"] = "Tiquetes";
+}
+<link href="~/css/excss.css" rel="stylesheet" />
+<div class="app-title">
+    <input type="hidden" asp-for="id">
+    <div>
+        <h1><i class="fa fa-th-list"></i>Tiquetes por sucursal de @Model.name</h1>
+        <p>Detalle de tiquetes</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item active"><a asp-action="BranchByTickets" asp-controller="Branch">Listado de Sucursales</a></li>
+        <li class="breadcrumb-item active"><a href="#">Tabla de tiquetes</a></li>
+    </ul>
+</div>
+<ul class="nav nav-pills grouping_tabs">
+    <li class="active">
+        <a href="#" class="status-tab" data-status="Asignado">
+            <div class="custom-square">
+                <span class="badge">En revisión</span>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="#" class="status-tab" data-status="Pendiente información">
+            <div class="custom-square">
+                <span class="badge">Pendiente Información</span>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="#" class="status-tab" data-status="En Proceso">
+            <div class="custom-square">
+                <span class="badge">En Proceso</span>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="#" class="status-tab" data-status="Finalizado">
+            <div class="custom-square">
+                <span class="badge">Finalizado</span>
+            </div>
+        </a>
+    </li>
+    <!-- Agrega más elementos ul para otros estados de los tickets -->
+</ul>
+
+<div id="vista_parcial_container"></div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var statusTabs = $('.status-tab');
+
+            statusTabs.on('click', function (event) {
+                event.preventDefault();
+
+                var status = $(this).data('status');
+
+                cargarVistaParcial(status);
+
+                // Remueve la clase 'active-button' de todos los divs custom-square
+                $('.custom-square').removeClass('active-button');
+
+                // Agrega la clase 'active-button' al div custom-square clickeado
+                $(this).find('.custom-square').addClass('active-button');
+            });
+
+            // Cargar la vista parcial correspondiente al estado "Asignado" por defecto
+            var firstTabLink = statusTabs.first();
+            var status = firstTabLink.data('status');
+            cargarVistaParcial(status);
+
+            // Opcional: Agregar la clase 'active-button' al div custom-square del estado "Asignado" por defecto
+            firstTabLink.find('.custom-square').addClass('active-button');
+        });
+
+        function cargarVistaParcial(status) {
+            var container = $('#vista_parcial_container');
+
+            // Realiza la llamada AJAX para cargar la vista parcial
+            $.ajax({
+                url: '/Ticket/GetTicketsByBranchAJAX',
+                type: 'GET',
+                data: {
+                    idbranch: @Model.id, // Corregir aquí
+                    status: status
+                },
+                success: function (result) {
+                    container.html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.log('Error al cargar la vista parcial:', error);
+                }
+            });
+        }
+    </script>
+}

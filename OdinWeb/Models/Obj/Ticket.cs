@@ -12,13 +12,13 @@ namespace OdinWeb.Models.Obj
     {
         [Display(Name = "Codigo")]
         public int id { get; set; }
-        [Display(Name = "Titulo")]
+        [Display(Name = "Título")]
         [Required(ErrorMessage = "El campo es requerido")]
         public string title { get; set; }
-        [Display(Name = "Descripcion")]
+        [Display(Name = "Descripción")]
         [Required(ErrorMessage = "El campo es requerido")]
         public string description { get; set; }
-        [Display(Name = "Fecha Creacion")]
+        [Display(Name = "Fecha de Creación")]
         [Required(ErrorMessage = "El campo es requerido")]
         public DateTime creationDate { get; set; }
         [Display(Name = "Ultima Actualización")]
@@ -51,6 +51,11 @@ namespace OdinWeb.Models.Obj
         public List<Documento>? documents { get; set; }
 
         public List<IFormFile>? Archivos { get; set; }
+    }
+
+    public class TicketsXSupervisorViewModel
+    {
+        public IEnumerable<dynamic> CantidadTicketsPorSupervisor { get; set; }
     }
 
 }

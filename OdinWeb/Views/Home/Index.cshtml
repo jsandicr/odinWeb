@@ -10,6 +10,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .chart {
+        width: 400px;
+        height: 200px;
+        border: 1px solid #ccc;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .bar {
+        flex: 1;
+        background-color: #007bff;
+        margin: 0 2px;
+        transition: height 0.5s;
+    }
+</style>
+
 <div class="app-title">
     <div>
         <h1><i class="fa fa-dashboard"></i> Inicio</h1>
@@ -25,7 +42,7 @@
             <i class="icon fa fa-users fa-3x"></i>
             <div class="info">
                 <h4>Tiquetes abiertos</h4>
-                <p><b>25</b></p>
+                <p><b>@ViewData["CantOpen"]</b></p>
             </div>
         </div>
     </div>
@@ -34,7 +51,7 @@
             <i class="icon fa fa-thumbs-o-up fa-3x"></i>
             <div class="info">
                 <h4>Tiquetes asignados</h4>
-                <p><b>5</b></p>
+                <p><b>@ViewData["CantAssign"]</b></p>
             </div>
         </div>
     </div>
@@ -44,7 +61,7 @@
         <div class="tile">
             <h3 class="tile-title">Tiquetes por tiempo transcurrido</h3>
             <div class="embed-responsive embed-responsive-16by9">
-                <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+                <canvas class="embed-responsive-item" id="graficoTiempos"></canvas>
             </div>
         </div>
     </div>
@@ -57,56 +74,62 @@
         </div>
     </div>
 </div>
+
 @section Scripts{
+
     <script type="text/javascript">
-        var data = {
-            labels: ["January", "February", "March", "April", "May"],
-            datasets: [
-                {
-                    label: "My First dataset",
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [65, 59, 80, 81, 56]
-                },
-                {
-                    label: "My Second dataset",
-                    fillColor: "rgba(151,187,205,0.2)",
-                    strokeColor: "rgba(151,187,205,1)",
-                    pointColor: "rgba(151,187,205,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [28, 48, 40, 19, 86]
-                }
-            ]
-        };
-        var pdata = [
-            {
-                value: 25,
-                color: "#46BFBD",
-                highlight: "#5AD3D1",
-                label: "Cerrados"
-            },
-            {
-                value: 5,
-                color: "#F7464A",
-                highlight: "#FF5A5E",
-                label: "Abiertos"
-            }
-        ]
 
-        var ctxl = $("#lineChartDemo").get(0).getContext("2d");
-        var lineChart = new Chart(ctxl).Line(data);
+        fetch("/Ticket/GetTicketsOpen_Close")
+            .then(response => response.json())
+            .then(data => {
+                var pdata = [
+                    {
+                        value: data.cerrados,
+                        color: "#46BFBD",
+                        highlight: "#5AD3D1",
+                        label: "Cerrados"
+                    },
+                    {
+                        value: data.abiertos,
+                        color: "#F7464A",
+                        highlight: "#FF5A5E",
+                        label: "Abiertos"
+                    }
+                ]
+                var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+                var pieChart = new Chart(ctxp).Pie(pdata);
+            })
+            .catch(error => {
+                console.error("Error al obtener los datos: " + error);
+            });
 
-        var ctxp = $("#pieChartDemo").get(0).getContext("2d");
-        var pieChart = new Chart(ctxp).Pie(pdata);
+        fetch("/Ticket/GetTicketsXTime")
+            .then(response => response.json())
+            .then(d => {
+                console.log(d);
+                var data = {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: "My First dataset",
+                            backgroundColor: "rgba(220,220,220,0.2)",
+                            borderColor: "rgba(220,220,220,1)",
+                            borderWidth: 1,
+                            data: []
+                        }
+                    ]
+                };
+                d.forEach(function (element, index, array) {
+                    data.labels.push(element.ticketId);
+                    data.datasets[0].data.push(element.tiempoTranscurrido);
+                });
+                
+
+                var ctx = $("#graficoTiempos").get(0).getContext("2d");
+                var pieChart = new Chart(ctx).Bar(data);
+            })
+            .catch(error => {
+                console.error("Error al obtener los datos: " + error);
+            });
     </script>
 }
-
-
-
-

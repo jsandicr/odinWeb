@@ -2,35 +2,7 @@
     ViewData["Title"] = "Tiquetes";
     Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
-<style>
-    .custom-square {
-        background-color: #DD6B4D;
-        display: inline-block;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .active-button {
-        background-color: #4CAF50;
-        display: inline-block;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center; /* Cambia este color al que desees para el botón activo */
-    }
-
-    .custom-square span.badge {
-        margin-right: 5px;
-    }
-
-    .grouping_tabs {
-        margin-bottom: 10px; /* Ajusta el valor según el espacio que desees */
-    }
-
-    .grouping_tabs li {
-        margin-right: 10px; /* Ajusta el valor según el espacio que desees */
-    }
-</style>
+<link href="~/css/excss.css" rel="stylesheet" />
 <div class="app-title">
     <div>
         <h1><i class="fa fa-th-list"></i>Tiquetes</h1>
@@ -69,11 +41,8 @@
 
 <div id="vista_parcial_container"></div>
 
-@section Scripts{
-
- 
+@section Scripts{ 
     <script>
-
         $(document).ready(function () {
             var statusTabs = $('.status-tab');
 
@@ -117,9 +86,6 @@
             });
         }
 
-
-
     </script>
-
-
+    
 }
