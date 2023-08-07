@@ -16,7 +16,7 @@ html1, body1 {
     position: fixed;
     bottom: 50px;
     right: 50px;
-    background: #5A5EB9;
+    background: #DD6B4D;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -69,7 +69,7 @@ html1, body1 {
 }
 
 .chat-box-header {
-    background: #5A5EB9;
+    background: #DD6B4D;
     height: 70px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -148,7 +148,7 @@ html1, body1 {
     box-shadow: none;
     border: none;
     border-radius: 50%;
-    color: #5A5EB9;
+    color: #DD6B4D;
     width: 35px;
     height: 35px;
 }
@@ -170,7 +170,7 @@ html1, body1 {
     }
 
     .chat-logs::-webkit-scrollbar-thumb {
-        background-color: #5A5EB9;
+        background-color: #DD6B4D;
     }
 
 
@@ -216,7 +216,7 @@ html1, body1 {
     .chat-msg.self > .cm-msg-text {
         float: right;
         margin-right: 10px;
-        background: #5A5EB9;
+        background: #DD6B4D;
         color: white;
     }
 

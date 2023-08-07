@@ -17,12 +17,14 @@ namespace OdinWeb.Controllers
         private readonly IClienteModel _clientModel;
         private readonly IUserModel _userModel;
         private readonly IBranchModel _branchModel;
+        private readonly IChatModel _chatModel;
 
-        public ClienteController(IClienteModel clientModel, IUserModel userModel, IBranchModel branchModel)
+        public ClienteController(IChatModel chatModel, IClienteModel clientModel, IUserModel userModel, IBranchModel branchModel)
         {
             _clientModel = clientModel;
             _userModel = userModel;
             _branchModel = branchModel;
+            _chatModel = chatModel;
         }
 
         [Authorize]
@@ -237,7 +239,27 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> Principal()
         {
-            return View();
+
+            try
+            {
+                var respuesta = _chatModel.GetChat();
+
+
+                ViewBag.Questions = new List<Chat>();
+                foreach (Chat chat in respuesta)
+                {
+                    ViewBag.Questions.Add(new Chat
+                    {
+                        Text = chat.Text,
+                        Answer = chat.Answer
+                    });
+                };
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

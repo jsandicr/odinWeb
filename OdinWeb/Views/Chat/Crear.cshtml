@@ -1,0 +1,37 @@
+﻿@model OdinWeb.Models.Obj.Chat
+@{
+    ViewData["Title"] = "Crear Chat";
+}
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Administración de Chats</h1>
+        <p>Chats para el Cliente</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Chat"> Chats</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Crear" asp-controller="Chat"> Crear</a></li>
+    </ul>
+</div>
+<div class="col-md-12">
+    <div class="tile">
+        <h3 class="tile-title">Crear Chat</h3>
+        <div class="tile-body">
+            <form asp-action="Guardar" asp-controller="Chat" method="post">
+                <div class="form-group">
+                    <label asp-for="Text" class="control-label">Pregunta</label>
+                    <textarea id="Text" asp-for="Text" class="form-control" rows="4" placeholder="Ingrese una pregunta"></textarea>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Answer" class="control-label">Respuesta</label>
+                    <textarea id="Answer" asp-for="Answer" class="form-control" rows="4" placeholder="Ingrese una respuesta a la pregunta"></textarea>
+                    <span asp-validation-for="Answer" class="text-danger"></span>
+                </div>
+                <div class="tile-footer">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Chat"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

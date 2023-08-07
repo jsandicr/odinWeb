@@ -1,0 +1,43 @@
+﻿@model OdinWeb.Models.Obj.Chat
+@{
+    ViewData["Title"] = "Editar Chats";
+}
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Administración de Chats</h1>
+        <p>Chats para el Cliente</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="Home" asp-controller="Chat"> Chats</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Editar" asp-controller="Chat"> Editar</a></li>
+    </ul>
+</div>
+<div class="col-md-12">
+    <div class="tile">
+        <h3 class="tile-title">Editar Chat</h3>
+        <form asp-action="Actualizar" asp-controller="Chat" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id">
+            <div class="tile-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label asp-for="Text" class="control-label">Pregunta</label>
+                            <textarea id="Text" asp-for="Text" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="Text" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Answer" class="control-label">Respuesta</label>
+                            <textarea id="Answer" asp-for="Answer" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="Answer" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tile-footer">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>
+                <a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

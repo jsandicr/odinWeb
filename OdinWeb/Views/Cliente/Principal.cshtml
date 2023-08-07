@@ -51,32 +51,45 @@
         </p>
         <p><a class="btn btn-primary btn-lg" asp-action="HCliente" asp-controller="Servicio">Ir</a></p>
     </div>
-    <div id="body1"> 
+    <div id="body1">
         <div id="chat-circle" class="btn btn-raised">
-                <div id="chat-overlay"></div>
-		        <i class="fa fa-lock fa-lg"></i>
-	    </div>
+            <div id="chat-overlay"></div>
+            <i class="fa fa-comments fa-lg"></i>
+        </div>
         <div class="chat-box">
             <div class="chat-box-header">
-                ChatBot
-                <span class="chat-box-toggle"><i class="material-icons">close</i></span>
+                Preguntas Frecuentes
+                <span class="chat-box-toggle"><i class="fa fa-sign-out"></i></span>
             </div>
-            <div class="chat-box-body">
-                <div class="chat-box-overlay">   
-                </div>
-                <div class="chat-logs">
-       
-                </div><!--chat-log -->
+            <br />
+            <div class="chat-input">
+                <ul class="questions-list">
+                    @foreach (var question in ViewBag.Questions)
+                    {
+                        <li><a href="#" class="question-link" data-answer="@question.Answer">@question.Text</a></li>
+                    }
+                </ul>
             </div>
-            <div class="chat-input">      
-                <form>
-                    <input type="text" id="chat-input" placeholder="Send a message..."/>
-                    <button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons">send</i></button>
-                </form>      
+            <div class="chat-logs">
+                <!-- Respuesta se mostrará aquí -->
             </div>
         </div>
     </div>
 </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".question-link").click(function () {
+            var answer = $(this).data("answer");
+            var chatLogs = $(".chat-logs");
+            chatLogs.append('<div class="chat-msg self"><div class="cm-msg-text">' + answer + '</div></div>');
+            chatLogs.scrollTop(chatLogs[0].scrollHeight);
+        });
+    });
+</script>
 
 
 

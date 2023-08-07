@@ -58,6 +58,7 @@
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Cliente"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Clientes</span></a></li>
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Supervisor"><i class="app-menu__icon fa fa-address-book-o"></i><span class="app-menu__label">Supervisores</span></a></li>
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Branch"><i class="app-menu__icon fa fa-building"></i><span class="app-menu__label">Sucursales</span></a></li>
+            <li><a class="app-menu__item" asp-action="Home" asp-controller="Chat"><i class="app-menu__icon fa fa-commenting"></i><span class="app-menu__label">Chats</span></a></li>
             <li class="treeview">
                 <a class="app-menu__item" href="#" data-toggle="treeview">
                     <i class="app-menu__icon fa fa-ticket"></i>
@@ -89,18 +90,16 @@
             </li>
             <li class="treeview">
                 <a class="app-menu__item" href="#" data-toggle="treeview">
-                    <i class="fa fa-info-circle"></i>
-                    <span class="app-menu__label"> Informes</span>
+                    <i class="app-menu__icon fa fa-info-circle"></i>
+                    <span class="app-menu__label">Informes</span>
                     <i class="treeview-indicator fa fa-angle-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a class="app-menu__item" asp-controller="PDF" asp-action="Index"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Reportes</span></a></li>
-                </ul>
-                <ul class="treeview-menu">
-                    <li><a class="app-menu__item" asp-action="Index" asp-controller="TransLog"><i class="fa fa-list-alt"></i><span class="app-menu__label">Historial de transacciones</span></a></li>
-                </ul>
-                <ul class="treeview-menu">
-                    <li><a class="app-menu__item" asp-controller="" asp-action=""><i class="fa fa-exclamation-triangle"></i><span class="app-menu__label">Historial de errores</span></a></li>
+                    <li>
+                        <a class="treeview-item" asp-controller="PDF" asp-action="Index"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Reportes</span></a>
+                        <a class="treeview-item" asp-action="Index" asp-controller="TransLog"><i class="app-menu__icon fa fa-list-alt"></i><span class="app-menu__label">Historial de transacciones</span></a>
+                        <a class="treeview-item" asp-controller="" asp-action=""><i class="app-menu__icon fa fa-exclamation-triangle"></i><span class="app-menu__label">Historial de errores</span></a>
+                    </li>
                 </ul>
             </li>
 @*            <li><a class="app-menu__item" asp-action="HCliente" asp-controller="Servicio"><i class="app-menu__icon fa fa-pencil-square"></i><span class="app-menu__label">Crear Tiquete</span></a></li>

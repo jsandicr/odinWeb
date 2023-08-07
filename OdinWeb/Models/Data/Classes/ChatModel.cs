@@ -6,12 +6,13 @@ using System.Text;
 
 namespace OdinWeb.Models.Data.Classes
 {
-    public class ClienteModel : IClienteModel
+    public class ChatModel : IChatModel
     {
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _config;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public ClienteModel(IConfiguration config, IHttpContextAccessor httpContextAccessor) {
+        public ChatModel(IConfiguration config, IHttpContextAccessor httpContextAccessor)
+        {
 
             _httpContextAccessor = httpContextAccessor;
             _config = config;
@@ -21,101 +22,13 @@ namespace OdinWeb.Models.Data.Classes
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public bool DeleteClientById(int id)
-        {
-            
-            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
-            // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            var response = _httpClient.DeleteAsync("api/User/"+ id).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public User GetClientById(int id)
-        {
-            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
-            // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            var response = _httpClient.GetAsync("api/User/" + id).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                var client = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<User>(client);
-            }
-
-            return null;
-        }
-    
-        public List<User> GetClients()
-        {
-            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
-            // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            var response = _httpClient.GetAsync("api/User/Client").Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                var clients = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<List<User>>(clients);
-            }
-
-            return null;
-        }
-
-
-        public bool PostClient(User user)
-        {
-            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
-            // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-
-
-            var response = _httpClient.PostAsync("api/User", content).Result;
-
-            if (response.IsSuccessStatusCode)
-            {  
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool PutClientById(User user)
-        {
-            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
-            // Agrega el encabezado de autorización con el token
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-
-
-            var response = _httpClient.PutAsync("api/User/" + user.id, content).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public List<Chat> GetChat()
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = _httpClient.GetAsync("api/User/GetChat").Result;
+            var response = _httpClient.GetAsync("api/Chat/GetChat").Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -124,6 +37,76 @@ namespace OdinWeb.Models.Data.Classes
             }
 
             return null;
+        }
+
+        public Chat GetChatById(int id)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.GetAsync("api/Chat/" + id).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var chat = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Chat>(chat);
+            }
+
+            return null;
+        }
+
+        public bool PostChat(Chat chat)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var content = new StringContent(JsonConvert.SerializeObject(chat), Encoding.UTF8, "application/json");
+
+
+            var response = _httpClient.PostAsync("api/Chat", content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool PutChatById(Chat chat)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var content = new StringContent(JsonConvert.SerializeObject(chat), Encoding.UTF8, "application/json");
+
+
+            var response = _httpClient.PutAsync("api/Chat/" + chat.Id, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool DeleteChatById(int id)
+        {
+
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.DeleteAsync("api/Chat/" + id).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
