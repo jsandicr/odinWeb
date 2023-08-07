@@ -11,6 +11,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(option =>
     {
         option.LoginPath = "/Auth/Login";
+        option.AccessDeniedPath = "/Auth/AccessDenied"; // Cambia la ruta para el acceso denegado por rol
         option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     });
 

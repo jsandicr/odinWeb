@@ -53,6 +53,10 @@
                 <input asp-for="RestorePassword.phone" class="form-control" type="tel" placeholder="88888888" autofocus>
                 <span asp-validation-for="RestorePassword.phone" class="text-danger"></span>
             </div>
+            @if (!string.IsNullOrEmpty(ViewData["ReturnUrl"] as string))
+            {
+                <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+            }
             <div class="form-group btn-container">
                 <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>Restablecer</button>
             </div>
