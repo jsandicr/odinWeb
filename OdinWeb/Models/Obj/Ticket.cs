@@ -10,7 +10,7 @@ namespace OdinWeb.Models.Obj
 {
     public class Ticket
     {
-        [Display(Name = "Codigo")]
+        [Display(Name = "Código")]
         public int id { get; set; }
         [Display(Name = "Título")]
         [Required(ErrorMessage = "El campo es requerido")]
