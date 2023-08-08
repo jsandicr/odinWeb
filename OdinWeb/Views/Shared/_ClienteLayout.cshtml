@@ -62,13 +62,7 @@
                 </a>
             </li>
             <li>
-                <a class="app-menu__item" asp-action="TiquetesCerrados" asp-controller="Ticket">
-                    <i class="app-menu__icon fa fa-check-circle"></i>
-                    <span class="app-menu__label">Tiquetes cerrados</span>
-                </a>
-            </li>
-            <li>
-                <a class="app-menu__item" asp-action="#" asp-controller="#">
+                <a class="app-menu__item" onclick="viewDocumentManual()" style="color: #fff;">
                     <i class="app-menu__icon fa fa-book"></i>
                     <span class="app-menu__label">Guía de Usuario</span>
                 </a>
@@ -105,6 +99,13 @@
                 '@TempData.Remove("AlertType")';
                 '@TempData.Remove("AlertMessage")';
             });
+
+            function viewDocumentManual() {
+                var url = '@Url.Action("ViewDocumentManual", "Document")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
+
+                // Abrir el documento en una nueva ventana del navegador
+                window.open(url, "_blank");
+            }
         </script>
     }
     @{
@@ -112,5 +113,6 @@
     }
     @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("modals", required: false)
+
 </body>
 </html>

@@ -31,7 +31,7 @@ namespace OdinWeb.Controllers
         }
         public async Task<IActionResult> Login(string? ReturnUrl)
         {
-
+            ViewData["ReturnUrl"] = ReturnUrl;
             return View();
         }
 

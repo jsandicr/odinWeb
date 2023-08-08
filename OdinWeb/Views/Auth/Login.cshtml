@@ -25,6 +25,10 @@
                 <input asp-for="User.password" class="form-control" type="password" placeholder="*****">
                 <span asp-validation-for="User.password" class="text-danger"></span>
             </div>
+            @if (!string.IsNullOrEmpty(ViewData["ReturnUrl"] as string))
+            {
+                <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+            }
             <p class="semibold-text mb-2"><a asp-controller="Auth" asp-action="Registration">¿Aún no tiene una cuenta?</a></p>
             <div class="form-group">
                 <div class="utility">
@@ -53,10 +57,7 @@
                 <input asp-for="RestorePassword.phone" class="form-control" type="tel" placeholder="88888888" autofocus>
                 <span asp-validation-for="RestorePassword.phone" class="text-danger"></span>
             </div>
-            @if (!string.IsNullOrEmpty(ViewData["ReturnUrl"] as string))
-            {
-                <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
-            }
+            
             <div class="form-group btn-container">
                 <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>Restablecer</button>
             </div>
