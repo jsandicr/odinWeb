@@ -69,7 +69,7 @@ namespace OdinWeb.Controllers
             {
                 user.idRol = 3;
                 user.restorePass = true;
-                user.password = _userModel.HashPassword(user.password);
+                user.password = "password";
                 if (ModelState.IsValid)
                 {
                     var servicio = _supervisorModel.PostSupervisor(user);
