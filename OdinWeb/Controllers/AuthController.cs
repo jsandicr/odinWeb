@@ -31,7 +31,7 @@ namespace OdinWeb.Controllers
         }
         public async Task<IActionResult> Login(string? ReturnUrl)
         {
-
+            ViewData["ReturnUrl"] = ReturnUrl;
             return View();
         }
 
@@ -58,7 +58,6 @@ namespace OdinWeb.Controllers
         //[SessionState(SessionStateBehavior.Required)]
         public async Task<IActionResult> Validate(LoginViewModel userDTO, string? ReturnUrl)
         {
-
             try
             {
                 userDTO.User.password = _userModel.HashPassword(userDTO.User.password);
@@ -158,7 +157,6 @@ namespace OdinWeb.Controllers
                     //Temporal
                     newUser.photo = "./user.png";
                     newUser.password = user.password;
-                    newUser.password = _userModel.HashPassword(newUser.password);
                     var rol = _rolModel.GetRolFirst();
 
                     newUser.idRol = rol.id;

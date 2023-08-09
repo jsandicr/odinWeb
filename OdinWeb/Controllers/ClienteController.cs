@@ -76,19 +76,16 @@ namespace OdinWeb.Controllers
             {
                 user.idRol = 1;
                 user.restorePass = true;
-                user.password = _userModel.HashPassword(user.password);
-                if (ModelState.IsValid)
+                user.password = "password";
+                var NewUser = _clientModel.PostClient(user);
+                if (NewUser)
                 {
-                    var servicio = _clientModel.PostClient(user);
+                    TempData["AlertMessage"] = "¡Se creó el cliente!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(Home));
 
-                    if (servicio)
-                    {
-                        TempData["AlertMessage"] = "¡Se creó el cliente!";
-                        TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Home));
-
-                    }
                 }
+              
                 TempData["AlertMessage"] = "¡Ocurrio un error al crear el cliente!";
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Crear));

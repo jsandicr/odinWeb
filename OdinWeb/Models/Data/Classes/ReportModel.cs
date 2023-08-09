@@ -23,8 +23,10 @@ namespace OdinWeb.Models.Data.Classes
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
         public List<Ticket> GetTicketsXTime()
-        {  
-
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = _httpClient.GetAsync("api/Report/TicketsXTime").Result;
 
             if (response.IsSuccessStatusCode)
@@ -38,7 +40,9 @@ namespace OdinWeb.Models.Data.Classes
 
         public List<Ticket> GetTicketsXSupervisor()
         {
-
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = _httpClient.GetAsync("api/Report/TicketsXSupervisor").Result;
 
             if (response.IsSuccessStatusCode)
@@ -52,6 +56,9 @@ namespace OdinWeb.Models.Data.Classes
 
         public int GetCantTicketsAssigned()
         {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var id = _httpContextAccessor.HttpContext.Request.Cookies["Id"];
             var response = _httpClient.GetAsync("api/Report/CantTicketsAssigned/" + id).Result;
 
@@ -66,6 +73,9 @@ namespace OdinWeb.Models.Data.Classes
 
         public int GetCantTicketsOpen()
         {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = _httpClient.GetAsync("api/Report/CantTicketsOpen").Result;
 
             if (response.IsSuccessStatusCode)

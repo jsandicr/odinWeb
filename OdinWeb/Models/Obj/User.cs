@@ -8,21 +8,24 @@ namespace OdinWeb.Models.Obj
     public class User
     {
         public int id { get; set; }
+        [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "El campo es requerido")]
 
         public string name { get; set; }
-
+        [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         [Display(Name = "Apellido")]
         [Required(ErrorMessage = "El campo es requerido")]
 
         public string lastName { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         [DataType(DataType.EmailAddress, ErrorMessage = "El campo 'Email' debe ser una dirección de correo electrónico válida")]
+        [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         [Display(Name = "Correo")]
         public string mail { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "El campo 'phone' debe ser un número de teléfono válido")]
+        [RegularExpression(@"^[0-9]{8}$", ErrorMessage = "El número de teléfono debe contener exactamente 8 dígitos.")]
         [Display(Name = "Teléfono")]
         public string phone { get; set; }
         [Display(Name = "Foto")]
@@ -58,6 +61,7 @@ namespace OdinWeb.Models.Obj
     {
         [Required(ErrorMessage = "El campo es requerido")]
         [Display(Name = "Nombre")]
+        [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         public string name { get; set; }
 
         [Required(ErrorMessage = "El campo es requerido")]
@@ -134,11 +138,17 @@ namespace OdinWeb.Models.Obj
     public class UpdateUser
     {
         public int id { get; set; }
+
+        [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         public string Nombre { get; set; }
+        [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         public string Apellidos { get; set; }
+
+        [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         public string CorreoElectronico { get; set; }
         [RegularExpression("^[0-9]+$", ErrorMessage = "Debe ingresar solo números.")]
         [StringLength(8, ErrorMessage = "El campo debe tener 8 números", MinimumLength = 8)]
+        
         public string Telefono { get; set; }
         [Display(Name = "Sucursal más Cercana")]
         public int IdBranch { get; set; }
