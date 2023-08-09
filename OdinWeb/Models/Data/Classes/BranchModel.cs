@@ -105,5 +105,22 @@ namespace OdinWeb.Models.Data.Classes
 
             return false;
         }
+
+        public List<Branch> GetBranchesAll()
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = _httpClient.GetAsync("api/Branch/All").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var branch = response.Content.ReadAsStringAsync().Result;
+                var branchR = JsonConvert.DeserializeObject<List<Branch>>(branch);
+                return branchR;
+            }
+
+            return null;
+        }
     }
 }
