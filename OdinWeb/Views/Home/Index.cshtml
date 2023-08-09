@@ -1,4 +1,4 @@
-﻿
+﻿@inject OdinWeb.Models.Data.Interfaces.ITicketModel Tiquetes
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AuthLayout.cshtml";
@@ -25,6 +25,28 @@
         margin: 0 2px;
         transition: height 0.5s;
     }
+
+    .legend-container {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .legend-color {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
 </style>
 
 <div class="app-title">
@@ -36,22 +58,32 @@
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Inicio</a></li>
     </ul>
 </div>
+<h2>Información de estado de Tiquetes Asiganados</h2>
 <div class="row">
     <div class="col-md-6 col-lg-3">
         <div class="widget-small primary coloured-icon">
-            <i class="icon fa fa-users fa-3x"></i>
+            <i class="icon fa fa-eye fa-3x"></i>
             <div class="info">
-                <h4>Tiquetes abiertos</h4>
-                <p><b>@ViewData["CantOpen"]</b></p>
+                <h4>En Revisión</h4>
+                <p><b>@Tiquetes.GetAssignedTickets("Asignado").Count()</b></p>
             </div>
         </div>
     </div>
     <div class="col-md-6 col-lg-3">
-        <div class="widget-small info coloured-icon">
-            <i class="icon fa fa-thumbs-o-up fa-3x"></i>
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-exclamation-triangle fa-3x"></i>
             <div class="info">
-                <h4>Tiquetes asignados</h4>
-                <p><b>@ViewData["CantAssign"]</b></p>
+                <h4>Falta de información</h4>
+                <p><b>@Tiquetes.GetAssignedTickets("Pendiente información").Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-spinner fa-3x"></i>
+            <div class="info">
+                <h4>En Proceso</h4>
+                <p><b>@Tiquetes.GetAssignedTickets("En Proceso").Count()</b></p>
             </div>
         </div>
     </div>
@@ -71,6 +103,8 @@
             <div class="embed-responsive embed-responsive-16by9">
                 <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
             </div>
+            <!-- Agregar un contenedor para la leyenda -->
+            <div id="legendContainer" class="legend-container"></div>
         </div>
     </div>
 </div>
@@ -95,9 +129,28 @@
                         highlight: "#FF5A5E",
                         label: "Abiertos"
                     }
-                ]
+                ];
+
+                // Calcular el valor total de los datos
+                var dataTotal = pdata.reduce((total, current) => total + current.value, 0);
+
                 var ctxp = $("#pieChartDemo").get(0).getContext("2d");
-                var pieChart = new Chart(ctxp).Pie(pdata);
+                var pieChart = new Chart(ctxp).Pie(pdata, {
+                    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %> (<%= Math.round(circumference / 6.283 * 100) %>%)"
+                });
+
+                // Agregar la leyenda al gráfico de pie
+                var legendContainer = document.getElementById("legendContainer");
+                var legendHtml = '<ul class="legend">';
+                for (var i = 0; i < pdata.length; i++) {
+                    legendHtml += '<li class="legend-item">';
+                    legendHtml += '<span class="legend-color" style="background-color:' + pdata[i].color + '"></span>';
+                    legendHtml += '<span class="legend-label">' + pdata[i].label + '</span>';
+                    legendHtml += '<span class="legend-value">' + pdata[i].value + ' (' + Math.round(pdata[i].value / dataTotal * 100) + '%)</span>';
+                    legendHtml += '</li>';
+                }
+                legendHtml += '</ul>';
+                legendContainer.innerHTML = legendHtml;
             })
             .catch(error => {
                 console.error("Error al obtener los datos: " + error);

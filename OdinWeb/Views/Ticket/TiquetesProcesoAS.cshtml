@@ -8,12 +8,14 @@
 <link href="~/css/excss.css" rel="stylesheet" />
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-ticket"></i> Tiquetes</h1>
-        <p>Detalle de tiquetes</p>
+        <h1><i class="fa fa-ticket"></i>Tiquetes</h1>
+        <p>Detalle de tiquetess</p>
+        <br>
+        <a asp-action="" asp-controller="" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item" asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item" asp-action="TiquetesProcesoAS" asp-controller="Ticket">Tiquetes</li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="TiquetesProcesoAS" asp-controller="Ticket">Tiquetes</a></li>
     </ul>
 </div>
 <ul class="nav nav-pills grouping_tabs">

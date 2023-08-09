@@ -1,4 +1,4 @@
-﻿
+﻿@inject OdinWeb.Models.Data.Interfaces.ITicketModel Tiquetes
 @{
     ViewData["Title"] = "Principal";
     Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
@@ -13,22 +13,32 @@
         <li class="breadcrumb-item"><a asp-action="Principal" asp-controller="Supervisor">Inicio</a></li>
     </ul>
 </div>
+<h2>Información de estado de Tiquetes Asiganados</h2>
 <div class="row">
     <div class="col-md-6 col-lg-3">
         <div class="widget-small primary coloured-icon">
-            <i class="icon fa fa-users fa-3x"></i>
+            <i class="icon fa fa-eye fa-3x"></i>
             <div class="info">
-                <h4>Tiquetes abiertos</h4>
-                <p><b>25</b></p>
+                <h4>En Revisión</h4>
+                <p><b>@Tiquetes.GetAssignedTickets("Asignado").Count()</b></p>
             </div>
         </div>
     </div>
     <div class="col-md-6 col-lg-3">
-        <div class="widget-small info coloured-icon">
-            <i class="icon fa fa-thumbs-o-up fa-3x"></i>
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-exclamation-triangle fa-3x"></i>
             <div class="info">
-                <h4>Tiquetes asignados</h4>
-                <p><b>5</b></p>
+                <h4>Falta de información</h4>
+                <p><b>@Tiquetes.GetAssignedTickets("Pendiente información").Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-spinner fa-3x"></i>
+            <div class="info">
+                <h4>En Proceso</h4>
+                <p><b>@Tiquetes.GetAssignedTickets("En Proceso").Count()</b></p>
             </div>
         </div>
     </div>
