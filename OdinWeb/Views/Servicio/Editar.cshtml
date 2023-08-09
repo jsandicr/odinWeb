@@ -39,13 +39,12 @@
                             <span asp-validation-for="requirements" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="active" class="control-label">Estado</label>
-                            <div class="toggle-flip">
+                            <div class="animated-checkbox">
                                 <label>
-                                    <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
+                                <input asp-for="active" type="checkbox"><span class="label-text"></span>
                                 </label>
+                                <label asp-for="active" class="control-label"> Servicio Activo</label>
                             </div>
-                            <span asp-validation-for="active" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             @if(Model.idServiceMain != null){
@@ -67,17 +66,21 @@
                             </div>
                         </span>
                         <div class="form-group">
-                            <input asp-for="transport" type="checkbox">
-                            <label asp-for="transport" class="control-label"></label>
-                            <span asp-validation-for="transport" class="text-danger"></span>
+                            <div class="animated-checkbox">
+                                <label>
+                                    <input asp-for="transport" type="checkbox"><span class="label-text"></span>
+                                </label>
+                                <label asp-for="transport" class="control-label"></label>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <input asp-for="toAdministrator" type="checkbox">
-                            <label asp-for="toAdministrator" class="control-label"></label>
-                            <span asp-validation-for="toAdministrator" class="text-danger"></span>
-                        </div>  
-                    </div>
-                    <div class="col-md-4">
+                            <div class="animated-checkbox">
+                                <label>
+                                    <input asp-for="toAdministrator" type="checkbox"><span class="label-text"></span>
+                                </label>
+                                <label asp-for="toAdministrator" class="control-label"> Servicio Activo</label>
+                            </div>
+                        </div> 
                         <div class="form-group">
                             <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" height="200">
                         </div>
