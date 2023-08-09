@@ -40,25 +40,13 @@
                             <input asp-for="phone" class="form-control" rows="2" placeholder="Ingrese el teléfono"></input>
                             <span asp-validation-for="phone" class="text-danger"></span>
                         </div>
-                    </div>
-                    <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="photo" class="control-label">Imagen de perfil</label>
-                            <input asp-for="photo" class="form-control" type="file">
-                        </div>
-@*                        <div class="form-group">
-                            <label asp-for="password" class="control-label">Contraseña temporal</label>
-                            <input type="password" asp-for="password" class="form-control" rows="2" placeholder="Ingrese la contraseña temporal"></input>
-                            <span asp-validation-for="password" class="text-danger"></span>
-                        </div>*@
-                        <div class="form-group">
-                            <label>Activo/Inactivo</label>
-                            <div class="toggle-flip">
+                            <div class="animated-checkbox">
                                 <label>
-                                    <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
+                                    <input asp-for="active" type="checkbox"><span class="label-text"></span>
                                 </label>
+                                <label asp-for="active" class="control-label"> Cliente Activo</label>
                             </div>
-                            <span asp-validation-for="active" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Sucursal</label>

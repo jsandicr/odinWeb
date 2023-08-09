@@ -38,9 +38,9 @@
                                         <td>@Html.DisplayFor(model => chat.Answer)</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-dark" asp-action="Ver" asp-controller="Chat" asp-route-id="@chat.Id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Chat" asp-route-id="@chat.Id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@chat.Id"><i class="fa fa-lg fa-trash"></i></button>
+                                                <a class="btn btn-dark" asp-action="Ver" asp-controller="Chat" asp-route-id="@chat.Id" data-toggle="tooltip" data-placement="left" title="" data-original-title="Informacion"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Chat" asp-route-id="@chat.Id" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@chat.Id" data-toggle="tooltip" data-placement="right" title="" data-original-title="Cambiar estado"><i class="fa fa-lg fa-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>
