@@ -52,9 +52,9 @@
                                         }
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-dark" asp-action="Ver" asp-controller="Cliente" asp-route-id="@user.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Cliente" asp-route-id="@user.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@user.id"><i class="fa fa-refresh"></i></button>
+                                                <a class="btn btn-dark" asp-action="Ver" asp-controller="Cliente" asp-route-id="@user.id" data-toggle="tooltip" data-placement="left" title="" data-original-title="Informacion"><i class="fa fa-lg fa-eye"></i></a>
+                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Cliente" asp-route-id="@user.id" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@user.id" data-toggle="tooltip" data-placement="right" title="" data-original-title="Cambiar estado"><i class="fa fa-refresh"></i></button>
                                             </div>
                                         </td>
                                     </tr>

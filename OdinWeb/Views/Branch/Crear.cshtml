@@ -29,13 +29,12 @@
                     <span asp-validation-for="direction" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="active" class="control-label">Estado</label>
-                    <div class="toggle-flip">
+                    <div class="animated-checkbox">
                         <label>
-                            <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
+                            <input asp-for="active" type="checkbox"><span class="label-text"></span>
                         </label>
+                        <label asp-for="active" class="control-label"> Sucursal Activa</label>
                     </div>
-                    <span asp-validation-for="active" class="text-danger"></span>
                 </div>
                 <div class="tile-footer">
                     <a class="btn btn-secondary" asp-action="Home" asp-controller="Branch"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>

@@ -71,47 +71,6 @@ namespace OdinWeb.Controllers
                 user.idRol = 3;
                 user.restorePass = true;
                 user.password = "password";
-                var archivoImagen = user.Imagen;
-
-                if (archivoImagen != null && archivoImagen.Length > 0)
-                {
-                    var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
-                    var extension = Path.GetExtension(nombreArchivo);
-                    if (extension == ".png" || extension == ".jpg")
-                    {
-                        if (!string.IsNullOrEmpty(user.photo))
-                        {
-                            var rutaImagenAnterior = Path.Combine(hostingEnvironment.WebRootPath, "images", "Users", user.photo);
-                            if (System.IO.File.Exists(rutaImagenAnterior))
-                            {
-                                System.IO.File.Delete(rutaImagenAnterior);
-                            }
-                        }
-                        var nombreUnico = Guid.NewGuid().ToString() + extension;
-
-                        var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "Users", nombreUnico);
-                        using (var stream = new FileStream(rutaGuardar, FileMode.Create))
-                        {
-                            archivoImagen.CopyTo(stream);
-                        }
-
-                        user.photo = nombreUnico;
-
-                    }
-                    else
-                    {
-                        TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
-                        TempData["AlertType"] = "error";
-                        return RedirectToAction("Editar");
-
-                    }
-                }
-
-
-                //if (ModelState.IsValid)
-                //{
-
-                //}
 
                 var servicio = _supervisorModel.PostSupervisor(user);
 
@@ -215,17 +174,13 @@ namespace OdinWeb.Controllers
                 user.idRol = 3;
                 user.restorePass = true;
                 user.password = _userModel.HashPassword(user.password);
-                if (ModelState.IsValid)
+                var servicio = _supervisorModel.PutSupervisorById(user);
+
+                if (servicio)
                 {
-                    var servicio = _supervisorModel.PutSupervisorById(user);
-
-                    if (servicio)
-                    {
-                        TempData["AlertMessage"] = "¡Se actualizó el Supervisor!";
-                        TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Home));
-                    }
-
+                    TempData["AlertMessage"] = "¡Se actualizó el Supervisor!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(Home));
                 }
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el Supervisor!";
                 TempData["AlertType"] = "error";

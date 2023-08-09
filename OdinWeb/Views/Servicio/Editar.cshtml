@@ -41,6 +41,7 @@
                         <div class="form-group">
                             <div class="animated-checkbox">
                                 <label>
+                                <input asp-for="active" type="checkbox"><span class="label-text"></span>
                                     <input asp-for="active" type="checkbox"><span class="label-text"></span>
                                 </label>
                                 <label asp-for="active" class="control-label"> Servicio Activo</label>
@@ -72,7 +73,6 @@
                                     <input asp-for="transport" type="checkbox"><span class="label-text"></span>
                                 </label>
                                 <label asp-for="transport" class="control-label"></label>
-                                <span asp-validation-for="transport" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -80,12 +80,9 @@
                                 <label>
                                     <input asp-for="toAdministrator" type="checkbox"><span class="label-text"></span>
                                 </label>
-                                <label asp-for="toAdministrator" class="control-label"></label>
-                                <span asp-validation-for="toAdministrator" class="text-danger"></span>
+                                <label asp-for="toAdministrator" class="control-label"> Servicio Activo</label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                        </div> 
                         <div class="form-group">
                             <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" height="200">
                         </div>
