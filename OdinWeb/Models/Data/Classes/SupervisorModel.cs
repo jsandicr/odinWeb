@@ -98,7 +98,7 @@ namespace OdinWeb.Models.Data.Classes
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 
 
-            var response = _httpClient.PostAsync("api/User/PostUser", content).Result;
+            var response = _httpClient.PostAsync("api/User/", content).Result;
 
             if (response.IsSuccessStatusCode)
             {  

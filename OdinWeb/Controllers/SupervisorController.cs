@@ -69,8 +69,8 @@ namespace OdinWeb.Controllers
             try
             {
                 user.idRol = 3;
-                //user.restorePass = true;
-                //user.password = _userModel.HashPassword(user.password);
+                user.restorePass = true;
+                user.password = "password";
                 var archivoImagen = user.Imagen;
 
                 if (archivoImagen != null && archivoImagen.Length > 0)
