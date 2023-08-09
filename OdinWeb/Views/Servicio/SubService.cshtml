@@ -2,9 +2,13 @@
 
 @{
     ViewData["Title"] = "SubServicios";
-    if (ViewBag.Layout != null)
+    if (Context.Request.Cookies["Rol"] == "Cliente")
     {
-        Layout = ViewBag.Layout;
+        Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+    }
+    if (Context.Request.Cookies["Rol"] == "Supervisor")
+    {
+        Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
     }
 }
 @if (Model == null)

@@ -366,16 +366,6 @@ namespace OdinWeb.Controllers
 
                 if (respuesta != null)
                 {
-
-                    if (rol == "Cliente")
-                    {
-                        ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
-                    }
-                    if (rol == "Supervisor")
-                    {
-                        ViewBag.Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
-                    }
-
                     return View(respuesta);
                 }
                 if (rol == "Cliente")

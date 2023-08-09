@@ -176,18 +176,13 @@ namespace OdinWeb.Controllers
             {
                 user.idRol = 1;
                 user.restorePass = true;
-                user.password = _userModel.HashPassword(user.password);
-                if (ModelState.IsValid)
+                var servicio = _clientModel.PutClientById(user);
+
+                if (servicio)
                 {
-                    var servicio = _clientModel.PutClientById(user);
-
-                    if (servicio)
-                    {
-                        TempData["AlertMessage"] = "¡Se actualizó el cliente!";
-                        TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Home));
-                    }
-
+                    TempData["AlertMessage"] = "¡Se actualizó el cliente!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(Home));
                 }
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el cliente!";
                 TempData["AlertType"] = "error";

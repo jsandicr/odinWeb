@@ -39,43 +39,51 @@
                             <span asp-validation-for="requirements" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="active" class="control-label">Estado</label>
-                            <div class="toggle-flip">
+                            <div class="animated-checkbox">
                                 <label>
-                                    <input asp-for="active" type="checkbox"><span class="flip-indecator" data-toggle-on="Activo" data-toggle-off="Inactivo"></span>
+                                    <input asp-for="active" type="checkbox"><span class="label-text"></span>
                                 </label>
+                                <label asp-for="active" class="control-label"> Servicio Activo</label>
                             </div>
-                            <span asp-validation-for="active" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
-                            @if(Model.idServiceMain != null){
-                                <input type="checkbox" id="subServiceCheck" checked>
-                            }else{
-                                <input type="checkbox" id="subServiceCheck">
-                            }
-                            <label class="control-label" >Crear como sub servicio</label>
-                        </div>
-                        <span class="subService" id="subService">
+                        @if(Model.idServiceMain == null){
                             <div class="form-group">
-                                <label class="control-label">Seleccione el servicio</label>
-                                @Html.DropDownList("idServiceMain", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3" })
+                                <div class="animated-checkbox">
+                                    <label>
+                                        @if(Model.idServiceMain != null){
+                                            <input type="checkbox" id="subServiceCheck" checked><span class="label-text"></span>
+                                        }else{
+                                            <input type="checkbox" id="subServiceCheck"><span class="label-text"></span>
+                                        }
+                                    </label>
+                                    <label class="control-label" >Crear como sub servicio</label>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="requirements" class="control-label"></label>
-                                <textarea id="requirements" asp-for="requirements" class="form-control" rows="4"></textarea>
-                                <span asp-validation-for="requirements" class="text-danger"></span>
-                            </div>
-                        </span>
+                            <span class="subService" id="subService">
+                                <div class="form-group">
+                                    <label class="control-label">Seleccione el servicio</label>
+                                    @Html.DropDownList("idServiceMain", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3" })
+                                </div>
+                            </span>
+                        }
                         <div class="form-group">
-                            <input asp-for="transport" type="checkbox">
-                            <label asp-for="transport" class="control-label"></label>
-                            <span asp-validation-for="transport" class="text-danger"></span>
+                            <div class="animated-checkbox">
+                                <label>
+                                    <input asp-for="transport" type="checkbox"><span class="label-text"></span>
+                                </label>
+                                <label asp-for="transport" class="control-label"></label>
+                                <span asp-validation-for="transport" class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <input asp-for="toAdministrator" type="checkbox">
-                            <label asp-for="toAdministrator" class="control-label"></label>
-                            <span asp-validation-for="toAdministrator" class="text-danger"></span>
-                        </div>  
+                            <div class="animated-checkbox">
+                                <label>
+                                    <input asp-for="toAdministrator" type="checkbox"><span class="label-text"></span>
+                                </label>
+                                <label asp-for="toAdministrator" class="control-label"></label>
+                                <span asp-validation-for="toAdministrator" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
@@ -113,7 +121,6 @@
         }else{
             //Desactivado
             comboService.classList.add("subService");
-            document.getElementById("requirements").value=null;
             
             //comboBox.selectedIndex=0;
             var comboBox = document.getElementById("idServiceMain");

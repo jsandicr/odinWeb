@@ -18,7 +18,7 @@
     <ul class="app-breadcrumb breadcrumb">
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
-            <li class="breadcrumb-item"><a asp-action="Ticket" asp-controller="TiquetesProcesoAS">Tiquetes en proceso</a></li>
+            <li class="breadcrumb-item"><a asp-action="TiquetesProcesoAS" asp-controller="Ticket">Tiquetes en proceso</a></li>
             <li class="breadcrumb-item active">Ver</li>
 
         </ul>
@@ -133,7 +133,7 @@
             <div class="ticket-section">
                 <div class="animated-checkbox">
                     <label>
-                        <input type="checkbox" id="toggle-document-checkbox" onclick="toggleDocuments()"><span class="label-text">Mostrar Docuementos</span>
+                        <input type="checkbox" id="toggle-document-checkbox" onclick="toggleDocuments()"><span class="label-text">Mostrar Documentos</span>
                     </label>
                 </div>               
                 <div id="documents-container" style="display: none;">

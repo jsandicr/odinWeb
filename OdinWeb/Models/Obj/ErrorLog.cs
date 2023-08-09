@@ -16,7 +16,7 @@ namespace OdinWeb.Models.Obj
         public DateTime date { get; set; }
 
         [Display(Name = "ID de Usuario")]
-        public int idUser { get; set; }
+        public int? idUser { get; set; }
 
         [Display(Name = "Usuario")]
         public User? user { get; set; }
