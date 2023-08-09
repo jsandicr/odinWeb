@@ -4,7 +4,7 @@
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i> Administración de Supervisores</h1>
+        <h1><i class="fa fa-address-book-o"></i> Administración de Supervisores</h1>
         <p>Información de supervisores registrados</p>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
@@ -43,8 +43,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="photo" class="control-label">Imagen de perfil</label>
-                            <input class="form-control" type="file">
+                            <label asp-for="Imagen" class="control-label">Imagen de perfil</label>
+                            <input asp-for="Imagen" class="form-control" type="file" data-val="false">
                         </div>
 @*                      <div class="form-group">
                             <label asp-for="password" class="control-label">Contraseña temporal</label>
@@ -65,8 +65,9 @@
                             @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3" })
                         </div>
                         <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>
                             <a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>
                         </div>
                     </div>
                 </div>

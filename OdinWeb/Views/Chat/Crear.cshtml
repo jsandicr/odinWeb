@@ -4,7 +4,7 @@
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i> Administración de Chats</h1>
+        <h1><i class="fa fa-commenting"></i> Administración de Chats</h1>
         <p>Chats para el Cliente</p>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
@@ -29,7 +29,9 @@
                     <span asp-validation-for="Answer" class="text-danger"></span>
                 </div>
                 <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Chat"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    <a class="btn btn-secondary" asp-action="Home" asp-controller="Chat"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>
                 </div>
             </form>
         </div>

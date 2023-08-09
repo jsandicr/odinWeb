@@ -5,7 +5,7 @@
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i> Administración de Supervisores</h1>
+        <h1><i class="fa fa-address-book-o"></i> Administración de Supervisores</h1>
         <p>Información de supervisores registrados</p>
         <br>
         <a asp-action="Crear" asp-controller="Supervisor" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
@@ -32,7 +32,6 @@
                                 <th>@Html.DisplayNameFor(model => model.branch)</th>
                                 <th>@Html.DisplayNameFor(model => model.active)</th>
                                 <th>Acciones</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -59,7 +58,7 @@
                                             <div class="btn-group">
                                                 <a class="btn btn-dark" asp-action="Ver" asp-controller="Supervisor" asp-route-id="@user.id"><i class="fa fa-lg fa-eye"></i></a>
                                                 <a class="btn btn-dark" asp-action="Editar" asp-controller="Supervisor" asp-route-id="@user.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-dark" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@user.id"><i class="fa fa-lg fa-trash"></i></button>
+                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@user.id"><i class="fa fa-refresh"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -72,45 +71,49 @@
         </div>
     </div>
 </div>
-@section modals{
-    <!-- Modal de confirmación para eliminar un supervisor -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estás seguro de que deseas eliminar este supervisor?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="eliminar()">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-}
 @section Scripts{
     <script src="~/js/plugins/jquery.datatables.min.js"></script>
     <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
     <script type="text/javascript">$('#tsupervisores').DataTable();</script>
-
     <script>
-        var idToDelete; // Variable para almacenar el ID del elemento a eliminar
+        $(document).ready(function () {
+            $('.cambiar-estado-btn').click(function (e) {
+                e.preventDefault();
 
-        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Botón que activó el modal
-            idToDelete = button.data('id'); // Obtener el ID del atributo "data-id" del botón
+                var id = $(this).data('id');
+
+                // Mostrar confirmación con SweetAlert2
+                Swal.fire({
+                    title: 'Confirmación',
+                    text: '¿Estás seguro de que deseas cambiar el estado del supervisor?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Realizar la llamada AJAX si se confirma la acción
+                        $.ajax({
+                            url: '@Url.Action("Eliminar", "Supervisor")',
+                            type: 'POST',
+                            data: { id: id },
+                            success: function (response) {
+                                // Mostrar mensaje de éxito con SweetAlert2
+                                Swal.fire('Éxito', 'Se ha cambiado el supervisor correctamente.', 'success').then(function () {
+                                    // Recargar la página
+                                    location.reload();
+                                });
+                            },
+                            error: function (xhr, status, error) {
+                                // Mostrar mensaje de error con SweetAlert2
+                                Swal.fire('Error', 'Error al cambiar el estado.', 'error');
+                                console.error('Error:', error);
+                            }
+                        });
+                    }
+                });
+            });
         });
 
-        function eliminar() {
-            var url = '@Url.Action("Eliminar", "Supervisor")' + '/' + idToDelete;
-            window.location.href = url;
-        }
     </script>
-
-}
+    }

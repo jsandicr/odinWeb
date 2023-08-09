@@ -4,7 +4,7 @@
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i> Administración de Servicios</h1>
+        <h1><i class="fa fa-solid fa-car"></i> Administración de Servicios</h1>
         <p>Servicios Ofrecidos</p>
         <br>
         <a asp-action="Crear" asp-controller="Servicio" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
@@ -43,8 +43,8 @@
                                         <td>
                                             <div class="btn-group">
                                                 <a class="btn btn-dark" asp-action="Ver" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-eye"></i></a>
-                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-edit"></i></a>                                             
-                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@service.id"><i class="fa fa-lg fa-trash"></i></button>                                               
+                                                <a class="btn btn-dark" asp-action="Editar" asp-controller="Servicio" asp-route-id="@service.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@service.id"><i class="fa fa-refresh"></i></button>
                                             </div>
                                         </td>
                                     </tr>

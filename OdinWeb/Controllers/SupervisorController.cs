@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Hosting.Internal;
 using Newtonsoft.Json;
 using OdinWeb.Models;
 using OdinWeb.Models.Data.Interfaces;
@@ -63,28 +64,69 @@ namespace OdinWeb.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Guardar(User user)
+        public async Task<IActionResult> Guardar(User user, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try
             {
                 user.idRol = 3;
-                user.restorePass = true;
-                user.password = _userModel.HashPassword(user.password);
-                if (ModelState.IsValid)
-                {
-                    var servicio = _supervisorModel.PostSupervisor(user);
+                //user.restorePass = true;
+                //user.password = _userModel.HashPassword(user.password);
+                var archivoImagen = user.Imagen;
 
-                    if (servicio)
+                if (archivoImagen != null && archivoImagen.Length > 0)
+                {
+                    var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
+                    var extension = Path.GetExtension(nombreArchivo);
+                    if (extension == ".png" || extension == ".jpg")
                     {
-                        TempData["AlertMessage"] = "¡Se creó el Supervisor!";
-                        TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Home));
+                        if (!string.IsNullOrEmpty(user.photo))
+                        {
+                            var rutaImagenAnterior = Path.Combine(hostingEnvironment.WebRootPath, "images", "Users", user.photo);
+                            if (System.IO.File.Exists(rutaImagenAnterior))
+                            {
+                                System.IO.File.Delete(rutaImagenAnterior);
+                            }
+                        }
+                        var nombreUnico = Guid.NewGuid().ToString() + extension;
+
+                        var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "images", "Users", nombreUnico);
+                        using (var stream = new FileStream(rutaGuardar, FileMode.Create))
+                        {
+                            archivoImagen.CopyTo(stream);
+                        }
+
+                        user.photo = nombreUnico;
+
+                    }
+                    else
+                    {
+                        TempData["AlertMessage"] = "Error, solo se permiten archivos .png o .jpg";
+                        TempData["AlertType"] = "error";
+                        return RedirectToAction("Editar");
 
                     }
                 }
+
+
+                //if (ModelState.IsValid)
+                //{
+
+                //}
+
+                var servicio = _supervisorModel.PostSupervisor(user);
+
+                if (servicio)
+                {
+                    TempData["AlertMessage"] = "¡Se creó el Supervisor!";
+                    TempData["AlertType"] = "success";
+                    return RedirectToAction(nameof(Home));
+
+                }
+                else { 
                 TempData["AlertMessage"] = "¡Ocurrio un error al crear el Supervisor!";
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Crear));
+                }
             }
             catch
             {

@@ -51,6 +51,7 @@ namespace OdinWeb.Models.Obj
         public List<Documento>? documents { get; set; }
         public List<ErrorLog>? errorsLog { get; set; }
         public List<TransactionalLog>? transactionsLog { get; set; }
+        public IFormFile Imagen { get; set; }
     }
 
     public class UserRegister

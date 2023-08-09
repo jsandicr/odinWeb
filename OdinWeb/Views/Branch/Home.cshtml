@@ -4,7 +4,7 @@
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-th-list"></i> Administración de Sucursales</h1>
+        <h1><i class="fa fa-building"></i> Administración de Sucursales</h1>
         <p>Sucursales Registradas</p>
         <br>
         <a asp-action="Crear" asp-controller="Branch" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
@@ -47,7 +47,7 @@
                                             <div class="btn-group">
                                                 <a class="btn btn-dark" asp-action="Ver" asp-controller="Branch" asp-route-id="@branch.id"><i class="fa fa-lg fa-eye"></i></a>
                                                 <a class="btn btn-dark" asp-action="Editar" asp-controller="Branch" asp-route-id="@branch.id"><i class="fa fa-lg fa-edit"></i></a>
-                                                <button class="btn btn-dark" data-toggle="modal" data-target="#confirmDeleteModal" data-id="@branch.id"><i class="fa fa-lg fa-trash"></i></button>
+                                                <button class="btn btn-dark cambiar-estado-btn" data-id="@branch.id"><i class="fa fa-refresh"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -60,44 +60,51 @@
         </div>
     </div>
 </div>
-@section modals {
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estás seguro de que deseas eliminar esta sucursal?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-}
-@section Scripts {
+@section Scripts{
     <script src="~/js/plugins/jquery.datatables.min.js"></script>
     <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
     <script type="text/javascript">$('#tbranches').DataTable();</script>
     <script>
-        var idToDelete; // Variable para almacenar el ID del elemento a eliminar
+        $(document).ready(function () {
+            $('.cambiar-estado-btn').click(function (e) {
+                e.preventDefault();
 
-        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Botón que activó el modal
-            idToDelete = button.data('id'); // Obtener el ID del atributo "data-id" del botón
+                var id = $(this).data('id');
+
+                // Mostrar confirmación con SweetAlert2
+                Swal.fire({
+                    title: 'Confirmación',
+                    text: '¿Estás seguro de que deseas cambiar el estado de la sucursal?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Realizar la llamada AJAX si se confirma la acción
+                        $.ajax({
+                            url: '@Url.Action("Eliminar", "Branch")',
+                            type: 'POST',
+                            data: { id: id },
+                            success: function (response) {
+                                // Mostrar mensaje de éxito con SweetAlert2
+                                Swal.fire('Éxito', 'Se ha cambiado el estado correctamente.', 'success').then(function () {
+                                    // Recargar la página
+                                    location.reload();
+                                });
+                            },
+                            error: function (xhr, status, error) {
+                                // Mostrar mensaje de error con SweetAlert2
+                                Swal.fire('Error', 'Error al cambiar el estado.', 'error');
+                                console.error('Error:', error);
+                            }
+                        });
+                    }
+                });
+            });
         });
 
-        function eliminar() {
-            var url = '@Url.Action("Eliminar", "Branch")' + '/' + idToDelete;
-            window.location.href = url;
-        }
     </script>
 }
 
