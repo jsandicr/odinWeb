@@ -159,28 +159,6 @@
 
 @section Scripts{
     <script>
-        $(document).ready(function () {
-            // Almacenar las opciones originales del DropDownList
-            var originalOptions = $("#clientDropdown option");
-
-            // Manejar el evento keyup para la búsqueda
-            $("#clientDropdown").on("keyup", function () {
-                var searchText = $(this).val().toLowerCase();
-
-                // Filtrar las opciones según el texto de búsqueda
-                var filteredOptions = originalOptions.filter(function () {
-                    return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                });
-
-                // Limpiar el DropDownList y agregar las opciones filtradas
-                $(this).empty().append(filteredOptions);
-
-                // Si el campo de búsqueda está vacío, restaurar todas las opciones
-                if (searchText === "") {
-                    $(this).append(originalOptions);
-                }
-            });
-        });
         var service = document.getElementById('service');
         var ubication = document.getElementById('ubication');
 
