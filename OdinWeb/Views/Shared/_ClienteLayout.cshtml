@@ -99,13 +99,6 @@
                 '@TempData.Remove("AlertType")';
                 '@TempData.Remove("AlertMessage")';
             });
-
-            function viewDocumentManual() {
-                var url = '@Url.Action("ViewDocumentManual", "Document")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
-
-                // Abrir el documento en una nueva ventana del navegador
-                window.open(url, "_blank");
-            }
         </script>
     }
     @{
@@ -113,6 +106,13 @@
     }
     @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("modals", required: false)
+    <script>
+        function viewDocumentManual() {
+            var url = '@Url.Action("ViewDocumentManual", "Document")'; // Reemplaza "NombreControlador" por el nombre real de tu controlador
 
+            // Abrir el documento en una nueva ventana del navegador
+            window.open(url, "_blank");
+        }
+    </script>
 </body>
 </html>
