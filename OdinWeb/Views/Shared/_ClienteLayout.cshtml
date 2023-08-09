@@ -49,6 +49,7 @@
             </div>
         </div>
         <ul class="app-menu">
+            <li><a class="app-menu__item" asp-action="Principal" asp-controller="Cliente"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
             <li>
                 <a class="app-menu__item" asp-action="HCliente" asp-controller="Servicio">
                     <i class="app-menu__icon fa fa-plus-circle"></i>
@@ -62,7 +63,13 @@
                 </a>
             </li>
             <li>
-                <a class="app-menu__item" onclick="viewDocumentManual()" style="color: #fff;">
+                <a class="app-menu__item" asp-action="TiquetesCerrados" asp-controller="Ticket">
+                    <i class="app-menu__icon fa fa-building"> </i>
+                    <span class="app-menu__label">Tiquetes Cerrados</span>
+                </a>
+            </li>
+            <li>
+                <a class="app-menu__item" href="#" onclick="viewDocumentManual()" style="color: #fff;">
                     <i class="app-menu__icon fa fa-book"></i>
                     <span class="app-menu__label">Guía de Usuario</span>
                 </a>

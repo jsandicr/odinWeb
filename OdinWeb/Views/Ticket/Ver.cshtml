@@ -16,8 +16,12 @@
         <p>Ver Tiquete</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item"><a asp-controller="Cliente" asp-action="Principal"><i class="fa fa-home fa-lg"></i></a></li>
-        <li class="breadcrumb-item"><a a asp-controller="Ticket" asp-action="TiquetesProceso">Tiquetes en proceso</a></li>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+            <li class="breadcrumb-item"><a asp-action="Ticket" asp-controller="TiquetesProcesoAS">Tiquetes en proceso</a></li>
+            <li class="breadcrumb-item active">Ver</li>
+
+        </ul>
     </ul>
 </div>
 <div class="col-md-12">

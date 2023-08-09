@@ -99,7 +99,7 @@
     </div>
     <div class="col-md-6">
         <div class="tile">
-            <h3 class="tile-title">Tiquetes abiertos</h3>
+            <h3 class="tile-title">Gráfico general de Tiquetes</h3>
             <div class="embed-responsive embed-responsive-16by9">
                 <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
             </div>
@@ -145,7 +145,7 @@
                 for (var i = 0; i < pdata.length; i++) {
                     legendHtml += '<li class="legend-item">';
                     legendHtml += '<span class="legend-color" style="background-color:' + pdata[i].color + '"></span>';
-                    legendHtml += '<span class="legend-label">' + pdata[i].label + '</span>';
+                    legendHtml += '<span class="legend-label" style="margin-right:5px">' + pdata[i].label + ' ' + '</span>';
                     legendHtml += '<span class="legend-value">' + pdata[i].value + ' (' + Math.round(pdata[i].value / dataTotal * 100) + '%)</span>';
                     legendHtml += '</li>';
                 }

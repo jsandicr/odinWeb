@@ -6,12 +6,13 @@
 <div class="app-title">
     <div>
         <h1><i ></i>Tiquetes</h1>
-        <p>Detalle de tiquetes</p>
+        <p>Detalle de tiquetes en proceso</p>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item">Tiquetes</li>
-        <li class="breadcrumb-item active"><a href="#">Estado tiquetes</a></li>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><a asp-action="Principal" asp-controller="Cliente"><i class="fa fa-home fa-lg"></i></a></li>
+            <li class="breadcrumb-item active"><a asp-action="Ticket" asp-controller="TiquetesProcesoAS">Tiquetes en proceso</a></li>
+        </ul>
     </ul>
 </div>
 <ul class="nav nav-pills grouping_tabs">

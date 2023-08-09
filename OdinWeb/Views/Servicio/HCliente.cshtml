@@ -2,11 +2,15 @@
 
 @{
     ViewData["Title"] = "HCliente";
-    if(ViewBag.Layout != null){
-        Layout = ViewBag.Layout;
+    if (Context.Request.Cookies["Rol"] == "Cliente")
+    {
+        Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+    }
+    if (Context.Request.Cookies["Rol"] == "Supervisor")
+    {
+        Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
     }
 
-    //Layout = "~/Views/Shared/_ClienteLayout.cshtml";
 }
 @if (Model == null)
 {

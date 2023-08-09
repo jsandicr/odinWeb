@@ -353,15 +353,7 @@ namespace OdinWeb.Controllers
 
         public async Task<IActionResult> HCliente()
         {
-            string rol = Request.Cookies["Rol"];
-            if (rol == "Cliente")
-            {
-                ViewBag.Layout = "~/Views/Shared/_ClienteLayout.cshtml";
-            }
-            if (rol == "Supervisor")
-            {
-                ViewBag.Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
-            }
+         
             return View(_serviceModel.GetServiciosStatus(true));
         }
 

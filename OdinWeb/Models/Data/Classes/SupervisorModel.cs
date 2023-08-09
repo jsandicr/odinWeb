@@ -72,7 +72,7 @@ namespace OdinWeb.Models.Data.Classes
             return null;
         }
 
-        public async Task<int> GetSupervisorSucursal(int id)
+        public async Task<User> GetSupervisorSucursal(int id)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
@@ -83,11 +83,11 @@ namespace OdinWeb.Models.Data.Classes
             if (response.IsSuccessStatusCode)
             {
                 var supervisor = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<int>(supervisor);
+                return JsonConvert.DeserializeObject<User>(supervisor);
                  
             }
 
-            return 0;
+            return null;
         }
 
         public bool PostSupervisor(User user)
