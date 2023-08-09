@@ -13,5 +13,6 @@ namespace OdinWeb.Models.Data.Interfaces
         public bool DeleteTicketById(int id);
         public List<Ticket> GetTicketsClientsStatus(string status);
         Task<List<Ticket>> GetTicketsByBranch(int branchId, string status);
+        Task<List<Ticket>> GetTicketsByStatus(string status);
     }
 }

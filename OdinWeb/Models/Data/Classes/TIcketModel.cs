@@ -181,5 +181,23 @@ namespace OdinWeb.Models.Data.Classes
 
             return null;
         }
+
+        public async Task<List<Ticket>> GetTicketsByStatus(string status)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.GetAsync("api/Ticket/Status/" + status).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var tickets = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Ticket>>(tickets);
+            }
+
+            return null;
+        }
     }
 }

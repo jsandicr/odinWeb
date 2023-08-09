@@ -37,7 +37,9 @@
                 <p class="app-sidebar__user-name">
                     @if (Context.Request.Cookies.ContainsKey("NombreCompleto"))
                     {
+                        var ima = Context.Request.Cookies["Foto"];
                         var nombreCompleto = Context.Request.Cookies["NombreCompleto"];
+                        <img src="~/images/Users/@ima" width="30" height="30">
                         @nombreCompleto
                     }
                     else

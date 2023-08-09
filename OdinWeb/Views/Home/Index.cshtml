@@ -58,7 +58,7 @@
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Inicio</a></li>
     </ul>
 </div>
-<h2>Información de estado de Tiquetes Asiganados</h2>
+<h3>Información de estado de tiquetes asignados</h3>
 <div class="row">
     <div class="col-md-6 col-lg-3">
         <div class="widget-small primary coloured-icon">
@@ -84,6 +84,55 @@
             <div class="info">
                 <h4>En Proceso</h4>
                 <p><b>@Tiquetes.GetAssignedTickets("En Proceso").Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-spinner fa-3x"></i>
+            <div class="info">
+                <h4>Finalizado</h4>
+                <p><b>@Tiquetes.GetAssignedTickets("Finalizado").Count()</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<h3>Información general de tiquetes</h3>
+<div class="row">
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-eye fa-3x"></i>
+            <div class="info">
+                <h4>En Revisión</h4>
+                <p><b>@Tiquetes.GetTicketsByStatus("Asignado").Result.Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-exclamation-triangle fa-3x"></i>
+            <div class="info">
+                <h4>Falta de información</h4>
+                <p><b>@Tiquetes.GetTicketsByStatus("Pendiente información").Result.Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-spinner fa-3x"></i>
+            <div class="info">
+                <h4>En Proceso</h4>
+                <p><b>@Tiquetes.GetTicketsByStatus("En Proceso").Result.Count()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-spinner fa-3x"></i>
+            <div class="info">
+                <h4>Finalizados</h4>
+                <p><b>@Tiquetes.GetTicketsByStatus("Finalizado").Result.Count()</b></p>
             </div>
         </div>
     </div>
