@@ -18,9 +18,8 @@
         </br>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item">Tiquetes</li>
-        <li class="breadcrumb-item active"><a href="#">Estado Tiquetes</a></li>
+        <li class="breadcrumb-item"><a asp-action="Principal" asp-controller="Cliente"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item active"><a asp-action="Ticket" asp-controller="TiquetesCerrados">Tiquetes en proceso</a></li>
     </ul>
 </div>
 <div class="row">

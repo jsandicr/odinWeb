@@ -6,6 +6,21 @@
         Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
     }
 }
+<div class="app-title">
+
+    <div>
+        <h1><i class="fa fa-create"></i>Editar Tiquete</h1>
+        <p>Ver Tiquete</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+            <li class="breadcrumb-item"><a asp-action="Ticket" asp-controller="TiquetesProcesoAS">Tiquetes en proceso</a></li>
+            <li class="breadcrumb-item active">Editar</li>
+
+        </ul>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
         <h3 class="tile-title">Editar Ticket</h3>
@@ -14,6 +29,9 @@
                 <input type="hidden" asp-for="id">
                 <input type="hidden" asp-for="creationDate">
                 <input type="hidden" asp-for="idSupervisor">
+                <input type="hidden" asp-for="active">
+                <input type="hidden" asp-for="idService">
+
 
                 <div class="form-group">
                     <label asp-for="title" class="control-label"></label>
@@ -21,36 +39,31 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="description" class="control-label"></label>
-                    <input asp-for="description" class="form-control" rows="4">
-                    <span asp-validation-for="description"></span>
+                    <textarea asp-for="description" class="form-control" rows="7" placeholder="Describa ampliamente la solicitud" name="description"></textarea>
+                    <span asp-validation-for="description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="estimatedDate" class="control-label"></label>
                     <input asp-for="estimatedDate" class="form-control" rows="4">
                     <span asp-validation-for="estimatedDate"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="active" class="control-label"></label>
-                    @foreach (var opcion in (List<SelectListItem>)ViewData["Estados"])
-                    {
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input asp-for="active" class="form-check-input" type="radio" name="active" value="@opcion.Value"> @opcion.Text
-                            </label>
-                        </div>
-                    }
-                </div>
                 <div>
                     <label>Seleccione el cliente</label>
                     @Html.DropDownList("idClient", (IEnumerable<SelectListItem>)ViewData["Clients"], new { @class = "form-control form-select mb-3" })
                 </div>
-               
+                @if (Model.service.transport)
+                {
+                    <div class="form-group row">
+                        <label asp-for="ubication" class="control-label"></label>
+                        <div class="col-md-12">
+                            <textarea asp-for="ubication" class="form-control" rows="5" placeholder="Ingrese la dirracion exacta de la solicitud o puede pegar el enlace de la ubicación" name="ubication"></textarea>
+                        </div>
+                        <span asp-validation-for="ubication" class="text-danger"></span>
+
+                    </div>
+                }
                 <div>
-                    <label>Seleccione el servicio</label>
-                    @Html.DropDownList("idService", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3" })
-                </div>
-                <div>
-                    <label>Seleccione el status</label>
+                    <label>Seleccione el estado</label>
                     @Html.DropDownList("idStatus", (IEnumerable<SelectListItem>)ViewData["Status"], new { @class = "form-control form-select mb-3" })
                 </div>
                 <div class="tile-footer">

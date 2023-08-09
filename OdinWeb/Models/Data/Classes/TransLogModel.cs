@@ -37,5 +37,22 @@ namespace OdinWeb.Models.Data.Classes
             }
             return null;
         }
+
+        public async Task<List<ErrorLog>> GetAsyncE()
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync("api/ErrorLog");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                var errorR = JsonConvert.DeserializeObject<List<ErrorLog>>(error);
+                return errorR;
+            }
+            return null;
+            throw new NotImplementedException();
+        }
     }
 }

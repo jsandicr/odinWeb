@@ -1,13 +1,12 @@
-﻿@model IEnumerable<OdinWeb.Models.Obj.TransactionalLog>
-
+﻿@model IEnumerable<OdinWeb.Models.Obj.ErrorLog>
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-list-alt"></i> Registro de Transacciones</h1>
+        <h1><i class="fa fa-exclamation-triangle"></i> Registro de Errores</h1>
         <p>Acciones registradas</p>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
-        <li class="breadcrumb-item active"><a asp-action="Index">Registro de Transacciones</a></li>
+        <li class="breadcrumb-item active"><a asp-action="Index">Registro de Errores</a></li>
     </ul>
 </div>
 <div class="row">
@@ -15,23 +14,20 @@
         <div class="tile">
             <div class="tile-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered" id="tlogs">
+                    <table class="table table-hover table-bordered" id="terror">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.type)
+                                    @Html.DisplayNameFor(model => model.code)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.description)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.module)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.date)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.user)
+                                    @Html.DisplayNameFor(model => model.idUser)
                                 </th>
                             </tr>
                         </thead>
@@ -40,21 +36,16 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.type)
+                                        @Html.DisplayFor(modelItem => item.code)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.description)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.module)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.date)
                                     </td>
                                     <td>
-                                        @Html.Raw(item.user.name + " " + item.user.lastName)<br>
-                                        Corrreo: @Html.DisplayFor(modelItem => item.user.mail)
-
+                                        @Html.DisplayFor(modelItem => item.idUser)
                                     </td>
                                 </tr>
                             }
@@ -69,5 +60,5 @@
 
     <script src="~/js/plugins/jquery.datatables.min.js"></script>
     <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
-    <script type="text/javascript">$('#tlogs').DataTable();</script>
+    <script type="text/javascript">$('#terror').DataTable();</script>
 }

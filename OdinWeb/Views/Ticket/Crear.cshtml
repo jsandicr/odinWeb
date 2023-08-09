@@ -2,6 +2,10 @@
 
 @{
     ViewData["Title"] = "Crer Tiquete";
+    if (Context.Request.Cookies["Rol"] == "Supervisor")
+    {
+        Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+    }
 }
 
 <style>
@@ -79,6 +83,21 @@
     }
 
 </style>
+<div class="app-title">
+
+    <div>
+        <h1><i class="fa fa-create"></i>Crear Tiquete</h1>
+        <p>Ver Tiquete</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+            <li class="breadcrumb-item"><a asp-action="Ticket" asp-controller="TiquetesProcesoAS">Tiquetes en proceso</a></li>
+            <li class="breadcrumb-item active">Crear</li>
+
+        </ul>
+    </ul>
+</div>
 <div class="col-md-12">
     <div class="tile">
         <div class="row">
@@ -90,7 +109,7 @@
             </div>
         </div>
         <div class="tile-body">
-            <form asp-action="Guardar" asp-controller="Ticket" method="post">
+            <form id="crearT" asp-action="Crear" asp-controller="Ticket" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="idService" value="@Model.service?.id">
                 <div class="form-group">
                     <label asp-for="title" class="control-label"></label>
@@ -98,31 +117,48 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="description" class="control-label"></label>
-                    <input asp-for="description" class="form-control" rows="4">
-                    <span asp-validation-for="description"></span>
+                    <textarea asp-for="description" class="form-control" rows="7" placeholder="Describa ampliamente la solicitud" name="description"></textarea>
+                    <span asp-validation-for="description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="estimatedDate" class="control-label"></label>
                     <input asp-for="estimatedDate" class="form-control" rows="4">
                     <span asp-validation-for="estimatedDate"></span>
                 </div>
+
                 <div>
                     <label>Seleccione el cliente</label>
-                    @Html.DropDownList("idClient", (IEnumerable<SelectListItem>)ViewData["Clients"], new { @class = "form-control form-select mb-3" })
+                    @Html.DropDownList("idClient", (IEnumerable<SelectListItem>)ViewData["Clients"], new { @class = "form-control form-select mb-3", id = "clientDropdown" })
                 </div>
-                <div>
-                    <label>Seleccione el supervisor</label>
-                    @Html.DropDownList("idSupervisor", (IEnumerable<SelectListItem>)ViewData["Supervisors"], new { @class = "form-control form-select mb-3" })
-                </div>
+
+                @if (Context.Request.Cookies["Rol"] != "Supervisor" && !Model.service.toAdministrator)
+                {
+                    <div>
+                        <label>Seleccione el supervisor</label>
+                        @Html.DropDownList("idSupervisor", (IEnumerable<SelectListItem>)ViewData["Supervisors"], new { @class = "form-control form-select mb-3" })
+                    </div>
+                }
+                else
+                {
+                    <input asp-for="idSupervisor" value="@Context.Request.Cookies["Id"]" hidden>
+                
+                }               
                 <div>
                     <label>Seleccione el status</label>
                     @Html.DropDownList("idStatus", (IEnumerable<SelectListItem>)ViewData["Status"], new { @class = "form-control form-select mb-3" })
                 </div>
-                <div class="form-group subService" id="ubication">
-                    <label asp-for="ubication" class="control-label"></label>
-                    <input asp-for="ubication" class="form-control" rows="4" id="ubication">
-                    <span asp-validation-for="ubication"></span>
-                </div>
+
+                @if (Model.service.transport)
+                {
+                    <div class="form-group row">
+                        <label asp-for="ubication" class="control-label"></label>
+                        <div class="col-md-12">
+                            <textarea asp-for="ubication" class="form-control" rows="5" placeholder="Ingrese la dirracion exacta de la solicitud o puede pegar el enlace de la ubicación" name="ubication"></textarea>
+                        </div>
+                        <span asp-validation-for="ubication" class="text-danger"></span>
+
+                    </div>
+                }
                 <div class="dropzone" id="dropzone">
                     Arrastra y suelta los archivos aquí<br>
                     <small>O haz clic aqui para seleccionar archivos</small>
@@ -131,7 +167,7 @@
                     <div id="fileList"></div>
                 </div>
                 <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="Home" asp-controller="Ticket"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="TiquetesProcesoAS" asp-controller="Ticket"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                 </div>
             </form>
         </div>
@@ -159,31 +195,6 @@
 
 @section Scripts{
     <script>
-        var service = document.getElementById('service');
-        var ubication = document.getElementById('ubication');
-
-        service.addEventListener("change", function () {
-            var selectedOption = this.options[this.selectedIndex];
-            var selectedValue = selectedOption.value;
-
-            $.ajax({
-                url: '/Servicio/GetServiceById/'+selectedValue,
-                type: 'GET',
-                dataType: 'json',
-                success: function (response) {
-                    if (response.transport) {
-                        ubication.classList.remove("subService");
-                    } else {
-                        ubication.classList.add("subService");
-                        ubication.value = null;
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-
         $(document).ready(function () {
             $('.modal').on('click', function () {
                 $('.modal').modal('hide');
@@ -275,4 +286,5 @@
             return (size / Math.pow(1024, i)).toFixed(2) + ' ' + units[i];
         }
     </script>
+
 }

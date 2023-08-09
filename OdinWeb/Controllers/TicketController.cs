@@ -53,54 +53,7 @@ namespace OdinWeb.Controllers
             _env = env;
         }
 
-        [Authorize]
-        public async Task<IActionResult> Home(string? filtro)
-        {
-            try
-            {
-                if(filtro == null)
-                {
-                    var lista = _ticketModel.GetTickets();
-                    if (lista != null)
-                    {
-                        return View(lista);
-                    }
-                    else
-                    {
-                        return View();
-                    }
-                }
-                if(filtro == "Assigned")
-                {
-                    if (Request.Cookies.ContainsKey("Id"))
-                    {
-                        var id = Request.Cookies["Id"];
-                        var lista = _ticketModel.GetAssignedTickets(id);
-                        if (lista != null)
-                        {
-                            return View(lista);
-
-                        }
-                    }
-                }
-                if (filtro == "Open")
-                {
-                    var lista = _ticketModel.GetOpenTickets();
-                    if (lista != null)
-                    {
-                        return View(lista);
-
-                    }
-                }
-                return View();
-            }
-            catch (Exception e)
-            {
-                return View();
-            }
-        }
-
-        [Authorize]
+        [Authorize(Roles = "Admin,Supervisor")]
         public async Task<IActionResult> Crear(int idService)
         {
             var clients = _clientModel.GetClients();
@@ -175,94 +128,26 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Guardar(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
+        [Authorize(Roles = "Admin,Supervisor")]
+        public async Task<IActionResult> Crear(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try
             {
                 ticket.creationDate = DateTime.Now;
                 ticket.updateDate = DateTime.Now;
                 ticket.active = true;
-                ticket.idStatus = 1;
                 var documentos = ticket.Archivos;
                 ticket.Archivos = null;
 
-                if (ModelState.IsValid)
+                
+                var servicio = _ticketModel.PostTicket(ticket);
+
+                if (servicio != null)
                 {
-                    var servicio = _ticketModel.PostTicket(ticket);
-
-                    if (servicio != null)
-                    {
-                        if (documentos != null)
-                        {
-                            foreach (var item in documentos)
-                            {
-                                var nombreArchivo = Path.GetFileName(item.FileName);
-                                var extension = Path.GetExtension(nombreArchivo);
-                                var nombreUnico = Guid.NewGuid().ToString() + extension;
-
-                                var rutaGuardar = Path.Combine(hostingEnvironment.WebRootPath, "Document", nombreUnico);
-
-                                using (var stream = new FileStream(rutaGuardar, FileMode.Create))
-                                {
-                                    item.CopyTo(stream);
-                                }
-                                Documento document = new Documento();
-                                document.name = nombreUnico;
-                                document.idUser = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
-                                document.idTicket = servicio.id;
-                                document.nameDocument = nombreArchivo;
-                                var drespuesta = _documentModel.PostDocument(document);
-                                if (!drespuesta)
-                                {
-                                    TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
-                                    TempData["AlertType"] = "error";
-                                    return View(ticket.idService);
-                                }
-
-                            }
-                        }
-
-                        TempData["AlertMessage"] = "¡Se creó el ticket Cod-"+ticket.id+"!";
-                        TempData["AlertType"] = "success";
-                        return RedirectToAction(nameof(Home));
-
-                    }
-                }
-                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
-                TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Crear));
-            }
-            catch
-            {
-                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
-                TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Crear));
-            }
-
-            /*
-             ticket.idClient = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
-                ticket.active = true;
-                ticket.creationDate = DateTime.Now;
-                ticket.updateDate = DateTime.Now;  
-                var service = _serviceModel.GetServicioById(ticket.idService);
-                if (service.toAdministrator)
-                {
-                    ticket.idSupervisor = 1;
-
-                }
-                else {
-                    var supervisor = _supervisorModel.GetSupervisorSucursal(int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]));
-                    ticket.idSupervisor = supervisor.Result;
-                }       
-                ticket.idStatus = 1;
-                var documentos = ticket.Archivos;
-                ticket.Archivos = null;
-                var respuesta = _ticketModel.PostTicket(ticket);
-                if (respuesta != null) {
                     if (documentos != null)
                     {
-                        foreach (var item in documentos) {
+                        foreach (var item in documentos)
+                        {
                             var nombreArchivo = Path.GetFileName(item.FileName);
                             var extension = Path.GetExtension(nombreArchivo);
                             var nombreUnico = Guid.NewGuid().ToString() + extension;
@@ -276,10 +161,11 @@ namespace OdinWeb.Controllers
                             Documento document = new Documento();
                             document.name = nombreUnico;
                             document.idUser = int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]);
-                            document.idTicket = respuesta.id;
+                            document.idTicket = servicio.id;
                             document.nameDocument = nombreArchivo;
                             var drespuesta = _documentModel.PostDocument(document);
-                            if (!drespuesta) {
+                            if (!drespuesta)
+                            {
                                 TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
                                 TempData["AlertType"] = "error";
                                 return View(ticket.idService);
@@ -287,20 +173,23 @@ namespace OdinWeb.Controllers
 
                         }
                     }
-                    TempData["AlertMessage"] = "¡Se creó el ticket Cod-"+respuesta.id+"!";
+
+                    TempData["AlertMessage"] = "¡Se creó el ticket Cod-"+ticket.id+"!";
                     TempData["AlertType"] = "success";
-                    return RedirectToAction(nameof(TiquetesProceso));
+                    return RedirectToAction(nameof(TiquetesProcesoAS));
 
-
+                    
                 }
-                return View(ticket.idService);
-
-            } catch {
                 TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
                 TempData["AlertType"] = "error";
                 return View(ticket.idService);
-            
-            }*/
+            }
+            catch
+            {
+                TempData["AlertMessage"] = "¡Ocurrio un error al crear el ticket!";
+                TempData["AlertType"] = "error";
+                return View(ticket.idService);
+            }
         }
 
         [Authorize]
@@ -391,11 +280,11 @@ namespace OdinWeb.Controllers
                     ViewData["Estados"] = estados;
                     return View(branch);
                 }
-                return RedirectToAction(nameof(Home));
+                return RedirectToAction(nameof(TiquetesProcesoAS));
             }
             catch
             {
-                return RedirectToAction(nameof(Home));
+                return RedirectToAction(nameof(TiquetesProcesoAS));
             }
 
         }
@@ -472,27 +361,14 @@ namespace OdinWeb.Controllers
                         ViewData["Status"] = statusOps;
                     }
 
-                    List<SelectListItem> estados = new List<SelectListItem>();
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Activo",
-                        Value = "true"
-                    });
 
-                    estados.Add(new SelectListItem
-                    {
-                        Text = "Inactivo",
-                        Value = "false"
-                    });
-
-                    ViewData["Estados"] = estados;
                     return View(ticket);
                 }
-                return RedirectToAction(nameof(Home));
+                return RedirectToAction(nameof(TiquetesProcesoAS));
             }
             catch
             {
-                return RedirectToAction(nameof(Home));
+                return RedirectToAction(nameof(TiquetesProcesoAS));
             }
         }
 
@@ -541,17 +417,17 @@ namespace OdinWeb.Controllers
                 {
                     TempData["AlertMessage"] = "¡Se eliminó el ticket!";
                     TempData["AlertType"] = "success";
-                    return RedirectToAction(nameof(Home));
+                    return RedirectToAction(nameof(TiquetesProcesoAS));
                 }
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el ticket!";
                 TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Home));
+                return RedirectToAction(nameof(TiquetesProcesoAS));
             }
             catch
             {
                 TempData["AlertMessage"] = "¡Ocurrio un error al actualizar el ticket!";
                 TempData["AlertType"] = "error";
-                return RedirectToAction(nameof(Home));
+                return RedirectToAction(nameof(TiquetesProcesoAS));
             }
         }
 
@@ -586,7 +462,7 @@ namespace OdinWeb.Controllers
                 }
                 else {
                     var supervisor = _supervisorModel.GetSupervisorSucursal(int.Parse(_httpContextAccessor.HttpContext.Request.Cookies["Id"]));
-                    ticket.idSupervisor = supervisor.Result;
+                    ticket.idSupervisor = supervisor.Result.id;
                 }       
                 ticket.idStatus = 1;
                 var documentos = ticket.Archivos;

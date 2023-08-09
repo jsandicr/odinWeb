@@ -21,7 +21,7 @@ namespace OdinWeb.Controllers
         {
             try
             {
-                var lista = _branchModel.GetBranch();
+                var lista = _branchModel.GetBranchesAll();
                 if (lista != null)
                 {
                     return View(lista);
