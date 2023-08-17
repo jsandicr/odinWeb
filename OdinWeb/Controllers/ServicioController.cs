@@ -41,7 +41,7 @@ namespace OdinWeb.Controllers
         [Authorize]
         public async Task<IActionResult> Crear()
         {
-            var services = _serviceModel.GetServicios();
+            var services = _serviceModel.GetServiciosStatus(true);
             if (services != null)
             {
                 List<SelectListItem> servicesOps = new List<SelectListItem>();
@@ -138,7 +138,7 @@ namespace OdinWeb.Controllers
             var respuesta = _serviceModel.PostServicos(service);
             if (respuesta)
             {
-                TempData["AlertMessage"] = "Datos actulizados correctamente";
+                TempData["AlertMessage"] = "Servicio creado correctamente";
                 TempData["AlertType"] = "success";
                 return RedirectToAction("Home");
             }
@@ -152,7 +152,7 @@ namespace OdinWeb.Controllers
         {
             try
             {
-                var services = _serviceModel.GetServicios();
+                var services = _serviceModel.GetServiciosStatus(true);
                 if (services != null)
                 {
                     List<SelectListItem> servicesOps = new List<SelectListItem>();
@@ -204,7 +204,7 @@ namespace OdinWeb.Controllers
         {
             try
             {
-                var services = _serviceModel.GetServicios();
+                var services = _serviceModel.GetServiciosStatus(true);
                 if (services != null)
                 {
                     List<SelectListItem> servicesOps = new List<SelectListItem>();

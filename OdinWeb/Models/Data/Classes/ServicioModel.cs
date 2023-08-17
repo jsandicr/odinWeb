@@ -39,7 +39,7 @@ namespace OdinWeb.Models.Data.Classes
         }
     
 
-        public Service GetServicioById(int id)
+        public Service GetServicioById(int? id)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
