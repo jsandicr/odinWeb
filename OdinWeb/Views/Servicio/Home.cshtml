@@ -24,6 +24,7 @@
                             <tr>                            
                                 <th>@Html.DisplayNameFor(model => model.name)</th>
                                 <th>@Html.DisplayNameFor(model => model.description)</th>
+                                <td>Categoría</td>
                                 <th>@Html.DisplayNameFor(model => model.active)</th>
                                 <th>Acciones</th>
                             </tr>
@@ -34,7 +35,16 @@
                                     <tr>
                                         <td>@Html.DisplayFor(model => service.name)</td>
                                         <td>@Html.DisplayFor(model => service.description)</td>
-                                        @if (service.active == true){
+                                        <td>@if (service.idServiceMain != null)
+                                            {
+                                                <span>Sub Servicio</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Servicio</span>
+                                            }
+                                        </td>
+                                        @if (service.active){
                                             <td><span asp-for="active" class="badge badge-pill badge-success">Activo</span></td>
                                         }
                                         else{
