@@ -44,12 +44,14 @@
                                                 <span>Servicio</span>
                                             }
                                         </td>
+                                        <td>
                                         @if (service.active){
-                                            <td><span asp-for="active" class="badge badge-pill badge-success">Activo</span></td>
+                                            <h5><span asp-for="active" class="badge badge-pill badge-success">Activo</span></h5>
                                         }
                                         else{
-                                            <td><span asp-for="active" class="badge badge-pill badge-danger">Inactivo</span></td>
+                                            <h5><span asp-for="active" class="badge badge-pill badge-danger">Inactivo</span></h5>
                                         }
+                                        </td>
                                         <td>
                                             <div class="btn-group">
                                                 <a class="btn btn-dark" asp-action="Ver" asp-controller="Servicio" asp-route-id="@service.id" data-toggle="tooltip" data-placement="left" title="" data-original-title="Informacion"><i class="fa fa-lg fa-eye"></i></a>
