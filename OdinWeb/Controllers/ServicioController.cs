@@ -283,7 +283,7 @@ namespace OdinWeb.Controllers
             }
             service.requirements = s.requirements;
 
-            var archivoImagen = s.image;
+            var archivoImagen = s.imageU;
 
 
             if (archivoImagen != null && archivoImagen.Length > 0)

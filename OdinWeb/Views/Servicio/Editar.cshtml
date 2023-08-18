@@ -89,14 +89,24 @@
                                 <label asp-for="toAdministrator" class="control-label"></label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" height="200">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Imagen de servicio</label>
-                            <input asp-for="image" class="form-control" type="file" data-val="false">
-                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Imagen de servicio</label>
+                                </div>
+                                <div class="form-group">
+                                    <img src="~/images/services/@Model.photo" alt="Imagen del servicio" style="width: 200px%; height: 200px;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" id="previsualizacionContainer" style="display: none;">
+                                    <label class="control-label">Imagen actualizada</label>
+
+                                    <img id="imagenPrevisualizacion" src="#" alt="Previsualización de la imagen" style="width: 200px%; height: 200px;" />
+                                </div>
+                            </div>
                     </div>
+                        <input asp-for="imageU" class="form-control" type="file">
                 </div>
             </div>
             <div class="tile-footer">
@@ -116,6 +126,26 @@
 
     subServiceCheck.addEventListener("change", comprueba, false);
 
+    function actualizarPrevisualizacion() {
+        var fileInput = document.getElementById('imageU');
+        var previsualizacionContainer = document.getElementById('previsualizacionContainer');
+        var imgPrevisualizacion = document.getElementById('imagenPrevisualizacion');
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imgPrevisualizacion.setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+            previsualizacionContainer.style.display = 'block';
+        } else {
+            imgPrevisualizacion.setAttribute('src', '#');
+            previsualizacionContainer.style.display = 'none';
+        }
+    }
+    var imagenInput = document.getElementById('imageU');
+    imagenInput.addEventListener('change', actualizarPrevisualizacion);
+    imagenInput.addEventListener('load', actualizarPrevisualizacion);
     function comprueba(){
         var comboService = document.getElementById('subService');
         if(subServiceCheck.checked){
@@ -134,4 +164,5 @@
             }
         }
     }
+    
 </script>

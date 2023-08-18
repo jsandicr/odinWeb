@@ -8,6 +8,14 @@
         nombreS = servicio.GetServicioById(Model.idServiceMain).name;
     }    
 }
+<style>
+    /* Define the styling for the section separator */
+    .section-separator {
+        border-top: 1px solid #ddd; /* Adjust the color as needed */
+        margin: 10px auto; /* Adjust the margin as needed */
+        width: 50%; /* Adjust the width as needed */
+    }
+</style>
 <div class="app-title">
     <div>
         <h1><i class="fa fa-solid fa-car"></i> Administración de Servicios</h1>
@@ -25,85 +33,93 @@
         <div class="tile-body">
             <div class="row">
                 <div class="col-md-12">
-                    <h5>Nombre del Servicio</h5>
-                    <p>@Model.name</p>
-                    <h5>Descripción</h5>
-                    <p>@Model.description</p>
-                    <h5>Requerimientos</h5>
-                    <p>@Model.requirements</p>
-                    <h5>Categoria</h5>
-                    @if (Model.idServiceMain != null)
-                    {
-                        <p>Sub Servicio</p>
-                        <p>Servicio asociado: @nombreS</p>
-                   }
-                    else
-                    {
-                        <p>Servicio</p>
-                    }
                     <div class="row">
                         <div class="col-md-5">
-                            <h5>Estado del Servicio</h5>                           
-                        </div>
-                        <div class="col-md-7">
-                            <h5>
-                            @if (Model.active)
+                            @if (!string.IsNullOrEmpty(Model.photo))
                             {
-                                <span asp-for="active" class="badge badge-pill badge-success">Activo</span>
+                                <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" width="200">
                             }
                             else
                             {
-                                <span asp-for="active" class="badge badge-pill badge-danger">Inactivo</span>
+                                <p>No hay imagen disponible.</p>
                             }
-                            </h5>                 
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h5>Requiere Transporte</h5>
                         </div>
                         <div class="col-md-7">
-                            <h5>
-                                @if (Model.transport)
-                                {
-                                    <span asp-for="transport" class="badge badge-pill badge-success">Activo</span>
-                                }
-                                else
-                                {
-                                    <span asp-for="transport" class="badge badge-pill badge-danger">Inactivo</span>
-                                }
-                            </h5>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Estado del Servicio</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>
+                                        @if (Model.active)
+                                        {
+                                            <span asp-for="active" class="badge badge-pill badge-success">Activo</span>
+                                        }
+                                        else
+                                        {
+                                            <span asp-for="active" class="badge badge-pill badge-danger">Inactivo</span>
+                                        }
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Requiere Transporte</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>
+                                        @if (Model.transport)
+                                        {
+                                            <span asp-for="transport" class="badge badge-pill badge-success">Activo</span>
+                                        }
+                                        else
+                                        {
+                                            <span asp-for="transport" class="badge badge-pill badge-danger">Inactivo</span>
+                                        }
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Asignado al Administrador</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>
+                                        @if (Model.toAdministrator)
+                                        {
+                                            <span asp-for="toAdministrator" class="badge badge-pill badge-success">Activo</span>
+                                        }
+                                        else
+                                        {
+                                            <span asp-for="toAdministrator" class="badge badge-pill badge-danger">Inactivo</span>
+                                        }
+                                    </h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h5>Asignado al Administrador</h5>
-                        </div>
-                        <div class="col-md-7">
-                            <h5>
-                                @if (Model.toAdministrator)
-                                {
-                                    <span asp-for="toAdministrator" class="badge badge-pill badge-success">Activo</span>
-                                }
-                                else
-                                {
-                                    <span asp-for="toAdministrator" class="badge badge-pill badge-danger">Inactivo</span>
-                                }
-                            </h5>
-                        </div>
+                    <div class="col-md-12">
+                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                        <h5>Nombre del Servicio</h5>
+                        <p>@Model.name</p>
+                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                        <h5>Descripción</h5>
+                        <p>@Model.description</p>
+                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                        <h5>Requerimientos</h5>
+                        <p>@Model.requirements</p>
+                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                        <h5>Categoria</h5>
+                        @if (Model.idServiceMain != null)
+                        {
+                            <p>Sub Servicio</p>
+                            <p>Servicio asociado: @nombreS</p>
+                        }
+                        else
+                        {
+                            <p>Servicio</p>
+                        }
                     </div>
-                    <br>
-                    <h5>Imagen de Servicio</h5>
-                    @if (!string.IsNullOrEmpty(Model.photo))
-                    {
-                        <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" width="200">
-                    }
-                    else
-                    {
-                        <p>No hay imagen disponible.</p>
-                    }
             </div>
         </div>
         <div class="tile-footer">

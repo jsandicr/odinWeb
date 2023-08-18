@@ -62,6 +62,9 @@ namespace OdinWeb.Models.Obj
         [Required(ErrorMessage = "El campo es requerido")]
         public IFormFile image { get; set; }
 
+        public IFormFile? imageU { get; set; }
+
+
         [Display(Name = "Necesita transporte")]
         public bool transport { get; set; }
         [Display(Name = "Asignar al administrador")]
