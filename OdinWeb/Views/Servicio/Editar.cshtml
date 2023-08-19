@@ -13,13 +13,13 @@
         <li class="breadcrumb-item active"><a asp-action="Editar" asp-controller="Servicio">Editar</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-8" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Editar Servicio</h3>
         <form asp-action="Actualizar" asp-controller="Servicio" method="post" enctype="multipart/form-data">
             <div class="tile-body">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <input type="hidden" asp-for="id">
 
                         <div class="form-group">
@@ -41,20 +41,26 @@
                         <div class="form-group">
                             <div class="animated-checkbox">
                                 <label>
-                                <input asp-for="active" type="checkbox"><span class="label-text"></span>
                                     <input asp-for="active" type="checkbox"><span class="label-text"></span>
                                 </label>
                                 <label asp-for="active" class="control-label"> Servicio Activo</label>
                             </div>
                         </div>
-                        @if(Model.idServiceMain == null){
+                        
                             <div class="form-group">
-                                <div class="animated-checkbox">
+                                <div class="animated-checkbox">                                   
                                     <label>
-                                        @if(Model.idServiceMain != null){
-                                            <input type="checkbox" id="subServiceCheck" checked><span class="label-text"></span>
-                                        }else{
-                                            <input type="checkbox" id="subServiceCheck"><span class="label-text"></span>
+                                        @if (Model.idServiceMain != null)
+                                        {
+                                            <input type="checkbox" id="subServiceCheck" checked>
+
+                                            <span class="label-text"></span>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" id="subServiceCheck">
+
+                                            <span class="label-text"></span>
                                         }
                                     </label>
                                     <label class="control-label" >Crear como sub servicio</label>
@@ -66,7 +72,7 @@
                                     @Html.DropDownList("idServiceMain", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3" })
                                 </div>
                             </span>
-                        }
+                        
                         <div class="form-group">
                             <div class="animated-checkbox">
                                 <label>
@@ -80,17 +86,27 @@
                                 <label>
                                     <input asp-for="toAdministrator" type="checkbox"><span class="label-text"></span>
                                 </label>
-                                <label asp-for="toAdministrator" class="control-label"> Servicio Activo</label>
+                                <label asp-for="toAdministrator" class="control-label"></label>
                             </div>
-                        </div> 
-                        <div class="form-group">
-                            <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" height="200">
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Imagen de servicio</label>
-                            <input asp-for="image" class="form-control" type="file" data-val="false">
-                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Imagen de servicio</label>
+                                </div>
+                                <div class="form-group">
+                                    <img src="~/images/services/@Model.photo" alt="Imagen del servicio" style="width: 200px%; height: 200px;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" id="previsualizacionContainer" style="display: none;">
+                                    <label class="control-label">Imagen actualizada</label>
+
+                                    <img id="imagenPrevisualizacion" src="#" alt="Previsualización de la imagen" style="width: 200px%; height: 200px;" />
+                                </div>
+                            </div>
                     </div>
+                        <input asp-for="imageU" class="form-control" type="file">
                 </div>
             </div>
             <div class="tile-footer">
@@ -110,6 +126,26 @@
 
     subServiceCheck.addEventListener("change", comprueba, false);
 
+    function actualizarPrevisualizacion() {
+        var fileInput = document.getElementById('imageU');
+        var previsualizacionContainer = document.getElementById('previsualizacionContainer');
+        var imgPrevisualizacion = document.getElementById('imagenPrevisualizacion');
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imgPrevisualizacion.setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+            previsualizacionContainer.style.display = 'block';
+        } else {
+            imgPrevisualizacion.setAttribute('src', '#');
+            previsualizacionContainer.style.display = 'none';
+        }
+    }
+    var imagenInput = document.getElementById('imageU');
+    imagenInput.addEventListener('change', actualizarPrevisualizacion);
+    imagenInput.addEventListener('load', actualizarPrevisualizacion);
     function comprueba(){
         var comboService = document.getElementById('subService');
         if(subServiceCheck.checked){
@@ -128,4 +164,5 @@
             }
         }
     }
+    
 </script>

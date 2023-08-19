@@ -97,8 +97,8 @@ else
         {
             <div class="col-md-4">
                 <div class="card" onclick="redirectToAction('@Url.Action("SubService", "Servicio", new { id = item.id })')">
-                    <div class="card-img-container">
-                        <img class="card-img-top" src="~/images/services/@item.photo" alt="Service Photo">
+                    <div class="card-img-container" style="position: relative;">
+                        <img class="card-img-top" src="~/images/services/@item.photo" alt="Service Photo" style="max-width: 375px; max-height: 275px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">@item.name</h5>
