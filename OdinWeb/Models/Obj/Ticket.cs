@@ -55,7 +55,10 @@ namespace OdinWeb.Models.Obj
 
     public class TicketsXSupervisorViewModel
     {
-        public IEnumerable<dynamic> CantidadTicketsPorSupervisor { get; set; }
+        public List<Ticket> tickets { get; set; }
+        public IEnumerable<dynamic>? CantidadTicketsPorSupervisor { get; set; }
+        public string desde { get; set; }
+        public string hasta { get; set; }
     }
 
 }

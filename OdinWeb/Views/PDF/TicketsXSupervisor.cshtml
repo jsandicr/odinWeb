@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
         }
 
-        h1 {
+        h1,h3 {
             text-align: center;
             margin-bottom: 20px;
         }
@@ -43,10 +43,13 @@
             margin-top: 20px;
         }
     </style>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
     <h1>Reporte de Tiquetes Por Supervisor</h1>
     <hr />
+    <h3>Filtrado desde @Model.desde hasta @Model.hasta</h3>
+    <br />
     <table>
         <thead>
             <tr>
