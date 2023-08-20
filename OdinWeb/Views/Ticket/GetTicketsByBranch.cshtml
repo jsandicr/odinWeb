@@ -6,11 +6,11 @@
 <div class="app-title">
     <input type="hidden" asp-for="id">
     <div>
-        <h1><i ></i>Tiquetes por sucursal de @Model.name</h1>
+        <h1><i class="fa fa-building"></i> Tiquetes por sucursal de @Model.name</h1>
         <p>Detalle de tiquetes</p>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
         <li class="breadcrumb-item active"><a asp-action="BranchByTickets" asp-controller="Branch">Listado de Sucursales</a></li>
         <li class="breadcrumb-item active"><a href="#">Tabla de tiquetes</a></li>
     </ul>

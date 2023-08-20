@@ -13,13 +13,14 @@
         <li class="breadcrumb-item active"><a asp-action="Crear" asp-controller="Supervisor">Crear Supervisores</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-6" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Crear Supervisor</h3>
+        <hr>
         <div class="tile-body">
             <form asp-action="Guardar" asp-controller="Supervisor" method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label asp-for="name" class="control-label">Nombre</label>
                             <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
@@ -27,17 +28,17 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="lastName" class="control-label">Apellidos</label>
-                            <input asp-for="lastName" class="form-control" rows="2" placeholder="Ingrese el apellido"></input>
+                            <input asp-for="lastName" class="form-control" rows="2" placeholder="Ingrese el apellido">
                             <span asp-validation-for="lastName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="mail" class="control-label">Correo</label>
-                            <input asp-for="mail" class="form-control" rows="2" placeholder="Ingrese el correo"></input>
+                            <input asp-for="mail" class="form-control" rows="2" placeholder="Ingrese el correo">
                             <span asp-validation-for="mail" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="phone" class="control-label">Teléfono</label>
-                            <input asp-for="phone" class="form-control" rows="2" placeholder="Ingrese el teléfono"></input>
+                            <input asp-for="phone" class="form-control" rows="2" placeholder="Ingrese el teléfono">
                             <span asp-validation-for="phone" class="text-danger"></span>
                         </div>
                         <div class="form-group">
