@@ -13,14 +13,15 @@
                 <li class="breadcrumb-item active"><a asp-action="Crear" asp-controller="Servicio"> Crear Servicio</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-8" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Crear Servicio</h3>
+        <hr>
         <div class="tile-body">
             <form asp-action="Guardar" asp-controller="Servicio" method="post" enctype="multipart/form-data">
 
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label asp-for="name" class="control-label"></label>
                             <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">
@@ -77,8 +78,11 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Imagen de servico</label>
-                            <input asp-for="image" class="form-control" type="file" data-val="false">
+                            <input asp-for="image" class="form-control" type="file">
                             <span asp-validation-for="image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" id="previsualizacionContainer" style="display: none;">
+                            <img id="imagenPrevisualizacion" src="#" alt="Previsualización de la imagen" style="max-width: 100%; max-height: 200px;" />
                         </div>
                     </div>
                  </div>             
@@ -106,4 +110,26 @@
             document.getElementById("idServiceMain").value=0;
         }
     }
+    function actualizarPrevisualizacion() {
+        var fileInput = document.getElementById('image');
+        var previsualizacionContainer = document.getElementById('previsualizacionContainer');
+        var imgPrevisualizacion = document.getElementById('imagenPrevisualizacion');
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imgPrevisualizacion.setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+            previsualizacionContainer.style.display = 'block';
+        } else {
+            imgPrevisualizacion.setAttribute('src', '#');
+            previsualizacionContainer.style.display = 'none';
+        }
+    }
+
+    // Asignar los eventos change y load al input de tipo file
+    var imagenInput = document.getElementById('image');
+    imagenInput.addEventListener('change', actualizarPrevisualizacion);
+    imagenInput.addEventListener('load', actualizarPrevisualizacion);
 </script>
