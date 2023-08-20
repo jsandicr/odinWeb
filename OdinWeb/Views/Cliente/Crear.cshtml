@@ -13,14 +13,14 @@
         <li class="breadcrumb-item active"><a asp-action="Crear" asp-controller="Cliente">Crear Cliente</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-6" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Crear Cliente</h3>
         <hr>
         <div class="tile-body">
             <form asp-action="Guardar" asp-controller="Cliente" method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label asp-for="name" class="control-label">Nombre</label>
                             <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">

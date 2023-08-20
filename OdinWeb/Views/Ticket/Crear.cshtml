@@ -86,7 +86,7 @@
 <div class="app-title">
 
     <div>
-        <h1><i class="fa fa-create"></i>Crear Tiquete</h1>
+        <h1><i class="fa fa-ticket"></i> Crear Tiquete</h1>
         <p>Ver Tiquete</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
@@ -97,7 +97,7 @@
         </ul>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-8" style="margin: 0 auto;">
     <div class="tile">
         <div class="row">
             <div class="col-md-9">
@@ -107,6 +107,7 @@
                 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#verRequeri">Ver requisitos</button>
             </div>
         </div>
+        <hr>
         <div class="tile-body">
             <form id="crearT" asp-action="Crear" asp-controller="Ticket" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="idService" value="@Model.service?.id">
@@ -166,7 +167,9 @@
                     <div id="fileList"></div>
                 </div>
                 <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="TiquetesProcesoAS" asp-controller="Ticket"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    <a class="btn btn-secondary" asp-action="TiquetesProcesoAS" asp-controller="Ticket"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Crear</button>
                 </div>
             </form>
         </div>

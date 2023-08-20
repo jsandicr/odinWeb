@@ -4,7 +4,7 @@
 }
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-commenting"></i> Administración de Chats</h1>
+        <h1><i class="fa fa-commenting"></i> Administración de Chats de Preguntas y Respuestas</h1>
         <p>Administración de Chats</p>
         <br>
         <a asp-action="Crear" asp-controller="Chat" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
@@ -37,7 +37,7 @@
                                         <td>@Html.DisplayFor(model => chat.Text)</td>
                                         <td>@Html.DisplayFor(model => chat.Answer)</td>
                                         <td>
-                                            <div class="btn-group">
+                                            <div class="bs-component">
                                                 <a class="btn btn-dark" asp-action="Ver" asp-controller="Chat" asp-route-id="@chat.Id" data-toggle="tooltip" data-placement="left" title="" data-original-title="Informacion"><i class="fa fa-lg fa-eye"></i></a>
                                                 <a class="btn btn-dark" asp-action="Editar" asp-controller="Chat" asp-route-id="@chat.Id" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-lg fa-edit"></i></a>
                                                 <button class="btn btn-dark cambiar-estado-btn" data-id="@chat.Id" data-toggle="tooltip" data-placement="right" title="" data-original-title="Cambiar estado"><i class="fa fa-lg fa-trash"></i></button>

@@ -13,13 +13,13 @@
         <li class="breadcrumb-item active"><a asp-action="Ver" asp-controller="Supervisor"> Información</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-6" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Ver Supervisor</h3>
         <hr>
         <div class="tile-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <h5 class="control-label">Nombre</h5>
                         <h6 class="control-label">@Model.name</h6>
@@ -36,8 +36,6 @@
                         <h5 class="control-label">Teléfono</h5>
                         <h6 class="control-label">@Model.phone</h6>
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="active" class="control-label">Estado</label>
                         @if (@Model.active == true)

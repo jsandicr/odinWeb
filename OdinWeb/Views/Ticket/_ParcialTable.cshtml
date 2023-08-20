@@ -34,12 +34,12 @@
                                                 Última actualización: @Html.DisplayFor(model => ticket.creationDate)
                                             </td>
                                             <td>
-                                                <div class="btn-group">
-                                                    <a class="btn btn-dark" asp-action="VerTiquete" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-eye"></i></a>
+                                                <div class="bs-component">
+                                                    <a class="btn btn-dark" asp-action="VerTiquete" asp-controller="Ticket" asp-route-id="@ticket.id"  data-toggle="tooltip" data-placement="left" title="" data-original-title="Informacion"><i class="fa fa-lg fa-eye"></i></a>
 
                                                     @if (ticket.status.description == "Pendiente información")
                                                 {
-                                                        <a class="btn btn-dark" asp-action="EditarTiquete" asp-controller="Ticket" asp-route-id="@ticket.id"><i class="fa fa-lg fa-edit"></i></a>
+                                                        <a class="btn btn-dark" asp-action="EditarTiquete" asp-controller="Ticket" asp-route-id="@ticket.id" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-lg fa-edit"></i></a>
                                                 }
                                                 </div>
 
