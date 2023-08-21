@@ -138,8 +138,8 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("modals", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html> 
 }

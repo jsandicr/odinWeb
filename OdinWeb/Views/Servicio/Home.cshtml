@@ -23,7 +23,7 @@
                         <thead>
                             <tr>                            
                                 <th>@Html.DisplayNameFor(model => model.name)</th>
-                                <th>@Html.DisplayNameFor(model => model.description)</th>
+                                <th style="max-width: 400px;">@Html.DisplayNameFor(model => model.description)</th>
                                 <td>Categoría</td>
                                 <th>@Html.DisplayNameFor(model => model.active)</th>
                                 <th>Acciones</th>
@@ -70,12 +70,12 @@
     </div>
 </div>
 
-
 @section Scripts{
     <script src="~/js/plugins/jquery.datatables.min.js"></script>
     <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
     <script type="text/javascript">$('#tservicios').DataTable();</script>
     <script>
+        
         $(document).ready(function () {
             $('.cambiar-estado-btn').click(function (e) {
                 e.preventDefault();
