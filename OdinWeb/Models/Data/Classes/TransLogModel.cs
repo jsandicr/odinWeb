@@ -2,7 +2,6 @@
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http.Headers;
-using System.Net.Http;
 
 namespace OdinWeb.Models.Data.Classes
 {
@@ -21,6 +20,21 @@ namespace OdinWeb.Models.Data.Classes
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+
+        public async Task<bool> DeleteAsync(int days)
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.DeleteAsync("api/TransactionalLog/"+days);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<List<TransactionalLog>> GetAsync()
         {
 

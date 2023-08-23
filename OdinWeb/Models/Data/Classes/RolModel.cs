@@ -9,11 +9,9 @@ namespace OdinWeb.Models.Data.Classes
     {
         private readonly IConfiguration _config;
         private readonly HttpClient _httpClient;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public RolModel(IConfiguration config, IHttpContextAccessor httpContextAccessor)
+        public RolModel(IConfiguration config)
         {
 
-            _httpContextAccessor = httpContextAccessor;
             _config = config;
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(_config["ApiSettings:BaseUrl"]); // URL base del API
@@ -31,7 +29,6 @@ namespace OdinWeb.Models.Data.Classes
                 var rolR = JsonConvert.DeserializeObject<Rol>(rol);
                 return rolR;
             }
-
             return null;
         }
     }

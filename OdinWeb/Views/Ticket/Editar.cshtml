@@ -21,9 +21,10 @@
         </ul>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-8" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Editar Ticket</h3>
+        <hr />
         <div class="tile-body">
             <form asp-action="Actualizar" asp-controller="Ticket" method="post">
                 <input type="hidden" asp-for="id">
@@ -67,7 +68,9 @@
                     @Html.DropDownList("idStatus", (IEnumerable<SelectListItem>)ViewData["Status"], new { @class = "form-control form-select mb-3" })
                 </div>
                 <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Modificar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" asp-action="TiquetesProcesoAS" asp-controller="Ticket"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    <a class="btn btn-secondary" asp-action="TiquetesProcesoAS" asp-controller="Ticket"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Modificar</button>
                 </div>
             </form>
         </div>

@@ -13,16 +13,17 @@
         <li class="breadcrumb-item active"><a asp-action="Editar" asp-controller="Supervisor"> Editar</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-6" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Editar Supervisor</h3>
+        <hr>
         <div class="tile-body">
             <form asp-action="Actualizar" asp-controller="Supervisor" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="id">
                 <input type="hidden" asp-for="password">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label asp-for="name" class="control-label">Nombre</label>
                             <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre">

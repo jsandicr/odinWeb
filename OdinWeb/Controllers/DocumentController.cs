@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using OdinWeb.Models.Data.Interfaces;
-using OdinWeb.Models.Obj;
 
 namespace OdinWeb.Controllers
 {

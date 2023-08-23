@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using Rotativa.AspNetCore;
+using System.Data;
 using System.Globalization;
 
 namespace OdinWeb.Controllers
@@ -15,63 +17,96 @@ namespace OdinWeb.Controllers
             _reportModel = reportModel;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult TicketsXTime()
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult TicketsXTime(DateTime date1, DateTime date2)
         {
-            var tickets = _reportModel.GetTicketsXTime();
-            return new ViewAsPdf("TicketsXTime", tickets)
+            try
             {
+                var tickets = _reportModel.GetTicketsXTime(date1, date2);
+                var viewModel = new TicketsXSupervisorViewModel
+                {
+                    tickets = tickets,
+                    desde = date1.ToString("dd-MM-yyyy"),
+                    hasta = date2.ToString("dd-MM-yyyy")
+                };
+                return new ViewAsPdf("TicketsXTime", viewModel)
+                {
 
-            };
+                };
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction(nameof(Index));
+            }
         }
 
-        public IActionResult TicketsXSupervisor()
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult TicketsXSupervisor(DateTime date1, DateTime date2)
         {
-            var tickets = _reportModel.GetTicketsXSupervisor();
-
-            var cantidadTicketsPorSupervisor = tickets
-                .GroupBy(t => t.idSupervisor)
-                .Select(g => new { SupervisorName = g.First().supervisor.name + " " + g.First().supervisor.lastName, CantidadTickets = g.Count() })
-                .ToList();
-
-            var viewModel = new TicketsXSupervisorViewModel
+            try
             {
-                CantidadTicketsPorSupervisor = cantidadTicketsPorSupervisor
-            };
+                var tickets = _reportModel.GetTicketsXSupervisor(date1,date2);
 
-            return new ViewAsPdf("TicketsXSupervisor", viewModel)
+                var cantidadTicketsPorSupervisor = tickets
+                    .GroupBy(t => t.idSupervisor)
+                    .Select(g => new { SupervisorName = g.First().supervisor.name + " " + g.First().supervisor.lastName, CantidadTickets = g.Count() })
+                    .ToList();
+
+                var viewModel = new TicketsXSupervisorViewModel
+                {
+                    CantidadTicketsPorSupervisor = cantidadTicketsPorSupervisor,
+                    desde = date1.ToString("dd-MM-yyyy"),
+                    hasta = date2.ToString("dd-MM-yyyy")
+                };
+
+                return new ViewAsPdf("TicketsXSupervisor", viewModel)
+                {
+
+                };
+            }catch(Exception e)
             {
-
-            };
+                return RedirectToAction(nameof(Index));
+            }
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult TicketsXSupervisorM()
         {
-            var tickets = _reportModel.GetTicketsXSupervisor();
+            try
+            {
+                var tickets = _reportModel.GetTicketsXSupervisorM();
 
-            var cantidadTicketsPorSupervisorPorMes = tickets
-                .GroupBy(t => new { t.idSupervisor, t.creationDate.Month })
-                .Select(g => new
+                var cantidadTicketsPorSupervisorPorMes = tickets
+                    .GroupBy(t => new { t.idSupervisor, t.creationDate.Month })
+                    .Select(g => new
+                    {
+                        SupervisorName = g.First().supervisor.name + " " + g.First().supervisor.lastName,
+                        Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(g.Key.Month),
+                        CantidadTickets = g.Count()
+                    })
+                    .ToList();
+
+                var viewModel = new TicketsXSupervisorViewModel
                 {
-                    SupervisorName = g.First().supervisor.name + " " + g.First().supervisor.lastName,
-                    Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(g.Key.Month),
-                    CantidadTickets = g.Count()
-                })
-                .ToList();
+                    CantidadTicketsPorSupervisor = cantidadTicketsPorSupervisorPorMes
+                };
 
-            var viewModel = new TicketsXSupervisorViewModel
+                return new ViewAsPdf("TicketsXSupervisorM", viewModel)
+                {
+
+                };
+            }catch(Exception e)
             {
-                CantidadTicketsPorSupervisor = cantidadTicketsPorSupervisorPorMes
-            };
-
-            return new ViewAsPdf("TicketsXSupervisorM", viewModel)
-            {
-
-            };
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
 }

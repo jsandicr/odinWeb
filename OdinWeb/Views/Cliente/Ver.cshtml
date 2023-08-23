@@ -1,7 +1,16 @@
 ﻿@model OdinWeb.Models.Obj.User
+@inject OdinWeb.Models.Data.Interfaces.ITicketModel ticket;
 @{
     ViewData["Title"] = "Ver Cliente";
+    var lTickets = ticket.GetTiketViewBySelect(0, Model.id).Result;
+
 }
+<style>
+
+    .modal-dialog {
+        max-width: 1000px; /* Puedes ajustar este valor según tus necesidades */
+    }
+</style>
 <div class="app-title">
     <div>
         <h1><i class="fa fa-users"></i> Administración de Clientes</h1>
@@ -13,12 +22,13 @@
         <li class="breadcrumb-item active"><a asp-action="Ver" asp-controller="Cliente">Información</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-6" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Ver Cliente</h3>
+        <hr>
         <div class="tile-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <h5 class="control-label">Nombre</h5>
                         <h6 class="control-label">@Model.name</h6>
@@ -35,8 +45,6 @@
                         <h5 class="control-label">Teléfono</h5>
                         <h6 class="control-label">@Model.phone</h6>
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="active" class="control-label">Estado</label>
                         @if (@Model.active == true)
@@ -56,6 +64,14 @@
                         <label>Sucursal</label>
                         @Html.DropDownList("idBranch", (IEnumerable<SelectListItem>)ViewData["Branches"], new { @class = "form-control form-select mb-3", @disabled = "disabled" })
                     </div>
+                    <div class="form-group">
+                        <div class="animated-checkbox">
+                            <label>
+                                <input type="checkbox" id="showTicketModal"><span class="label-text"></span>
+                            </label>
+                            <label class="control-label">Ver tiquetes asociados al servicio</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,4 +80,75 @@
         </div>
     </div>
 </div>
+@section modals{
+    <div class="modal fade" id="tabletickect" tabindex="-1" role="dialog" aria-labelledby="tabletickect" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCommentModalLabel">Tiquetes asociados</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="ttiquete">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Tiltulo</th>
+                                    <th>Servicio</th>
+                                    <th>Supervisor</th>
+                                    <th>Acciones</th>
 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var ticket in lTickets)
+                                    {
+                                        <tr>
+                                            <td>Cod-@Html.DisplayFor(model => ticket.id)</td>
+                                            <td>@Html.DisplayFor(model => ticket.title)</td>
+                                            <td>@Html.DisplayFor(model => ticket.service.name)</td>
+                                            <td>@Html.Raw(ticket.supervisor.name + " " + ticket.supervisor.lastName)</td>
+                                            <td>
+                                                <div class="bs-component">
+                                                    <a class="btn btn-dark" asp-action="Ver" asp-controller="Ticket" asp-route-id="@ticket.id" data-toggle="tooltip" data-placement="left" title="" data-original-title="Informacion"><i class="fa fa-lg fa-eye"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts{
+    <script src="~/js/plugins/jquery.datatables.min.js"></script>
+    <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#ttiquete').DataTable();</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var checkbox = document.getElementById("showTicketModal");
+            var modal = document.getElementById("tabletickect");
+
+            checkbox.addEventListener("change", function () {
+                if (checkbox.checked) {
+                    $(modal).modal("show");
+                    checkbox.checked = false; // Desmarcar el checkbox
+
+                }
+            });
+        });
+      
+    </script>
+ }

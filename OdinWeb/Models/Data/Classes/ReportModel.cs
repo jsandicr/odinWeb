@@ -2,8 +2,6 @@
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.Net.Http.Headers;
-using System.Net.Http;
-using System.Text;
 
 namespace OdinWeb.Models.Data.Classes
 {
@@ -22,12 +20,14 @@ namespace OdinWeb.Models.Data.Classes
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-        public List<Ticket> GetTicketsXTime()
+        public List<Ticket> GetTicketsXTime(DateTime date1, DateTime date2)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = _httpClient.GetAsync("api/Report/TicketsXTime").Result;
+            string desde = date1.ToString("yyyy-MM-dd");
+            string hasta = date2.ToString("yyyy-MM-dd");
+            var response = _httpClient.GetAsync("api/Report/TicketsXTime/"+desde+"/"+hasta).Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -38,12 +38,30 @@ namespace OdinWeb.Models.Data.Classes
             return null;
         }
 
-        public List<Ticket> GetTicketsXSupervisor()
+        public List<Ticket> GetTicketsXSupervisor(DateTime date1, DateTime date2)
         {
             var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
             // Agrega el encabezado de autorización con el token
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = _httpClient.GetAsync("api/Report/TicketsXSupervisor").Result;
+            string desde = date1.ToString("yyyy-MM-dd");
+            string hasta = date2.ToString("yyyy-MM-dd");
+            var response = _httpClient.GetAsync("api/Report/TicketsXSupervisor/"+ desde + "/"+ hasta).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var tickets = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Ticket>>(tickets);
+            }
+
+            return null;
+        }
+
+        public List<Ticket> GetTicketsXSupervisorM()
+        {
+            var token = _httpContextAccessor.HttpContext.Request.Cookies["Token"];
+            // Agrega el encabezado de autorización con el token
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = _httpClient.GetAsync("api/Report/TicketsXSupervisorM").Result;
 
             if (response.IsSuccessStatusCode)
             {

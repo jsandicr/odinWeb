@@ -58,7 +58,7 @@
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Cliente"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Clientes</span></a></li>
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Supervisor"><i class="app-menu__icon fa fa-address-book-o"></i><span class="app-menu__label">Supervisores</span></a></li>
             <li><a class="app-menu__item" asp-action="Home" asp-controller="Branch"><i class="app-menu__icon fa fa-building"></i><span class="app-menu__label">Sucursales</span></a></li>
-            <li><a class="app-menu__item" asp-action="Home" asp-controller="Chat"><i class="app-menu__icon fa fa-commenting"></i><span class="app-menu__label">Chats</span></a></li>
+            <li><a class="app-menu__item" asp-action="Home" asp-controller="Chat"><i class="app-menu__icon fa fa-commenting"></i><span class="app-menu__label">Preguntas frecuentes</span></a></li>
             <li class="treeview">
                 <a class="app-menu__item" href="#" data-toggle="treeview">
                     <i class="app-menu__icon fa fa-ticket"></i>
@@ -68,11 +68,11 @@
                 <ul class="treeview-menu">
                     <li>
                         <a class="treeview-item" asp-action="TiquetesProcesoAS" asp-controller="Ticket">
-                            <i class="app-menu__icon fa fa-building"></i>
+                            <i class="app-menu__icon fa fa-link"></i>
                             Tiquetes Asignados
                         </a>
                         <a class="treeview-item" asp-action="TiquetesCerrados" asp-controller="Ticket">
-                            <i class="app-menu__icon fa fa-building"></i>
+                            <i class="app-menu__icon fa fa-times-circle-o"></i>
                             Tiquetes Cerrados
                         </a>
                         <a class="treeview-item" asp-action="BranchByTickets" asp-controller="Branch">
@@ -112,10 +112,6 @@
     <!-- The javascript plugin to display page loading on top-->
     
     <!-- Page specific javascripts-->
-    <script>
-      $('.bs-component [data-toggle="popover"]').popover();
-      $('.bs-component [data-toggle="tooltip"]').tooltip();
-    </script>
     <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -142,8 +138,8 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("modals", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html> 
 }

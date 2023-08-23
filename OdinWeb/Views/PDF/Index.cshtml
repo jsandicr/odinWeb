@@ -23,7 +23,7 @@
                 </div>
                 <h5 class="card-title" style="text-align:center; margin: 10px 0px;">Tiquetes por tiempo transcurrido</h5>
                 <span style="display: flex; justify-content: center; align-items: center; margin: 10px 0px;">
-                    <a asp-controller="PDF" asp-action="TicketsXTime"><b>Generar</b></a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#verModal" data-source="TicketsXTime" href="#"><b>Generar</b></a>
                 </span>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 </div>
                 <h5 class="card-title" style="text-align:center; margin: 10px 0px;">Tiquetes abiertos por supervisor</h5>
                 <span style="display: flex; justify-content: center; align-items: center; margin: 10px 0px;">
-                    <a asp-controller="PDF" asp-action="TicketsXSupervisor"><b>Generar</b></a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#verModal" data-source="TicketsXSupervisor" href="#"><b>Generar</b></a>
                 </span>
             </div>
         </div>
@@ -49,9 +49,92 @@
                 </div>
                 <h5 class="card-title" style="text-align:center; margin: 10px 0px;">Tiquetes abiertos por supervisor por mes</h5>
                 <span style="display: flex; justify-content: center; align-items: center; margin: 10px 0px;">
-                    <a asp-controller="PDF" asp-action="TicketsXSupervisorM"><b>Generar</b></a>
+                    <a class="btn btn-primary" asp-controller="PDF" asp-action="TicketsXSupervisorM"><b>Generar</b></a>
                 </span>
             </div>
         </div>
     </div>
 </div>
+<span id="insertForm"></span>
+
+@section modals{
+    <div class="modal" id="verModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filtro de fechas</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Fecha de creacion</p>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <p>Fecha desde</p>
+                            <input class="form-control" type="date" id="date1" />
+                        </div>
+                        <div class="col-lg-4">
+                            <p>Fecha hasta</p>
+                            <input class="form-control" type="date" id="date2" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="generarBtn">Generar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            function setFechas(){
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1; //January is 0!
+                var yyyy = today.getFullYear();
+
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+
+                if (mm < 10) {
+                    mm = '0' + mm;
+                }
+
+                today = yyyy + '-' + mm + '-' + dd;
+                $('#date1').val(today);
+                $('#date1').attr('max', today);
+                $('#date2').val(today);
+                $('#date2').attr('max', today);
+            }
+
+            $('#verModal').on('show.bs.modal', function (event) {
+                setFechas();
+
+                var source = $(event.relatedTarget).data('source');
+
+                if (source === "TicketsXSupervisor") {
+                    document.getElementById("insertForm").innerHTML = '<form id="pdfForm" action="@Url.Action("TicketsXSupervisor", "PDF")" method="post"><input type = "hidden" name = "date1" value = "" /><input type = "hidden" name = "date2" value = "" /></form>';
+                } else if (source === "TicketsXTime") {
+                    document.getElementById("insertForm").innerHTML = '<form id="pdfForm" action="@Url.Action("TicketsXTime", "PDF")" method="post"><input type = "hidden" name = "date1" value = "" /><input type = "hidden" name = "date2" value = "" /></form>';
+                }
+            });
+
+            $('#generarBtn').on('click', function () {
+                var selectedDate1 = $('#date1').val();
+                var selectedDate2 = $('#date2').val();
+                $('#pdfForm input[name="date1"]').val(selectedDate1);
+                $('#pdfForm input[name="date2"]').val(selectedDate2);
+                $('#pdfForm').submit();
+            });
+
+            $('#verModal').on('hidden.bs.modal', function (event) {
+                setFechas();
+            });
+        });
+    </script>
+}

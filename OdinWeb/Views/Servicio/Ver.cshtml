@@ -1,7 +1,28 @@
 ﻿@model OdinWeb.Models.Obj.Service
+@inject OdinWeb.Models.Data.Interfaces.IServicioModel servicio;
+@inject OdinWeb.Models.Data.Interfaces.ITicketModel ticket;
 @{
     ViewData["Title"] = "Ver Servicio";
+    string nombreS = null;
+    if (Model.idServiceMain!=null)
+    {
+        nombreS = servicio.GetServicioById(Model.idServiceMain).name;
+    }
+    var lTickets = ticket.GetTiketViewBySelect(1, Model.id).Result;
+
 }
+<style>
+    /* Define the styling for the section separator */
+    .section-separator {
+        border-top: 1px solid #ddd; /* Adjust the color as needed */
+        margin: 10px auto; /* Adjust the margin as needed */
+        width: 50%; /* Adjust the width as needed */
+    }
+
+    .modal-dialog {
+        max-width: 1000px; /* Puedes ajustar este valor según tus necesidades */
+    }
+</style>
 <div class="app-title">
     <div>
         <h1><i class="fa fa-solid fa-car"></i> Administración de Servicios</h1>
@@ -13,78 +34,114 @@
         <li class="breadcrumb-item active"><a asp-action="Ver" asp-controller="Servicio"> Información</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-8" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Ver Servicio</h3>
+        <hr>
         <div class="tile-body">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <h5 class="control-label">Nombre</h5>
-                        <h6 class="control-label">@Model.name</h6>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            @if (!string.IsNullOrEmpty(Model.photo))
+                            {
+                                <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" width="200">
+                            }
+                            else
+                            {
+                                <p>No hay imagen disponible.</p>
+                            }
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Estado del Servicio</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>
+                                        @if (Model.active)
+                                        {
+                                            <span asp-for="active" class="badge badge-pill badge-success">Activo</span>
+                                        }
+                                        else
+                                        {
+                                            <span asp-for="active" class="badge badge-pill badge-danger">Inactivo</span>
+                                        }
+                                    </h5>
+                                </div>
+                                <div class="tile-footer"></div> <!-- Add a subtle separator -->
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Requiere Transporte</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>
+                                        @if (Model.transport)
+                                        {
+                                            <span asp-for="transport" class="badge badge-pill badge-success">Activo</span>
+                                        }
+                                        else
+                                        {
+                                            <span asp-for="transport" class="badge badge-pill badge-danger">Inactivo</span>
+                                        }
+                                    </h5>
+                                </div>
+                                                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Asignado al Administrador</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>
+                                        @if (Model.toAdministrator)
+                                        {
+                                            <span asp-for="toAdministrator" class="badge badge-pill badge-success">Activo</span>
+                                        }
+                                        else
+                                        {
+                                            <span asp-for="toAdministrator" class="badge badge-pill badge-danger">Inactivo</span>
+                                        }
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <h5 class="control-label">Descripción</h5>
-                        <h6 class="control-label">@Model.description</h6>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="active" class="control-label">Estado</label>
-                        @if (@Model.active == true)
+                    <div class="col-md-12">
+                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                        <h5>Nombre del Servicio</h5>
+                        <p>@Model.name</p>
+                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                        <h5>Descripción</h5>
+                        <p>@Model.description</p>
+                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                        <h5>Requerimientos</h5>
+                        <p>@Model.requirements</p>
+                        <div class="tile-footer"></div> <!-- Add a subtle separator -->
+                        <h5>Categoria</h5>
+                        @if (Model.idServiceMain != null)
                         {
-                           <div>
-                                <span asp-for="active" class="badge badge-pill badge-success">Activo</span>
-                           </div>
+                            <p>Sub Servicio</p>
+                            <p>Servicio asociado: @nombreS</p>
                         }
                         else
                         {
-                            <div>
-                                <span asp-for="active" class="badge badge-pill badge-danger">Desactivo</span>
+                            <p>Servicio</p>
+                        }
+                        <div class="form-group">
+                            <div class="animated-checkbox">
+                                <label>
+                                    <input type="checkbox" id="showTicketModal"><span class="label-text"></span>
+                                </label>
+                                <label class="control-label">Ver tiquetes asociados al servicio</label>
                             </div>
-                        }
+                        </div>
                     </div>
-                    <div class="form-group">
-                        @if(Model.idServiceMain != null){
-                            <input type="checkbox" id="subServiceCheck" disabled checked>
-                        }else{
-                            <input type="checkbox" id="subServiceCheck" disabled>
-                        }
-                        <label class="control-label" >Crear como sub servicio</label>
-                    </div>
-                    <div class="form-group">
-                        <span class="subService" id="subService">
-                            <label class="control-label">Seleccione el servicio</label>
-                            @Html.DropDownList("idServiceMain", (IEnumerable<SelectListItem>)ViewData["Services"], new { @class = "form-control form-select mb-3", @disabled = "disabled" })
-                        </span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="requirements" class="control-label"></label>
-                        <textarea id="requirements" asp-for="requirements" class="form-control" rows="4" readonly></textarea>
-                        <span asp-validation-for="requirements" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input asp-for="transport" type="checkbox" disabled>
-                        <label asp-for="transport" class="control-label"></label>
-                        <span asp-validation-for="transport" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input asp-for="toAdministrator" type="checkbox" disabled>
-                        <label asp-for="toAdministrator" class="control-label"></label>
-                        <span asp-validation-for="toAdministrator" class="text-danger"></span>
-                    </div>
-@*                    <div class="form-group">
-                        <h5 class="control-label">Tiquetes Creados</h5>
-                        <h6 class="control-label">@Model.tickets</h6>
-                    </div>*@
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <img src="~/images/services/@Model.photo" alt="Imagen del servicio" width="200" width="200">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Imagen de servicio</label>
-                    </div>
-                </div>
+                    
             </div>
+
         </div>
         <div class="tile-footer">
             <a class="btn btn-secondary" asp-action="Home" asp-controller="Servicio" onclick="history.back();">
@@ -93,20 +150,88 @@
         </div>
     </div>
 </div>
+@section modals{
+        <div class="modal fade" id="tabletickect" tabindex="-1" role="dialog" aria-labelledby="tabletickect" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCommentModalLabel">Tiquetes asociados</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered" id="ttiquete">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Tiltulo</th>
+                                        <th>Cliente</th>
+                                        <th>Supervisor</th>
+                                        <th>Acciones</th>
 
-<script>
-    var subServiceCheck = document.getElementById('subServiceCheck');
-    //Comprueba apenas inicia
-    comprueba()
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null)
+                                    {
+                                        foreach (var ticket in lTickets)
+                                        {
+                                            <tr>
+                                                <td>Cod-@Html.DisplayFor(model => ticket.id)</td>
+                                                <td>@Html.DisplayFor(model => ticket.title)</td>
+                                                <td>@Html.Raw(ticket.client.name + " " + ticket.client.lastName)</td>
+                                                <td>@Html.Raw(ticket.supervisor.name + " " + ticket.supervisor.lastName)</td>
+                                                <td>
+                                                    <div class="bs-component">
+                                                        <a class="btn btn-dark" asp-action="Ver" asp-controller="Ticket" asp-route-id="@ticket.id" data-toggle="tooltip" data-placement="left" title="" data-original-title="Informacion"><i class="fa fa-lg fa-eye"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+@section Scripts{
+        <script src="~/js/plugins/jquery.datatables.min.js"></script>
+        <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
+        <script type="text/javascript">$('#ttiquete').DataTable();</script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var checkbox = document.getElementById("showTicketModal");
+                var modal = document.getElementById("tabletickect");
 
-    function comprueba(){
-        var comboService = document.getElementById('subService');
-        if(subServiceCheck.checked){
-            //Activado
-            comboService.classList.remove("subService");
-        }else{
-            //Desactivado
-            comboService.classList.add("subService");
-        }
-    }
-</script>
+                checkbox.addEventListener("change", function () {
+                    if (checkbox.checked) {
+                        $(modal).modal("show");
+                        checkbox.checked = false; // Desmarcar el checkbox
+
+                    }
+                });
+            });
+            var subServiceCheck = document.getElementById('subServiceCheck');
+            //Comprueba apenas inicia
+            comprueba()
+
+            function comprueba() {
+                var comboService = document.getElementById('subService');
+                if (subServiceCheck.checked) {
+                    //Activado
+                    comboService.classList.remove("subService");
+                } else {
+                    //Desactivado
+                    comboService.classList.add("subService");
+                }
+            }
+        </script>
+ }

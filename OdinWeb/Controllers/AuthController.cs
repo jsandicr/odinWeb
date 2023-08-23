@@ -2,18 +2,12 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using NuGet.Common;
-using OdinWeb.Models;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using System.ComponentModel.DataAnnotations;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OdinWeb.Models.Data.Classes;
 
 namespace OdinWeb.Controllers
 {
@@ -29,6 +23,7 @@ namespace OdinWeb.Controllers
             _branchModel = branchModel;
             _rolModel = rolModel;
         }
+
         public async Task<IActionResult> Login(string? ReturnUrl)
         {
             ViewData["ReturnUrl"] = ReturnUrl;
@@ -39,7 +34,7 @@ namespace OdinWeb.Controllers
         {
             TempData["AlertMessage"] = "No tiene permisos para ingresar a la pagína";
             TempData["AlertType"] = "error";
-            return Redirect("Index");
+            return Redirect("Login");
         }
 
         public async Task<IActionResult> Registration()
@@ -55,7 +50,6 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        //[SessionState(SessionStateBehavior.Required)]
         public async Task<IActionResult> Validate(LoginViewModel userDTO, string? ReturnUrl)
         {
             try
@@ -128,7 +122,6 @@ namespace OdinWeb.Controllers
                     }
 
                 }
-
 
                 TempData["AlertMessage"] = "Error, verifique las credenciales.";
                 TempData["AlertType"] = "error";
@@ -223,6 +216,7 @@ namespace OdinWeb.Controllers
             return RedirectToAction(nameof(Login)); ;
 
         }
+
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> CerrarSesion()
         {
@@ -245,6 +239,7 @@ namespace OdinWeb.Controllers
             return View(user);
 
         }
+
         [HttpPost]
         public IActionResult ChangePasswordP(ChangePassword user)
         {
@@ -277,7 +272,6 @@ namespace OdinWeb.Controllers
                 return RedirectToAction("ChangePassword", new { user = user });
 
             }
-
         }
     }
 }

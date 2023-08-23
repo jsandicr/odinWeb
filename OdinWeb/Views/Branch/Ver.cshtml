@@ -13,23 +13,22 @@
         <li class="breadcrumb-item active"><a asp-action="Ver" asp-controller="Branch"> Información</a></li>
     </ul>
 </div>
-<div class="col-md-12">
+<div class="col-md-8" style="margin: 0 auto;">
     <div class="tile">
         <h3 class="tile-title">Ver Sucursal</h3>
+        <hr>
         <div class="tile-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="name" class="control-label">Nombre</label>
                         <input asp-for="name" class="form-control" type="text" placeholder="Ingrese el nombre" readonly>
                     </div>
                     <div class="form-group">
                         <label asp-for="direction" class="control-label">Dirección</label>
-                        <input asp-for="direction" class="form-control" rows="2" placeholder="Ingrese la dirección" readonly>
+                        <textarea asp-for="direction" class="form-control" rows="5" placeholder="Ingrese la dirección" readonly></textarea>
                         <span asp-validation-for="direction"></span>
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="active" class="control-label">Estado</label>
                         @if (@Model.active == true)

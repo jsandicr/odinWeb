@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OdinApi.Models.Obj;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,12 +10,10 @@ namespace OdinWeb.Models.Obj
         [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "El campo es requerido")]
-
         public string name { get; set; }
         [StringLength(50, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
         [Display(Name = "Apellido")]
         [Required(ErrorMessage = "El campo es requerido")]
-
         public string lastName { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         [DataType(DataType.EmailAddress, ErrorMessage = "El campo 'Email' debe ser una dirección de correo electrónico válida")]
@@ -33,7 +30,6 @@ namespace OdinWeb.Models.Obj
         [Required(ErrorMessage = "El campo es requerido")]
         [StringLength(int.MaxValue, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
         [Display(Name = "Contraseña")]
-
         public string password { get; set; }
         [Display(Name = "Activo")]
         [Required(ErrorMessage = "El campo es requerido")]
@@ -148,13 +144,10 @@ namespace OdinWeb.Models.Obj
         public string CorreoElectronico { get; set; }
         [RegularExpression("^[0-9]+$", ErrorMessage = "Debe ingresar solo números.")]
         [StringLength(8, ErrorMessage = "El campo debe tener 8 números", MinimumLength = 8)]
-        
         public string Telefono { get; set; }
         [Display(Name = "Sucursal más Cercana")]
         public int IdBranch { get; set; }
-       
         public IFormFile Imagen { get; set; }
-
         public string rutaImagen { get; set; }
     }
    

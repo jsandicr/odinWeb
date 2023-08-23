@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OdinWeb.Models.Data.Interfaces;
 
 namespace OdinWeb.Controllers
@@ -10,7 +11,9 @@ namespace OdinWeb.Controllers
         public CommentController(ICommentModel comment) { 
          _comment = comment;
         }
+
         [HttpPost]
+        [Authorize]
         public async Task<bool> AddComment(string mjs, int id)
         {
             try { 

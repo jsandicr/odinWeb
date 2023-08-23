@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Hosting.Internal;
-using Newtonsoft.Json;
-using OdinWeb.Models;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
-using System.Net.Http.Headers;
 
 namespace OdinWeb.Controllers
 {
@@ -23,7 +19,7 @@ namespace OdinWeb.Controllers
             _branchModel = branchModel;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Home()
         {
             try
@@ -42,7 +38,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear()
         {
             var branches = _branchModel.GetBranch();            
@@ -63,7 +59,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Guardar(User user, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try
@@ -95,7 +91,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Ver(int id)
         {
             try
@@ -131,7 +127,7 @@ namespace OdinWeb.Controllers
 
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Editar(int id)
         {
             try
@@ -166,7 +162,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(User user)
         {
             try
@@ -194,7 +190,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int id)
         {
             try
@@ -219,7 +215,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Supervisor")]
         public async Task<IActionResult> Principal()
         {
             return View();

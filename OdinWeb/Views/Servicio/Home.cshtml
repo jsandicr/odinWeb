@@ -23,7 +23,8 @@
                         <thead>
                             <tr>                            
                                 <th>@Html.DisplayNameFor(model => model.name)</th>
-                                <th>@Html.DisplayNameFor(model => model.description)</th>
+                                <th style="max-width: 400px;">@Html.DisplayNameFor(model => model.description)</th>
+                                <td>Categoría</td>
                                 <th>@Html.DisplayNameFor(model => model.active)</th>
                                 <th>Acciones</th>
                             </tr>
@@ -34,14 +35,25 @@
                                     <tr>
                                         <td>@Html.DisplayFor(model => service.name)</td>
                                         <td>@Html.DisplayFor(model => service.description)</td>
-                                        @if (service.active == true){
-                                            <td><span asp-for="active" class="badge badge-pill badge-success">Activo</span></td>
+                                        <td>@if (service.idServiceMain != null)
+                                            {
+                                                <span>Sub Servicio</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Servicio</span>
+                                            }
+                                        </td>
+                                        <td>
+                                        @if (service.active){
+                                            <h5><span asp-for="active" class="badge badge-pill badge-success">Activo</span></h5>
                                         }
                                         else{
-                                            <td><span asp-for="active" class="badge badge-pill badge-danger">Inactivo</span></td>
+                                            <h5><span asp-for="active" class="badge badge-pill badge-danger">Inactivo</span></h5>
                                         }
+                                        </td>
                                         <td>
-                                            <div class="btn-group">
+                                            <div class="bs-component">
                                                 <a class="btn btn-dark" asp-action="Ver" asp-controller="Servicio" asp-route-id="@service.id" data-toggle="tooltip" data-placement="left" title="" data-original-title="Informacion"><i class="fa fa-lg fa-eye"></i></a>
                                                 <a class="btn btn-dark" asp-action="Editar" asp-controller="Servicio" asp-route-id="@service.id" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-lg fa-edit"></i></a>
                                                 <button class="btn btn-dark cambiar-estado-btn" data-id="@service.id" data-toggle="tooltip" data-placement="right" title="" data-original-title="Cambiar estado"><i class="fa fa-refresh"></i></button>
@@ -58,12 +70,12 @@
     </div>
 </div>
 
-
 @section Scripts{
     <script src="~/js/plugins/jquery.datatables.min.js"></script>
     <script src="~/js/plugins/datatables.bootstrap.min.js"></script>
     <script type="text/javascript">$('#tservicios').DataTable();</script>
     <script>
+        
         $(document).ready(function () {
             $('.cambiar-estado-btn').click(function (e) {
                 e.preventDefault();

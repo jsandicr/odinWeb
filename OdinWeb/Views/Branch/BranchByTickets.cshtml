@@ -29,12 +29,12 @@
 
 <div class="app-title">
     <div>
-        <h1><i ></i>Listado de sucursales</h1>
+        <h1><i class="fa fa-building"></i> Listado de sucursales</h1>
         <p>Detalle de sucursales</p>
     </div>
     <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item">Listado de Sucursales</li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa fa-home fa-lg"></i></a></li>
+        <li class="breadcrumb-item"><a asp-action="BranchByTickets" asp-controller="Branch">Listado de Sucursales</a></li>
     </ul>
 </div>
 

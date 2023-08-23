@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\images\Users\Sperfil.jpg" />
     <None Include="wwwroot\js\plugins\chat2.js" />
   </ItemGroup>
 
@@ -50,6 +49,7 @@
     <Folder Include="PDF\" />
     <Folder Include="wwwroot\images\Services\" />
     <Folder Include="wwwroot\Document\" />
+    <Folder Include="wwwroot\images\Users\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties wwwroot_4lib_4bootstrap_4dist_4css_4bootstrap-reboot_1rtl_1css_1map__JsonSchema="" /></VisualStudio></ProjectExtensions>
