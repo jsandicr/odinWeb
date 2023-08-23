@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OdinApi.Models.Obj;
-using System;
-using System.Collections.Generic;
+﻿using OdinApi.Models.Obj;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
-using OdinWeb.Models.Obj;
 
 namespace OdinWeb.Models.Obj
 {
@@ -47,9 +42,7 @@ namespace OdinWeb.Models.Obj
         public Status? status { get; set; }
         [Display(Name = "Comentarios")]
         public List<Comment>? comments { get; set; }
-
         public List<Documento>? documents { get; set; }
-
         public List<IFormFile>? Archivos { get; set; }
     }
 
@@ -60,5 +53,4 @@ namespace OdinWeb.Models.Obj
         public string desde { get; set; }
         public string hasta { get; set; }
     }
-
 }

@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OdinWeb.Models.Data.Classes;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
-using System.Drawing;
-using System.Net;
-using System.Net.Http.Headers;
 
 namespace OdinWeb.Controllers
 {
@@ -19,7 +15,7 @@ namespace OdinWeb.Controllers
             _serviceModel = serviceModel;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Home()
         {
             try
@@ -38,7 +34,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear()
         {
             var services = _serviceModel.GetServiciosStatus(true);
@@ -80,7 +76,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Guardar(ServiceUDP s, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             var service = new Service();
@@ -147,7 +143,7 @@ namespace OdinWeb.Controllers
             return RedirectToAction("Editar");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Ver(int id)
         {
             try
@@ -199,7 +195,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Editar(int id)
         {
             try
@@ -263,7 +259,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(ServiceUDP s, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
 
@@ -332,7 +328,7 @@ namespace OdinWeb.Controllers
 
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int id)
         {
             try
@@ -351,12 +347,14 @@ namespace OdinWeb.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Supervisor,Cliente")]
         public async Task<IActionResult> HCliente()
         {
          
             return View(_serviceModel.GetServiciosStatus(true));
         }
 
+        [Authorize(Roles = "Admin,Supervisor,Cliente")]
         public async Task<IActionResult> SubService(long id) {
             try {
                 
@@ -381,6 +379,7 @@ namespace OdinWeb.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Supervisor,Cliente")]
         public JsonResult GetServiceById(int id)
         {
             try
@@ -396,7 +395,6 @@ namespace OdinWeb.Controllers
             {
                 return Json(new Service());
             }
-
         }
     }
 }

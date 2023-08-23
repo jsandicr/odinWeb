@@ -27,7 +27,6 @@ builder.Services.AddScoped<ICommentModel, CommentModel>();
 builder.Services.AddScoped<IReportModel, ReportModel>();
 builder.Services.AddScoped<ITransLogModel, TransLogModel>();
 builder.Services.AddScoped<IChatModel, ChatModel>();
-
 builder.Services.AddScoped<IStatusModel, StatusModel>();
 builder.Services.AddHttpContextAccessor();
 
@@ -52,8 +51,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-//app.UseSession();
 
 //Configuracion para sesion
 app.UseAuthentication();

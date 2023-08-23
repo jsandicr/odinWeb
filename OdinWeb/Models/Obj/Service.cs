@@ -1,13 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Web;
-using System.Collections.Generic;
-using System.Xml.Linq;
 
 namespace OdinWeb.Models.Obj
 {
     public class Service
     {
-       
         public int id { get; set; }
 
         [StringLength(100, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
@@ -20,8 +16,6 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Activo")]
         public bool active { get; set; }
         public string photo { get; set; }
-
-   
         [Display(Name = "Requerimientos")]
         [StringLength(1000, ErrorMessage = "El campo no puede contener más de 500 caracteres")]
         public string? requirements { get; set; }
@@ -46,7 +40,6 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Descripción")]
         [Required(ErrorMessage = "El campo es requerido")]
         [StringLength(1000, ErrorMessage = "El campo no puede contener más de 50 caracteres")]
-
         public string description { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         [Display(Name = "Estado")]
@@ -61,10 +54,7 @@ namespace OdinWeb.Models.Obj
 
         [Required(ErrorMessage = "El campo es requerido")]
         public IFormFile image { get; set; }
-
         public IFormFile? imageU { get; set; }
-
-
         [Display(Name = "Necesita transporte")]
         public bool transport { get; set; }
         [Display(Name = "Asignar al administrador")]

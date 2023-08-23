@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
 using Rotativa.AspNetCore;
+using System.Data;
 using System.Globalization;
 
 namespace OdinWeb.Controllers
@@ -15,12 +17,14 @@ namespace OdinWeb.Controllers
             _reportModel = reportModel;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult TicketsXTime(DateTime date1, DateTime date2)
         {
             try
@@ -44,6 +48,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult TicketsXSupervisor(DateTime date1, DateTime date2)
         {
             try
@@ -72,6 +77,7 @@ namespace OdinWeb.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult TicketsXSupervisorM()
         {
             try

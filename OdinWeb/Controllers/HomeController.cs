@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OdinWeb.Models.Data.Classes;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OdinWeb.Models.Data.Interfaces;
 
 namespace OdinWeb.Controllers
@@ -8,13 +8,12 @@ namespace OdinWeb.Controllers
     {
 
         private readonly IReportModel _reportModel;
-        private readonly ITicketModel _ticketModel;
-        public HomeController(IReportModel reportModel, ITicketModel ticketModel)
+        public HomeController(IReportModel reportModel)
         {
             _reportModel = reportModel;
-            _ticketModel = ticketModel;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             var cantAssign = _reportModel.GetCantTicketsAssigned();

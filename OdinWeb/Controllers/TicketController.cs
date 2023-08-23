@@ -3,18 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using OdinWeb.Models.Obj;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OdinWeb.Models.Data.Interfaces;
-using System;
-using System.Net.Sockets;
-using Microsoft.Extensions.Hosting.Internal;
-using NuGet.Packaging.Signing;
-using System.Reflection.Metadata;
 using OdinApi.Models.Obj;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
-using System.IO;
-using System.Globalization;
-using System.Drawing;
-using OdinWeb.Models.Data.Classes;
 
 namespace OdinWeb.Controllers
 {
@@ -192,7 +182,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin,Supervisor")]
         public async Task<IActionResult> Ver(int id)
         {
             try
@@ -289,7 +279,7 @@ namespace OdinWeb.Controllers
 
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin,Supervisor")]
         public async Task<IActionResult> Editar(int id)
         {
             try
@@ -373,7 +363,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,Supervisor")]
         public async Task<IActionResult> Actualizar(Ticket ticket)
         {
             try
@@ -407,6 +397,7 @@ namespace OdinWeb.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = "Admin,Supervisor")]
         public async Task<IActionResult> Eliminar(int id)
         {
             try
@@ -433,7 +424,7 @@ namespace OdinWeb.Controllers
 
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Cliente")]
         public async Task<IActionResult> CrearTiquete(int idService)
         {
             Ticket ticket = new Ticket();
@@ -444,7 +435,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Cliente")]
 
         public async Task<IActionResult> CrearTiquete(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
@@ -514,14 +505,14 @@ namespace OdinWeb.Controllers
         }
 
         [HttpGet]
-        [Authorize]
-
+        [Authorize(Roles = "Admin,Supervisor,Cliente")]
         public IActionResult TiquetesProceso()
         {
             return View();
         }
+
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,Supervisor")]
 
         public IActionResult TiquetesProcesoAS()
         {
@@ -559,6 +550,7 @@ namespace OdinWeb.Controllers
             var tickets = _ticketModel.GetTicketsByBranch(idbranch, status);
             return PartialView("_ParcialTableAS", tickets.Result);
         }
+
         [HttpGet]
         [Authorize]
         public IActionResult GetTicketsByBranch(int idbranch,string nombre)
@@ -588,28 +580,26 @@ namespace OdinWeb.Controllers
 
 
         [HttpGet]
-        [Authorize]
-
+        [Authorize(Roles = "Cliente")]
         public IActionResult VerTiquete(int id)
         {
             return View(_ticketModel.GetTicketById(id));
         }
+
         [HttpGet]
         [Authorize]
-
+        [Authorize(Roles = "Cliente")]
         public IActionResult EditarTiquete(int id)
         {
             return View(_ticketModel.GetTicketById(id));
         }
 
         [HttpPost]
-        [Authorize]
-
+        [Authorize(Roles = "Cliente")]
         public async Task<IActionResult> EditarTiquete(Ticket ticket, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             try
             {
-
                 var t = _ticketModel.GetTicketById(ticket.id);
                 t.description = ticket.description;
                 t.updateDate = DateTime.Now;
@@ -663,6 +653,7 @@ namespace OdinWeb.Controllers
             }
             return View();
         }
+
         [HttpGet]
         [Authorize]
 
@@ -710,6 +701,7 @@ namespace OdinWeb.Controllers
             return new FileStreamResult(fileStream, contentType);
         }
 
+        [Authorize(Roles = "Admin,Supevisor")]
         public JsonResult GetTicketsXTime()
         {
             try
@@ -732,6 +724,7 @@ namespace OdinWeb.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Supevisor")]
         public JsonResult GetTicketsOpen_Close()
         {
             try

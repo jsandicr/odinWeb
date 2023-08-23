@@ -2,13 +2,18 @@
 
 @{
     ViewData["Title"] = "SubServicios";
+    string layout = "";
     if (Context.Request.Cookies["Rol"] == "Cliente")
     {
-        Layout = "~/Views/Shared/_ClienteLayout.cshtml";
+        layout = "~/Views/Shared/_ClienteLayout.cshtml";
     }
     if (Context.Request.Cookies["Rol"] == "Supervisor")
     {
-        Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+        layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+    }
+
+    if(layout!=""){
+        Layout = layout;
     }
 }
 @if (Model == null)
@@ -134,14 +139,14 @@ else
         function redirectToAction(id) {
             var url = '';
 
-            var layout = @Html.Raw(Json.Serialize(ViewBag.Layout));
+            var layout = @Html.Raw(Json.Serialize(layout));
 
-            if(layout == null){
-                //Admin
-                url = '/Ticket/Crear?idService=' + encodeURIComponent(id);
-            }else{
+            if (layout == "~/Views/Shared/_ClienteLayout.cshtml") {
                 //Cliente
                 url = '/Ticket/CrearTiquete?idService=' + encodeURIComponent(id);
+            }else{
+                //Admin y Supervisor
+                url = '/Ticket/Crear?idService=' + encodeURIComponent(id);
             }
 
             window.location.href = url;

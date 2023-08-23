@@ -16,7 +16,7 @@ namespace OdinWeb.Controllers
             _branchModel = branchModel;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Home()
         {
             try
@@ -34,7 +34,8 @@ namespace OdinWeb.Controllers
                 return View();
             }
         }
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> BranchByTickets()
         {
             try
@@ -53,7 +54,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear()
         {
             List<SelectListItem> estados = new List<SelectListItem>();
@@ -74,7 +75,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Guardar(Branch branch)
         {
             try
@@ -103,7 +104,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Ver(int id)
         {
             try
@@ -137,7 +138,7 @@ namespace OdinWeb.Controllers
 
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Editar(int id)
         {
             try
@@ -171,7 +172,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(Branch branch)
         {
             try
@@ -200,7 +201,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int id)
         {
             try
@@ -223,12 +224,6 @@ namespace OdinWeb.Controllers
                 TempData["AlertType"] = "error";
                 return RedirectToAction(nameof(Home));
             }
-        }
-
-        [Authorize]
-        public async Task<IActionResult> Principal()
-        {
-            return View();
         }
     }
 }

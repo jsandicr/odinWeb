@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
-using System.Net;
-using System.Net.Http.Headers;
 
 namespace OdinWeb.Controllers
 {
@@ -21,14 +18,7 @@ namespace OdinWeb.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-
-        [Authorize]
-        public async Task<IActionResult> Dashboard()
-        {
-            return View();
-        }
-
-        [Authorize]
+        [Authorize(Roles = "Cliente")]
         public IActionResult Profile()
         {
             
@@ -59,6 +49,7 @@ namespace OdinWeb.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Cliente")]
         public IActionResult GuardarDatos(UpdateUser u, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             var user = _userModel.GetUserById(u.id);

@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
-using OdinWeb.Models;
-using OdinWeb.Models.Data.Classes;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
-using System.Net.Http.Headers;
-using System.Text;
 
 namespace OdinWeb.Controllers
 {
@@ -27,7 +22,7 @@ namespace OdinWeb.Controllers
             _chatModel = chatModel;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Home()
         {
             try
@@ -46,7 +41,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear()
         {
             var branches = _branchModel.GetBranch();
@@ -69,14 +64,14 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Guardar(User user)
         {
             try
             {
                 user.idRol = 1;
                 user.restorePass = true;
-                user.password = "password";
+                user.password = "";
                 var NewUser = _clientModel.PostClient(user);
                 if (NewUser)
                 {
@@ -98,7 +93,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Ver(int id)
         {
             try
@@ -133,7 +128,7 @@ namespace OdinWeb.Controllers
 
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Editar(int id)
         {
             try
@@ -169,7 +164,7 @@ namespace OdinWeb.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(User user)
         {
             try
@@ -196,7 +191,7 @@ namespace OdinWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int id)
         {
             try
@@ -228,7 +223,7 @@ namespace OdinWeb.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Cliente")]
         public async Task<IActionResult> Principal()
         {
 

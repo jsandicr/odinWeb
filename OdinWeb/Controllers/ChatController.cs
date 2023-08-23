@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
-using OdinWeb.Models;
-using OdinWeb.Models.Data.Classes;
 using OdinWeb.Models.Data.Interfaces;
 using OdinWeb.Models.Obj;
-using System.Net.Http.Headers;
-using System.Text;
 
 namespace OdinWeb.Controllers
 {
@@ -20,8 +14,6 @@ namespace OdinWeb.Controllers
         {
             _chatModel = chatModel;
         }
-
-
 
         [Authorize]
         public IActionResult Home()

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OdinWeb.Models.Data.Interfaces;
 
 namespace OdinWeb.Controllers
@@ -11,6 +12,8 @@ namespace OdinWeb.Controllers
             _transLogModel = transLogModel;
 
         }
+
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             Dictionary<string, int> options = new Dictionary<string, int>
@@ -26,7 +29,9 @@ namespace OdinWeb.Controllers
             var logs = await _transLogModel.GetAsync();
             return View(logs);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<bool> DeleteTras(string days)
         {
             try
