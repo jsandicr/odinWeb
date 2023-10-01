@@ -23,11 +23,11 @@ namespace OdinWeb.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Home()
+        public IActionResult Home()
         {
             try
             {
-                var lista = _clientModel.GetClients();
+                var lista =  _clientModel.GetClients();
                 if (lista != null)
                 {
                     return View(lista);

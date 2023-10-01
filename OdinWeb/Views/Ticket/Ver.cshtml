@@ -26,7 +26,14 @@
 </div>
 <div class="col-md-8" style="margin: 0 auto;">
     <div class="tile">
-        <h3 class="tile-title">Cod-@Model.id</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="tile-title">Cod-@Model.id</h3>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#clienteV">Información del Cliente</button>
+            </div>
+        </div>
         <hr>
         <div class="tile-body">
             <div class="ticket-section">
@@ -91,7 +98,11 @@
                     <div class="col-md-6">
                         <h6>Cliente</h6>
                         <div class="ticket-section-content">
-                            <p>@Html.Raw(Model.client.name + " " + Model.client.lastName)</p>
+                            <div class="row">
+                                    <p>@Html.Raw(Model.client.name + " " + Model.client.lastName)</p>
+
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -108,7 +119,7 @@
                     <label>
                         <input type="checkbox" id="toggle-comments-checkbox" onclick="toggleComments()"><span class="label-text">Mostrar Comentarios</span>
                     </label>
-                </div>                
+                </div>
                 <div id="comments-container" style="display: none;">
                     @if (Model.comments != null && Model.comments.Count > 0)
                     {
@@ -136,7 +147,7 @@
                     <label>
                         <input type="checkbox" id="toggle-document-checkbox" onclick="toggleDocuments()"><span class="label-text">Mostrar Documentos</span>
                     </label>
-                </div>               
+                </div>
                 <div id="documents-container" style="display: none;">
                     @if (Model.documents != null && Model.documents.Count > 0)
                     {
@@ -194,8 +205,50 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="clienteV" tabindex="-1" role="dialog" aria-labelledby="clienteV" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="tile">
+                    <h3 class="tile-title">Ver Cliente</h3>
+                    <hr>
+                    <div class="form-group">
+                        <h5 class="control-label">Nombre</h5>
+                        <h6 class="control-label">@Model.client.name</h6>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="control-label">Apellidos</h5>
+                        <h6 class="control-label">@Model.client.lastName</h6>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="control-label">Correo</h5>
+                        <h6 class="control-label">@Model.client.mail</h6>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="control-label">Teléfono</h5>
+                        <h6 class="control-label">@Model.client.phone</h6>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="active" class="control-label">Estado</label>
+                        @if (@Model.client.active == true)
+                        {
+                            <div>
+                                <span asp-for="active" class="badge badge-pill badge-success">Activo</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <span asp-for="active" class="badge badge-pill badge-danger">Desactivo</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 }
+
 @section Scripts{
     <script src="~/js/exjsmain.js"></script>
 }
