@@ -47,8 +47,8 @@
 
   <ItemGroup>
     <Folder Include="PDF\" />
-    <Folder Include="wwwroot\images\Services\" />
     <Folder Include="wwwroot\Document\" />
+    <Folder Include="wwwroot\images\Services\" />
     <Folder Include="wwwroot\images\Users\" />
   </ItemGroup>
 
