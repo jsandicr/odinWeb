@@ -18,7 +18,7 @@ namespace OdinWeb.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        [Authorize(Roles = "Cliente")]
+        [Authorize]
         public IActionResult Profile()
         {
             
@@ -49,7 +49,7 @@ namespace OdinWeb.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Cliente")]
+        [Authorize]
         public IActionResult GuardarDatos(UpdateUser u, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             var user = _userModel.GetUserById(u.id);
@@ -63,7 +63,7 @@ namespace OdinWeb.Controllers
             if (archivoImagen != null && archivoImagen.Length > 0)
             {
                 var nombreArchivo = Path.GetFileName(archivoImagen.FileName);
-                var extension = Path.GetExtension(nombreArchivo);
+                var extension = Path.GetExtension(nombreArchivo).ToLower();
                 if (extension == ".png" || extension == ".jpg")
                 {
                     if (!string.IsNullOrEmpty(user.photo))
