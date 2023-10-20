@@ -341,11 +341,15 @@ namespace OdinWeb.Controllers
                         List<SelectListItem> statusOps = new List<SelectListItem>();
                         foreach (Status status in statusL)
                         {
-                            statusOps.Add(new SelectListItem
+                            if (status.description != "Finalizado" || Request.Cookies["Rol"] != "Supervisor")
                             {
-                                Text = status.description,
-                                Value = status.id.ToString()
-                            });
+                                statusOps.Add(new SelectListItem
+                                {
+                                    Text = status.description,
+                                    Value = status.id.ToString()
+                                });
+                            }
+
                         };
 
                         ViewData["Status"] = statusOps;

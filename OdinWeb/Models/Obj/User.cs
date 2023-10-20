@@ -28,7 +28,7 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Foto")]
         public string photo { get; set; } = "user.png";
         [Required(ErrorMessage = "El campo es requerido")]
-        [StringLength(int.MaxValue, MinimumLength = 6, ErrorMessage = "El campo Contraseña debe tener entre 6 y 20 caracteres")]
+        [RegularExpression(@"^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$", ErrorMessage = "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.")]
         [Display(Name = "Contraseña")]
         public string password { get; set; }
         [Display(Name = "Activo")]
@@ -78,7 +78,7 @@ namespace OdinWeb.Models.Obj
         public string phone { get; set; }
 
         [Required(ErrorMessage = "El campo es requerido")]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo debe tener entre 6 y 20 caracteres")]
+        [RegularExpression(@"^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$", ErrorMessage = "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.")]
         [Display(Name = "Contraseña")]
         public string password { get; set; }
 
@@ -121,7 +121,7 @@ namespace OdinWeb.Models.Obj
         [Display(Name = "Contraseña Actual")]
         public string oldPassword { get; set; }
 
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "El campo contraseña debe tener entre 6 y 20 caracteres")]
+        [RegularExpression(@"^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$", ErrorMessage = "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.")]
         [Display(Name = "Nueva Contraseña")]
         [Required(ErrorMessage = "El campo es requerido.")]
         public string password { get; set; }
