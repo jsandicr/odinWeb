@@ -96,7 +96,7 @@ namespace OdinWeb.Controllers
             var respuesta = _userModel.PutUserById(user);
             if (respuesta)
             {
-                TempData["AlertMessage"] = "Datos actulizados correctamente";
+                TempData["AlertMessage"] = "Datos actualizados correctamente";
                 TempData["AlertType"] = "success";
                 return RedirectToAction("Profile");
             }

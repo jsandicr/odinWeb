@@ -36,10 +36,11 @@ namespace OdinWeb.Controllers
                     desde = date1.ToString("dd-MM-yyyy"),
                     hasta = date2.ToString("dd-MM-yyyy")
                 };
-                return new ViewAsPdf("TicketsXTime", viewModel)
-                {
+                return View(viewModel);
+                //return new ViewAsPdf("TicketsXTime", viewModel)
+                //{
 
-                };
+                //};
             }
             catch (Exception e)
             {
@@ -67,10 +68,12 @@ namespace OdinWeb.Controllers
                     hasta = date2.ToString("dd-MM-yyyy")
                 };
 
-                return new ViewAsPdf("TicketsXSupervisor", viewModel)
+                return View(viewModel);
+
+                /*return new ViewAsPdf("TicketsXSupervisor", viewModel)
                 {
 
-                };
+                };*/
             }catch(Exception e)
             {
                 return RedirectToAction(nameof(Index));
@@ -99,11 +102,13 @@ namespace OdinWeb.Controllers
                     CantidadTicketsPorSupervisor = cantidadTicketsPorSupervisorPorMes
                 };
 
-                return new ViewAsPdf("TicketsXSupervisorM", viewModel)
-                {
+                return View(viewModel);
+                //return new ViewAsPdf("TicketsXSupervisorM", viewModel)
+                //{
 
-                };
-            }catch(Exception e)
+                //};
+            }
+            catch(Exception e)
             {
                 return RedirectToAction(nameof(Index));
             }

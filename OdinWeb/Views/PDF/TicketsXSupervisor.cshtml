@@ -8,9 +8,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            padding: 15px;
         }
 
-        h1,h3 {
+        h1, h3 {
             text-align: center;
             margin-bottom: 20px;
         }
@@ -77,5 +78,8 @@
         {
             <p>Reporte generado por: @Context.Request.Cookies["NombreCompleto"]</p>
         }
+    </div>
+    <div class="tile-footer" style="padding-right: 20px; display: flex; justify-content: end">
+        <a class="btn btn-secondary" asp-action="Index" asp-controller="PDF"><i </i>Atras</a>
     </div>
 </body>
